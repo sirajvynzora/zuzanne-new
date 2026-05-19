@@ -21,56 +21,27 @@ from .models import Blog, GalleryCategory, Category, Contact, GalleryImage, Test
 
 
 def home(request):
-    testimonials = Testimonial.objects.all().order_by("-created_at")[:5]
-    blogs = Blog.objects.all().order_by("-created_at")[:6]
-    gallery_images = GalleryImage.objects.select_related("category").all().order_by("-uploaded_at")[:8]
-    return render(
-        request,
-        "frontend/index.html",
-        {
-            "testimonials": testimonials,
-            "blogs": blogs,
-            "gallery_images": gallery_images,
-        },
-    )
+    # Redirect legacy old-home to active frontend homepage
+    return redirect("frontend_home")
 
 
 def gallery(request):
-    categories = GalleryCategory.objects.all().order_by("name")
-    gallery_images = GalleryImage.objects.select_related("category").all().order_by("-uploaded_at")
-    return render(
-        request,
-        "frontend/gallery.html",
-        {
-            "categories": categories,
-            "gallery_images": gallery_images,
-        },
-    )
+    # Redirect legacy gallery page to homepage as gallery is integrated
+    messages.info(request, "Our gallery has been integrated directly into our homepage.")
+    return redirect("frontend_home")
 
 
 def blog_details(request, slug=None):
+    # Dynamic redirect: if slug matches a blog, redirect to details page; otherwise to blog list
     if slug:
         blog = get_object_or_404(Blog, slug=slug)
-    else:
-        blog = Blog.objects.order_by("-created_at").first()
-        if not blog:
-            return redirect("home")
-
-    recent_blogs = Blog.objects.exclude(id=blog.id).order_by("-created_at")[:4]
-    return render(request, "frontend/block-details.html", {"blog": blog, "recent_blogs": recent_blogs})
+        return redirect(f"/blog-details-right-sidebar.html?id={blog.id}")
+    return redirect("/blog-grid-right-sidebar.html")
 
 
 def contact(request):
-    if request.method == "POST":
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Your message has been sent successfully.")
-            return redirect("contact")
-    else:
-        form = ContactForm()
-
-    return render(request, "frontend/contact.html", {"form": form})
+    # Redirect legacy contact page to contact-us.html
+    return redirect("/contact-us.html")
 
 
 def admin_login(request):

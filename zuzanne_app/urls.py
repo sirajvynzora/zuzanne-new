@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path("", views.frontend_home, name="frontend_home"),
+    # Legacy Redirection Routes (to prevent 404/500 errors and preserve backwards compatibility)
     path("old-home/", views.home, name="home"),
     path("gallery/", views.gallery, name="gallery"),
     path("blogs/", views.blog_details, name="blog_details"),
