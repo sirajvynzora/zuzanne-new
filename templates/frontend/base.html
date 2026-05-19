@@ -229,6 +229,22 @@
             margin-left: 8px !important;
         }
 
+        /* Keep template dropdown visuals; only force left text alignment */
+        .site-main-menu .sub-menu,
+        .site-main-menu .sub-menu li,
+        .site-main-menu .sub-menu li > a,
+        .site-main-menu .mega-menu,
+        .site-main-menu .mega-menu li,
+        .site-main-menu .mega-menu li > a {
+            text-align: left !important;
+        }
+
+        /* Preserve original nested-arrow placement from template */
+        .site-main-menu .sub-menu li.has-children > a::before,
+        .site-main-menu .mega-menu li.has-children > a::before {
+            right: 30px;
+        }
+
         /* Normalized global transition timing for hover animations */
         .btn, .product, .category-banner, .sticky-cta-btn, .footer-social-links-royal ul li a, a, i, img {
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
@@ -242,10 +258,86 @@
             object-position: center top;
             display: block;
         }
+
+        /* Zuzanne Premium Preloader */
+        .zuzanne-preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f4ef;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.45s ease, visibility 0.45s ease;
+        }
+
+        .zuzanne-preloader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .zuzanne-preloader-inner {
+            position: relative;
+            width: 112px;
+            height: 112px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zuzanne-preloader-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1.5px solid rgba(73, 57, 45, 0.2);
+            border-top-color: rgba(73, 57, 45, 0.7);
+            animation: zuzanneSpin 1.3s linear infinite;
+        }
+
+        .zuzanne-preloader-logo {
+            width: 64px;
+            height: auto;
+            animation: zuzannePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes zuzanneSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes zuzannePulse {
+            0%, 100% {
+                opacity: 0.88;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.03);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .zuzanne-preloader,
+            .zuzanne-preloader-logo,
+            .zuzanne-preloader-ring {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div id="zuzanne-preloader" class="zuzanne-preloader" aria-hidden="true">
+        <div class="zuzanne-preloader-inner">
+            <span class="zuzanne-preloader-ring"></span>
+            <img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne" class="zuzanne-preloader-logo">
+        </div>
+    </div>
 
 
     {% block header_section %}
@@ -817,6 +909,26 @@
 
     <!-- Main Activation JS -->
     <script src="{% static 'frontend/assets/js/main.js' %}"></script>
+
+    <script>
+        (function () {
+            var preloader = document.getElementById('zuzanne-preloader');
+            if (!preloader) return;
+
+            var hidePreloader = function () {
+                if (preloader.classList.contains('is-hidden')) return;
+                preloader.classList.add('is-hidden');
+                window.setTimeout(function () {
+                    if (preloader && preloader.parentNode) {
+                        preloader.parentNode.removeChild(preloader);
+                    }
+                }, 500);
+            };
+
+            window.addEventListener('load', hidePreloader, { once: true });
+            window.setTimeout(hidePreloader, 3200);
+        })();
+    </script>
 
     <!-- Global Toast Container -->
     <div id="global-toast" class="global-toast">
