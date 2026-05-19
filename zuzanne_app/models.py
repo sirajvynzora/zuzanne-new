@@ -128,14 +128,14 @@ class Category(OptimizedImageModel):
     image_fields = ["image"]
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="categories")
     name = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(blank=True)
     image = models.ImageField(upload_to="categories/", blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = "Categories"
-        unique_together = ('collection', 'name')
+        unique_together = (('collection', 'name'), ('collection', 'slug'))
 
     def __str__(self):
         return f"{self.collection.name} -> {self.name}"
@@ -145,7 +145,7 @@ class Category(OptimizedImageModel):
             base_slug = slugify(self.name)
             slug = base_slug
             counter = 1
-            while Category.objects.filter(slug=slug).exists():
+            while Category.objects.filter(collection=self.collection, slug=slug).exists():
                 slug = f"{base_slug}-{counter}"
                 counter += 1
             self.slug = slug

@@ -24,8 +24,14 @@
                         <h1 class="title">{{ shop_title|default:"Shop" }}</h1>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/shop.html">Shop</a></li>
-                            <li class="breadcrumb-item active">{{ shop_title|default:"All Products" }}</li>
+                            {% if category %}
+                                <li class="breadcrumb-item"><a href="{% url 'collection' collection.slug %}">{{ collection.name }}</a></li>
+                                <li class="breadcrumb-item active">{{ category.name }}</li>
+                            {% elif collection %}
+                                <li class="breadcrumb-item active">{{ collection.name }}</li>
+                            {% else %}
+                                <li class="breadcrumb-item active">{{ shop_title|default:"Shop" }}</li>
+                            {% endif %}
                         </ul>
                     </div>
 
@@ -46,9 +52,9 @@
                     <!-- Isotop Filter Start -->
                     <div class="col-md col-12 align-self-center learts-mb-20">
                         <div class="isotope-filter shop-product-filter" data-target="#shop-products">
-                            <button class="active" data-filter="*">All</button>
+                            <button class="{% if not category %}active{% endif %}" data-filter="*">All</button>
                             {% for cat in categories %}
-                            <button data-filter=".cat-{{ cat.id }}">
+                            <button class="{% if category.id == cat.id %}active{% endif %}" data-filter=".cat-{{ cat.id }}">
                                 {{ cat.name }}
                             </button>
                             {% endfor %}
@@ -114,7 +120,7 @@
                         <ul class="widget-list product-filter-widget customScroll">
                             {% for cat in categories %}
                             <li>
-                                <a href="/shop.html?collection_id={{ collection.id }}&category_id={{ cat.id }}">
+                                <a href="{% url 'category' cat.collection.slug cat.slug %}">
                                     {{ cat.name }}
                                 </a>
                                 <span class="count">
@@ -165,7 +171,7 @@
                                 </span>
                                 <div class="product-buttons">
                                     <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
-                                    <a href="contact-us.html?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
+                                    <a href="{% url 'contact' %}?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
                                 </div>
                             </div>
                         </div>

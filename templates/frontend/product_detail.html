@@ -12,7 +12,7 @@
                         <h1 class="title" style="font-size: 2.5rem; line-height: 1.3; white-space: normal;">{{ product.name|default:"Product Details" }}</h1>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/shop.html">Products</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'shop' %}">Products</a></li>
                             <li class="breadcrumb-item active">{{ product.name|default:"Product Details" }}</li>
                         </ul>
                     </div>
@@ -80,7 +80,7 @@
                             </table>
                         </div>
                         <div class="product-buttons">
-                            <a href="/contact-us.html?product={{ product.name }}" class="btn btn-dark btn-outline-hover-dark"><i class="far fa-envelope"></i> Enquire Now</a>
+                            <a href="{% url 'contact' %}?product={{ product.name }}" class="btn btn-dark btn-outline-hover-dark"><i class="far fa-envelope"></i> Enquire Now</a>
                             <a href="https://wa.me/919999999999?text=Hi, I am interested in {{ product.name }}" target="_blank" class="btn btn-outline-dark btn-outline-hover-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                         </div>
                         <div class="product-meta">
@@ -94,7 +94,7 @@
                                         <td class="label"><span>Collection</span></td>
                                         <td class="value">
                                             <ul class="product-category">
-                                                <li><a href="/shop.html?collection_id={{ product.category.collection.id }}">{{ product.category.collection.name }}</a></li>
+                                                <li><a href="{% url 'collection' product.category.collection.slug %}">{{ product.category.collection.name }}</a></li>
                                             </ul>
                                         </td>
                                     </tr>
@@ -102,7 +102,7 @@
                                         <td class="label"><span>Category</span></td>
                                         <td class="value">
                                             <ul class="product-category">
-                                                <li><a href="/shop.html?category_id={{ product.category.id }}">{{ product.category.name }}</a></li>
+                                                <li><a href="{% url 'category' product.category.collection.slug product.category.slug %}">{{ product.category.name }}</a></li>
                                             </ul>
                                         </td>
                                     </tr>
@@ -236,7 +236,7 @@
                                 Bespoke Custom Order
                             </span>
                             <div class="product-buttons">
-                                <a href="/contact-us.html?product={{ rp.name }}" class="product-button hintT-top" data-hint="Enquire"><i class="far fa-envelope"></i></a>
+                                <a href="{% url 'contact' %}?product={{ rp.name }}" class="product-button hintT-top" data-hint="Enquire"><i class="far fa-envelope"></i></a>
                                 <a href="https://wa.me/919999999999?text=Hi, I am interested in {{ rp.name }}" target="_blank" class="product-button hintT-top" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>

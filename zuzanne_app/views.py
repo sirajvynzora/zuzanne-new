@@ -31,18 +31,6 @@ def gallery(request):
     return redirect("frontend_home")
 
 
-def blog_details(request, slug=None):
-    # Dynamic redirect: if slug matches a blog, redirect to details page; otherwise to blog list
-    if slug:
-        blog = get_object_or_404(Blog, slug=slug)
-        return redirect(f"/blog-details-right-sidebar.html?id={blog.id}")
-    return redirect("/blog-grid-right-sidebar.html")
-
-
-def contact(request):
-    # Redirect legacy contact page to contact-us.html
-    return redirect("/contact-us.html")
-
 
 def admin_login(request):
     if request.method == "POST":
@@ -515,89 +503,84 @@ def frontend_home(request):
     products = Product.objects.select_related("category").prefetch_related("images").all()[:15]
     return render(request, 'frontend/index.html', {"products": products})
 
-
-def frontend_page(request, page_name):
-    if page_name == "shop":
-        collection_id = request.GET.get("collection_id")
-        category_id = request.GET.get("category_id")
-        title = "Shop"
-        collection = None
-        categories = []
-
-        products = Product.objects.select_related(
-            "category__collection"
-        ).prefetch_related("images").all()
-
-        if collection_id:
-            collection = get_object_or_404(
-                Collection, id=collection_id)
-            products = products.filter(
-                category__collection=collection)
-            title = collection.name
-            categories = Category.objects.filter(
-                collection=collection).order_by("name")
-        elif category_id:
-            cat = get_object_or_404(Category, id=category_id)
-            products = products.filter(category=cat)
-            title = cat.name
-            collection = cat.collection
-            categories = Category.objects.filter(
-                collection=collection).order_by("name")
-
-        return render(request, "frontend/shop.html", {
-            "products": products,
-            "shop_title": title,
-            "collection": collection,
-            "categories": categories,
-            "selected_collection_id": collection_id,
-            "selected_category_id": category_id,
-        })
-
-    if page_name == "blog-grid-right-sidebar":
-        blogs_list = Blog.objects.all().order_by("-created_at")
+def shop_view(request, collection_slug=None, category_slug=None):
+    products = Product.objects.select_related("category__collection").prefetch_related("images").all()
+    collections = Collection.objects.all()
+    categories = Category.objects.none()
+    
+    collection = None
+    category = None
+    shop_title = "Shop"
+    
+    if collection_slug:
+        collection = get_object_or_404(Collection, slug=collection_slug)
+        categories = Category.objects.filter(collection=collection).order_by("name")
+        products = products.filter(category__collection=collection)
+        shop_title = collection.name
         
-        # Paginate 4 blogs per page
-        paginator = Paginator(blogs_list, 4)
-        page_number = request.GET.get('page', 1)
-        page_obj = paginator.get_page(page_number)
+    if category_slug:
+        category = get_object_or_404(Category, collection=collection, slug=category_slug)
+        products = products.filter(category=category)
+        shop_title = category.name
         
-        is_ajax = request.headers.get('x-requested-with') == 'XMLHttpRequest' or request.GET.get('ajax') == '1'
-        if is_ajax:
-            html = render_to_string("frontend/partials/blog_items.html", {"blogs": page_obj})
-            return JsonResponse({
-                "html": html,
-                "has_next": page_obj.has_next(),
-                "next_page_number": page_obj.next_page_number() if page_obj.has_next() else None
-            })
-            
-        recent_blogs = blogs_list[:3]
-        return render(request, "frontend/blog-grid-right-sidebar.html", {
-            "blogs": page_obj,
-            "recent_blogs": recent_blogs
-        })
+    context = {
+        "products": products,
+        "collections": collections,
+        "categories": categories,
+        "collection": collection,
+        "category": category,
+        "shop_title": shop_title,
+    }
+    return render(request, "frontend/shop.html", context)
 
-    if page_name == "blog-details-right-sidebar":
-        blog_id = request.GET.get('id')
-        blog = None
-        if blog_id:
-            try:
-                blog = Blog.objects.get(id=blog_id)
-            except (Blog.DoesNotExist, ValueError):
-                pass
-        if not blog:
-            blog = Blog.objects.all().order_by("-created_at").first()
-            
-        # Get up to 2 related blogs (excluding the current blog)
-        related_blogs = Blog.objects.exclude(id=blog.id).order_by("-created_at")[:2] if blog else Blog.objects.all().order_by("-created_at")[1:3]
-        recent_blogs = Blog.objects.all().order_by("-created_at")[:3]
+
+def blog_list_view(request):
+    blogs_list = Blog.objects.all().order_by("-created_at")
+    
+    # Paginate 4 blogs per page
+    paginator = Paginator(blogs_list, 4)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+    
+    is_ajax = request.headers.get('x-requested-with') == 'XMLHttpRequest' or request.GET.get('ajax') == '1'
+    if is_ajax:
+        html = render_to_string("frontend/partials/blog_items.html", {"blogs": page_obj})
+        return JsonResponse({
+            "html": html,
+            "has_next": page_obj.has_next(),
+            "next_page_number": page_obj.next_page_number() if page_obj.has_next() else None
+        })
         
-        return render(request, "frontend/blog-details-right-sidebar.html", {
-            "blog": blog,
-            "related_blogs": related_blogs,
-            "recent_blogs": recent_blogs
-        })
+    recent_blogs = blogs_list[:3]
+    return render(request, "frontend/blog_list.html", {
+        "blogs": page_obj,
+        "recent_blogs": recent_blogs
+    })
 
-    if request.method == "POST" and page_name == "contact-us":
+
+def blog_detail_view(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+    
+    # Get up to 2 related blogs (excluding the current blog)
+    related_blogs = Blog.objects.exclude(id=blog.id).order_by("-created_at")[:2]
+    recent_blogs = Blog.objects.all().order_by("-created_at")[:3]
+    
+    return render(request, "frontend/blog_detail.html", {
+        "blog": blog,
+        "related_blogs": related_blogs,
+        "recent_blogs": recent_blogs
+    })
+
+
+def about_view(request):
+    testimonials = Testimonial.objects.all().order_by("-created_at")
+    return render(request, "frontend/about.html", {
+        "testimonials": testimonials
+    })
+
+
+def contact_view(request):
+    if request.method == "POST":
         first_name = request.POST.get("first_name", "").strip()
         last_name = request.POST.get("last_name", "").strip()
         phone = request.POST.get("phone", "").strip()
@@ -621,12 +604,47 @@ def frontend_page(request, page_name):
                 messages.error(request, f"Failed to submit message: {str(e)}")
 
         return redirect(request.path)
+        
+    # GET request
+    product_name = request.GET.get("product", "")
+    return render(request, "frontend/contact.html", {"product_name": product_name})
+
+
+def frontend_page(request, page_name):
+    # 301 Permanent Redirects for legacy SEO-indexed pages
+    if page_name == "shop":
+        collection_id = request.GET.get("collection_id")
+        category_id = request.GET.get("category_id")
+        if category_id:
+            cat = get_object_or_404(Category, id=category_id)
+            return redirect("category", collection_slug=cat.collection.slug, category_slug=cat.slug, permanent=True)
+        if collection_id:
+            col = get_object_or_404(Collection, id=collection_id)
+            return redirect("collection", collection_slug=col.slug, permanent=True)
+        return redirect("shop", permanent=True)
+
+    if page_name == "blog-grid-right-sidebar":
+        return redirect("blog_list", permanent=True)
+
+    if page_name == "blog-details-right-sidebar":
+        blog_id = request.GET.get('id')
+        if blog_id:
+            try:
+                blog = Blog.objects.get(id=blog_id)
+                return redirect("blog_detail", slug=blog.slug, permanent=True)
+            except (Blog.DoesNotExist, ValueError):
+                pass
+        return redirect("blog_list", permanent=True)
 
     if page_name == "about-us-2":
-        testimonials = Testimonial.objects.all().order_by("-created_at")
-        return render(request, "frontend/about-us-2.html", {
-            "testimonials": testimonials
-        })
+        return redirect("about", permanent=True)
+
+    if page_name == "contact-us":
+        # Keep query parameters if present (e.g. ?product=Beautiful%20Gown)
+        query = ""
+        if request.GET:
+            query = "?" + request.GET.urlencode()
+        return redirect(f"/contact/{query}", permanent=True)
 
     try:
         return render(request, f"frontend/{page_name}.html")
@@ -666,7 +684,7 @@ def product_detail_view(request, slug):
 
     return render(
         request,
-        "frontend/product-details-fullwidth.html",
+        "frontend/product_detail.html",
         {
             "product": product,
             "recommended_products": recommended_products,

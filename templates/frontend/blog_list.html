@@ -50,11 +50,11 @@
                             <li class="widget-blog">
                                 <div class="thumbnail">
                                     {% if recent.image %}
-                                    <a href="/blog-details-right-sidebar.html?id={{ recent.id }}"><img src="{{ recent.image.url }}" alt="Widget Blog Post"></a>
+                                    <a href="{% url 'blog_detail' recent.slug %}"><img src="{{ recent.image.url }}" alt="Widget Blog Post"></a>
                                     {% endif %}
                                 </div>
                                 <div class="content">
-                                    <h6 class="title"><a href="/blog-details-right-sidebar.html?id={{ recent.id }}">{{ recent.title }}</a></h6>
+                                    <h6 class="title"><a href="{% url 'blog_detail' recent.slug %}">{{ recent.title }}</a></h6>
                                     <span class="date">{{ recent.created_at|date:"F d, Y" }}</span>
                                 </div>
                             </li>

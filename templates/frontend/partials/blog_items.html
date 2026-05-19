@@ -3,18 +3,18 @@
     <div class="blog">
         <div class="image">
             {% if blog.image %}
-            <a href="/blog-details-right-sidebar.html?id={{ blog.id }}"><img src="{{ blog.image.url }}" alt="{{ blog.title }}"></a>
+            <a href="{% url 'blog_detail' blog.slug %}"><img src="{{ blog.image.url }}" alt="{{ blog.title }}"></a>
             {% endif %}
         </div>
         <div class="content">
             <ul class="meta">
-                <li><i class="far fa-calendar"></i><a href="/blog-details-right-sidebar.html?id={{ blog.id }}">{{ blog.created_at|date:"F d, Y" }}</a></li>
+                <li><i class="far fa-calendar"></i><a href="{% url 'blog_detail' blog.slug %}">{{ blog.created_at|date:"F d, Y" }}</a></li>
             </ul>
-            <h5 class="title"><a href="/blog-details-right-sidebar.html?id={{ blog.id }}">{{ blog.title }}</a></h5>
+            <h5 class="title"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h5>
             <div class="desc">
                 <p>{{ blog.description|truncatewords:12 }}</p>
             </div>
-            <a href="/blog-details-right-sidebar.html?id={{ blog.id }}" class="link">Read More</a>
+            <a href="{% url 'blog_detail' blog.slug %}" class="link">Read More</a>
         </div>
     </div>
 </div>

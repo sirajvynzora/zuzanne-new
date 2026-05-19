@@ -596,11 +596,13 @@
     var $isotopeGrid = $('.isotope-grid');
     var $isotopeFilter = $('.isotope-filter');
     $isotopeGrid.imagesLoaded(function () {
+        var $activeFilter = $isotopeFilter.find('button.active').attr('data-filter') || '*';
         $isotopeGrid.isotope({
             itemSelector: '.grid-item',
             masonry: {
                 columnWidth: '.grid-sizer'
-            }
+            },
+            filter: $activeFilter
         });
     });
     $isotopeFilter.on('click', 'button', function () {

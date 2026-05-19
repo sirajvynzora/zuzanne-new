@@ -100,15 +100,15 @@
                     <nav class="site-main-menu site-main-menu-left justify-content-center">
                         <ul>
                             <li><a href="/"><span class="menu-text">Home</span></a></li>
-                            <li><a href="/about-us-2.html"><span class="menu-text">About Us</span></a></li>
+                            <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
                             
-                            <li class="has-children"><a href="/shop.html"><span class="menu-text">Shop</span></a>
+                            <li class="has-children"><a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
                                 <ul class="sub-menu">
                                     {% for col in collections_tree %}
-                                    <li class="has-children"><a href="/shop.html?collection_id={{ col.id }}"><span class="menu-text">{{ col.name }}</span></a>
+                                    <li class="has-children"><a href="{% url 'collection' col.slug %}"><span class="menu-text">{{ col.name }}</span></a>
                                         <ul class="sub-menu">
                                             {% for cat in col.cats %}
-                                            <li><a href="/shop.html?category_id={{ cat.id }}"><span class="menu-text">{{ cat.name }}</span></a></li>
+                                            <li><a href="{% url 'category' col.slug cat.slug %}"><span class="menu-text">{{ cat.name }}</span></a></li>
                                             {% endfor %}
                                         </ul>
                                     </li>
@@ -116,8 +116,8 @@
                                 </ul>
                             </li>
 
-                            <li><a href="/blog-grid-right-sidebar.html"><span class="menu-text">Blog</span></a></li>
-                            <li><a href="/contact-us.html"><span class="menu-text">Contact Us</span></a></li>
+                            <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
+                            <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
 
                             <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
                                 <ul class="sub-menu">
@@ -165,22 +165,22 @@
                     <nav class="site-main-menu site-main-menu-left justify-content-center">
                         <ul>
                             <li><a href="/"><span class="menu-text">Home</span></a></li>
-                            <li><a href="/about-us-2.html"><span class="menu-text">About Us</span></a></li>
-                            <li class="has-children"><a href="/shop.html"><span class="menu-text">Shop</span></a>
+                            <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
+                            <li class="has-children"><a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
                                 <ul class="sub-menu">
                                     {% for col in collections_tree %}
-                                    <li class="has-children"><a href="/shop.html?collection_id={{ col.id }}"><span class="menu-text">{{ col.name }}</span></a>
+                                    <li class="has-children"><a href="{% url 'collection' col.slug %}"><span class="menu-text">{{ col.name }}</span></a>
                                         <ul class="sub-menu">
                                             {% for cat in col.cats %}
-                                            <li><a href="/shop.html?category_id={{ cat.id }}"><span class="menu-text">{{ cat.name }}</span></a></li>
+                                            <li><a href="{% url 'category' col.slug cat.slug %}"><span class="menu-text">{{ cat.name }}</span></a></li>
                                             {% endfor %}
                                         </ul>
                                     </li>
                                     {% endfor %}
                                 </ul>
                             </li>
-                            <li><a href="/blog-grid-right-sidebar.html"><span class="menu-text">Blog</span></a></li>
-                            <li><a href="/contact-us.html"><span class="menu-text">Contact Us</span></a></li>
+                            <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
+                            <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
                             <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="/unused/login-register.html">Login/Register</a></li>
@@ -254,7 +254,7 @@
     <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
         <div class="inner customScroll">
             <div class="offcanvas-menu-search-form">
-                <form action="/shop.html" method="GET">
+                <form action="{% url 'shop' %}" method="GET">
                     <input type="text" name="q" placeholder="Search...">
                     <button><i class="fas fa-search"></i></button>
                 </form>
@@ -262,15 +262,15 @@
             <div class="offcanvas-menu">
                 <ul>
                     <li><a href="/"><span class="menu-text">Home</span></a></li>
-                    <li><a href="/about-us-2.html"><span class="menu-text">About Us</span></a></li>
+                    <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
 
-                    <li class="has-children"><a href="/shop.html"><span class="menu-text">Shop</span></a>
+                    <li class="has-children"><a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
                         <ul class="sub-menu">
                             {% for col in collections_tree %}
-                            <li class="has-children"><a href="#"><span class="menu-text">{{ col.name }}</span></a>
+                            <li class="has-children"><a href="{% url 'collection' col.slug %}"><span class="menu-text">{{ col.name }}</span></a>
                                 <ul class="sub-menu">
                                     {% for cat in col.cats %}
-                                    <li><a href="/shop.html?category_id={{ cat.id }}"><span class="menu-text">{{ cat.name }}</span></a></li>
+                                    <li><a href="{% url 'category' col.slug cat.slug %}"><span class="menu-text">{{ cat.name }}</span></a></li>
                                     {% endfor %}
                                 </ul>
                             </li>
@@ -278,9 +278,9 @@
                         </ul>
                     </li>
 
-                    <li><a href="/blog-grid-right-sidebar.html"><span class="menu-text">Blog</span></a></li>
+                    <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
 
-                    <li><a href="/contact-us.html"><span class="menu-text">Contact Us</span></a></li>
+                    <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
 
                     <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
                         <ul class="sub-menu">
@@ -311,7 +311,7 @@
         <div class="inner">
             <div class="offcanvas-search-form">
                 <button class="offcanvas-close">×</button>
-                <form action="/shop.html" method="GET">
+                <form action="{% url 'shop' %}" method="GET">
                     <div class="row mb-n3">
                         <div class="col-lg-8 col-12 mb-3"><input type="text" name="q" placeholder="Search Products..."></div>
                         <div class="col-lg-4 col-12 mb-3">
@@ -439,9 +439,9 @@
 
                 <div class="footer1-menu col">
                     <ul class="widget-menu justify-content-center">
-                        <li><a href="#">About us</a></li>
+                        <li><a href="{% url 'about' %}">About us</a></li>
                         <li><a href="#">Store location</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
                         <li><a href="#">Support</a></li>
                         <li><a href="#">Policy</a></li>
                         <li><a href="#">FAQs</a></li>

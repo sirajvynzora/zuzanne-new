@@ -7,9 +7,6 @@ urlpatterns = [
     # Legacy Redirection Routes (to prevent 404/500 errors and preserve backwards compatibility)
     path("old-home/", views.home, name="home"),
     path("gallery/", views.gallery, name="gallery"),
-    path("blogs/", views.blog_details, name="blog_details"),
-    path("blogs/<slug:slug>/", views.blog_details, name="blog_details_slug"),
-    path("contact/", views.contact, name="contact"),
 
     path("admin-login/", views.admin_login, name="admin_login"),
     path("admin-logout/", views.admin_logout, name="admin_logout"),
@@ -65,6 +62,17 @@ urlpatterns = [
     path("dashboard/products/edit/<int:pk>/", views.product_update, name="product_update"),
     path("dashboard/products/delete/<int:pk>/", views.product_delete, name="product_delete"),
     path("dashboard/products/image/delete/<int:pk>/", views.product_image_delete, name="product_image_delete"),
+
+    # Shop & Hierarchical Filters (Unified View)
+    path("shop/", views.shop_view, name="shop"),
+    path("shop/<slug:collection_slug>/", views.shop_view, name="collection"),
+    path("shop/<slug:collection_slug>/<slug:category_slug>/", views.shop_view, name="category"),
+
+    # Blogs, About, and Contact clean routes
+    path("blogs/", views.blog_list_view, name="blog_list"),
+    path("blogs/<slug:slug>/", views.blog_detail_view, name="blog_detail"),
+    path("about/", views.about_view, name="about"),
+    path("contact/", views.contact_view, name="contact"),
 
     # Dynamic preview routing for frontend templates
     path("product/<slug:slug>/", views.product_detail_view, name="product_detail"),
