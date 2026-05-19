@@ -1,6 +1,9 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
 
+{% block seo_title %}{{ shop_title|default:"Shop" }} | Zuzanne Handcrafted Ceremonial Collections{% endblock %}
+{% block seo_description %}Browse the full collection of Zuzanne's premium handcrafted Christian ceremonial wear, including baptism sets, holy communion outfits, and custom accessories.{% endblock %}
+
 {% block extra_css %}
 <style>
 .product-thumb .image img {

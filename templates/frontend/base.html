@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Learts – Handmade Shop eCommerce HTML Template</title>
+    <title>{% block seo_title %}Zuzanne – Premium Handcrafted Christian Ceremonial Outfits{% endblock %}</title>
     <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
+    <meta name="description" content="{% block seo_description %}Discover premium handcrafted Christian baptism sets, holy communion dresses, ceremonial wear, and accessories, created with care and prayers at Zuzanne.{% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'frontend/assets/images/favicon.webp' %}">
@@ -75,6 +75,131 @@
                 padding-top: 64px;
             }
         }
+
+        /* Footer Copyright Section */
+        .footer-copyright-royal {
+            position: relative;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            margin-top: 50px;
+            padding: 30px 0 0;
+            z-index: 1;
+        }
+
+        .footer-copyright-text-royal p {
+            color: #555;
+            margin-bottom: 0;
+            font-size: 15px;
+            text-align: left;
+        }
+
+        .footer-copyright-text-royal small {
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 13px;
+        }
+
+        .footer-copyright-text-royal a {
+            color: #000 !important;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .footer-social-links-royal {
+            text-align: right;
+        }
+
+        @media (max-width: 767px) {
+            .footer-social-links-royal {
+                text-align: center;
+                margin-top: 15px;
+            }
+            .footer-copyright-text-royal {
+                text-align: center;
+            }
+            .footer-copyright-text-royal p {
+                text-align: center;
+            }
+        }
+
+        .footer-social-links-royal ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-social-links-royal ul li {
+            display: inline-block;
+            margin-right: 12px;
+        }
+
+        .footer-social-links-royal ul li:last-child {
+            margin-right: 0;
+        }
+
+        .footer-social-links-royal ul li a {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            color: #555;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .footer-social-links-royal ul li a:hover {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        .footer-social-links-royal ul li a i {
+            font-size: 16px;
+        }
+
+        /* Sticky Header Custom Enhancements */
+        .sticky-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 13px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none;
+        }
+
+        .sticky-cta-call {
+            border: 1px solid #333;
+            color: #333;
+            background: transparent;
+        }
+
+        .sticky-cta-call:hover {
+            background: #333;
+            color: #fff;
+            border-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .sticky-cta-whatsapp {
+            background: #333;
+            color: #fff;
+            border: 1px solid #333;
+        }
+
+        .sticky-cta-whatsapp:hover {
+            background: #f8796c;
+            border-color: #f8796c;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .sticky-header .header-tools {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -119,13 +244,7 @@
                             <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
                             <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
 
-                            <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="/unused/login-register.html">Login/Register</a></li>
-                                    <li><a href="/unused/wishlist.html">Wishlist</a></li>
-                                    <li><a href="/unused/shopping-cart.html">Cart</a></li>
-                                </ul>
-                            </li>
+
                         </ul>
                     </nav>
                 </div>
@@ -133,19 +252,11 @@
 
                 <!-- Header Tools Start -->
                 <div class="col-auto">
-                    <div class="header-tools justify-content-end align-items-center">
-                        <div class="header-login d-none d-sm-block">
-                            <a href="/unused/my-account.html"><i class="far fa-user"></i></a>
-                        </div>
-                        <div class="header-search">
-                            <a href="#offcanvas-search" class="offcanvas-toggle"><i class="fas fa-search"></i></a>
-                        </div>
-                        <div class="header-wishlist d-none d-sm-block">
-                            <a href="#offcanvas-wishlist" class="offcanvas-toggle"><span class="wishlist-count">3</span><i class="far fa-heart"></i></a>
-                        </div>
-                        <div class="header-cart">
-                            <a href="#offcanvas-cart" class="offcanvas-toggle"><span class="cart-count">3</span><i class="fas fa-shopping-cart"></i></a>
-                        </div>
+                    <div class="header-tools justify-content-end align-items-center" style="gap: 10px;">
+                        <!-- Call Button -->
+                        <a href="tel:+919999999999" class="sticky-cta-btn sticky-cta-call hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>
+                        <!-- WhatsApp Button -->
+                        <a href="https://wa.me/919999999999" target="_blank" class="sticky-cta-btn sticky-cta-whatsapp hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <!-- Header Tools End -->
@@ -153,19 +264,28 @@
             </div>
         </div>
     </header>
+    {% endblock %}
+
+    {% block sticky_header_section %}
     <div class="sticky-header section bg-white section-fluid d-none d-xl-block">
         <div class="container">
             <div class="row align-items-center">
+
+                <!-- Header Logo Start -->
                 <div class="col-xl-auto col">
                     <div class="header-logo">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" style="height: 35px; width: auto;"></a>
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" style="height: 38px; width: auto; object-fit: contain;"></a>
                     </div>
                 </div>
-                <div class="col-auto me-auto">
+                <!-- Header Logo End -->
+
+                <!-- Header Menu Start -->
+                <div class="col-auto me-auto d-none d-xl-block">
                     <nav class="site-main-menu site-main-menu-left justify-content-center">
                         <ul>
                             <li><a href="/"><span class="menu-text">Home</span></a></li>
                             <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
+
                             <li class="has-children"><a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
                                 <ul class="sub-menu">
                                     {% for col in collections_tree %}
@@ -179,39 +299,33 @@
                                     {% endfor %}
                                 </ul>
                             </li>
+
                             <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
+
                             <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
-                            <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="/unused/login-register.html">Login/Register</a></li>
-                                    <li><a href="/unused/wishlist.html">Wishlist</a></li>
-                                    <li><a href="/unused/shopping-cart.html">Cart</a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </nav>
                 </div>
+                <!-- Header Menu End -->
+
+                <!-- Header Tools Start -->
                 <div class="col-auto">
-                    <div class="header-tools justify-content-end align-items-center">
-                        <div class="header-login">
-                            <a href="/unused/my-account.html"><i class="far fa-user"></i></a>
-                        </div>
-                        <div class="header-search">
-                            <a href="#offcanvas-search" class="offcanvas-toggle"><i class="fas fa-search"></i></a>
-                        </div>
-                        <div class="header-wishlist">
-                            <a href="#offcanvas-wishlist" class="offcanvas-toggle"><span class="wishlist-count">3</span><i class="far fa-heart"></i></a>
-                        </div>
-                        <div class="header-cart">
-                            <a href="#offcanvas-cart" class="offcanvas-toggle"><span class="cart-count">3</span><i class="fas fa-shopping-cart"></i></a>
-                        </div>
+                    <div class="header-tools justify-content-end align-items-center" style="gap: 10px;">
+                        <!-- Call Button -->
+                        <a href="tel:+919999999999" class="sticky-cta-btn sticky-cta-call hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>
+                        <!-- WhatsApp Button -->
+                        <a href="https://wa.me/919999999999" target="_blank" class="sticky-cta-btn sticky-cta-whatsapp hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
+                <!-- Header Tools End -->
+
             </div>
         </div>
     </div>
     {% endblock %}
-    <!-- Header Section End -->
+
+    {% block mobile_header_section %}
+    <!-- Mobile Header Section Start -->
     <div class="mobile-header bg-white d-xl-none">
         <div class="container">
             <div class="row align-items-center">
@@ -248,6 +362,8 @@
             </div>
         </div>
     </div>
+    <!-- Mobile Header Section End -->
+    {% endblock %}
 
 
     <!-- OffCanvas Mobile Menu Start -->
@@ -282,17 +398,7 @@
 
                     <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
 
-                    <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
-                        <ul class="sub-menu">
-                            <li><a href="/unused/login-register.html"><span class="menu-text">Login / Register</span></a></li>
-                            <li><a href="/unused/my-account.html"><span class="menu-text">My Account</span></a></li>
-                            <li><a href="/unused/wishlist.html"><span class="menu-text">Wishlist</span></a></li>
-                            <li><a href="/unused/shopping-cart.html"><span class="menu-text">Shopping Cart</span></a></li>
-                            <li><a href="/unused/checkout.html"><span class="menu-text">Checkout</span></a></li>
-                            <li><a href="/unused/order-tracking.html"><span class="menu-text">Order Tracking</span></a></li>
-                            <li><a href="/unused/coming-soon.html"><span class="menu-text">Coming Soon</span></a></li>
-                        </ul>
-                    </li>
+
                 </ul>
             </div>
 
@@ -342,24 +448,24 @@
                     <li>
                         <a href="#" class="image"><img src="{% static 'frontend/assets/images/product/cart-product-1.webp' %}" alt="Cart product Image"></a>
                         <div class="content">
-                            <a href="#" class="title">Walnut Cutting Board</a>
-                            <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
+                            <a href="#" class="title">Lace Baptism Gown</a>
+                            <span class="quantity-price">1 x <span class="amount">$120.00</span></span>
                             <a href="#" class="remove">×</a>
                         </div>
                     </li>
                     <li>
                         <a href="#" class="image"><img src="{% static 'frontend/assets/images/product/cart-product-2.webp' %}" alt="Cart product Image"></a>
                         <div class="content">
-                            <a href="#" class="title">Lucky Wooden Elephant</a>
-                            <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
+                            <a href="#" class="title">Silk Christening Romper</a>
+                            <span class="quantity-price">1 x <span class="amount">$85.00</span></span>
                             <a href="#" class="remove">×</a>
                         </div>
                     </li>
                     <li>
                         <a href="#" class="image"><img src="{% static 'frontend/assets/images/product/cart-product-3.webp' %}" alt="Cart product Image"></a>
                         <div class="content">
-                            <a href="#" class="title">Fish Cut Out Set</a>
-                            <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
+                            <a href="#" class="title">Holy Communion Veil</a>
+                            <span class="quantity-price">1 x <span class="amount">$45.00</span></span>
                             <a href="#" class="remove">×</a>
                         </div>
                     </li>
@@ -386,24 +492,24 @@
                     <li>
                         <a href="#" class="image"><img src="{% static 'frontend/assets/images/product/cart-product-1.webp' %}" alt="Cart product Image"></a>
                         <div class="content">
-                            <a href="#" class="title">Walnut Cutting Board</a>
-                            <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
+                            <a href="#" class="title">Lace Baptism Gown</a>
+                            <span class="quantity-price">1 x <span class="amount">$120.00</span></span>
                             <a href="#" class="remove">×</a>
                         </div>
                     </li>
                     <li>
                         <a href="#" class="image"><img src="{% static 'frontend/assets/images/product/cart-product-2.webp' %}" alt="Cart product Image"></a>
                         <div class="content">
-                            <a href="#" class="title">Lucky Wooden Elephant</a>
-                            <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
+                            <a href="#" class="title">Silk Christening Romper</a>
+                            <span class="quantity-price">1 x <span class="amount">$85.00</span></span>
                             <a href="#" class="remove">×</a>
                         </div>
                     </li>
                     <li>
                         <a href="#" class="image"><img src="{% static 'frontend/assets/images/product/cart-product-3.webp' %}" alt="Cart product Image"></a>
                         <div class="content">
-                            <a href="#" class="title">Fish Cut Out Set</a>
-                            <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
+                            <a href="#" class="title">Holy Communion Veil</a>
+                            <span class="quantity-price">1 x <span class="amount">$45.00</span></span>
                             <a href="#" class="remove">×</a>
                         </div>
                     </li>
@@ -412,13 +518,13 @@
             <div class="foot">
                 <div class="sub-total">
                     <strong>Subtotal :</strong>
-                    <span class="amount">$144.00</span>
+                    <span class="amount">$250.00</span>
                 </div>
                 <div class="buttons">
                     <a href="/unused/shopping-cart.html" class="btn btn-dark btn-hover-primary">view cart</a>
                     <a href="/unused/checkout.html" class="btn btn-outline-dark">checkout</a>
                 </div>
-                <p class="minicart-message">Free Shipping on All Orders Over $100!</p>
+                <p class="minicart-message">Free Shipping on All Ceremonial Orders Over $150!</p>
             </div>
         </div>
     </div>
@@ -429,6 +535,7 @@
     {% block content %}
     {% endblock %}
 
+    {% block footer_section %}
     <div class="footer1-section section section-padding">
         <div class="container">
             <div class="row text-center row-cols-1">
@@ -439,12 +546,11 @@
 
                 <div class="footer1-menu col">
                     <ul class="widget-menu justify-content-center">
-                        <li><a href="{% url 'about' %}">About us</a></li>
-                        <li><a href="#">Store location</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'shop' %}">Shop</a></li>
+                        <li><a href="{% url 'blog_list' %}">Blog</a></li>
                         <li><a href="{% url 'contact' %}">Contact</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Policy</a></li>
-                        <li><a href="#">FAQs</a></li>
                     </ul>
                 </div>
                 <div class="footer1-subscribe d-flex flex-column col">
@@ -459,21 +565,38 @@
                         <div class="mailchimp-error text-danger"></div><!-- mailchimp-error end -->
                     </div><!-- mailchimp-alerts end -->
                 </div>
-                <div class="footer1-social col">
-                    <ul class="widget-social justify-content-center">
-                        <li class="hintT-top" data-hint="Twitter"> <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
-                        <li class="hintT-top" data-hint="Facebook"> <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="hintT-top" data-hint="Instagram"> <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
-                        <li class="hintT-top" data-hint="Youtube"> <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a></li>
-                    </ul>
-                </div>
-                <div class="footer1-copyright col">
-                    <p class="copyright">&copy; 2023 learts. All Rights Reserved | <strong>(+00) 123 567990</strong> | <a href="mailto:contact@learts.com">contact@learts.com</a></p>
-                </div>
-
             </div>
+
+            <!-- Footer Copyright Start -->
+            <div class="footer-copyright-royal">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="footer-copyright-text-royal">
+                            <p class="mb-0">
+                                &copy; <span id="currentYear"></span> <strong>Zuzanne</strong>. All rights reserved.
+                            </p>
+                            <small>
+                                Designed by <a href="https://vynzora.com/" target="_blank" style="color: inherit; text-decoration: underline;">Vynzora</a> | 
+                                <a href="#" style="color: inherit; text-decoration: underline;">Terms & Conditions</a> | 
+                                <a href="#" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-social-links-royal">
+                            <ul>
+                                <li><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://wa.me/15557890123" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Copyright End -->
         </div>
     </div>
+    {% endblock %}
     <!-- Modal -->
     <div class="quickViewModal modal fade" id="quickViewModal">
         <div class="modal-dialog modal-dialog-centered">
@@ -835,6 +958,12 @@
                     showToast("{{ message|escapejs }}", "{{ message.tags }}");
                 {% endfor %}
             {% endif %}
+
+            // Set current copyright year
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
         });
     </script>
 

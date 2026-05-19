@@ -1,6 +1,9 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
 
+{% block seo_title %}{{ blog.title }} | Zuzanne Blog{% endblock %}
+{% block seo_description %}{{ blog.title }}: Read more from Zuzanne about premium handcrafted Christian baptism and ceremonial preparations.{% endblock %}
+
 {% block content %}
 <!-- Page Title/Header Start -->
     <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/images/bg/page-title-1.webp' %}">
@@ -108,9 +111,9 @@
                     <div class="single-widget learts-mb-40">
                         <h3 class="widget-title product-filter-widget-title">Categories</h3>
                         <ul class="widget-list">
-                            <li><a href="#">Gift ideas</a> <span class="count">11</span></li>
-                            <li><a href="#">Feature</a> <span class="count">2</span></li>
-                            <li><a href="#">Kitchen</a> <span class="count">11</span></li>
+                            <li><a href="#">Baptism Traditions</a> <span class="count">11</span></li>
+                            <li><a href="#">Ceremony Prep</a> <span class="count">2</span></li>
+                            <li><a href="#">Styling Guides</a> <span class="count">11</span></li>
                         </ul>
                     </div>
                     <!-- Categories End -->

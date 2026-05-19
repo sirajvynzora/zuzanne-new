@@ -1,6 +1,9 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
 
+{% block seo_title %}Zuzanne – Premium Handcrafted Christian Ceremonial Outfits{% endblock %}
+{% block seo_description %}Discover premium handcrafted Christian baptism sets, holy communion dresses, ceremonial wear, and accessories, created with care and prayers at Zuzanne.{% endblock %}
+
 {% block extra_css %}
 <style>
 .product-thumb .image img {
@@ -61,84 +64,12 @@
                         <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
                         <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
 
-                        <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
-                            <ul class="sub-menu">
-                                <li><a href="/unused/login-register.html">Login/Register</a></li>
-                                <li><a href="/unused/wishlist.html">Wishlist</a></li>
-                                <li><a href="/unused/shopping-cart.html">Cart</a></li>
-                            </ul>
-                        </li>
+
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
-
-    <div class="sticky-header section bg-white section-fluid d-none d-xl-block">
-        <div class="container">
-            <div class="row align-items-center">
-
-                <div class="col-xl-auto col">
-                    <div class="header-logo">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" style="height: 35px; width: auto;"></a>
-                    </div>
-                </div>
-
-                <div class="col-auto me-auto">
-                    <nav class="site-main-menu site-main-menu-left justify-content-center">
-                        <ul>
-                            <li><a href="/"><span class="menu-text">Home</span></a></li>
-                            <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
-                            
-                            <li class="has-children"><a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
-                                <ul class="sub-menu">
-                                    {% for col in collections_tree %}
-                                    <li class="has-children"><a href="{% url 'collection' col.slug %}"><span class="menu-text">{{ col.name }}</span></a>
-                                        <ul class="sub-menu">
-                                            {% for cat in col.cats %}
-                                            <li><a href="{% url 'category' col.slug cat.slug %}"><span class="menu-text">{{ cat.name }}</span></a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-
-                            <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
-                            <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
-
-                            <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="/unused/login-register.html">Login/Register</a></li>
-                                    <li><a href="/unused/wishlist.html">Wishlist</a></li>
-                                    <li><a href="/unused/shopping-cart.html">Cart</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="col-auto">
-                    <div class="header-tools justify-content-end align-items-center">
-                        <div class="header-login">
-                            <a href="/unused/my-account.html"><i class="far fa-user"></i></a>
-                        </div>
-                        <div class="header-search">
-                            <a href="#offcanvas-search" class="offcanvas-toggle"><i class="fas fa-search"></i></a>
-                        </div>
-                        <div class="header-wishlist">
-                            <a href="#offcanvas-wishlist" class="offcanvas-toggle"><span class="wishlist-count">3</span><i class="far fa-heart"></i></a>
-                        </div>
-                        <div class="header-cart">
-                            <a href="#offcanvas-cart" class="offcanvas-toggle"><span class="cart-count">3</span><i class="fas fa-shopping-cart"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
 {% endblock %}
 
 {% block content %}
@@ -150,8 +81,8 @@
                     <span class="bg"></span>
                     <span class="slide-border"></span>
                     <span class="icon"><img src="{% static 'frontend/assets/images/slider/home1/slide-1-1.webp' %}" alt="Slide Icon"></span>
-                    <h2 class="title">Handicraft Shop</h2>
-                    <h3 class="sub-title">Just for you</h3>
+                    <h2 class="title">Handcrafted Ceremonial Wear</h2>
+                    <h3 class="sub-title">Made with care & prayers</h3>
                     <div class="link"><a href="{% url 'shop' %}">shop now</a></div>
                 </div>
             </div>
@@ -163,17 +94,17 @@
                         <img src="{% static 'frontend/assets/images/slider/home1/slide-2-2.webp' %}" alt="Slide Icon">
                         <img src="{% static 'frontend/assets/images/slider/home1/slide-2-3.webp' %}" alt="Slide Icon">
                     </span>
-                    <h2 class="title">Newly arrived</h2>
-                    <h3 class="sub-title">Sale up to <br>10%</h3>
+                    <h2 class="title">Timeless Baptism Sets</h2>
+                    <h3 class="sub-title">Designed for <br> cherished moments</h3>
                     <div class="link"><a href="{% url 'shop' %}">shop now</a></div>
                 </div>
             </div>
             <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-3.webp">
                 <div class="home1-slide3-content">
-                    <h2 class="title">Affectious gifts</h2>
+                    <h2 class="title">Graceful Holy Communion</h2>
                     <h3 class="sub-title">
                         <img class="left-icon " src="{% static 'frontend/assets/images/slider/home1/slide-2-2.webp' %}" alt="Slide Icon">
-                        For friends & family
+                        Elegance for blessed celebrations
                         <img class="right-icon " src="{% static 'frontend/assets/images/slider/home1/slide-2-3.webp' %}" alt="Slide Icon">
                     </h3>
                     <div class="link"><a href="{% url 'shop' %}">shop now</a></div>
@@ -191,8 +122,8 @@
 
             <!-- Section Title Start -->
             <div class="section-title text-center">
-                <h3 class="sub-title">Just for you</h3>
-                <h2 class="title title-icon-both">Making & crafting</h2>
+                <h3 class="sub-title">Our Heritage</h3>
+                <h2 class="title title-icon-both">Handcrafted with Devotion</h2>
             </div>
             <!-- Section Title End -->
 
@@ -202,9 +133,9 @@
                     <div class="sale-banner1" data-bg-image="assets/images/banner/sale/sale-banner1-1.webp">
                         <div class="inner">
                             <img src="{% static 'frontend/assets/images/banner/sale/sale-banner1-1.1.webp' %}" alt="Sale Banner Icon">
-                            <span class="title">Spring sale</span>
+                            <span class="title">Bespoke Fit</span>
                             <h2 class="sale-percent">
-                                <span class="number">40</span> % <br> off
+                                Made <br> to order
                             </h2>
                             <a href="{% url 'shop' %}" class="link">shop now</a>
                         </div>
@@ -217,8 +148,8 @@
                             <div class="image"><img src="{% static 'frontend/assets/images/banner/sale/sale-banner2-1.webp' %}" alt=""></div>
                             <div class="content row justify-content-between mb-n3">
                                 <div class="col-auto mb-3">
-                                    <h2 class="sale-percent">10% off</h2>
-                                    <span class="text">YOUR NEXT PURCHASE</span>
+                                    <h2 class="sale-percent">Tailored Grace</h2>
+                                    <span class="text">FOR YOUR CHILD'S SACRED MILESTONES</span>
                                 </div>
                                 <div class="col-auto mb-3">
                                     <a class="btn btn-hover-dark" href="{% url 'shop' %}">SHOP NOW</a>
@@ -244,7 +175,7 @@
                             <a href="{% url 'shop' %}" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-1.webp' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
-                                    <a href="{% url 'shop' %}">Gift ideas</a>
+                                    <a href="{% url 'shop' %}">Baptism Outfits</a>
                                     <span class="number">16</span>
                                 </h3>
                             </div>
@@ -258,7 +189,7 @@
                             <a href="{% url 'shop' %}" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-2.webp' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
-                                    <a href="{% url 'shop' %}">Home Decor</a>
+                                    <a href="{% url 'shop' %}">Holy Communion</a>
                                     <span class="number">16</span>
                                 </h3>
                             </div>
@@ -272,7 +203,7 @@
                             <a href="{% url 'shop' %}" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-3.webp' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
-                                    <a href="{% url 'shop' %}">Kids & Babies</a>
+                                    <a href="{% url 'shop' %}">Ceremonial Dresses</a>
                                     <span class="number">6</span>
                                 </h3>
                             </div>
@@ -286,7 +217,7 @@
                             <a href="{% url 'shop' %}" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-4.webp' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
-                                    <a href="{% url 'shop' %}">Kitchen</a>
+                                    <a href="{% url 'shop' %}">Christening Sets</a>
                                     <span class="number">15</span>
                                 </h3>
                             </div>
@@ -300,7 +231,7 @@
                             <a href="{% url 'shop' %}" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-5.webp' %}" alt=""></a>
                             <div class="content">
                                 <h3 class="title">
-                                    <a href="{% url 'shop' %}">Kniting & Sewing</a>
+                                    <a href="{% url 'shop' %}">Faith Accessories</a>
                                     <span class="number">4</span>
                                 </h3>
                             </div>
@@ -319,8 +250,8 @@
 
             <!-- Section Title Start -->
             <div class="section-title text-center">
-                <h3 class="sub-title">Shop now</h3>
-                <h2 class="title title-icon-both">Shop our best-sellers</h2>
+                <h3 class="sub-title">Our Collections</h3>
+                <h2 class="title title-icon-both">Signature Ceremonial Pieces</h2>
             </div>
             <!-- Section Title End -->
 

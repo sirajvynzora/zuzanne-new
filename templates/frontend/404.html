@@ -1,16 +1,32 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
 
+{% block seo_title %}Page Not Found | Zuzanne{% endblock %}
+{% block seo_description %}The requested page was not found on Zuzanne.{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        padding-top: 0 !important;
+    }
+</style>
+{% endblock %}
+
+{% block header_section %}{% endblock %}
+{% block sticky_header_section %}{% endblock %}
+{% block mobile_header_section %}{% endblock %}
+{% block footer_section %}{% endblock %}
+
 {% block content %}
     <!-- 404 Section Start -->
     <div class="section-404 section" data-bg-image="{% static 'frontend/assets/images/bg/bg-404.webp' %}">
         <div class="container">
             <div class="content-404">
-                <h1 class="title">Oops!</h1>
-                <h2 class="sub-title">Page not found!</h2>
-                <p>You could either go back or go to homepage</p>
+                <h1 class="title">Graceful Journey</h1>
+                <h2 class="sub-title">Page Not Found</h2>
+                <p>The page you are looking for has wandered. Let us guide you back to our home or collections.</p>
                 <div class="buttons">
-                    <a class="btn btn-primary btn-outline-hover-dark" href="/">Go back</a>
+                    <a class="btn btn-primary btn-outline-hover-dark" href="/">Go Back</a>
                     <a class="btn btn-dark btn-outline-hover-dark" href="/">Homepage</a>
                 </div>
             </div>

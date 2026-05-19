@@ -1,6 +1,9 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
 
+{% block seo_title %}{{ product.name }} | Premium Ceremonial Wear | Zuzanne{% endblock %}
+{% block seo_description %}Buy or customize the {{ product.name }} at Zuzanne. Premium handcrafted design perfect for Christian baptism, communion, or special family ceremonies.{% endblock %}
+
 {% block content %}
 <!-- Page Title/Header Start -->
     <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/images/bg/page-title-1.webp' %}">
@@ -83,43 +86,7 @@
                             <a href="{% url 'contact' %}?product={{ product.name }}" class="btn btn-dark btn-outline-hover-dark"><i class="far fa-envelope"></i> Enquire Now</a>
                             <a href="https://wa.me/919999999999?text=Hi, I am interested in {{ product.name }}" target="_blank" class="btn btn-outline-dark btn-outline-hover-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                         </div>
-                        <div class="product-meta">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="label"><span>SKU</span></td>
-                                        <td class="value">ZUZ-{{ product.id|stringformat:"04d" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="label"><span>Collection</span></td>
-                                        <td class="value">
-                                            <ul class="product-category">
-                                                <li><a href="{% url 'collection' product.category.collection.slug %}">{{ product.category.collection.name }}</a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="label"><span>Category</span></td>
-                                        <td class="value">
-                                            <ul class="product-category">
-                                                <li><a href="{% url 'category' product.category.collection.slug product.category.slug %}">{{ product.category.name }}</a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="label"><span>Share on</span></td>
-                                        <td class="va">
-                                            <div class="product-share">
-                                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                                                <a href="#"><i class="far fa-envelope"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
                     </div>
                 </div>
                 <!-- Product Summery End -->
@@ -162,6 +129,14 @@
                                         <tr>
                                             <td>Gender</td>
                                             <td>{{ product.get_gender_display|default:"Unisex" }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Collection</td>
+                                            <td><a href="{% url 'collection' product.category.collection.slug %}" style="color: inherit; text-decoration: underline;">{{ product.category.collection.name }}</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Category</td>
+                                            <td><a href="{% url 'category' product.category.collection.slug product.category.slug %}" style="color: inherit; text-decoration: underline;">{{ product.category.name }}</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
