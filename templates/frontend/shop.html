@@ -1,0 +1,190 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+.product-thumb .image img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <!-- Page Title/Header Start -->
+    <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/images/bg/page-title-1.webp' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div class="page-title">
+                        <h1 class="title">{{ shop_title|default:"Shop" }}</h1>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/shop.html">Shop</a></li>
+                            <li class="breadcrumb-item active">{{ shop_title|default:"All Products" }}</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Title/Header End -->
+
+    <!-- Shop Products Section Start -->
+    <div class="section section-padding pt-0">
+
+        <!-- Shop Toolbar Start -->
+        <div class="shop-toolbar border-bottom">
+            <div class="container">
+                <div class="row learts-mb-n20">
+
+                    <!-- Isotop Filter Start -->
+                    <div class="col-md col-12 align-self-center learts-mb-20">
+                        <div class="isotope-filter shop-product-filter" data-target="#shop-products">
+                            <button class="active" data-filter="*">All</button>
+                            {% for cat in categories %}
+                            <button data-filter=".cat-{{ cat.id }}">
+                                {{ cat.name }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Isotop Filter End -->
+
+                    <div class="col-md-auto col-12 learts-mb-20">
+                        <ul class="shop-toolbar-controls">
+
+                            <li>
+                                <div class="product-sorting">
+                                    <select class="nice-select">
+                                        <option value="menu_order" selected="selected">Default sorting</option>
+                                        <option value="popularity">Sort by popularity</option>
+                                        <option value="rating">Sort by average rating</option>
+                                        <option value="date">Sort by latest</option>
+                                        <option value="price">Sort by price: low to high</option>
+                                        <option value="price-desc">Sort by price: high to low</option>
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="product-column-toggle d-none d-xl-flex">
+                                    <button class="toggle active hintT-top" data-hint="5 Column" data-column="5"><i class="ti-layout-grid4-alt"></i></button>
+                                    <button class="toggle hintT-top" data-hint="4 Column" data-column="4"><i class="ti-layout-grid3-alt"></i></button>
+                                    <button class="toggle hintT-top" data-hint="3 Column" data-column="3"><i class="ti-layout-grid2-alt"></i></button>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="product-filter-toggle" href="#product-filter">Filters</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Shop Toolbar End -->
+
+        <!-- Product Filter Start -->
+        <div id="product-filter" class="product-filter bg-light">
+            <div class="container">
+                <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-2 row-cols-1 learts-mb-n30">
+
+                    <!-- Sort by Start -->
+                    <div class="col learts-mb-30">
+                        <h3 class="widget-title product-filter-widget-title">Sort by</h3>
+                        <ul class="widget-list product-filter-widget customScroll">
+                            <li><a href="#">Popularity</a></li>
+                            <li><a href="#">Average rating</a></li>
+                            <li><a href="#">Newness</a></li>
+                            <li><a href="#">Price: low to high</a></li>
+                            <li><a href="#">Price: high to low</a></li>
+                        </ul>
+                    </div>
+                    <!-- Sort by End -->
+
+                    <!-- Categories Start -->
+                    <div class="col learts-mb-30">
+                        <h3 class="widget-title product-filter-widget-title">Categories</h3>
+                        <ul class="widget-list product-filter-widget customScroll">
+                            {% for cat in categories %}
+                            <li>
+                                <a href="/shop.html?collection_id={{ collection.id }}&category_id={{ cat.id }}">
+                                    {{ cat.name }}
+                                </a>
+                                <span class="count">
+                                    {{ cat.products.count }}
+                                </span>
+                            </li>
+                            {% empty %}
+                            <li><a href="#">No categories</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- Categories End -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Product Filter End -->
+
+        <div class="section learts-mt-70">
+            <div class="container">
+                <!-- Products Start -->
+                <div id="shop-products" class="products isotope-grid row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+
+                    <div class="grid-sizer col-1"></div>
+
+                    {% for product in products %}
+                    <div class="grid-item col cat-{{ product.category.id }}">
+                        <div class="product">
+                            <div class="product-thumb">
+                                <a href="{% url 'product_detail' product.slug %}" class="image">
+                                    {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
+                                        {% if first_img %}
+                                            <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
+                                            {% if second_img %}
+                                                <img class="image-hover" src="{{ second_img.image.url }}" alt="{{ product.name }}">
+                                            {% endif %}
+                                        {% else %}
+                                            <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" alt="{{ product.name }}">
+                                        {% endif %}
+                                    {% endwith %}
+                                </a>
+                                <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                            </div>
+                            <div class="product-info">
+                                <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
+                                <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">
+                                    Bespoke Custom Order
+                                </span>
+                                <div class="product-buttons">
+                                    <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
+                                    <a href="contact-us.html?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12 text-center py-5">
+                        <h4 class="text-muted">No products found in this category.</h4>
+                        <p>Please check back later or contact us for custom orders.</p>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                <!-- Products End -->
+                <div class="text-center learts-mt-70">
+                    <a href="#" class="btn btn-dark btn-outline-hover-dark"><i class="ti-plus"></i> More</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Shop Products Section End -->
+{% endblock %}

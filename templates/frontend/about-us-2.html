@@ -1,0 +1,409 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Scoped Fixes for About Page Mobile Stacking-Context and Render Layering */
+    @media (max-width: 1199.98px) {
+        /* 1. Elevate & isolate the fixed mobile navbar in its own GPU accelerated rendering layer */
+        .mobile-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 99999 !important;
+            background: #ffffff !important;
+            border-bottom: 1px solid #e5e5e5 !important;
+            
+            /* Hardware acceleration context promotion to bypass mobile WebKit composite layering issues */
+            transform: translate3d(0, 0, 0) !important;
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            will-change: transform !important;
+            backface-visibility: hidden !important;
+            -webkit-backface-visibility: hidden !important;
+            
+            /* Enhanced layout isolation shadow */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        /* 2. Isolate offcanvas menus and overlay above all transformed slider elements */
+        .offcanvas {
+            z-index: 999999 !important;
+            /* Promote menu container to high z-index without overriding translate transforms */
+            will-change: transform !important;
+            backface-visibility: hidden !important;
+            -webkit-backface-visibility: hidden !important;
+        }
+
+        .offcanvas-overlay {
+            z-index: 999998 !important;
+            /* Force overlay to sit strictly under the menu but above all carousel elements */
+            transform: translate3d(0, 0, 0) !important;
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            will-change: transform !important;
+            backface-visibility: hidden !important;
+            -webkit-backface-visibility: hidden !important;
+        }
+
+        /* 3. Ensure no horizontal scrolling or touch-overflow glitches can shift the viewport */
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            position: relative !important;
+            width: 100vw !important;
+            height: 100% !important;
+        }
+
+        /* 4. Enforce strict layout containment on all carousel-bearing containers to swallow any trailing absolute elements */
+        .section,
+        .testimonial-carousel,
+        .instafeed-carousel,
+        .video-banner {
+            overflow: hidden !important;
+            position: relative !important;
+        }
+
+        /* 5. Clean parent alignment offset to ensure content sits exactly beneath the fixed header */
+        body {
+            padding-top: 64px !important;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <!-- Page Title/Header Start -->
+    <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/images/bg/page-title-1.webp' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div class="page-title">
+                        <h1 class="title">About Zuzanne</h1>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">About us</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Title/Header End -->
+
+    <!-- About Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+            <div class="row learts-mb-n30">
+                <div class="col-lg-4 col-12 align-self-center learts-mb-30">
+                    <div class="about-us4">
+                        <span class="sub-title">Zuzanne</span>
+                        <h2 class="title">Beautifully Handcrafted Ceremony Creations</h2>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-12 learts-mb-30">
+                    <img src="{% static 'frontend/assets/images/about/about-6.webp' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Section End -->
+
+    <!-- About Section Start -->
+    <div class="section section-fluid section-padding pt-0">
+        <div class="container">
+            <div class="row learts-mb-n30">
+
+                <div class="col-lg-6 col-12 text-center learts-mb-30">
+                    <img src="{% static 'frontend/assets/images/about/about-7.webp' %}" alt="">
+                </div>
+
+                <div class="col-lg-6 col-12 align-self-center learts-mb-30">
+                    <div class="about-us4">
+                        <div class="row learts-mb-n30">
+                            <div class="col-xl-8 col-12 learts-mb-30">
+                                <div class="desc mb-0">
+                                    <p>Designing and crafting beautiful baptism and communion gowns, suits, and ceremony kits with our own hands is a labor of love. We take absolute joy in perfecting every detail of our customized accessories to make your child's special day completely unique and unforgettable.</p>
+                                </div>
+                            </div>
+                            <div class="col-12 learts-mb-30">
+                                <div class="icon-box4 text-left justify-content-start text-start">
+                                    <div class="inner">
+                                        <div class="content">
+                                            <h6 class="title">CREATION</h6>
+                                            <p>Customized Baptism dresses, suits, designer kits, & communion ceremony creations</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 learts-mb-30">
+                                <div class="icon-box4 text-left justify-content-start text-start">
+                                    <div class="inner">
+                                        <div class="content">
+                                            <h6 class="title">PHONE</h6>
+                                            <p>Mobile: (+88) – 1990 – 6886 <br> Hotline: 1800 – 1102</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 learts-mb-30">
+                                <div class="icon-box4 text-left justify-content-start text-start">
+                                    <div class="inner">
+                                        <div class="content">
+                                            <h6 class="title">EMAIL</h6>
+                                            <p>contact@zuzanne.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- About Section End -->
+
+    <!-- Video Banner Section Start -->
+    <div class="section">
+        <div class="video-banner" data-bg-image="{% static 'frontend/assets/images/banner/video/video-banner-1.webp' %}">
+            <div class="content">
+                <h2 class="title">LITTLE <span>SIMPLE</span> THINGS</h2>
+                <a href="https://www.youtube.com/watch?v=1jSsy7DtYgc" class="video-popup">
+                    <img src="{% static 'frontend/assets/images/icons/button-play.webp' %}" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Video Banner Section End -->
+
+    <!-- Testimonial Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+
+            <div class="section-title2 row justify-content-between align-items-center">
+                <div class="col-md-auto col-12">
+                    <!-- Section Title Start -->
+                    <h2 class="title title-icon-right">We love our clients</h2>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="testimonial-carousel">
+                {% for testimonial in testimonials %}
+                <div class="col">
+                    <div class="testimonial">
+                        <p>{{ testimonial.review }}</p>
+                        <div class="author">
+                            {% if testimonial.image %}
+                            <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
+                            {% else %}
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-1.webp' %}" alt="{{ testimonial.name }}">
+                            {% endif %}
+                            <div class="content">
+                                <h6 class="name">{{ testimonial.name }}</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col">
+                    <div class="testimonial">
+                        <p>There's nothing would satisfy me much more than a worry-free clean and responsive theme for my high-traffic site.</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-1.webp' %}" alt="">
+                            <div class="content">
+                                <h6 class="name">Anais Coulon</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial">
+                        <p>Really good design/documentation, pretty much everything is nicely setup. The best choice for Woocommerce shop.</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-2.webp' %}" alt="">
+                            <div class="content">
+                                <h6 class="name">Ian Schneider</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial">
+                        <p>ThemeMove deserves 5 star for theme’s features, design quality, flexibility, customizability and support service!</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-3.webp' %}" alt="">
+                            <div class="content">
+                                <h6 class="name">Florence Polla</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial">
+                        <p>Thanks for always keeping your WordPress themes up to date. Your level of support is second to none.</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-4.webp' %}" alt="">
+                            <div class="content">
+                                <h6 class="name">Sally Ramsey</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial">
+                        <p>Beautiful designs, amazing fabric, and outstanding customer service. Absolute dream to work with Zuzanne!</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-2.webp' %}" alt="">
+                            <div class="content">
+                                <h6 class="name">Lillian Bennett</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial">
+                        <p>The communion gown and tailored suit arrived perfectly on time and looked absolutely stunning on the day.</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-3.webp' %}" alt="">
+                            <div class="content">
+                                <h6 class="name">Arthur Pendelton</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    <!-- Testimonial Section End -->
+
+    <!-- Instagram Section Start -->
+    <div class="section section-padding pt-0">
+        <div class="container">
+            <div class="row row-cols-lg-2 row-cols-1 learts-mb-n50">
+
+                <div class="col align-self-center learts-mb-50 order-lg-2">
+                    <div class="section-title3 text-center m-0" data-bg-image="{% static 'frontend/assets/images/title/title-3.webp' %}">
+                        <h2 class="title">Follow us on Instagram</h2>
+                        <p class="desc">@zuzanne_creations</p>
+                    </div>
+                </div>
+
+                <div class="col learts-mb-50">
+
+                    <div class="instafeed instafeed-carousel instafeed-carousel2">
+                        <a class="instafeed-item" href="#">
+                            <img src="{% static 'frontend/assets/images/instagram/instagram-1.webp' %}" alt="instagram image" />
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="instafeed-item" href="#">
+                            <img src="{% static 'frontend/assets/images/instagram/instagram-2.webp' %}" alt="instagram image" />
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="instafeed-item" href="#">
+                            <img src="{% static 'frontend/assets/images/instagram/instagram-3.webp' %}" alt="instagram image" />
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="instafeed-item" href="#">
+                            <img src="{% static 'frontend/assets/images/instagram/instagram-4.webp' %}" alt="instagram image" />
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Instagram Section End -->
+
+    <!-- FAQs Section Start -->
+    <div class="section section-padding pt-0">
+        <div class="container">
+            <div class="row row-cols-lg-2 row-cols-1 align-items-center learts-mb-n40">
+
+                <div class="col learts-mb-40">
+                    <div class="about-us-faq-image" style="overflow: hidden; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+                        <img src="{% static 'frontend/assets/images/about/about-5.webp' %}" alt="Zuzanne Baptism Ceremony Handcrafts" style="width: 100%; height: auto; display: block; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="col learts-mb-40">
+                    <!-- Section Title Start -->
+                    <div class="section-title2 learts-mb-30">
+                        <h2 class="title" style="font-size: 32px; font-weight: 500;">Frequently Asked Questions</h2>
+                        <p class="desc" style="color: #888; font-size: 15px; margin-top: 10px;">Everything you need to know about our baptism, communion, and ceremonial creations.</p>
+                    </div>
+                    <!-- Section Title End -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="accordion" id="faq-accordion">
+                                <div class="card active">
+                                    <div class="card-header">
+                                        <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#faq-accordion-1">Are the gowns and suits fully customizable?</button>
+                                    </div>
+
+                                    <div id="faq-accordion-1" class="collapse show" data-bs-parent="#faq-accordion">
+                                        <div class="card-body">
+                                            <p>Yes, absolutely! Every baptism gown, communion dress, and boy's suit created by Teena Juby at Zuzanne is tailored to your child's exact measurements and design preferences, ensuring a perfect fit and a unique style for their special day.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#faq-accordion-2">How far in advance should I place a custom order?</button>
+                                    </div>
+
+                                    <div id="faq-accordion-2" class="collapse" data-bs-parent="#faq-accordion">
+                                        <div class="card-body">
+                                            <p>Since each ceremonial outfit is handcrafted with premium fabrics, intricate embroidery, and personalized details, we recommend placing your order at least 3 to 4 weeks prior to the ceremony date to allow ample time for tailoring and transit.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#faq-accordion-3">What materials and fabrics do you use?</button>
+                                    </div>
+
+                                    <div id="faq-accordion-3" class="collapse" data-bs-parent="#faq-accordion">
+                                        <div class="card-body">
+                                            <p>We source only the finest, softest materials suitable for sensitive skin. This includes organic silks, soft premium cotton linters, imported French laces, delicate satins, and lightweight breathable linens.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#faq-accordion-4">Can you create matching baptism accessories?</button>
+                                    </div>
+
+                                    <div id="faq-accordion-4" class="collapse" data-bs-parent="#faq-accordion">
+                                        <div class="card-body">
+                                            <p>Yes! We offer coordinated baptismal sets that include matching booties, bonnets, customized candles, embroidered baptism cloths, oil bottles, and keepsake boxes tailored to match the gown's lace and design perfectly.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- FAQs Section End -->
+{% endblock %}

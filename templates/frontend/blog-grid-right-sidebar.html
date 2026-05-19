@@ -1,0 +1,93 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page Title/Header Start -->
+    <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/images/bg/page-title-1.webp' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div class="page-title">
+                        <h1 class="title">Blog</h1>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Blog</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Title/Header End -->
+
+    <!-- Blog Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+            <div class="row learts-mb-n50">
+
+                <div class="col-xl-9 col-lg-8 col-12 learts-mb-50">
+                    <div class="row learts-mb-n40" id="blog-grid-container">
+                        {% include "frontend/partials/blog_items.html" with blogs=blogs %}
+                    </div>
+
+                    {% if blogs.has_next %}
+                    <div class="row learts-mt-50" id="load-more-container">
+                        <div class="col text-center">
+                            <button id="load-more-btn" data-next-page="{{ blogs.next_page_number }}" class="btn btn-dark btn-outline-hover-dark">Load More</button>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-12 learts-mb-10">
+                    <!-- Blog Post Widget Start -->
+                    <div class="single-widget learts-mb-40">
+                        <h3 class="widget-title product-filter-widget-title">Recent Post</h3>
+                        <ul class="widget-blogs">
+                            {% for recent in recent_blogs %}
+                            <li class="widget-blog">
+                                <div class="thumbnail">
+                                    {% if recent.image %}
+                                    <a href="/blog-details-right-sidebar.html?id={{ recent.id }}"><img src="{{ recent.image.url }}" alt="Widget Blog Post"></a>
+                                    {% endif %}
+                                </div>
+                                <div class="content">
+                                    <h6 class="title"><a href="/blog-details-right-sidebar.html?id={{ recent.id }}">{{ recent.title }}</a></h6>
+                                    <span class="date">{{ recent.created_at|date:"F d, Y" }}</span>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- Blog Post Widget End -->
+
+                    <!-- Banner widget Start -->
+                    <div class="single-widget learts-mb-40">
+                        <div class="widget-banner">
+                            <img src="{% static 'frontend/assets/images/banner/widget-banner.webp' %}" alt="">
+                        </div>
+                    </div>
+                    <!-- Banner widget End -->
+
+                    <!-- Categories Start -->
+                    <div class="single-widget learts-mb-40">
+                        <h3 class="widget-title product-filter-widget-title">Categories</h3>
+                        <ul class="widget-list">
+                            <li><a href="#">Gift ideas</a> <span class="count">11</span></li>
+                            <li><a href="#">Feature</a> <span class="count">2</span></li>
+                            <li><a href="#">Kitchen</a> <span class="count">11</span></li>
+                        </ul>
+                    </div>
+                    <!-- Categories End -->
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Blog Section End -->
+
+    
+{% endblock %}

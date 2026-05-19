@@ -1,0 +1,256 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page Title/Header Start -->
+    <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/images/bg/page-title-1.webp' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div class="page-title">
+                        <h1 class="title" style="font-size: 2.5rem; line-height: 1.3; white-space: normal;">{{ product.name|default:"Product Details" }}</h1>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/shop.html">Products</a></li>
+                            <li class="breadcrumb-item active">{{ product.name|default:"Product Details" }}</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Title/Header End -->
+
+    <!-- Single Products Section Start -->
+    <div class="section section-fluid section-padding border-bottom">
+        <div class="container">
+            <div class="row learts-mb-n40">
+
+                <!-- Product Images Start -->
+                <div class="col-lg-6 col-12 learts-mb-40">
+                    <div class="product-images vertical">
+                        <div class="product-gallery-slider">
+                            {% for img in product.images.all %}
+                            <div class="product-zoom" data-image="{{ img.image.url }}"><img src="{{ img.image.url }}" alt="{{ product.name }}"></div>
+                            {% empty %}
+                            <div class="product-zoom"><img src="{% static 'frontend/assets/images/product/single/2/product-1.webp' %}" alt="{{ product.name }}"></div>
+                            {% endfor %}
+                        </div>
+                        <div class="product-thumb-slider-vertical">
+                            {% for img in product.images.all %}
+                            <div class="item"><img src="{{ img.image.url }}" alt="{{ product.name }}"></div>
+                            {% empty %}
+                            <div class="item"><img src="{% static 'frontend/assets/images/product/single/2/product-thumb-1.webp' %}" alt="{{ product.name }}"></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Images End -->
+
+                <!-- Product Summery Start -->
+                <div class="col-lg-6 col-12 learts-mb-40">
+                    <div class="product-summery product-summery-center">
+                        <h3 class="product-title">{{ product.name|default:"Product Details" }}</h3>
+                        <div class="product-price" style="font-size:16px; color:#999; font-weight:500;">Bespoke Custom Order</div>
+                        <div class="product-description">
+                            {{ product.description|default:""|safe }}
+                        </div>
+                        <div class="product-variations">
+                            <table>
+                                <tbody>
+                                    {% if sizes_list %}
+                                    <tr>
+                                        <td class="label"><span>Sizes</span></td>
+                                        <td class="value">
+                                            <div class="product-sizes">
+                                                {% for size in sizes_list %}
+                                                <a href="#">{{ size }}</a>
+                                                {% endfor %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    <tr>
+                                        <td class="label"><span>Gender</span></td>
+                                        <td class="value">{{ product.get_gender_display|default:"Unisex" }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="product-buttons">
+                            <a href="/contact-us.html?product={{ product.name }}" class="btn btn-dark btn-outline-hover-dark"><i class="far fa-envelope"></i> Enquire Now</a>
+                            <a href="https://wa.me/919999999999?text=Hi, I am interested in {{ product.name }}" target="_blank" class="btn btn-outline-dark btn-outline-hover-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                        <div class="product-meta">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="label"><span>SKU</span></td>
+                                        <td class="value">ZUZ-{{ product.id|stringformat:"04d" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label"><span>Collection</span></td>
+                                        <td class="value">
+                                            <ul class="product-category">
+                                                <li><a href="/shop.html?collection_id={{ product.category.collection.id }}">{{ product.category.collection.name }}</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label"><span>Category</span></td>
+                                        <td class="value">
+                                            <ul class="product-category">
+                                                <li><a href="/shop.html?category_id={{ product.category.id }}">{{ product.category.name }}</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label"><span>Share on</span></td>
+                                        <td class="va">
+                                            <div class="product-share">
+                                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                                <a href="#"><i class="fab fa-pinterest"></i></a>
+                                                <a href="#"><i class="far fa-envelope"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Summery End -->
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Single Products Section End -->
+
+    <!-- Single Products Infomation Section Start -->
+    <div class="section section-padding border-bottom">
+        <div class="container">
+
+            <ul class="nav product-info-tab-list">
+                <li><a class="active" data-bs-toggle="tab" href="#tab-description">Description</a></li>
+                <li><a data-bs-toggle="tab" href="#tab-additional_information">Additional information</a></li>
+                <li><a data-bs-toggle="tab" href="#tab-enquiry">Custom Enquiry</a></li>
+            </ul>
+            <div class="tab-content product-infor-tab-content">
+                <div class="tab-pane fade show active" id="tab-description">
+                    <div class="row">
+                        <div class="col-lg-10 col-12 mx-auto">
+                            <div style="color: #666; line-height: 1.8;">{{ product.description|default:""|safe }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-additional_information">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10 col-12 mx-auto">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        {% if sizes_list %}
+                                        <tr>
+                                            <td>Sizes</td>
+                                            <td>{{ sizes_list|join:", " }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>{{ product.get_gender_display|default:"Unisex" }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-enquiry">
+                    <div class="product-review-wrapper">
+                        <span class="title">Bespoke Custom Order Enquiry</span>
+                        <div class="review-form">
+                            <p class="note">Interested in a custom order or customized design for <strong>{{ product.name }}</strong>? Fill out this quick inquiry form and our designers will get in touch with you shortly.</p>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_name" value="{{ product.name }}">
+                                <div class="row learts-mb-n30">
+                                    <div class="col-md-6 col-12 learts-mb-30">
+                                        <input type="text" name="first_name" placeholder="Name *" required>
+                                    </div>
+                                    <div class="col-md-6 col-12 learts-mb-30">
+                                        <input type="text" name="phone" placeholder="Phone Number *" required>
+                                    </div>
+                                    <div class="col-12 learts-mb-30">
+                                        <input type="email" name="email" placeholder="Email Address (Optional)">
+                                    </div>
+                                    <div class="col-12 learts-mb-30">
+                                        <textarea name="message" placeholder="Your Message or Custom Request *" required></textarea>
+                                    </div>
+                                    <div class="col-12 text-center learts-mb-30">
+                                        <button type="submit" class="btn btn-dark btn-outline-hover-dark">Submit Enquiry</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Single Products Infomation Section End -->
+
+    <!-- Recommended Products Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+
+            <!-- Section Title Start -->
+            <div class="section-title2 text-center">
+                <h2 class="title">You Might Also Like</h2>
+            </div>
+            <!-- Section Title End -->
+
+            <!-- Products Start -->
+            <div class="product-carousel">
+                {% for rp in recommended_products %}
+                <div class="col">
+                    <div class="product">
+                        <div class="product-thumb">
+                            <a href="{% url 'product_detail' rp.slug %}" class="image">
+                                {% with rp.images.all|first as first_img %}
+                                {% if first_img %}
+                                    <img src="{{ first_img.image.url }}" alt="{{ rp.name }}">
+                                {% else %}
+                                    <img src="{% static 'frontend/assets/images/product/s270/product-1.webp' %}" alt="{{ rp.name }}">
+                                {% endif %}
+                                {% endwith %}
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <h6 class="title"><a href="{% url 'product_detail' rp.slug %}">{{ rp.name }}</a></h6>
+                            <span class="price">
+                                Bespoke Custom Order
+                            </span>
+                            <div class="product-buttons">
+                                <a href="/contact-us.html?product={{ rp.name }}" class="product-button hintT-top" data-hint="Enquire"><i class="far fa-envelope"></i></a>
+                                <a href="https://wa.me/919999999999?text=Hi, I am interested in {{ rp.name }}" target="_blank" class="product-button hintT-top" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col text-center">
+                    <p>No related items found.</p>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Products End -->
+
+        </div>
+    </div>
+    <!-- Recommended Products Section End -->
+{% endblock %}

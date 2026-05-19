@@ -1,0 +1,126 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page Title/Header Start -->
+    <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/images/bg/page-title-1.webp' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div class="page-title">
+                        <h1 class="title">Blog</h1>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Blog</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Title/Header End -->
+
+    <!-- Single Blog Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+            <div class="row learts-mb-n50">
+
+                <div class="col-xl-9 col-lg-8 col-12 learts-mb-50">
+                    <div class="single-blog">
+                        {% if blog.image %}
+                        <div class="image">
+                            <img src="{{ blog.image.url }}" alt="{{ blog.title }}" style="width: 100%;">
+                        </div>
+                        {% endif %}
+                        <div class="content pt-4">
+                            <h2 class="title">{{ blog.title }}</h2>
+                            <ul class="meta">
+                                <li><i class="far fa-user"></i> By <a href="#">Teena Juby</a></li>
+                                <li><i class="far fa-calendar"></i><a href="#">{{ blog.created_at|date:"F d, Y" }}</a></li>
+                            </ul>
+                            <div class="desc">
+                                {{ blog.description|linebreaks }}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if related_blogs %}
+                    <div class="related-blog">
+                        <div class="block-title pb-0 border-bottom-0">
+                            <h2 class="title">Related Blog</h2>
+                        </div>
+                        <div class="row learts-mb-n40">
+                            {% for rel in related_blogs %}
+                            <div class="col-md-6 col-12 learts-mb-40">
+                                <div class="blog">
+                                    <div class="image">
+                                        {% if rel.image %}
+                                        <a href="/blog-details-right-sidebar.html?id={{ rel.id }}"><img src="{{ rel.image.url }}" alt="{{ rel.title }}"></a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="content">
+                                        <ul class="meta">
+                                            <li><i class="far fa-calendar"></i><a href="/blog-details-right-sidebar.html?id={{ rel.id }}">{{ rel.created_at|date:"F d, Y" }}</a></li>
+                                        </ul>
+                                        <h5 class="title mb-0"><a href="/blog-details-right-sidebar.html?id={{ rel.id }}">{{ rel.title }}</a></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-12 learts-mb-10">
+                    <!-- Blog Post Widget Start -->
+                    <div class="single-widget learts-mb-40">
+                        <h3 class="widget-title product-filter-widget-title">Recent Post</h3>
+                        <ul class="widget-blogs">
+                            {% for recent in recent_blogs %}
+                            <li class="widget-blog">
+                                <div class="thumbnail">
+                                    {% if recent.image %}
+                                    <a href="/blog-details-right-sidebar.html?id={{ recent.id }}"><img src="{{ recent.image.url }}" alt="Widget Blog Post"></a>
+                                    {% endif %}
+                                </div>
+                                <div class="content">
+                                    <h6 class="title"><a href="/blog-details-right-sidebar.html?id={{ recent.id }}">{{ recent.title }}</a></h6>
+                                    <span class="date">{{ recent.created_at|date:"F d, Y" }}</span>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- Blog Post Widget End -->
+
+                    <!-- Banner widget Start -->
+                    <div class="single-widget learts-mb-40">
+                        <div class="widget-banner">
+                            <img src="{% static 'frontend/assets/images/banner/widget-banner.webp' %}" alt="">
+                        </div>
+                    </div>
+                    <!-- Banner widget End -->
+
+                    <!-- Categories Start -->
+                    <div class="single-widget learts-mb-40">
+                        <h3 class="widget-title product-filter-widget-title">Categories</h3>
+                        <ul class="widget-list">
+                            <li><a href="#">Gift ideas</a> <span class="count">11</span></li>
+                            <li><a href="#">Feature</a> <span class="count">2</span></li>
+                            <li><a href="#">Kitchen</a> <span class="count">11</span></li>
+                        </ul>
+                    </div>
+                    <!-- Categories End -->
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Single Blog Section End -->
+
+    
+{% endblock %}

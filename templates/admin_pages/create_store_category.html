@@ -1,0 +1,149 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block title %}{% if category %}Edit Category{% else %}Add Category{% endif %} | Admin Dashboard{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Style for error messages */
+.field-error {
+    display: none;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    color: #dc3545;
+}
+
+/* Red border for invalid fields */
+.field-error-border {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.1) !important;
+}
+
+/* Green border for valid fields */
+.field-valid-border {
+    border-color: #28a745 !important;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard sp_bottom_100">
+    <div class="container-fluid full__width__padding">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-md-12">
+                <div class="dashboard__section__title">
+                    <h4 class="mb-0">{% if category %}Edit Category{% else %}Add Category{% endif %}</h4>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <form method="post" enctype="multipart/form-data" class="needs-validation form-wrapper" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="mb-4">
+                                <label for="collectionSelect" class="form-label">Collection <span class="text-danger">*</span></label>
+                                <select name="collection" id="collectionSelect" class="form-select modern-input" required>
+                                    <option value="" disabled {% if not category %}selected{% endif %}>Select Collection</option>
+                                    {% for col in collections %}
+                                        <option value="{{ col.id }}" {% if category and category.collection.id == col.id %}selected{% endif %}>{{ col.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback">Please select a collection.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="categoryName" class="form-label">Category Name <span class="text-danger">*</span></label>
+                                <input type="text" name="name" id="categoryName" class="form-control modern-input" value="{{ category.name|default:'' }}" required>
+                                <div class="invalid-feedback">Please enter a category name.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="categoryImage" class="form-label">Category Image {% if not category %}<span class="text-danger">*</span>{% endif %}</label>
+                                <input type="file" name="image" id="categoryImage" class="form-control modern-input" accept="image/*" {% if not category %}required{% endif %}>
+                                {% if category and category.image %}
+                                <div class="mt-2">
+                                    <img src="{{ category.image.url }}" alt="Current Image" class="img-thumbnail" style="max-height: 150px;">
+                                    <p class="text-muted mt-1">Current image will be kept if no new image is selected.</p>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="categoryDescription" class="form-label">Description</label>
+                                <textarea name="description" id="categoryDescription" class="form-control modern-input" rows="4">{{ category.description|default:'' }}</textarea>
+                            </div>
+
+                            <div class="dashboard__form__button mt-4">
+                                <button type="submit" class="btn btn-primary">{% if category %}Save Changes{% else %}Add Category{% endif %}</button>
+                                <a href="{% url 'store_category_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    const categoryInput = document.getElementById('categoryName');
+    const collectionSelect = document.getElementById('collectionSelect');
+
+    // Create error message elements
+    const categoryErrorDiv = document.createElement('div');
+    categoryErrorDiv.classList.add('text-danger', 'mt-1');
+    categoryInput.insertAdjacentElement('afterend', categoryErrorDiv);
+
+    const collectionErrorDiv = document.createElement('div');
+    collectionErrorDiv.classList.add('text-danger', 'mt-1');
+    collectionSelect.insertAdjacentElement('afterend', collectionErrorDiv);
+
+    // Validate category name
+    function validateCategoryName() {
+        const value = categoryInput.value.trim();
+        let error = '';
+        if (!value) {
+            error = 'Category name is required.';
+        }
+
+        categoryErrorDiv.textContent = error;
+        categoryInput.classList.toggle('field-error-border', !!error);
+        return !error;
+    }
+
+    // Validate collection
+    function validateCollection() {
+        const value = collectionSelect.value;
+        let error = '';
+        if (!value) {
+            error = 'Collection selection is required.';
+        }
+
+        collectionErrorDiv.textContent = error;
+        collectionSelect.classList.toggle('field-error-border', !!error);
+        return !error;
+    }
+
+    // Real-time validation
+    categoryInput.addEventListener('blur', validateCategoryName);
+    categoryInput.addEventListener('input', validateCategoryName);
+    collectionSelect.addEventListener('change', validateCollection);
+    collectionSelect.addEventListener('blur', validateCollection);
+
+    // Form submission
+    form.addEventListener('submit', function (e) {
+        const isCatValid = validateCategoryName();
+        const isColValid = validateCollection();
+        if (!isCatValid || !isColValid) {
+            e.preventDefault();
+            if (!isColValid) collectionSelect.focus();
+            else if (!isCatValid) categoryInput.focus();
+        }
+    });
+});
+</script>
+{% endblock %}

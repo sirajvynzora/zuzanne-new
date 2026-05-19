@@ -1,0 +1,373 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+.product-thumb .image img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+</style>
+{% endblock %}
+
+{% block header_section %}
+    <!-- Header Section Start -->
+    <header class="header-section section bg-white d-none d-xl-block">
+        <div class="header-top py-2 border-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col d-flex justify-content-start">
+                        <div class="header-social d-flex" style="gap: 15px;">
+                            <a href="#" class="text-dark hintT-bottom" data-hint="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-dark hintT-bottom" data-hint="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-dark hintT-bottom" data-hint="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center">
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" style="height: 40px;"></a>
+                    </div>
+                    <div class="col d-flex justify-content-end" style="gap: 10px;">
+                        <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>
+                        <a href="https://wa.me/919999999999" target="_blank" class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-bottom">
+            <div class="container">
+                <nav class="site-main-menu justify-content-center">
+                    <ul>
+                        <li><a href="/"><span class="menu-text">Home</span></a></li>
+                        <li><a href="/about-us-2.html"><span class="menu-text">About Us</span></a></li>
+                        
+                        <li class="has-children"><a href="/shop.html"><span class="menu-text">Shop</span></a>
+                            <ul class="sub-menu">
+                                {% for col in collections_tree %}
+                                <li class="has-children"><a href="/shop.html?collection_id={{ col.id }}"><span class="menu-text">{{ col.name }}</span></a>
+                                    <ul class="sub-menu">
+                                        {% for cat in col.cats %}
+                                        <li><a href="/shop.html?category_id={{ cat.id }}"><span class="menu-text">{{ cat.name }}</span></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+
+                        <li><a href="/blog-grid-right-sidebar.html"><span class="menu-text">Blog</span></a></li>
+                        <li><a href="/contact-us.html"><span class="menu-text">Contact Us</span></a></li>
+
+                        <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="/unused/login-register.html">Login/Register</a></li>
+                                <li><a href="/unused/wishlist.html">Wishlist</a></li>
+                                <li><a href="/unused/shopping-cart.html">Cart</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="sticky-header section bg-white section-fluid d-none d-xl-block">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-xl-auto col">
+                    <div class="header-logo">
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" style="height: 35px; width: auto;"></a>
+                    </div>
+                </div>
+
+                <div class="col-auto me-auto">
+                    <nav class="site-main-menu site-main-menu-left justify-content-center">
+                        <ul>
+                            <li><a href="/"><span class="menu-text">Home</span></a></li>
+                            <li><a href="/about-us-2.html"><span class="menu-text">About Us</span></a></li>
+                            
+                            <li class="has-children"><a href="/shop.html"><span class="menu-text">Shop</span></a>
+                                <ul class="sub-menu">
+                                    {% for col in collections_tree %}
+                                    <li class="has-children"><a href="/shop.html?collection_id={{ col.id }}"><span class="menu-text">{{ col.name }}</span></a>
+                                        <ul class="sub-menu">
+                                            {% for cat in col.cats %}
+                                            <li><a href="/shop.html?category_id={{ cat.id }}"><span class="menu-text">{{ cat.name }}</span></a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+
+                            <li><a href="/blog-grid-right-sidebar.html"><span class="menu-text">Blog</span></a></li>
+                            <li><a href="/contact-us.html"><span class="menu-text">Contact Us</span></a></li>
+
+                            <li class="has-children"><a href="#"><span class="menu-text">Pages</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="/unused/login-register.html">Login/Register</a></li>
+                                    <li><a href="/unused/wishlist.html">Wishlist</a></li>
+                                    <li><a href="/unused/shopping-cart.html">Cart</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-auto">
+                    <div class="header-tools justify-content-end align-items-center">
+                        <div class="header-login">
+                            <a href="/unused/my-account.html"><i class="far fa-user"></i></a>
+                        </div>
+                        <div class="header-search">
+                            <a href="#offcanvas-search" class="offcanvas-toggle"><i class="fas fa-search"></i></a>
+                        </div>
+                        <div class="header-wishlist">
+                            <a href="#offcanvas-wishlist" class="offcanvas-toggle"><span class="wishlist-count">3</span><i class="far fa-heart"></i></a>
+                        </div>
+                        <div class="header-cart">
+                            <a href="#offcanvas-cart" class="offcanvas-toggle"><span class="cart-count">3</span><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <!-- Slider main container Start -->
+    <div class="home1-slider swiper-container">
+        <div class="swiper-wrapper">
+            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-1.webp">
+                <div class="home1-slide1-content">
+                    <span class="bg"></span>
+                    <span class="slide-border"></span>
+                    <span class="icon"><img src="{% static 'frontend/assets/images/slider/home1/slide-1-1.webp' %}" alt="Slide Icon"></span>
+                    <h2 class="title">Handicraft Shop</h2>
+                    <h3 class="sub-title">Just for you</h3>
+                    <div class="link"><a href="shop.html">shop now</a></div>
+                </div>
+            </div>
+            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-2.webp">
+                <div class="home1-slide2-content">
+                    <span class="bg" data-bg-image="assets/images/slider/home1/slide-2-1.webp"></span>
+                    <span class="slide-border"></span>
+                    <span class="icon">
+                        <img src="{% static 'frontend/assets/images/slider/home1/slide-2-2.webp' %}" alt="Slide Icon">
+                        <img src="{% static 'frontend/assets/images/slider/home1/slide-2-3.webp' %}" alt="Slide Icon">
+                    </span>
+                    <h2 class="title">Newly arrived</h2>
+                    <h3 class="sub-title">Sale up to <br>10%</h3>
+                    <div class="link"><a href="shop.html">shop now</a></div>
+                </div>
+            </div>
+            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-3.webp">
+                <div class="home1-slide3-content">
+                    <h2 class="title">Affectious gifts</h2>
+                    <h3 class="sub-title">
+                        <img class="left-icon " src="{% static 'frontend/assets/images/slider/home1/slide-2-2.webp' %}" alt="Slide Icon">
+                        For friends & family
+                        <img class="right-icon " src="{% static 'frontend/assets/images/slider/home1/slide-2-3.webp' %}" alt="Slide Icon">
+                    </h3>
+                    <div class="link"><a href="shop.html">shop now</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="home1-slider-prev swiper-button-prev"><i class="ti-angle-left"></i></div>
+        <div class="home1-slider-next swiper-button-next"><i class="ti-angle-right"></i></div>
+    </div>
+    <!-- Slider main container End -->
+
+    <!-- Sale Banner Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+
+            <!-- Section Title Start -->
+            <div class="section-title text-center">
+                <h3 class="sub-title">Just for you</h3>
+                <h2 class="title title-icon-both">Making & crafting</h2>
+            </div>
+            <!-- Section Title End -->
+
+            <div class="row learts-mb-n40">
+
+                <div class="col-lg-5 col-md-6 col-12 me-auto learts-mb-40">
+                    <div class="sale-banner1" data-bg-image="assets/images/banner/sale/sale-banner1-1.webp">
+                        <div class="inner">
+                            <img src="{% static 'frontend/assets/images/banner/sale/sale-banner1-1.1.webp' %}" alt="Sale Banner Icon">
+                            <span class="title">Spring sale</span>
+                            <h2 class="sale-percent">
+                                <span class="number">40</span> % <br> off
+                            </h2>
+                            <a href="shop.html" class="link">shop now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-12 learts-mb-40">
+                    <div class="sale-banner2">
+                        <div class="inner">
+                            <div class="image"><img src="{% static 'frontend/assets/images/banner/sale/sale-banner2-1.webp' %}" alt=""></div>
+                            <div class="content row justify-content-between mb-n3">
+                                <div class="col-auto mb-3">
+                                    <h2 class="sale-percent">10% off</h2>
+                                    <span class="text">YOUR NEXT PURCHASE</span>
+                                </div>
+                                <div class="col-auto mb-3">
+                                    <a class="btn btn-hover-dark" href="shop.html">SHOP NOW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Sale Banner Section End -->
+
+    <!-- Category Banner Section Start -->
+    <div class="section section-fluid section-padding pt-0">
+        <div class="container">
+            <div class="category-banner1-carousel">
+
+                <div class="col">
+                    <div class="category-banner1">
+                        <div class="inner">
+                            <a href="shop.html" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-1.webp' %}" alt=""></a>
+                            <div class="content">
+                                <h3 class="title">
+                                    <a href="shop.html">Gift ideas</a>
+                                    <span class="number">16</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="category-banner1">
+                        <div class="inner">
+                            <a href="shop.html" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-2.webp' %}" alt=""></a>
+                            <div class="content">
+                                <h3 class="title">
+                                    <a href="shop.html">Home Decor</a>
+                                    <span class="number">16</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="category-banner1">
+                        <div class="inner">
+                            <a href="shop.html" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-3.webp' %}" alt=""></a>
+                            <div class="content">
+                                <h3 class="title">
+                                    <a href="shop.html">Kids & Babies</a>
+                                    <span class="number">6</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="category-banner1">
+                        <div class="inner">
+                            <a href="shop.html" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-4.webp' %}" alt=""></a>
+                            <div class="content">
+                                <h3 class="title">
+                                    <a href="shop.html">Kitchen</a>
+                                    <span class="number">15</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="category-banner1">
+                        <div class="inner">
+                            <a href="shop.html" class="image"><img src="{% static 'frontend/assets/images/banner/category/banner-s1-5.webp' %}" alt=""></a>
+                            <div class="content">
+                                <h3 class="title">
+                                    <a href="shop.html">Kniting & Sewing</a>
+                                    <span class="number">4</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Category Banner Section End -->
+
+    <!-- Product Section Start -->
+    <div class="section section-fluid section-padding pt-0">
+        <div class="container">
+
+            <!-- Section Title Start -->
+            <div class="section-title text-center">
+                <h3 class="sub-title">Shop now</h3>
+                <h2 class="title title-icon-both">Shop our best-sellers</h2>
+            </div>
+            <!-- Section Title End -->
+
+            <!-- Products Start -->
+            <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+
+                {% for product in products %}
+                <div class="col">
+                    <div class="product">
+                        <div class="product-thumb">
+                            <a href="{% url 'product_detail' product.slug %}" class="image">
+                                {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
+                                    {% if first_img %}
+                                        <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
+                                        {% if second_img %}
+                                            <img class="image-hover" src="{{ second_img.image.url }}" alt="{{ product.name }}">
+                                        {% endif %}
+                                    {% else %}
+                                        <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" alt="{{ product.name }}">
+                                    {% endif %}
+                                {% endwith %}
+                            </a>
+                            <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                        </div>
+                        <div class="product-info">
+                            <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
+                            <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">
+                                Bespoke Custom Order
+                            </span>
+                            <div class="product-buttons">
+                                <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
+                                <a href="contact-us.html?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <h4 class="text-muted">No products found in this category.</h4>
+                    <p>Please check back later or contact us for custom orders.</p>
+                </div>
+                {% endfor %}
+
+            </div>
+<!-- Products End -->
+
+        </div>
+    </div>
+    <!-- Product Section End -->
+{% endblock %}

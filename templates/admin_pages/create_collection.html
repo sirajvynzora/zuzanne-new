@@ -1,0 +1,115 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block title %}{% if collection %}Edit Collection{% else %}Add Collection{% endif %} | Admin Dashboard{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Style for error messages */
+.field-error {
+    display: none;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    color: #dc3545;
+}
+
+/* Red border for invalid fields */
+.field-error-border {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.1) !important;
+}
+
+/* Green border for valid fields */
+.field-valid-border {
+    border-color: #28a745 !important;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard sp_bottom_100">
+    <div class="container-fluid full__width__padding">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-md-12">
+                <div class="dashboard__section__title">
+                    <h4 class="mb-0">{% if collection %}Edit Collection{% else %}Add Collection{% endif %}</h4>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <form method="post" enctype="multipart/form-data" class="needs-validation form-wrapper" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="mb-4">
+                                <label for="collectionName" class="form-label">Collection Name <span class="text-danger">*</span></label>
+                                <input type="text" name="name" id="collectionName" class="form-control modern-input" value="{{ collection.name|default:'' }}" required>
+                                <div class="invalid-feedback">Please enter a collection name.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="collectionImage" class="form-label">Collection Image {% if not collection %}<span class="text-danger">*</span>{% endif %}</label>
+                                <input type="file" name="image" id="collectionImage" class="form-control modern-input" accept="image/*" {% if not collection %}required{% endif %}>
+                                {% if collection and collection.image %}
+                                <div class="mt-2">
+                                    <img src="{{ collection.image.url }}" alt="Current Image" class="img-thumbnail" style="max-height: 150px;">
+                                    <p class="text-muted mt-1">Current image will be kept if no new image is selected.</p>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="collectionDescription" class="form-label">Description</label>
+                                <textarea name="description" id="collectionDescription" class="form-control modern-input" rows="4">{{ collection.description|default:'' }}</textarea>
+                            </div>
+
+                            <div class="dashboard__form__button mt-4">
+                                <button type="submit" class="btn btn-primary">{% if collection %}Save Changes{% else %}Add Collection{% endif %}</button>
+                                <a href="{% url 'collection_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    const collectionInput = document.getElementById('collectionName');
+
+    // Create error message element
+    const errorDiv = document.createElement('div');
+    errorDiv.classList.add('text-danger', 'mt-1');
+    collectionInput.insertAdjacentElement('afterend', errorDiv);
+
+    // Validate collection name
+    function validateCollection() {
+        const value = collectionInput.value.trim();
+        let error = '';
+        if (!value) {
+            error = 'Collection name is required.';
+        }
+
+        errorDiv.textContent = error;
+        collectionInput.classList.toggle('field-error-border', !!error);
+        return !error;
+    }
+
+    // Real-time validation
+    collectionInput.addEventListener('blur', validateCollection);
+    collectionInput.addEventListener('input', validateCollection);
+
+    // Form submission
+    form.addEventListener('submit', function (e) {
+        if (!validateCollection()) {
+            e.preventDefault();
+            collectionInput.focus();
+        }
+    });
+});
+</script>
+{% endblock %}
