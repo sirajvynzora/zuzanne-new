@@ -77,3 +77,6 @@ dmypy.json
 
 # OS X
 .DS_Store
+
+# Frontend unused templates folder
+templates/frontend/unused/
