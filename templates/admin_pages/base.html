@@ -1217,27 +1217,7 @@
                             Blogs
                         </a>
                     </li>
-                    <li
-                        class="has-dropdown {% if request.resolver_match.url_name == 'gallery_list' or request.resolver_match.url_name == 'category_list' %}open{% endif %}">
-                        <a href="#">
-                            <i class="icofont-picture"></i>
-                            Gallery
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="{% url 'category_list' %}"
-                                    class="{% if request.resolver_match.url_name == 'category_list' %}active{% endif %}">
-                                    Categories
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{% url 'gallery_list' %}"
-                                    class="{% if request.resolver_match.url_name == 'gallery_list' %}active{% endif %}">
-                                    Images
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+
                     <li>
                         <a href="{% url 'testimonial_list' %}"
                             class="{% if request.resolver_match.url_name == 'testimonial_list' %}active{% endif %}">

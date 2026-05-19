@@ -6,7 +6,6 @@ urlpatterns = [
     path("", views.frontend_home, name="frontend_home"),
     # Legacy Redirection Routes (to prevent 404/500 errors and preserve backwards compatibility)
     path("old-home/", views.home, name="home"),
-    path("gallery/", views.gallery, name="gallery"),
 
     path("admin-login/", views.admin_login, name="admin_login"),
     path("admin-logout/", views.admin_logout, name="admin_logout"),
@@ -21,21 +20,6 @@ urlpatterns = [
     path("dashboard/blocks/<int:pk>/delete/", views.blog_delete, name="block_delete"),
     path("dashboard/blogs/<int:pk>/delete/", views.blog_delete, name="blog_delete"),
 
-    # Gallery Categories
-    path("dashboard/categories/", views.category_list, name="category_list"),
-    path("dashboard/categories/create/", views.category_create, name="category_create"),
-    path("dashboard/categories/add/", views.category_create, name="add_category"),
-    path("dashboard/categories/<int:pk>/edit/", views.category_update, name="category_update"),
-    path("dashboard/categories/<int:pk>/update/", views.category_update, name="update_category"),
-    path("dashboard/categories/<int:pk>/delete/", views.category_delete, name="category_delete"),
-    path("dashboard/categories/<int:pk>/remove/", views.category_delete, name="delete_category"),
-
-    path("dashboard/gallery/", views.gallery_list, name="gallery_list"),
-    path("dashboard/gallery/list/", views.gallery_list, name="list_image"),
-    path("dashboard/gallery/create/", views.gallery_create, name="gallery_create"),
-    path("dashboard/gallery/add/", views.gallery_create, name="add_image"),
-    path("dashboard/gallery/<int:pk>/delete/", views.gallery_delete, name="gallery_delete"),
-    path("dashboard/gallery/<int:pk>/remove/", views.gallery_delete, name="delete_image"),
 
     path("dashboard/testimonials/", views.testimonial_list, name="testimonial_list"),
     path("dashboard/reviews/", views.testimonial_list, name="review_list"),

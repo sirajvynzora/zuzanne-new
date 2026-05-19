@@ -1,7 +1,7 @@
 from django import forms
 from django.utils import timezone
 
-from .models import Blog, GalleryCategory, Category, Contact, GalleryImage, Testimonial, Collection, Product
+from .models import Blog, Category, Contact, Testimonial, Collection, Product
 
 
 class BlogForm(forms.ModelForm):
@@ -18,17 +18,6 @@ class TestimonialForm(forms.ModelForm):
         model = Testimonial
         fields = ["name", "image", "review"]
 
-
-class GalleryCategoryForm(forms.ModelForm):
-    class Meta:
-        model = GalleryCategory
-        fields = ["name"]
-
-
-class GalleryImageForm(forms.ModelForm):
-    class Meta:
-        model = GalleryImage
-        fields = ["category", "title", "image"]
 
 
 class ContactForm(forms.ModelForm):

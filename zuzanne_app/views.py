@@ -10,25 +10,19 @@ from django.template.loader import render_to_string
 
 from .forms import (
     BlogForm,
-    GalleryCategoryForm,
     ContactForm,
     TestimonialForm,
     CollectionForm,
     CategoryForm,
     ProductForm,
 )
-from .models import Blog, GalleryCategory, Category, Contact, GalleryImage, Testimonial, Collection, Product, ProductImage
+from .models import Blog, Category, Contact, Testimonial, Collection, Product, ProductImage
 
 
 def home(request):
     # Redirect legacy old-home to active frontend homepage
     return redirect("frontend_home")
 
-
-def gallery(request):
-    # Redirect legacy gallery page to homepage as gallery is integrated
-    messages.info(request, "Our gallery has been integrated directly into our homepage.")
-    return redirect("frontend_home")
 
 
 
@@ -165,87 +159,6 @@ def blog_delete(request, pk):
     return redirect("admin_blog_list")
 
 
-@login_required(login_url="admin_login")
-def category_list(request):
-    categories = GalleryCategory.objects.all().order_by("name")
-    return render(request, "admin_pages/category_list.html", {"categories": categories})
-
-
-@login_required(login_url="admin_login")
-def category_create(request):
-    if request.method == "POST":
-        form = GalleryCategoryForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Category created.")
-            return redirect("category_list")
-    else:
-        form = GalleryCategoryForm()
-    return render(request, "admin_pages/add_category.html", {"form": form})
-
-
-@login_required(login_url="admin_login")
-def category_update(request, pk):
-    category_obj = get_object_or_404(GalleryCategory, pk=pk)
-    if request.method == "POST":
-        form = GalleryCategoryForm(request.POST, instance=category_obj)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Category updated.")
-            return redirect("category_list")
-    else:
-        form = GalleryCategoryForm(instance=category_obj)
-    return render(request, "admin_pages/add_category.html", {"form": form, "category": category_obj})
-
-
-@login_required(login_url="admin_login")
-def category_delete(request, pk):
-    category_obj = get_object_or_404(GalleryCategory, pk=pk)
-    if request.method == "POST":
-        category_obj.delete()
-        messages.success(request, "Category deleted.")
-    return redirect("category_list")
-
-
-@login_required(login_url="admin_login")
-def gallery_list(request):
-    categories = GalleryCategory.objects.all().prefetch_related("images").order_by("name")
-    category_pages = {}
-    for category in categories:
-        images_qs = category.images.all().order_by("-uploaded_at")
-        paginator = Paginator(images_qs, 8)
-        page_number = request.GET.get(f"page_{category.id}", 1)
-        category_pages[category.id] = paginator.get_page(page_number)
-    return render(
-        request,
-        "admin_pages/image_list.html",
-        {"categories": categories, "category_pages": category_pages},
-    )
-
-
-@login_required(login_url="admin_login")
-def gallery_create(request):
-    categories = GalleryCategory.objects.all().order_by("name")
-    if request.method == "POST":
-        category_id = request.POST.get("category")
-        images = request.FILES.getlist("images")
-        category = GalleryCategory.objects.filter(id=category_id).first()
-        if category and images:
-            for image in images:
-                GalleryImage.objects.create(category=category, image=image)
-            messages.success(request, "Gallery images added.")
-            return redirect("list_image")
-        messages.error(request, "Please select category and images.")
-    return render(request, "admin_pages/add_image.html", {"categories": categories})
-
-
-@login_required(login_url="admin_login")
-def gallery_delete(request, pk):
-    image_obj = get_object_or_404(GalleryImage, pk=pk)
-    if request.method == "POST":
-        image_obj.delete()
-        messages.success(request, "Gallery image deleted.")
-    return redirect("list_image")
 
 
 @login_required(login_url="admin_login")
