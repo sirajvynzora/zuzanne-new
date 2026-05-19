@@ -5,15 +5,6 @@
 {% block seo_description %}Discover premium handcrafted Christian baptism sets, holy communion dresses, ceremonial wear, and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
 {% block extra_css %}
-<style>
-.product-thumb .image img {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-}
-</style>
 {% endblock %}
 
 {% block header_section %}
@@ -30,7 +21,7 @@
                         </div>
                     </div>
                     <div class="col-auto text-center">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" style="height: 40px;"></a>
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-desktop"></a>
                     </div>
                     <div class="col d-flex justify-content-end" style="gap: 10px;">
                         <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>

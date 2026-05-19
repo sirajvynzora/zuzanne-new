@@ -75,10 +75,7 @@
                                         </td>
                                     </tr>
                                     {% endif %}
-                                    <tr>
-                                        <td class="label"><span>Gender</span></td>
-                                        <td class="value">{{ product.get_gender_display|default:"Unisex" }}</td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -126,10 +123,7 @@
                                             <td>{{ sizes_list|join:", " }}</td>
                                         </tr>
                                         {% endif %}
-                                        <tr>
-                                            <td>Gender</td>
-                                            <td>{{ product.get_gender_display|default:"Unisex" }}</td>
-                                        </tr>
+
                                         <tr>
                                             <td>Collection</td>
                                             <td><a href="{% url 'collection' product.category.collection.slug %}" style="color: inherit; text-decoration: underline;">{{ product.category.collection.name }}</a></td>

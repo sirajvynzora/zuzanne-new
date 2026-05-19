@@ -10,7 +10,11 @@
     <meta name="description" content="{% block seo_description %}Discover premium handcrafted Christian baptism sets, holy communion dresses, ceremonial wear, and accessories, created with care and prayers at Zuzanne.{% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'frontend/assets/images/favicon.webp' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'frontend/assets/images/favicon_io/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'frontend/assets/images/favicon_io/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'frontend/assets/images/favicon_io/favicon-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'frontend/assets/images/favicon_io/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'frontend/assets/images/favicon_io/site.webmanifest' %}">
 
     <!-- CSS
 	============================================ -->
@@ -200,6 +204,44 @@
             display: flex;
             align-items: center;
         }
+
+        /* Reusable classes for logo sizing */
+        .zuzanne-logo-desktop {
+            height: 70px !important;
+            width: auto !important;
+        }
+        .zuzanne-logo-sticky {
+            height: 55px !important;
+            width: auto !important;
+            object-fit: contain !important;
+        }
+        .zuzanne-logo-mobile {
+            height: 60px !important;
+            width: auto !important;
+        }
+        .zuzanne-logo-footer {
+            height: 90px !important;
+            width: auto !important;
+        }
+
+        /* Spacing between menu text and dropdown arrow */
+        .site-main-menu ul li.has-children > a::after {
+            margin-left: 8px !important;
+        }
+
+        /* Normalized global transition timing for hover animations */
+        .btn, .product, .category-banner, .sticky-cta-btn, .footer-social-links-royal ul li a, a, i, img {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        }
+
+        /* Unified Product Card Image Aspect Ratio */
+        .product-thumb .image img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
     </style>
 </head>
 
@@ -215,7 +257,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-xl-auto col">
                     <div class="header-logo">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" style="height: 35px; width: auto;"></a>
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-desktop"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -274,7 +316,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-xl-auto col">
                     <div class="header-logo">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" style="height: 38px; width: auto; object-fit: contain;"></a>
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-sticky"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -331,7 +373,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="header-logo">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" style="height: 45px; width: auto;"></a>
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-mobile"></a>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -541,7 +583,7 @@
             <div class="row text-center row-cols-1">
 
                 <div class="footer1-logo col text-center">
-                    <img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne Logo" style="height: 50px; width: auto;">
+                    <img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne Logo" class="zuzanne-logo-footer">
                 </div>
 
                 <div class="footer1-menu col">
