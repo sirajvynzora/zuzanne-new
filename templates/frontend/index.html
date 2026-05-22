@@ -263,6 +263,191 @@
             gap: 24px;
         }
     }
+
+    /* Premium Cinematic Carousel */
+    .cinematic-section {
+        background-color: #1a1a1a;
+        color: #fff;
+        padding: 40px 0;
+        overflow: hidden;
+    }
+    .cinematic-section .section-title2 .title {
+        color: #fff;
+        font-family: "Modesty", serif;
+        font-size: 64px;
+        margin-bottom: 5px;
+    }
+    .cinematic-section .section-title2 .title::before,
+    .cinematic-section .section-title2 .title::after {
+        display: none; /* Hide the leafy icons for this dark section */
+    }
+    .cinematic-section .section-title2 p {
+        color: #aaa;
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    .cinematic-carousel-wrapper {
+        position: relative;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .swiper-container.cinematic-carousel {
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        overflow: visible; /* so scaled center slide can pop out */
+    }
+    .cinematic-carousel .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 320px;
+        height: 480px;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: opacity 0.5s ease;
+        opacity: 0.45;
+        position: relative;
+    }
+    .cinematic-carousel .swiper-slide-active {
+        opacity: 1;
+        z-index: 10;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+    .cinematic-carousel .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+    .cinematic-carousel .swiper-slide-active:hover img {
+        transform: scale(1.05);
+    }
+    .cinematic-carousel .slide-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 30px 20px;
+        transition: opacity 0.5s ease;
+    }
+    .cinematic-carousel .swiper-slide-active .slide-overlay {
+        background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
+    }
+    .cinematic-carousel .slide-content {
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(15px);
+        transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        transition-delay: 0.1s;
+    }
+    .cinematic-carousel .swiper-slide-active .slide-content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .cinematic-carousel .slide-label {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    .cinematic-carousel-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        z-index: 20;
+        pointer-events: none;
+        padding: 0 5%;
+    }
+    .cinematic-carousel-nav .swiper-button-prev,
+    .cinematic-carousel-nav .swiper-button-next {
+        position: static;
+        width: 50px;
+        height: 50px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(4px);
+        border-radius: 50%;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: auto;
+        transition: all 0.3s ease;
+        margin: 0;
+    }
+    .cinematic-carousel-nav .swiper-button-prev:hover,
+    .cinematic-carousel-nav .swiper-button-next:hover {
+        background: rgba(255,255,255,0.2);
+        border-color: #fff;
+    }
+    .cinematic-carousel-nav .swiper-button-prev::after,
+    .cinematic-carousel-nav .swiper-button-next::after {
+        font-size: 18px;
+    }
+    
+    @media (max-width: 991px) {
+        .cinematic-carousel .swiper-slide {
+            width: 280px;
+        }
+    }
+    @media (max-width: 767px) {
+        .cinematic-carousel .swiper-slide {
+            width: 250px;
+            height: 360px;
+        }
+        .cinematic-section .section-title2 .title {
+            font-size: 48px;
+        }
+        .cinematic-carousel-nav {
+            display: none;
+        }
+    }
+    /* Mobile 2-column product grid */
+    @media (max-width: 575px) {
+        .products.row > .col {
+            padding-left: 6px !important;
+            padding-right: 6px !important;
+        }
+        .products.row {
+            margin-left: -6px !important;
+            margin-right: -6px !important;
+        }
+        .product-thumb .image img {
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: center top;
+            width: 100%;
+            display: block;
+        }
+        .product-info .title {
+            font-size: 12px !important;
+            line-height: 1.4 !important;
+            margin-bottom: 4px !important;
+        }
+        .product-info .price {
+            font-size: 11px !important;
+        }
+        .product-info .product-buttons {
+            gap: 4px !important;
+        }
+        .product-info .product-button {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 11px !important;
+        }
+    }
 </style>
 {% endblock %}
 
@@ -348,7 +533,8 @@
     </section>
     <!-- Homepage Hero End -->
 
-    <!-- Sale Banner Section Start -->
+
+    {% comment %} <!-- Sale Banner Section Start -->
     <div class="section section-padding">
         <div class="container">
 
@@ -475,62 +661,444 @@
         </div>
     </div>
     <!-- Category Banner Section End -->
+{% endcomment %}
 
     <!-- Product Section Start -->
-    <div class="section section-fluid section-padding pt-0">
+    <div class="section section-padding">
         <div class="container">
 
-            <!-- Section Title Start -->
-            <div class="section-title text-center">
-                <h3 class="sub-title">Our Collections</h3>
-                <h2 class="title title-icon-both">Signature Ceremonial Pieces</h2>
-            </div>
-            <!-- Section Title End -->
-
-            <!-- Products Start -->
-            <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
-
-                {% for product in products %}
+            <div class="row learts-mb-50">
                 <div class="col">
-                    <div class="product">
-                        <div class="product-thumb">
-                            <a href="{% url 'product_detail' product.slug %}" class="image">
-                                {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
-                                    {% if first_img %}
-                                        <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
-                                        {% if second_img %}
-                                            <img class="image-hover" src="{{ second_img.image.url }}" alt="{{ product.name }}">
-                                        {% endif %}
-                                    {% else %}
-                                        <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" alt="{{ product.name }}">
-                                    {% endif %}
-                                {% endwith %}
-                            </a>
-                            <a href="wishlist.html" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
-                        </div>
-                        <div class="product-info">
-                            <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
-                            <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">
-                                Bespoke Custom Order
-                            </span>
-                            <div class="product-buttons">
-                                <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
-                                <a href="{% url 'contact' %}?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
+                    <!-- Section Title Start -->
+                    <div class="section-title text-center mb-0">
+                        <h3 class="sub-title">Our Collections</h3>
+                        <h2 class="title title-icon-both">Signature Ceremonial Pieces</h2>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <!-- Product Tab List Start -->
+            <div class="row learts-mb-40">
+                <div class="col">
+                    <ul class="nav text-uppercase justify-content-center mx-n1 mb-n2">
+                        <li class="nav-item mx-1 mb-2"><a href="#product-all" data-bs-toggle="tab" class="btn btn-md btn-light btn-hover-dark active">All</a></li>
+                        {% for col in collections %}
+                        <li class="nav-item mx-1 mb-2"><a href="#product-{{ col.slug }}" data-bs-toggle="tab" class="btn btn-md btn-light btn-hover-dark">{{ col.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- Product Tab List End -->
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="product-all">
+                    <!-- Products Start -->
+                    <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
+                        {% for product in products %}
+                        <div class="col">
+                            <div class="product">
+                                <div class="product-thumb">
+                                    <a href="{% url 'product_detail' product.slug %}" class="image">
+                                        {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
+                                            {% if first_img %}
+                                                <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
+                                                {% if second_img %}
+                                                    <img class="image-hover" src="{{ second_img.image.url }}" alt="{{ product.name }}">
+                                                {% endif %}
+                                            {% else %}
+                                                <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" alt="{{ product.name }}">
+                                            {% endif %}
+                                        {% endwith %}
+                                    </a>
+                                    <a href="#" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                                </div>
+                                <div class="product-info">
+                                    <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
+                                    <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom Order</span>
+                                    <div class="product-buttons">
+                                        <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
+                                        <a href="{% url 'contact' %}?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        {% empty %}
+                        <div class="col-12 text-center py-5">
+                            <h4 class="text-muted">No products found.</h4>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Products End -->
+                </div>
+
+                {% for col in collections %}
+                <div class="tab-pane fade" id="product-{{ col.slug }}">
+                    <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
+                        {% for cat in col.categories.all %}
+                            {% for product in cat.products.all|slice:":5" %}
+                            <div class="col">
+                                <div class="product">
+                                    <div class="product-thumb">
+                                        <a href="{% url 'product_detail' product.slug %}" class="image">
+                                            {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
+                                                {% if first_img %}
+                                                    <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
+                                                    {% if second_img %}
+                                                        <img class="image-hover" src="{{ second_img.image.url }}" alt="{{ product.name }}">
+                                                    {% endif %}
+                                                {% else %}
+                                                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" alt="{{ product.name }}">
+                                                {% endif %}
+                                            {% endwith %}
+                                        </a>
+                                        <a href="#" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                                    </div>
+                                    <div class="product-info">
+                                        <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
+                                        <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom Order</span>
+                                        <div class="product-buttons">
+                                            <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
+                                            <a href="{% url 'contact' %}?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% endfor %}
                     </div>
                 </div>
-                {% empty %}
-                <div class="col-12 text-center py-5">
-                    <h4 class="text-muted">No products found in this category.</h4>
-                    <p>Please check back later or contact us for custom orders.</p>
-                </div>
                 {% endfor %}
-
             </div>
-<!-- Products End -->
 
         </div>
     </div>
     <!-- Product Section End -->
+
+    <!-- Testimonials Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+
+            <!-- Section Title Start -->
+            <div class="section-title2 text-center">
+                <h2 class="title">What Our Clients Say</h2>
+            </div>
+            <!-- Section Title End -->
+
+            <div class="testimonial-carousel">
+                <div class="col">
+                    <div class="testimonial">
+                        <p>Zuzanne created the most beautiful baptism gown for our daughter. The craftsmanship and attention to detail were absolutely stunning. A true keepsake!</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-1.webp' %}" alt="Client">
+                            <div class="content">
+                                <h6 class="name">Sarah Miller</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial">
+                        <p>We ordered a custom suit for my son's First Communion. It fit perfectly and he looked so handsome. We couldn't be happier with the quality.</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-2.webp' %}" alt="Client">
+                            <div class="content">
+                                <h6 class="name">Emily Johnson</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial">
+                        <p>The personalized service at Zuzanne is unmatched. They worked with us to select the perfect fabric and style. Highly recommended!</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-3.webp' %}" alt="Client">
+                            <div class="content">
+                                <h6 class="name">Jessica Davies</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial">
+                        <p>Absolutely beautiful! The dress was everything we hoped for and more. Thank you for making our day so special.</p>
+                        <div class="author">
+                            <img src="{% static 'frontend/assets/images/testimonial/testimonial-4.webp' %}" alt="Client">
+                            <div class="content">
+                                <h6 class="name">Amanda Smith</h6>
+                                <span class="title">Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Testimonials Section End -->
+
+    <!-- Contact Inquiry Banner Start -->
+    <div class="section section-padding" data-bg-color="#f4ede7">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12 align-self-center">
+                    <div class="product-deal-image text-center">
+                        <img src="{% static 'frontend/assets/images/banner/sale/sale-banner9-2.webp' %}" alt="Contact Us">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="sale-banner9 p-0">
+                        <div class="inner">
+                            <div class="content">
+                                <h3 class="title">Bespoke Orders</h3>
+                                <span class="cuppon" style="margin-bottom: 20px; font-weight: 500;">HAVE A SPECIFIC DESIGN IN MIND?</span>
+                                <p style="font-size: 16px; color: #666; max-width: 400px; margin: 0 auto 30px auto;">We craft personalized ceremonial outfits tailored to your unique vision. Get in touch with us to discuss custom orders, sizing, and specific requirements.</p>
+                                <a href="{% url 'contact' %}" class="btn btn-dark btn-outline-hover-dark">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact Inquiry Banner End -->
+
+    <!-- Curated Products Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+
+            <!-- Section Title Start -->
+            <div class="section-title2 text-center">
+                <h2 class="title title-icon-both">Curated For You</h2>
+                <p>Browse a unique selection of handcrafted ceremonial wear tailored perfectly for you.</p>
+            </div>
+            <!-- Section Title End -->
+
+            <div class="row learts-mb-n30">
+                <div class="col-lg-6 col-12 learts-mb-30">
+                    <div class="sale-banner11">
+                        <div class="inner">
+                            <img src="{% static 'frontend/assets/images/banner/sale/sale-banner11-1.webp' %}" alt="Curated Selection">
+                            <div class="content">
+                                <h3 class="title">Bespoke Highlights</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center learts-mt-50">
+                        <a href="{% url 'shop' %}" class="btn btn-dark btn-hover-primary">Explore All</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12 learts-mb-30">
+                    <!-- Products Start -->
+                    <div class="products row row-cols-lg-2 row-cols-md-3 row-cols-2">
+
+                        {% for product in random_products %}
+                        <div class="col">
+                            <div class="product">
+                                <div class="product-thumb">
+                                    <a href="{% url 'product_detail' product.slug %}" class="image">
+                                        {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
+                                            {% if first_img %}
+                                                <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
+                                                {% if second_img %}
+                                                    <img class="image-hover" src="{{ second_img.image.url }}" alt="{{ product.name }}">
+                                                {% endif %}
+                                            {% else %}
+                                                <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" alt="{{ product.name }}">
+                                            {% endif %}
+                                        {% endwith %}
+                                    </a>
+                                    <a href="#" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                                </div>
+                                <div class="product-info">
+                                    <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
+                                    <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom Order</span>
+                                    <div class="product-buttons">
+                                        <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
+                                        <a href="{% url 'contact' %}?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12 text-center py-5">
+                            <h4 class="text-muted">No curated products available.</h4>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <!-- Products End -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Curated Products Section End -->
+
+
+    <!-- Premium Video Carousel Section Start -->
+    <div class="section cinematic-section">
+        <div class="container-fluid p-0">
+            <!-- Section Title Start -->
+            <div class="section-title2 text-center learts-mb-40">
+                <span style="display:block; font-size:12px; letter-spacing:4px; color:#b98795; margin-bottom:15px; text-transform:uppercase; font-weight:500;">Made With Prayers</span>
+                <h2 class="title">The <em>Zuzanne</em> Experience</h2>
+                <p style="font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#888;">Swipe to Explore</p>
+            </div>
+            <!-- Section Title End -->
+
+            <div class="cinematic-carousel-wrapper">
+                <div class="swiper-container cinematic-carousel">
+                    <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide">
+                            <img src="{% static 'frontend/assets/images/product/s270/product-23.webp' %}" alt="Baptism Wear">
+                            <div class="slide-overlay">
+                                <div class="slide-content">
+                                    <h4 class="slide-label">Baptism Wear</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide">
+                            <img src="{% static 'frontend/assets/images/product/s270/product-10.webp' %}" alt="Ceremonial Details">
+                            <div class="slide-overlay">
+                                <div class="slide-content">
+                                    <h4 class="slide-label">Ceremonial Details</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide">
+                            <img src="{% static 'frontend/assets/images/product/s270/product-1.webp' %}" alt="Handcrafted Moments">
+                            <div class="slide-overlay">
+                                <div class="slide-content">
+                                    <h4 class="slide-label">Handcrafted Moments</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="swiper-slide">
+                            <img src="{% static 'frontend/assets/images/product/s270/product-16-hover.webp' %}" alt="Luxury Fabrics">
+                            <div class="slide-overlay">
+                                <div class="slide-content">
+                                    <h4 class="slide-label">Luxury Fabrics</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="swiper-slide">
+                            <img src="{% static 'frontend/assets/images/product/s270/product-10-hover.webp' %}" alt="Bespoke Fit">
+                            <div class="slide-overlay">
+                                <div class="slide-content">
+                                    <h4 class="slide-label">Bespoke Fit</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cinematic-carousel-nav d-none d-md-flex">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{% url 'shop' %}" class="btn" style="background-color: #b98795; color: #fff; padding: 15px 40px; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; border: none; font-weight: 500; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#a37482'" onmouseout="this.style.backgroundColor='#b98795'">Explore Full Collection</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- Premium Video Carousel Section End -->
+
+    <!-- Blog Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+            <div class="row learts-mb-n40">
+
+                <div class="col-lg-4 learts-mb-40">
+                    <!-- Section Title Start -->
+                    <div class="section-title2 mb-5">
+                        <h2 class="title title-icon-right">Blog update</h2>
+                        <p>Subscribe for latest news and blog updates from our editor.</p>
+                    </div>
+                    <!-- Section Title End -->
+                    <ul class="widget-list">
+                        {% for blog in widget_blogs %}
+                        <li><i class="fas fa-long-arrow-alt-right"></i><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></li>
+                        {% empty %}
+                        <li>No recent blogs.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="col-lg-8 learts-mb-40">
+                    <div class="row learts-mb-n40">
+                        {% for blog in latest_blogs %}
+                        <div class="col-md-6 col-12 learts-mb-40">
+                            <div class="blog">
+                                {% if blog.image %}
+                                <div class="image">
+                                    <a href="{% url 'blog_detail' blog.slug %}"><img src="{{ blog.image.url }}" alt="{{ blog.title }}"></a>
+                                </div>
+                                {% endif %}
+                                <div class="content">
+                                    <ul class="meta">
+                                        <li><i class="far fa-calendar"></i><a href="{% url 'blog_detail' blog.slug %}">{{ blog.created_at|date:"F d, Y" }}</a></li>
+                                    </ul>
+                                    <h5 class="title"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h5>
+                                    <div class="desc">
+                                        <p>{{ blog.description|safe|truncatewords:20 }}</p>
+                                    </div>
+                                    <a href="{% url 'blog_detail' blog.slug %}" class="link">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Blog Section End -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if(typeof Swiper !== 'undefined') {
+        var cinematicSwiper = new Swiper('.cinematic-carousel', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            loop: true,
+            speed: 700,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 80,
+                depth: 180,
+                modifier: 1,
+                slideShadows: false,
+            },
+            navigation: {
+                nextEl: '.cinematic-carousel-nav .swiper-button-next',
+                prevEl: '.cinematic-carousel-nav .swiper-button-prev',
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+        });
+    }
+});
+</script>
 {% endblock %}

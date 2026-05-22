@@ -5,6 +5,63 @@
 {% block seo_description %}Browse the full collection of Zuzanne's premium handcrafted Christian ceremonial wear, including baptism sets, holy communion outfits, and custom accessories.{% endblock %}
 
 {% block extra_css %}
+<style>
+    /* Mobile 2-column product grid */
+    @media (max-width: 575px) {
+
+        /* Force isotope 2-column layout on mobile */
+        #shop-products .grid-sizer,
+        #shop-products .grid-item.col {
+            width: 50% !important;
+        }
+
+        /* Tighter column padding */
+        #shop-products .grid-item.col {
+            padding-left: 6px !important;
+            padding-right: 6px !important;
+        }
+        #shop-products {
+            margin-left: -6px !important;
+            margin-right: -6px !important;
+        }
+
+        /* Fixed aspect ratio for product images */
+        .product-thumb .image img {
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: center top;
+            width: 100%;
+            display: block;
+        }
+
+        /* Smaller product info text */
+        .product-info .title {
+            font-size: 12px !important;
+            line-height: 1.4 !important;
+            margin-bottom: 4px !important;
+        }
+        .product-info .price {
+            font-size: 11px !important;
+        }
+        .product-info .product-buttons {
+            gap: 4px !important;
+        }
+        .product-info .product-button {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 11px !important;
+        }
+
+        /* Shop toolbar on mobile */
+        .shop-toolbar {
+            overflow-x: auto !important;
+        }
+        .isotope-filter.shop-product-filter {
+            white-space: nowrap !important;
+            flex-wrap: nowrap !important;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -93,7 +150,7 @@
         <!-- Product Filter Start -->
         <div id="product-filter" class="product-filter bg-light">
             <div class="container">
-                <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-2 row-cols-1 learts-mb-n30">
+                <div class="row row-cols-lg-2 row-cols-md-2 row-cols-2 learts-mb-n30">
 
                     <!-- Sort by Start -->
                     <div class="col learts-mb-30">
@@ -136,7 +193,7 @@
         <div class="section learts-mt-70">
             <div class="container">
                 <!-- Products Start -->
-                <div id="shop-products" class="products isotope-grid row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                <div id="shop-products" class="products isotope-grid row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
 
                     <div class="grid-sizer col-1"></div>
 

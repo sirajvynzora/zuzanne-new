@@ -414,7 +414,18 @@ def product_image_delete(request, pk):
 
 def frontend_home(request):
     products = Product.objects.select_related("category").prefetch_related("images").all()[:15]
-    return render(request, 'frontend/index.html', {"products": products})
+    latest_blogs = Blog.objects.all().order_by("-created_at")[:2]
+    widget_blogs = Blog.objects.all().order_by("-created_at")[2:7]
+    collections = Collection.objects.prefetch_related('categories__products__images').all()[:4]
+    random_products = Product.objects.select_related("category").prefetch_related("images").order_by("?")[:4]
+
+    return render(request, 'frontend/index.html', {
+        "products": products,
+        "latest_blogs": latest_blogs,
+        "widget_blogs": widget_blogs,
+        "collections": collections,
+        "random_products": random_products,
+    })
 
 def shop_view(request, collection_slug=None, category_slug=None):
     products = Product.objects.select_related("category__collection").prefetch_related("images").all()
