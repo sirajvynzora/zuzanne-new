@@ -50,10 +50,13 @@
     {% endblock %}
     <style>
         :root {
-            --zuz-pink:        #E76589;
-            --zuz-pink-light:  #E599AE;
-            --zuz-pink-pale:   #FDF0F4;
-            --zuz-pink-dark:   #C94E72;
+            --zuz-pink: #DFAAB7;
+            --zuz-pink-light: #F3E5E8;
+            --zuz-pink-pale: #FCF8F9;
+            --zuz-pink-dark: #B98795;
+            --zuz-ivory: #FFFDFC;
+            --zuz-soft-text: #6F6A68;
+            --zuz-image-radius: 18px;
         }
 
         @media (max-width: 1199.98px) {
@@ -255,6 +258,23 @@
         /* Normalized global transition timing for hover animations */
         .btn, .product, .category-banner, .sticky-cta-btn, .footer-social-links-royal ul li a, a, i, img {
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        }
+
+        img {
+            border-radius: var(--zuz-image-radius) !important;
+        }
+
+        img:hover {
+            border-radius: var(--zuz-image-radius) !important;
+        }
+
+        .image,
+        .thumbnail,
+        .widget-banner,
+        .product-thumb,
+        .product-thumb .image {
+            border-radius: var(--zuz-image-radius);
+            overflow: hidden;
         }
 
         /* Unified Product Card Image Aspect Ratio */
@@ -475,6 +495,56 @@
                 color: var(--zuz-pink) !important;
                 transform: translateX(6px) !important;
             }
+        }
+
+        /* Global Pink Palette Visibility */
+        a:hover,
+        .title a:hover,
+        .widget-list li a:hover,
+        .widget-blogs .title a:hover,
+        .breadcrumb .breadcrumb-item a:hover {
+            color: var(--zuz-pink) !important;
+        }
+
+        .btn-dark,
+        .btn-outline-dark:hover,
+        .product-button:hover,
+        .sticky-cta-whatsapp {
+            background-color: var(--zuz-pink) !important;
+            border-color: var(--zuz-pink) !important;
+            color: #fff !important;
+        }
+
+        .btn-dark:hover,
+        .btn-outline-dark,
+        .sticky-cta-call:hover {
+            background-color: var(--zuz-pink-dark) !important;
+            border-color: var(--zuz-pink-dark) !important;
+            color: #fff !important;
+        }
+
+        .price,
+        .product .price,
+        .product-info .price {
+            color: var(--zuz-pink-dark) !important;
+        }
+
+        .badge,
+        .widget-list .count {
+            color: var(--zuz-pink) !important;
+        }
+
+        .form-control:focus,
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--zuz-pink-light) !important;
+            box-shadow: 0 0 0 0.15rem rgba(231, 101, 137, 0.18) !important;
+        }
+
+        ::selection {
+            background: var(--zuz-pink-light);
+            color: #222;
         }
     </style>
 </head>

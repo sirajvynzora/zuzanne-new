@@ -4,6 +4,20 @@
 {% block seo_title %}{{ blog.title }} | Zuzanne Blog{% endblock %}
 {% block seo_description %}{{ blog.title }}: Read more from Zuzanne about premium handcrafted Christian baptism and ceremonial preparations.{% endblock %}
 
+{% block extra_css %}
+<style>
+@media (min-width: 992px) {
+    .row.learts-mb-n50 {
+        align-items: flex-start;
+    }
+    .zuz-blog-sidebar-col {
+        position: sticky;
+        top: 120px;
+    }
+}
+</style>
+{% endblock %}
+
 {% block content %}
 <!-- Page Title/Header Start -->
     <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/images/bg/page-title-1.webp' %}">
@@ -127,4 +141,16 @@
     <!-- Single Blog Section End -->
 
     
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.innerWidth < 992) return;
+
+    var sidebarCol = document.querySelector('.col-xl-3.col-lg-4.col-12.learts-mb-10');
+    if (!sidebarCol) return;
+    sidebarCol.classList.add('zuz-blog-sidebar-col');
+});
+</script>
 {% endblock %}

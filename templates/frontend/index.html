@@ -5,6 +5,310 @@
 {% block seo_description %}Discover premium handcrafted Christian baptism sets, holy communion dresses, ceremonial wear, and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
 {% block extra_css %}
+<style>
+    .container-editorial {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 1360px;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .zuz-editorial-hero {
+        position: relative;
+        /* Natural viewport balancing without manual padding hacks */
+        min-height: calc(100vh - 140px);
+        display: flex;
+        align-items: center;
+        padding: 30px 0; 
+        background: var(--zuz-pink-pale); 
+        overflow: hidden;
+        color: #222;
+        z-index: 10;
+        border-bottom: 1px solid rgba(255, 253, 252, 0.6);
+    }
+
+    /* --- Seamless Header Override --- */
+    .header-section.bg-white,
+    .sticky-header.bg-white,
+    .mobile-header.bg-white {
+        background-color: var(--zuz-pink-pale) !important;
+    }
+    .header-top.border-bottom {
+        border-bottom: none !important;
+    }
+    .header-top { padding: 8px 0 !important; }
+    .header-bottom { padding: 8px 0 !important; }
+
+    /* Atmosphere Glow */
+    .zuz-editorial-hero::before {
+        content: "";
+        position: absolute;
+        width: 480px;
+        height: 480px;
+        right: -120px;
+        top: -120px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(185, 135, 149, 0.08) 0%, rgba(185, 135, 149, 0) 70%);
+        pointer-events: none;
+    }
+    .zuz-editorial-hero::after {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        left: -150px;
+        bottom: -150px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(239, 229, 232, 0.4) 0%, rgba(239, 229, 232, 0) 70%);
+        pointer-events: none;
+    }
+
+    .zuz-editorial-content {
+        padding-right: 8%; /* Gap to media */
+    }
+
+    .zuz-script {
+        font-family: 'Modesty', cursive;
+        font-size: 1.22em; /* Scaled down slightly */
+        font-weight: 400;
+        color: var(--zuz-pink-dark);
+        display: block;
+        margin-top: 10px;
+        letter-spacing: 0;
+    }
+
+    .zuz-hero-label {
+        display: inline-block;
+        margin-bottom: 24px;
+        padding: 6px 14px;
+        font-size: 11px; /* Scaled down */
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--zuz-pink-dark);
+        background: rgba(255,255,255,0.4);
+        border: 1px solid rgba(185, 135, 149, 0.22);
+        border-radius: 30px;
+    }
+
+    .zuz-editorial-title {
+        font-size: clamp(30px, 3.8vw, 50px); /* Scaled down */
+        line-height: 1.15;
+        max-width: 400px; /* Scaled down */
+        margin: 0;
+        letter-spacing: -0.5px;
+        color: #222;
+        font-weight: 500;
+    }
+
+    .zuz-editorial-subtext {
+        max-width: 400px; /* Scaled down */
+        color: var(--zuz-soft-text);
+        margin-top: 32px;
+        margin-bottom: 48px;
+        font-size: 16px; /* Scaled down */
+        line-height: 1.7;
+    }
+
+    .zuz-editorial-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    .zuz-editorial-media {
+        position: relative;
+        min-height: 520px; /* Reduced scale */
+    }
+
+    .zuz-media-card {
+        position: absolute;
+        overflow: hidden;
+        border-radius: var(--zuz-image-radius);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
+        background: #f7f7f7;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+    }
+    .zuz-media-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+        z-index: 10 !important;
+    }
+
+    .zuz-media-card .zuz-media-frame {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .zuz-media-card img,
+    .zuz-media-card video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Anchored main image */
+    .zuz-media-main {
+        width: 65%; /* Scaled down */
+        aspect-ratio: 4 / 5;
+        bottom: 0; /* Touches baseline */
+        right: 0;
+        z-index: 3;
+    }
+
+    .zuz-media-top {
+        width: 40%; /* Scaled down */
+        aspect-ratio: 4 / 5;
+        top: 30px;
+        left: -6%; /* Adjusted overlap */
+        z-index: 4;
+    }
+
+    .zuz-media-bottom {
+        width: 32%; /* Scaled down */
+        aspect-ratio: 4 / 3;
+        bottom: 60px;
+        left: -12%; /* Adjusted overlap */
+        z-index: 5;
+    }
+
+    /* Removed keyframes for debugging */
+
+    /* Desktop visibility hard reset — scoped precisely */
+    .zuz-editorial-hero .container,
+    .zuz-editorial-hero .row,
+    .zuz-editorial-content,
+    .zuz-editorial-media {
+        position: relative;
+        z-index: 10;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Restore media cards to absolute positioning */
+    .zuz-media-card {
+        position: absolute !important;
+        display: block !important;
+    }
+
+    @media (max-width: 1199px) {
+        .zuz-editorial-hero {
+            padding: 64px 0 42px;
+        }
+
+        .zuz-editorial-media {
+            min-height: 490px;
+        }
+    }
+
+    @media (max-width: 1199px) and (min-width: 992px) {
+        /* Hide floating cards on smaller desktop/tablet landscapes to prevent overlap */
+        .zuz-media-top,
+        .zuz-media-bottom {
+            display: none !important;
+        }
+        
+        .zuz-media-main {
+            width: 90%;
+            left: 5%;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .container-editorial { padding-left: 15px; padding-right: 15px; }
+
+        .zuz-editorial-hero {
+            padding: 50px 0 60px;
+            min-height: auto !important; /* Disable viewport height centering */
+            display: block; /* Disable flex centering */
+        }
+
+        .zuz-editorial-content {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-right: 0;
+        }
+
+        .zuz-editorial-title {
+            max-width: 100%;
+        }
+
+        .zuz-script {
+            font-size: 1.1em;
+            margin-top: 6px;
+        }
+
+        .zuz-editorial-subtext {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 16px;
+            margin-bottom: 24px;
+        }
+
+        .zuz-hero-label {
+            margin-bottom: 16px;
+        }
+
+        .zuz-editorial-actions {
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        .zuz-editorial-media {
+            min-height: auto !important;
+            max-width: 600px;
+            margin: 0 auto;
+            padding-right: 0;
+            display: block; /* Convert to static flow container */
+        }
+
+        .zuz-media-card {
+            position: relative !important; /* Remove absolute positioning on mobile */
+            transform: none !important; /* Remove hover translate */
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+            display: block !important;
+        }
+
+        .zuz-media-main {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            height: auto;
+            margin: 0;
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+        }
+
+        /* Fully hide the floating cards on mobile to keep a clean stack */
+        .zuz-media-top,
+        .zuz-media-bottom {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .zuz-editorial-hero {
+            padding: 40px 0 50px;
+        }
+        .zuz-editorial-title {
+            font-size: 28px;
+        }
+        .zuz-editorial-subtext {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .zuz-media-main {
+            aspect-ratio: 4 / 5;
+            width: 100%;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block header_section %}
@@ -77,48 +381,46 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Slider main container Start -->
-    <div class="home1-slider swiper-container">
-        <div class="swiper-wrapper">
-            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-1.webp">
-                <div class="home1-slide1-content">
-                    <span class="bg"></span>
-                    <span class="slide-border"></span>
-                    <span class="icon"><img src="{% static 'frontend/assets/images/slider/home1/slide-1-1.webp' %}" alt="Slide Icon"></span>
-                    <h2 class="title">Handcrafted Ceremonial Wear</h2>
-                    <h3 class="sub-title">Made with care & prayers</h3>
-                    <div class="link"><a href="{% url 'shop' %}">shop now</a></div>
+    <!-- Editorial Hero Start -->
+    <div class="section zuz-editorial-hero">
+        <div class="container-editorial">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-12">
+                    <div class="zuz-editorial-content">
+                        <span class="zuz-hero-label">Handcrafted with Devotion</span>
+                        <h1 class="zuz-editorial-title">Premium Ceremonial Wear for <span class="zuz-script">Sacred Moments</span></h1>
+                        <p class="zuz-editorial-subtext">
+                            Designed with delicate craftsmanship, timeless elegance, and heartfelt care for baptisms, holy communion, and cherished celebrations.
+                        </p>
+                        <div class="zuz-editorial-actions">
+                            <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark">Shop Collection</a>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-2.webp">
-                <div class="home1-slide2-content">
-                    <span class="bg" data-bg-image="assets/images/slider/home1/slide-2-1.webp"></span>
-                    <span class="slide-border"></span>
-                    <span class="icon">
-                        <img src="{% static 'frontend/assets/images/slider/home1/slide-2-2.webp' %}" alt="Slide Icon">
-                        <img src="{% static 'frontend/assets/images/slider/home1/slide-2-3.webp' %}" alt="Slide Icon">
-                    </span>
-                    <h2 class="title">Timeless Baptism Sets</h2>
-                    <h3 class="sub-title">Designed for <br> cherished moments</h3>
-                    <div class="link"><a href="{% url 'shop' %}">shop now</a></div>
-                </div>
-            </div>
-            <div class="home1-slide-item swiper-slide" data-swiper-autoplay="5000" data-bg-image="assets/images/slider/home1/slide-3.webp">
-                <div class="home1-slide3-content">
-                    <h2 class="title">Graceful Holy Communion</h2>
-                    <h3 class="sub-title">
-                        <img class="left-icon " src="{% static 'frontend/assets/images/slider/home1/slide-2-2.webp' %}" alt="Slide Icon">
-                        Elegance for blessed celebrations
-                        <img class="right-icon " src="{% static 'frontend/assets/images/slider/home1/slide-2-3.webp' %}" alt="Slide Icon">
-                    </h3>
-                    <div class="link"><a href="{% url 'shop' %}">shop now</a></div>
+                <div class="col-lg-7 col-12">
+                    <div class="zuz-editorial-media">
+                        <div class="zuz-media-card zuz-media-main">
+                            <div class="zuz-media-frame">
+                                <img src="{% static 'frontend/assets/images/slider/home1/slide-1.webp' %}" alt="Premium ceremonial collection">
+                            </div>
+                        </div>
+                        <div class="zuz-media-card zuz-media-top">
+                            <div class="zuz-media-frame">
+                                <img src="{% static 'frontend/assets/images/banner/sale/sale-banner2-1.webp' %}" alt="Handcrafted details">
+                            </div>
+                        </div>
+                        <div class="zuz-media-card zuz-media-bottom">
+                            <div class="zuz-media-frame">
+                                <img src="{% static 'frontend/assets/images/banner/category/banner-s1-2.webp' %}" alt="Elegant ceremonial styling">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="home1-slider-prev swiper-button-prev"><i class="ti-angle-left"></i></div>
-        <div class="home1-slider-next swiper-button-next"><i class="ti-angle-right"></i></div>
     </div>
-    <!-- Slider main container End -->
+    <!-- Editorial Hero End -->
 
     <!-- Sale Banner Section Start -->
     <div class="section section-padding">
