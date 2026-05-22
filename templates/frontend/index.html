@@ -6,421 +6,347 @@
 
 {% block extra_css %}
 <style>
-    .container-editorial {
-        width: 100%;
-        margin-right: auto;
-        margin-left: auto;
-        max-width: 1360px;
-        padding-left: 6%;
+    .zuz-home-header {
+        background: var(--zuz-pink-pale);
+        border-bottom: 1px solid rgba(201, 78, 114, 0.12);
+    }
+
+    .zuz-home-header .zuz-home-header-row {
+        min-height: 88px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        column-gap: 24px;
+    }
+
+    .zuz-home-header .site-main-menu ul > li > a {
+        color: #444;
+    }
+
+    .zuz-home-header .site-main-menu > ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 34px;
+        white-space: nowrap;
+    }
+
+    .zuz-home-header .site-main-menu > ul > li {
+        flex: 0 0 auto;
+    }
+
+    .zuz-home-header .zuz-mega-panel .zuz-cat-list li,
+    .zuz-home-header .zuz-mega-panel .zuz-cat-list li a {
+        display: block !important;
+        text-align: center !important;
+        white-space: normal !important;
+    }
+
+    .zuz-home-header .zuz-mega-panel .zuz-cat-list li a:hover {
+        transform: none !important;
+    }
+
+    .zuz-home-header .zuz-home-logo {
+        height: 72px !important;
+        width: auto !important;
+    }
+
+    .zuz-home-hero {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(165deg, #fff 0%, var(--zuz-pink-pale) 58%, #fff8fa 100%);
+        min-height: calc(100vh - 94px);
+        min-height: calc(100svh - 94px);
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba(201, 78, 114, 0.12);
+        margin-top: 0;
+        z-index: 10;
+    }
+
+    .zuz-home-hero::before {
+        content: "";
+        position: absolute;
+        width: 460px;
+        height: 460px;
+        right: -180px;
+        top: -180px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(231, 101, 137, 0.18) 0%, rgba(231, 101, 137, 0) 72%);
+        pointer-events: none;
+    }
+
+    .zuz-home-hero-content {
         padding-right: 6%;
     }
 
-    .zuz-editorial-hero {
-        position: relative;
-        /* Natural viewport balancing without manual padding hacks */
-        min-height: calc(100vh - 140px);
-        display: flex;
-        align-items: center;
-        padding: 30px 0; 
-        background: var(--zuz-pink-pale); 
-        overflow: hidden;
-        color: #222;
-        z-index: 10;
-        border-bottom: 1px solid rgba(255, 253, 252, 0.6);
-    }
-
-    /* --- Seamless Header Override --- */
-    .header-section.bg-white,
-    .sticky-header.bg-white,
-    .mobile-header.bg-white {
-        background-color: var(--zuz-pink-pale) !important;
-    }
-    .header-top.border-bottom {
-        border-bottom: none !important;
-    }
-    .header-top { padding: 8px 0 !important; }
-    .header-bottom { padding: 8px 0 !important; }
-
-    /* Atmosphere Glow */
-    .zuz-editorial-hero::before {
-        content: "";
-        position: absolute;
-        width: 480px;
-        height: 480px;
-        right: -120px;
-        top: -120px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(185, 135, 149, 0.08) 0%, rgba(185, 135, 149, 0) 70%);
-        pointer-events: none;
-    }
-    .zuz-editorial-hero::after {
-        content: "";
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        left: -150px;
-        bottom: -150px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(239, 229, 232, 0.4) 0%, rgba(239, 229, 232, 0) 70%);
-        pointer-events: none;
-    }
-
-    .zuz-editorial-content {
-        padding-right: 8%; /* Gap to media */
-    }
-
-    .zuz-script {
-        font-family: 'Modesty', cursive;
-        font-size: 1.22em; /* Scaled down slightly */
-        font-weight: 400;
+    .zuz-home-hero-label {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
         color: var(--zuz-pink-dark);
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(231, 101, 137, 0.24);
+        border-radius: 30px;
+        padding: 7px 14px;
+        margin-bottom: 20px;
+    }
+
+    .zuz-home-hero-title {
+        font-size: clamp(36px, 4.2vw, 58px);
+        line-height: 1.1;
+        margin: 0 0 16px;
+        letter-spacing: -0.02em;
+        color: #222;
+    }
+
+    .zuz-home-hero-title .zuz-home-script {
         display: block;
-        margin-top: 10px;
+        font-family: 'Modesty', cursive;
+        font-size: 0.9em;
+        line-height: 1;
+        color: var(--zuz-pink-dark);
+        margin-top: 8px;
+        font-weight: 400;
         letter-spacing: 0;
     }
 
-    .zuz-hero-label {
-        display: inline-block;
-        margin-bottom: 24px;
-        padding: 6px 14px;
-        font-size: 11px; /* Scaled down */
-        letter-spacing: 1.6px;
-        text-transform: uppercase;
-        font-weight: 600;
-        color: var(--zuz-pink-dark);
-        background: rgba(255,255,255,0.4);
-        border: 1px solid rgba(185, 135, 149, 0.22);
-        border-radius: 30px;
+    .zuz-home-hero-subtext {
+        max-width: 560px;
+        color: #666;
+        font-size: 17px;
+        line-height: 1.75;
+        margin-bottom: 28px;
     }
 
-    .zuz-editorial-title {
-        font-size: clamp(30px, 3.8vw, 50px); /* Scaled down */
-        line-height: 1.15;
-        max-width: 400px; /* Scaled down */
-        margin: 0;
-        letter-spacing: -0.5px;
-        color: #222;
-        font-weight: 500;
-    }
-
-    .zuz-editorial-subtext {
-        max-width: 400px; /* Scaled down */
-        color: var(--zuz-soft-text);
-        margin-top: 32px;
-        margin-bottom: 48px;
-        font-size: 16px; /* Scaled down */
-        line-height: 1.7;
-    }
-
-    .zuz-editorial-actions {
+    .zuz-home-hero-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-bottom: 24px;
+        margin-bottom: 18px;
     }
 
-    .zuz-editorial-media {
+    .zuz-home-hero-trust {
+        font-size: 15px;
+        color: #686868;
+    }
+
+    .zuz-home-hero-trust i {
+        color: var(--zuz-pink);
+        margin-right: 8px;
+    }
+
+    .zuz-home-hero-media-wrap {
         position: relative;
-        min-height: 520px; /* Reduced scale */
+        max-width: 640px;
+        margin-left: auto;
     }
 
-    .zuz-media-card {
-        position: absolute;
-        overflow: hidden;
+    .zuz-home-hero-main-media {
         border-radius: var(--zuz-image-radius);
-        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
-        background: #f7f7f7;
-        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
-    }
-    .zuz-media-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
-        z-index: 10 !important;
-    }
-
-    .zuz-media-card .zuz-media-frame {
-        width: 100%;
-        height: 100%;
         overflow: hidden;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+        aspect-ratio: 4 / 5;
+        background: #f4f4f4;
     }
 
-    .zuz-media-card img,
-    .zuz-media-card video {
+    .zuz-home-hero-side-media {
+        position: absolute;
+        left: -10%;
+        bottom: 8%;
+        width: 42%;
+        border-radius: var(--zuz-image-radius);
+        overflow: hidden;
+        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+        aspect-ratio: 3 / 4;
+        background: #f4f4f4;
+    }
+
+    .zuz-home-hero-main-media img,
+    .zuz-home-hero-side-media img,
+    .zuz-home-hero-main-media video,
+    .zuz-home-hero-side-media video {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
+        transition: transform 0.45s ease;
+        border-radius: 0 !important;
     }
 
-    /* Anchored main image */
-    .zuz-media-main {
-        width: 65%; /* Scaled down */
-        aspect-ratio: 4 / 5;
-        bottom: 0; /* Touches baseline */
-        right: 0;
-        z-index: 3;
+    .zuz-home-hero-main-media:hover img,
+    .zuz-home-hero-side-media:hover img,
+    .zuz-home-hero-main-media:hover video,
+    .zuz-home-hero-side-media:hover video {
+        transform: scale(1.03);
     }
 
-    .zuz-media-top {
-        width: 40%; /* Scaled down */
-        aspect-ratio: 4 / 5;
-        top: 30px;
-        left: -6%; /* Adjusted overlap */
-        z-index: 4;
-    }
+    @media (min-width: 1530px) {
+        .zuz-home-hero-title {
+            font-size: 64px;
+        }
 
-    .zuz-media-bottom {
-        width: 32%; /* Scaled down */
-        aspect-ratio: 4 / 3;
-        bottom: 60px;
-        left: -12%; /* Adjusted overlap */
-        z-index: 5;
-    }
-
-    /* Removed keyframes for debugging */
-
-    /* Desktop visibility hard reset — scoped precisely */
-    .zuz-editorial-hero .container,
-    .zuz-editorial-hero .row,
-    .zuz-editorial-content,
-    .zuz-editorial-media {
-        position: relative;
-        z-index: 10;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-
-    /* Restore media cards to absolute positioning */
-    .zuz-media-card {
-        position: absolute !important;
-        display: block !important;
+        .zuz-home-hero-media-wrap {
+            max-width: 700px;
+        }
     }
 
     @media (max-width: 1199px) {
-        .zuz-editorial-hero {
-            padding: 64px 0 42px;
+        .zuz-home-hero {
+            min-height: calc(100svh - 64px);
+            padding: 36px 0;
+            margin-top: 0;
         }
 
-        .zuz-editorial-media {
-            min-height: 490px;
-        }
-    }
-
-    @media (max-width: 1199px) and (min-width: 992px) {
-        /* Hide floating cards on smaller desktop/tablet landscapes to prevent overlap */
-        .zuz-media-top,
-        .zuz-media-bottom {
-            display: none !important;
-        }
-        
-        .zuz-media-main {
-            width: 90%;
-            left: 5%;
-        }
-    }
-
-    @media (max-width: 991px) {
-        .container-editorial { padding-left: 15px; padding-right: 15px; }
-
-        .zuz-editorial-hero {
-            padding: 50px 0 60px;
-            min-height: auto !important; /* Disable viewport height centering */
-            display: block; /* Disable flex centering */
-        }
-
-        .zuz-editorial-content {
-            text-align: center;
-            margin-bottom: 40px;
+        .zuz-home-hero-content {
             padding-right: 0;
-        }
-
-        .zuz-editorial-title {
-            max-width: 100%;
-        }
-
-        .zuz-script {
-            font-size: 1.1em;
-            margin-top: 6px;
-        }
-
-        .zuz-editorial-subtext {
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 16px;
+            text-align: center;
             margin-bottom: 24px;
         }
 
-        .zuz-hero-label {
-            margin-bottom: 16px;
+        .zuz-home-hero-subtext {
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .zuz-editorial-actions {
+        .zuz-home-hero-actions {
             justify-content: center;
-            margin-bottom: 0;
         }
 
-        .zuz-editorial-media {
-            min-height: auto !important;
-            max-width: 600px;
+        .zuz-home-hero-trust {
+            text-align: center;
+        }
+
+        .zuz-home-hero-media-wrap {
             margin: 0 auto;
-            padding-right: 0;
-            display: block; /* Convert to static flow container */
+            max-width: 540px;
         }
 
-        .zuz-media-card {
-            position: relative !important; /* Remove absolute positioning on mobile */
-            transform: none !important; /* Remove hover translate */
-            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
-            display: block !important;
-        }
-
-        .zuz-media-main {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            height: auto;
-            margin: 0;
-            left: auto;
-            right: auto;
-            top: auto;
-            bottom: auto;
-        }
-
-        /* Fully hide the floating cards on mobile to keep a clean stack */
-        .zuz-media-top,
-        .zuz-media-bottom {
-            display: none !important;
+        .zuz-home-hero-side-media {
+            width: 34%;
+            left: 4%;
+            bottom: 8%;
         }
     }
 
-    @media (max-width: 575px) {
-        .zuz-editorial-hero {
-            padding: 40px 0 50px;
+    @media (max-width: 767px) {
+        .zuz-home-hero {
+            min-height: calc(100svh - 64px);
+            padding: 26px 0 30px;
         }
-        .zuz-editorial-title {
-            font-size: 28px;
+
+        .zuz-home-hero-title {
+            font-size: 38px;
+            line-height: 1.15;
         }
-        .zuz-editorial-subtext {
+
+        .zuz-home-hero-subtext {
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.65;
+            margin-bottom: 22px;
         }
-        .zuz-media-main {
-            aspect-ratio: 4 / 5;
-            width: 100%;
+
+        .zuz-home-hero-media-wrap {
+            max-width: 420px;
+        }
+
+        .zuz-home-hero-side-media {
+            display: none;
+        }
+    }
+
+    @media (min-width: 1200px) and (max-width: 1399px) {
+        .zuz-home-header .site-main-menu ul {
+            gap: 24px;
         }
     }
 </style>
 {% endblock %}
 
 {% block header_section %}
-    <!-- Header Section Start -->
-    <header class="header-section section bg-white d-none d-xl-block">
-        <div class="header-top py-2 border-bottom">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col d-flex justify-content-start">
-                        <div class="header-social d-flex" style="gap: 15px;">
-                            <a href="#" class="text-dark hintT-bottom" data-hint="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-dark hintT-bottom" data-hint="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-dark hintT-bottom" data-hint="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-auto text-center">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-desktop"></a>
-                    </div>
-                    <div class="col d-flex justify-content-end" style="gap: 10px;">
-                        <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>
-                        <a href="https://wa.me/919999999999" target="_blank" class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+    <header class="header-section section zuz-home-header d-none d-xl-block">
+        <div class="container">
+            <div class="zuz-home-header-row">
+                <div>
+                    <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-desktop zuz-home-logo"></a>
                 </div>
-            </div>
-        </div>
-
-        <div class="header-bottom">
-            <div class="container">
-                <nav class="site-main-menu justify-content-center">
-                    <ul>
-                        <li><a href="/"><span class="menu-text">Home</span></a></li>
-                        <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
-                        
-                        <li class="has-children zuz-shop-mega">
-                            <a href="{% url 'shop' %}">
-                                <span class="menu-text">Shop</span>
-                            </a>
-                            <ul class="sub-menu zuz-mega-panel">
-                                <li class="zuz-mega-wrapper">
-                                    {% for col in collections_tree %}
-                                    <div class="zuz-mega-col">
-                                        <a href="{% url 'collection' col.slug %}" 
-                                           class="zuz-col-title">
-                                            {{ col.name }}
-                                        </a>
-                                        <ul class="zuz-cat-list">
-                                            {% for cat in col.cats %}
-                                            <li>
-                                                <a href="{% url 'category' col.slug cat.slug %}">
-                                                    {{ cat.name }}
-                                                </a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                    {% endfor %}
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
-                        <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
-
-
-                    </ul>
-                </nav>
+                <div class="d-flex justify-content-center">
+                    <nav class="site-main-menu justify-content-center">
+                        <ul>
+                            <li><a href="/"><span class="menu-text">Home</span></a></li>
+                            <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
+                            <li class="has-children zuz-shop-mega">
+                                <a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
+                                <ul class="sub-menu zuz-mega-panel">
+                                    <li class="zuz-mega-wrapper">
+                                        {% for col in collections_tree %}
+                                        <div class="zuz-mega-col">
+                                            <a href="{% url 'collection' col.slug %}" class="zuz-col-title">{{ col.name }}</a>
+                                            <ul class="zuz-cat-list">
+                                                {% for cat in col.cats %}
+                                                <li><a href="{% url 'category' col.slug cat.slug %}">{{ cat.name }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% endfor %}
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
+                            <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="d-flex justify-content-end" style="gap: 10px;">
+                    <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>
+                    <a href="https://wa.me/919999999999" target="_blank" class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
         </div>
     </header>
 {% endblock %}
 
 {% block content %}
-    <!-- Editorial Hero Start -->
-    <div class="section zuz-editorial-hero">
-        <div class="container-editorial">
-            <div class="row align-items-center">
-                <div class="col-lg-5 col-12">
-                    <div class="zuz-editorial-content">
-                        <span class="zuz-hero-label">Handcrafted with Devotion</span>
-                        <h1 class="zuz-editorial-title">Premium Ceremonial Wear for <span class="zuz-script">Sacred Moments</span></h1>
-                        <p class="zuz-editorial-subtext">
+    <!-- Homepage Hero Start -->
+    <section class="section zuz-home-hero">
+        <div class="container">
+            <div class="row align-items-center learts-mb-n30">
+                <div class="col-lg-6 col-12 learts-mb-30">
+                    <div class="zuz-home-hero-content">
+                        <span class="zuz-home-hero-label">Handcrafted with Devotion</span>
+                        <h1 class="title zuz-home-hero-title">
+                            Premium Ceremonial Wear for
+                            <span class="zuz-home-script">Sacred Moments</span>
+                        </h1>
+                        <p class="zuz-home-hero-subtext">
                             Designed with delicate craftsmanship, timeless elegance, and heartfelt care for baptisms, holy communion, and cherished celebrations.
                         </p>
-                        <div class="zuz-editorial-actions">
+                        <div class="zuz-home-hero-actions">
                             <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark">Shop Collection</a>
+                            <a href="{% url 'about' %}" class="btn btn-outline-dark btn-outline-hover-dark">Explore Story</a>
                         </div>
-
+                        <p class="zuz-home-hero-trust">
+                            <i class="fas fa-heart"></i>Made with care & prayers
+                        </p>
                     </div>
                 </div>
-                <div class="col-lg-7 col-12">
-                    <div class="zuz-editorial-media">
-                        <div class="zuz-media-card zuz-media-main">
-                            <div class="zuz-media-frame">
-                                <img src="{% static 'frontend/assets/images/slider/home1/slide-1.webp' %}" alt="Premium ceremonial collection">
-                            </div>
+                <div class="col-lg-6 col-12 learts-mb-30">
+                    <div class="zuz-home-hero-media-wrap">
+                        <div class="zuz-home-hero-main-media">
+                            <img src="{% static 'frontend/assets/images/slider/home1/slide-1.webp' %}" alt="Premium ceremonial collection">
                         </div>
-                        <div class="zuz-media-card zuz-media-top">
-                            <div class="zuz-media-frame">
-                                <img src="{% static 'frontend/assets/images/banner/sale/sale-banner2-1.webp' %}" alt="Handcrafted details">
-                            </div>
-                        </div>
-                        <div class="zuz-media-card zuz-media-bottom">
-                            <div class="zuz-media-frame">
-                                <img src="{% static 'frontend/assets/images/banner/category/banner-s1-2.webp' %}" alt="Elegant ceremonial styling">
-                            </div>
+                        <div class="zuz-home-hero-side-media">
+                            <img src="{% static 'frontend/assets/images/banner/sale/sale-banner2-1.webp' %}" alt="Handcrafted ceremonial detail">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Editorial Hero End -->
+    </section>
+    <!-- Homepage Hero End -->
 
     <!-- Sale Banner Section Start -->
     <div class="section section-padding">
