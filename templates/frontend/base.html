@@ -49,6 +49,13 @@
     {% block extra_css %}
     {% endblock %}
     <style>
+        :root {
+            --zuz-pink:        #E76589;
+            --zuz-pink-light:  #E599AE;
+            --zuz-pink-pale:   #FDF0F4;
+            --zuz-pink-dark:   #C94E72;
+        }
+
         @media (max-width: 1199.98px) {
             .mobile-header {
                 position: fixed !important;
@@ -194,8 +201,8 @@
         }
 
         .sticky-cta-whatsapp:hover {
-            background: #f8796c;
-            border-color: #f8796c;
+            background: var(--zuz-pink);
+            border-color: var(--zuz-pink);
             color: #fff;
             transform: translateY(-2px);
         }
@@ -328,6 +335,147 @@
                 transition: none !important;
             }
         }
+
+        /* ============================================
+           Zuzanne Full-Width Mega Menu — Desktop Only
+           ============================================ */
+        @media (min-width: 1200px) {
+
+            /* Parent needs relative for absolute child */
+            .site-main-menu ul > li.zuz-shop-mega {
+                position: relative !important;
+            }
+
+            /* Card-style dropdown panel */
+            .site-main-menu ul > li.zuz-shop-mega 
+                > ul.sub-menu.zuz-mega-panel {
+                position: absolute !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: 720px !important;
+                min-width: unset !important;
+                top: calc(100% + 12px) !important;
+                padding: 36px 40px !important;
+                background: #fff !important;
+                box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
+                border: 1px solid #f0f0f0 !important;
+                border-radius: 16px !important;
+                display: none;
+                text-align: left !important;
+                z-index: 9999 !important;
+            }
+
+            /* Invisible bridge to prevent hover loss over the gap */
+            .site-main-menu ul > li.zuz-shop-mega 
+                > ul.sub-menu.zuz-mega-panel::before {
+                content: "" !important;
+                position: absolute !important;
+                top: -20px !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 20px !important;
+                background: transparent !important;
+            }
+
+            /* Show on hover */
+            .site-main-menu ul > li.zuz-shop-mega:hover 
+                > ul.sub-menu.zuz-mega-panel {
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: translateX(-50%) !important;
+            }
+
+            /* The single wrapper li inside the panel */
+            .zuz-mega-panel > li.zuz-mega-wrapper {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                justify-content: space-evenly !important;
+                align-items: flex-start !important;
+                gap: 0 !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: transparent !important;
+                border: none !important;
+                text-align: left !important;
+            }
+
+            .zuz-mega-panel > li.zuz-mega-wrapper:hover {
+                background: transparent !important;
+            }
+
+            /* Each collection column */
+            .zuz-mega-col {
+                flex: 0 0 auto !important;
+                width: auto !important;
+                min-width: 160px !important;
+                padding: 0 !important;
+                text-align: left !important;
+            }
+
+            /* Collection heading link */
+            /* Collection heading link */
+            .site-main-menu ul > li.zuz-shop-mega a.zuz-col-title {
+                display: block !important;
+                font-size: 13px !important;
+                font-weight: 700 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 1.5px !important;
+                color: #111 !important;
+                border-bottom: 1px solid #dddddd !important;
+                padding: 0 0 12px 0 !important;
+                margin: 0 0 16px 0 !important;
+                text-decoration: none !important;
+                white-space: nowrap !important;
+                text-align: left !important;
+                text-indent: 0 !important;
+            }
+
+            .site-main-menu ul > li.zuz-shop-mega a.zuz-col-title:hover {
+                color: var(--zuz-pink) !important;
+            }
+
+            /* Category list */
+            .site-main-menu ul > li.zuz-shop-mega .zuz-cat-list {
+                list-style: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .site-main-menu ul > li.zuz-shop-mega .zuz-cat-list li {
+                margin: 0 0 10px 0 !important;
+                padding: 0 !important;
+                background: transparent !important;
+                border: none !important;
+                text-align: left !important;
+            }
+
+            .site-main-menu ul > li.zuz-shop-mega .zuz-cat-list li:hover {
+                background: transparent !important;
+            }
+
+            .site-main-menu ul > li.zuz-shop-mega .zuz-cat-list li a {
+                font-size: 15px !important;
+                color: #555 !important;
+                text-decoration: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                font-weight: 400 !important;
+                background: transparent !important;
+                display: block !important;
+                text-align: left !important;
+                line-height: 1.5 !important;
+                text-indent: 0 !important;
+                transition: all 0.3s ease !important;
+                transform: translateX(0) !important;
+            }
+
+            .site-main-menu ul > li.zuz-shop-mega .zuz-cat-list li a:hover {
+                color: var(--zuz-pink) !important;
+                transform: translateX(6px) !important;
+            }
+        }
     </style>
 </head>
 
@@ -361,17 +509,30 @@
                             <li><a href="/"><span class="menu-text">Home</span></a></li>
                             <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
                             
-                            <li class="has-children"><a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
-                                <ul class="sub-menu">
-                                    {% for col in collections_tree %}
-                                    <li class="has-children"><a href="{% url 'collection' col.slug %}"><span class="menu-text">{{ col.name }}</span></a>
-                                        <ul class="sub-menu">
-                                            {% for cat in col.cats %}
-                                            <li><a href="{% url 'category' col.slug cat.slug %}"><span class="menu-text">{{ cat.name }}</span></a></li>
-                                            {% endfor %}
-                                        </ul>
+                            <li class="has-children zuz-shop-mega">
+                                <a href="{% url 'shop' %}">
+                                    <span class="menu-text">Shop</span>
+                                </a>
+                                <ul class="sub-menu zuz-mega-panel">
+                                    <li class="zuz-mega-wrapper">
+                                        {% for col in collections_tree %}
+                                        <div class="zuz-mega-col">
+                                            <a href="{% url 'collection' col.slug %}" 
+                                               class="zuz-col-title">
+                                                {{ col.name }}
+                                            </a>
+                                            <ul class="zuz-cat-list">
+                                                {% for cat in col.cats %}
+                                                <li>
+                                                    <a href="{% url 'category' col.slug cat.slug %}">
+                                                        {{ cat.name }}
+                                                    </a>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% endfor %}
                                     </li>
-                                    {% endfor %}
                                 </ul>
                             </li>
 
@@ -420,17 +581,20 @@
                             <li><a href="/"><span class="menu-text">Home</span></a></li>
                             <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
 
-                            <li class="has-children"><a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
-                                <ul class="sub-menu">
-                                    {% for col in collections_tree %}
-                                    <li class="has-children"><a href="{% url 'collection' col.slug %}"><span class="menu-text">{{ col.name }}</span></a>
-                                        <ul class="sub-menu">
-                                            {% for cat in col.cats %}
-                                            <li><a href="{% url 'category' col.slug cat.slug %}"><span class="menu-text">{{ cat.name }}</span></a></li>
-                                            {% endfor %}
-                                        </ul>
+                            <li class="has-children zuz-shop-mega"><a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
+                                <ul class="sub-menu zuz-mega-panel">
+                                    <li class="zuz-mega-wrapper">
+                                        {% for col in collections_tree %}
+                                        <div class="zuz-mega-col">
+                                            <a href="{% url 'collection' col.slug %}" class="zuz-col-title">{{ col.name }}</a>
+                                            <ul class="zuz-cat-list">
+                                                {% for cat in col.cats %}
+                                                <li><a href="{% url 'category' col.slug cat.slug %}">{{ cat.name }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% endfor %}
                                     </li>
-                                    {% endfor %}
                                 </ul>
                             </li>
 
@@ -1119,6 +1283,27 @@
                 yearSpan.textContent = new Date().getFullYear();
             }
         });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.zuz-shop-mega').forEach(
+            function (megaLi) {
+                var panel = megaLi.querySelector('.zuz-mega-panel');
+                if (!panel) return;
+                megaLi.addEventListener('mouseenter', function () {
+                    panel.style.cssText =
+                        'display:block !important;' +
+                        'visibility:visible !important;' +
+                        'opacity:1 !important;' +
+                        'transform:translateX(-50%) !important;';
+                });
+                megaLi.addEventListener('mouseleave', function () {
+                    panel.style.cssText = 'display:none !important;';
+                });
+            }
+        );
+    });
     </script>
 
     {% block extra_js %}
