@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col">
 
-                    <div class="page-title">
+                    <div class="page-title wow fadeInUp">
                         <h1 class="title">{{ shop_title|default:"Shop" }}</h1>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -198,7 +198,7 @@
                     <div class="grid-sizer col-1"></div>
 
                     {% for product in products %}
-                    <div class="grid-item col cat-{{ product.category.id }}">
+                    <div class="grid-item col cat-{{ product.category.id }} wow fadeInUp">
                         <div class="product">
                             <div class="product-thumb">
                                 <a href="{% url 'product_detail' product.slug %}" class="image">

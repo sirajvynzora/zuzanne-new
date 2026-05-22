@@ -547,6 +547,21 @@
             color: #222;
         }
     </style>
+    <link rel="stylesheet" href="{% static 'frontend/assets/css/animate.css' %}">
+<style>
+    /* Snappy WOW animation overrides */
+    .wow {
+        animation-duration: 0.45s !important;
+        animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    }
+    .wow.fadeInUp {
+        animation-duration: 0.4s !important;
+    }
+    .wow.fadeInLeft,
+    .wow.fadeInRight {
+        animation-duration: 0.5s !important;
+    }
+</style>
 </head>
 
 <body>
@@ -1376,6 +1391,16 @@
     });
     </script>
 
+    <script src="{% static 'frontend/assets/js/wow.min.js' %}"></script>
+    <script>
+        new WOW({
+            boxClass: 'wow',
+            animateClass: 'animated',
+            offset: 40,
+            mobile: false,
+            live: true
+        }).init();
+    </script>
     {% block extra_js %}
     {% endblock %}
 </body>

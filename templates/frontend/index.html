@@ -540,8 +540,8 @@
 
             <!-- Section Title Start -->
             <div class="section-title text-center">
-                <h3 class="sub-title">Our Heritage</h3>
-                <h2 class="title title-icon-both">Handcrafted with Devotion</h2>
+                <h3 class="sub-title wow fadeInUp">Our Heritage</h3>
+                <h2 class="title title-icon-both wow fadeInUp">Handcrafted with Devotion</h2>
             </div>
             <!-- Section Title End -->
 
@@ -671,8 +671,8 @@
                 <div class="col">
                     <!-- Section Title Start -->
                     <div class="section-title text-center mb-0">
-                        <h3 class="sub-title">Our Collections</h3>
-                        <h2 class="title title-icon-both">Signature Ceremonial Pieces</h2>
+                        <h3 class="sub-title wow fadeInUp">Our Collections</h3>
+                        <h2 class="title title-icon-both wow fadeInUp">Signature Ceremonial Pieces</h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -681,7 +681,7 @@
             <!-- Product Tab List Start -->
             <div class="row learts-mb-40">
                 <div class="col">
-                    <ul class="nav text-uppercase justify-content-center mx-n1 mb-n2">
+                    <ul class="nav text-uppercase justify-content-center mx-n1 mb-n2 wow fadeInUp">
                         <li class="nav-item mx-1 mb-2"><a href="#product-all" data-bs-toggle="tab" class="btn btn-md btn-light btn-hover-dark active">All</a></li>
                         {% for col in collections %}
                         <li class="nav-item mx-1 mb-2"><a href="#product-{{ col.slug }}" data-bs-toggle="tab" class="btn btn-md btn-light btn-hover-dark">{{ col.name }}</a></li>
@@ -696,7 +696,15 @@
                     <!-- Products Start -->
                     <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
                         {% for product in products %}
-                        <div class="col">
+                        {% if forloop.counter0|divisibleby:4 %}
+                        <div class="col wow fadeInUp" data-wow-delay="0s">
+                        {% elif forloop.counter0|add:"3"|divisibleby:4 %}
+                        <div class="col wow fadeInUp" data-wow-delay="0.1s">
+                        {% elif forloop.counter0|add:"2"|divisibleby:4 %}
+                        <div class="col wow fadeInUp" data-wow-delay="0.2s">
+                        {% else %}
+                        <div class="col wow fadeInUp" data-wow-delay="0.3s">
+                        {% endif %}
                             <div class="product">
                                 <div class="product-thumb">
                                     <a href="{% url 'product_detail' product.slug %}" class="image">
@@ -781,7 +789,7 @@
 
             <!-- Section Title Start -->
             <div class="section-title2 text-center">
-                <h2 class="title">What Our Clients Say</h2>
+                <h2 class="title wow fadeInUp">What Our Clients Say</h2>
             </div>
             <!-- Section Title End -->
 
@@ -855,7 +863,7 @@
                     <div class="sale-banner9 p-0">
                         <div class="inner">
                             <div class="content">
-                                <h3 class="title">Bespoke Orders</h3>
+                                <h3 class="title wow fadeInUp">Bespoke Orders</h3>
                                 <span class="cuppon" style="margin-bottom: 20px; font-weight: 500;">HAVE A SPECIFIC DESIGN IN MIND?</span>
                                 <p style="font-size: 16px; color: #666; max-width: 400px; margin: 0 auto 30px auto;">We craft personalized ceremonial outfits tailored to your unique vision. Get in touch with us to discuss custom orders, sizing, and specific requirements.</p>
                                 <a href="{% url 'contact' %}" class="btn btn-dark btn-outline-hover-dark">Inquire Now</a>
@@ -875,7 +883,7 @@
 
             <!-- Section Title Start -->
             <div class="section-title2 text-center">
-                <h2 class="title title-icon-both">Curated For You</h2>
+                <h2 class="title title-icon-both wow fadeInUp">Curated For You</h2>
                 <p>Browse a unique selection of handcrafted ceremonial wear tailored perfectly for you.</p>
             </div>
             <!-- Section Title End -->
@@ -946,9 +954,9 @@
     <div class="section cinematic-section">
         <div class="container-fluid p-0">
             <!-- Section Title Start -->
-            <div class="section-title2 text-center learts-mb-40">
+            <div class="section-title2 text-center learts-mb-40 wow fadeInUp">
                 <span style="display:block; font-size:12px; letter-spacing:4px; color:#b98795; margin-bottom:15px; text-transform:uppercase; font-weight:500;">Made With Prayers</span>
-                <h2 class="title">The <em>Zuzanne</em> Experience</h2>
+                <h2 class="title wow fadeInUp">The <em>Zuzanne</em> Experience</h2>
                 <p style="font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#888;">Swipe to Explore</p>
             </div>
             <!-- Section Title End -->
@@ -1026,7 +1034,7 @@
                 <div class="col-lg-4 learts-mb-40">
                     <!-- Section Title Start -->
                     <div class="section-title2 mb-5">
-                        <h2 class="title title-icon-right">Blog update</h2>
+                        <h2 class="title title-icon-right wow fadeInUp">Blog update</h2>
                         <p>Subscribe for latest news and blog updates from our editor.</p>
                     </div>
                     <!-- Section Title End -->
@@ -1042,7 +1050,7 @@
                 <div class="col-lg-8 learts-mb-40">
                     <div class="row learts-mb-n40">
                         {% for blog in latest_blogs %}
-                        <div class="col-md-6 col-12 learts-mb-40">
+                        <div class="col-md-6 col-12 learts-mb-40 wow fadeInUp" data-wow-delay="{% if forloop.counter0 == 0 %}0s{% else %}0.15s{% endif %}">
                             <div class="blog">
                                 {% if blog.image %}
                                 <div class="image">
