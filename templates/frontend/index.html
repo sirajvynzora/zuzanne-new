@@ -6,34 +6,114 @@
 
 {% block extra_css %}
 <style>
+    /* === Two-tier header — solid pink background, normal flow === */
     .zuz-home-header {
+        position: relative;
+        z-index: 100;
         background: var(--zuz-pink-pale);
         border-bottom: 1px solid rgba(201, 78, 114, 0.12);
     }
 
-    .zuz-home-header .zuz-home-header-row {
-        min-height: 88px;
+    /* Row 1: social | logo | actions */
+    .zuz-header-top-row {
         display: grid;
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        column-gap: 24px;
+        padding: 18px 0 12px;
+    }
+    .zuz-header-socials {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+    .zuz-header-socials a {
+        color: #888;
+        font-size: 15px;
+        transition: color 0.2s ease;
+    }
+    .zuz-header-socials a:hover { color: var(--zuz-pink-dark); }
+    .zuz-header-logo-center {
+        text-align: center;
+    }
+    .zuz-header-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
     }
 
-    .zuz-home-header .site-main-menu ul > li > a {
-        color: #444;
+    /* Row 2: nav bar */
+    .zuz-header-nav-row {
+        border-top: 1px solid rgba(201, 78, 114, 0.12);
+        padding: 0;
+        display: flex;
+        justify-content: center;
     }
-
-    .zuz-home-header .site-main-menu > ul {
+    .zuz-header-nav-row .site-main-menu > ul {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: nowrap;
         gap: 34px;
         white-space: nowrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
     }
-
-    .zuz-home-header .site-main-menu > ul > li {
+    .zuz-header-nav-row .site-main-menu > ul > li {
         flex: 0 0 auto;
+    }
+    .zuz-home-header .site-main-menu ul > li > a {
+        color: #444;
+    }
+    .zuz-home-header .site-main-menu ul > li > a:hover { color: var(--zuz-pink-dark); }
+
+    /* === STICKY HEADER (slides in from top on scroll) === */
+    .zuz-sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: rgba(255,255,255,0.97);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(201, 78, 114, 0.10);
+        transform: translateY(-100%);
+        transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .zuz-sticky-header.is-visible {
+        transform: translateY(0);
+    }
+    .zuz-sticky-header-inner {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 24px;
+        min-height: 64px;
+    }
+    .zuz-sticky-logo img {
+        height: 44px;
+        width: auto;
+    }
+    .zuz-sticky-header .site-main-menu > ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    .zuz-sticky-header .site-main-menu ul > li > a {
+        color: #444;
+    }
+    .zuz-sticky-header .site-main-menu ul > li > a:hover { color: #b98795; }
+    .zuz-sticky-actions {
+        display: flex;
+        gap: 8px;
     }
 
     .zuz-home-header .zuz-mega-panel .zuz-cat-list li,
@@ -449,49 +529,117 @@
         }
     }
 </style>
+<script>
+    // ====== Sticky Header Scroll Behaviour ======
+    var zuzStickyHeader = document.getElementById('zuzStickyHeader');
+    if (zuzStickyHeader) {
+        function updateStickyHeader() {
+            if (window.scrollY > 120) {
+                zuzStickyHeader.classList.add('is-visible');
+            } else {
+                zuzStickyHeader.classList.remove('is-visible');
+            }
+        }
+        window.addEventListener('scroll', updateStickyHeader, { passive: true });
+        updateStickyHeader();
+    }
+</script>
 {% endblock %}
 
 {% block header_section %}
+    <!-- TOP HEADER ROW: social | logo | call/whatsapp -->
     <header class="header-section section zuz-home-header d-none d-xl-block">
         <div class="container">
-            <div class="zuz-home-header-row">
-                <div>
-                    <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-desktop zuz-home-logo"></a>
+            <!-- Row 1: Social icons | Logo | Action icons -->
+            <div class="zuz-header-top-row">
+                <!-- Left: Social links -->
+                <div class="zuz-header-socials">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <nav class="site-main-menu justify-content-center">
-                        <ul>
-                            <li><a href="/"><span class="menu-text">Home</span></a></li>
-                            <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
-                            <li class="has-children zuz-shop-mega">
-                                <a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
-                                <ul class="sub-menu zuz-mega-panel">
-                                    <li class="zuz-mega-wrapper">
-                                        {% for col in collections_tree %}
-                                        <div class="zuz-mega-col">
-                                            <a href="{% url 'collection' col.slug %}" class="zuz-col-title">{{ col.name }}</a>
-                                            <ul class="zuz-cat-list">
-                                                {% for cat in col.cats %}
-                                                <li><a href="{% url 'category' col.slug cat.slug %}">{{ cat.name }}</a></li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-                                        {% endfor %}
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
-                            <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
-                        </ul>
-                    </nav>
+
+                <!-- Center: Logo -->
+                <div class="zuz-header-logo-center">
+                    <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne" class="zuzanne-logo-desktop zuz-home-logo"></a>
                 </div>
-                <div class="d-flex justify-content-end" style="gap: 10px;">
+
+                <!-- Right: Call / WhatsApp -->
+                <div class="zuz-header-actions">
                     <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>
                     <a href="https://wa.me/919999999999" target="_blank" class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
+
+            <!-- Row 2: Navigation menu -->
+            <div class="zuz-header-nav-row">
+                <nav class="site-main-menu justify-content-center">
+                    <ul>
+                        <li><a href="/"><span class="menu-text">Home</span></a></li>
+                        <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
+                        <li class="has-children zuz-shop-mega">
+                            <a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
+                            <ul class="sub-menu zuz-mega-panel">
+                                <li class="zuz-mega-wrapper">
+                                    {% for col in collections_tree %}
+                                    <div class="zuz-mega-col">
+                                        <a href="{% url 'collection' col.slug %}" class="zuz-col-title">{{ col.name }}</a>
+                                        <ul class="zuz-cat-list">
+                                            {% for cat in col.cats %}
+                                            <li><a href="{% url 'category' col.slug cat.slug %}">{{ cat.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    {% endfor %}
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
+                        <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
+
+    <!-- STICKY HEADER: appears on scroll -->
+    <div class="zuz-sticky-header d-none d-xl-block" id="zuzStickyHeader">
+        <div class="container">
+            <div class="zuz-sticky-header-inner">
+                <a href="/" class="zuz-sticky-logo">
+                    <img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne">
+                </a>
+                <nav class="site-main-menu justify-content-center">
+                    <ul>
+                        <li><a href="/"><span class="menu-text">Home</span></a></li>
+                        <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
+                        <li class="has-children zuz-shop-mega">
+                            <a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
+                            <ul class="sub-menu zuz-mega-panel">
+                                <li class="zuz-mega-wrapper">
+                                    {% for col in collections_tree %}
+                                    <div class="zuz-mega-col">
+                                        <a href="{% url 'collection' col.slug %}" class="zuz-col-title">{{ col.name }}</a>
+                                        <ul class="zuz-cat-list">
+                                            {% for cat in col.cats %}
+                                            <li><a href="{% url 'category' col.slug cat.slug %}">{{ cat.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    {% endfor %}
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
+                        <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
+                    </ul>
+                </nav>
+                <div class="zuz-sticky-actions">
+                    <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle" title="Call"><i class="fas fa-phone-alt"></i></a>
+                    <a href="https://wa.me/919999999999" target="_blank" class="btn btn-icon btn-dark rounded-circle" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
