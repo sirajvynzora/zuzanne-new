@@ -454,9 +454,8 @@
                 -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
                 box-shadow: 
                     0 8px 32px rgba(185, 135, 149, 0.18),
-                    0 2px 8px rgba(0, 0, 0, 0.06),
-                    inset 0 1px 0 rgba(255,255,255,0.9) !important;
-                border: 1px solid rgba(255, 255, 255, 0.55) !important;
+                    0 2px 8px rgba(0, 0, 0, 0.06) !important;
+                border: none !important;
                 border-radius: 16px !important;
                 display: none;
                 text-align: left !important;
@@ -624,6 +623,73 @@
             background: var(--zuz-pink-light);
             color: #222;
         }
+
+    /* Footer Background Image */
+    .footer1-section {
+        position: relative;
+        background-image: url('/static/frontend/assets/images/bg/footer.png') !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-color: transparent !important;
+    }
+
+    .footer1-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.12);
+        z-index: 0;
+        border-radius: 0;
+    }
+
+    /* Footer text — white over image bg */
+    .footer1-section .footer1-logo img {
+        filter: none;
+    }
+
+    .footer1-section .widget-menu li a {
+        color: rgba(255, 255, 255, 0.90) !important;
+        font-weight: 500 !important;
+    }
+    .footer1-section .widget-menu li a:hover {
+        color: #fff !important;
+    }
+
+    .footer1-section .mc-form input {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-color: rgba(255, 255, 255, 0.35) !important;
+        color: #fff !important;
+        backdrop-filter: blur(4px) !important;
+    }
+    .footer1-section .mc-form input::placeholder {
+        color: rgba(255, 255, 255, 0.60) !important;
+    }
+
+    .footer1-section .footer-copyright-royal {
+        border-top-color: rgba(255, 255, 255, 0.20) !important;
+    }
+    .footer1-section .footer-copyright-text-royal p,
+    .footer1-section .footer-copyright-text-royal small {
+        color: rgba(255, 255, 255, 0.80) !important;
+    }
+    .footer1-section .footer-copyright-text-royal a {
+        color: rgba(255, 255, 255, 0.80) !important;
+    }
+    .footer1-section .footer-copyright-text-royal a:hover {
+        color: #fff !important;
+        text-decoration: underline !important;
+    }
+
+    .footer1-section .footer-social-links-royal ul li a {
+        border-color: rgba(255, 255, 255, 0.35) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+    }
+    .footer1-section .footer-social-links-royal ul li a:hover {
+        background: var(--zuz-pink) !important;
+        border-color: var(--zuz-pink) !important;
+        color: #fff !important;
+    }
     </style>
     <link rel="stylesheet" href="{% static 'frontend/assets/css/animate.css' %}">
 <style>
@@ -1002,7 +1068,7 @@
             <div class="row text-center row-cols-1">
 
                 <div class="footer1-logo col text-center">
-                    <img src="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" alt="Zuzanne Logo" class="zuzanne-logo-footer">
+                    <img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne Logo" class="zuzanne-logo-footer">
                 </div>
 
                 <div class="footer1-menu col">
