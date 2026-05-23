@@ -7,6 +7,73 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
 {% block extra_css %}
 <style>
+    /* Collection Background SVG */
+    .zuz-collection-section, .zuz-blog-section {
+        position: relative;
+        overflow-x: clip;
+        isolation: isolate;
+        background:
+            radial-gradient(circle at top right,
+            rgba(231,101,137,0.045),
+            transparent 45%),
+            linear-gradient(to bottom,
+            #fffdfd,
+            #fff);
+    }
+
+    .zuz-collection-bg, .zuz-blog-bg {
+        position: absolute;
+        pointer-events: none;
+        user-select: none;
+        z-index: 1;
+        opacity: 0.45;
+    }
+
+    .zuz-collection-bg svg, .zuz-blog-bg svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: visible;
+    }
+
+    .zuz-bg-top-right {
+        top: -60px;
+        right: -60px;
+        width: 420px;
+    }
+
+    .zuz-bg-bottom-left {
+        bottom: -60px;
+        left: -60px;
+        width: 420px;
+        transform: scaleX(-1);
+        opacity: 0.32;
+    }
+
+    .zuz-collection-section .container, .zuz-blog-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    @media (max-width: 991px) {
+
+        .zuz-collection-bg, .zuz-blog-bg {
+            opacity: 0.30;
+        }
+
+        .zuz-bg-top-right {
+            width: 200px;
+            top: -20px;
+            right: -30px;
+        }
+
+        .zuz-bg-bottom-left {
+            width: 200px;
+            left: -30px;
+            bottom: -20px;
+            opacity: 0.22;
+        }
+    }
     /* Luxury Floral Ornaments */
     .zuz-floral-ornament {
         position: absolute;
@@ -2191,7 +2258,115 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 </section>
 <!-- Hero Slider End -->
 <!-- Product Section Start -->
-<div class="section section-padding">
+<section class="zuz-collection-section section section-padding">
+
+    <div class="zuz-collection-bg zuz-bg-top-right">
+        <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <defs>
+                <linearGradient id="collGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#e76589" stop-opacity="0.8"/>
+                    <stop offset="50%" stop-color="#e76589" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#b98795" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <g opacity="0.15" stroke="#e76589" stroke-width="0.4" fill="none">
+                <path d="M0,50 Q250,350 500,250 M0,100 Q250,400 500,300 M0,150 Q250,450 500,350 M0,200 Q250,500 500,400 M0,250 Q250,550 500,450" stroke-dasharray="2 4"/>
+                <path d="M50,0 Q350,250 250,500 M100,0 Q400,250 300,500 M150,0 Q450,250 350,500 M200,0 Q500,250 400,500 M250,0 Q550,250 450,500" stroke-dasharray="2 4"/>
+            </g>
+            <path d="M500,700 C300,600 200,400 350,200 C450,50 250,-50 150,50" stroke="url(#collGrad)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M500,650 C250,550 150,350 300,150 C400,0 200,-100 100,0" stroke="#e76589" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <path d="M450,700 C200,650 100,450 250,250 C350,100 150,0 50,100" stroke="#e76589" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+            <path d="M350,200 C250,150 150,250 100,200 C50,150 100,100 150,50" stroke="#b98795" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <path d="M200,400 C100,450 50,350 0,400" stroke="#e76589" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+            <g transform="translate(350, 200)" fill="none" stroke="#e76589">
+                <path d="M0,0 C-50,-30 -80,20 -40,60 C0,100 60,80 40,30 C20,-20 0,0 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                <path d="M0,0 C50,-50 100,-20 70,30 C40,80 -20,50 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                <path d="M10,10 C-20,-10 -40,15 -15,40 C10,65 40,50 20,15 C5,-10 10,10 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                <path d="M10,10 C40,-20 70,0 50,30 C30,60 -10,35 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                <path d="M20,20 C-5,10 -15,30 5,45 C25,60 40,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                <path d="M20,20 C40,5 60,20 40,40 C20,60 5,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                <circle cx="25" cy="15" r="2" fill="#b98795" stroke="none" opacity="0.8"/>
+                <circle cx="15" cy="15" r="1.5" fill="#e76589" stroke="none" opacity="0.9"/>
+                <circle cx="20" cy="20" r="3" fill="#e76589" stroke="none" opacity="0.4"/>
+            </g>
+            <g transform="translate(150, 50)" fill="none" stroke="#e76589">
+                <path d="M0,0 C-30,-20 -50,10 -20,40 C10,70 40,40 20,10 C0,-10 0,0 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                <path d="M0,0 C30,-30 60,-10 40,20 C20,50 -10,30 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                <path d="M10,10 C-10,0 -20,20 -5,35 C10,50 30,35 15,15 C5,-5 10,10 10,10" stroke-width="1.2" stroke-opacity="0.7"/>
+                <circle cx="10" cy="15" r="3" fill="#e76589" stroke="none" opacity="0.5"/>
+                <circle cx="15" cy="10" r="1.5" fill="#b98795" stroke="none" opacity="0.8"/>
+            </g>
+            <g transform="translate(200, 400)" fill="none" stroke="#e76589">
+                <path d="M0,0 C-20,10 -30,40 -10,50 C10,60 30,30 0,0" stroke-width="1" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                <path d="M-5,15 C-15,30 -5,45 5,35 C15,25 5,10 -5,15" stroke-width="0.8" stroke-opacity="0.8"/>
+                <circle cx="0" cy="25" r="1.5" fill="#e76589" stroke="none" opacity="0.7"/>
+            </g>
+            <g stroke="#b98795" stroke-width="0.8" fill="none" opacity="0.6">
+                <path d="M350,200 C390,170 430,190 440,230 C420,250 380,240 350,200" fill="#e76589" fill-opacity="0.03"/>
+                <path d="M350,200 L440,230" stroke-width="0.4" stroke-dasharray="2 2"/>
+                <path d="M150,50 C120,20 80,30 70,70 C90,90 130,80 150,50" fill="#e76589" fill-opacity="0.03"/>
+                <path d="M250,300 C220,270 180,280 170,320 C190,340 230,330 250,300" fill="#e76589" fill-opacity="0.03"/>
+            </g>
+            <path d="M500,680 C320,580 220,380 370,180 C470,30 270,-70 170,30" stroke="#e76589" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="0.1 8" opacity="0.75"/>
+            <path d="M330,180 C230,130 130,230 80,180 C30,130 80,80 130,30" stroke="#b98795" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="0.1 6" opacity="0.6"/>
+            <g fill="#e76589" stroke="none" opacity="0.6">
+                <circle cx="450" cy="150" r="2"/>
+                <circle cx="460" cy="160" r="1.5"/>
+                <circle cx="440" cy="170" r="1"/>
+                <circle cx="280" cy="100" r="2.5"/>
+                <circle cx="80" cy="300" r="2"/>
+                <circle cx="90" cy="310" r="1"/>
+            </g>
+        </svg>
+    </div>
+
+    <div class="zuz-collection-bg zuz-bg-bottom-left">
+        <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <defs>
+                <linearGradient id="collGradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#e76589" stop-opacity="0.8"/>
+                    <stop offset="50%" stop-color="#e76589" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#b98795" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <g opacity="0.15" stroke="#e76589" stroke-width="0.4" fill="none">
+                <path d="M0,50 Q250,350 500,250 M0,100 Q250,400 500,300 M0,150 Q250,450 500,350 M0,200 Q250,500 500,400 M0,250 Q250,550 500,450" stroke-dasharray="2 4"/>
+                <path d="M50,0 Q350,250 250,500 M100,0 Q400,250 300,500 M150,0 Q450,250 350,500 M200,0 Q500,250 400,500 M250,0 Q550,250 450,500" stroke-dasharray="2 4"/>
+            </g>
+            <path d="M500,700 C300,600 200,400 350,200 C450,50 250,-50 150,50" stroke="url(#collGradLeft)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M500,650 C250,550 150,350 300,150 C400,0 200,-100 100,0" stroke="#e76589" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <path d="M450,700 C200,650 100,450 250,250 C350,100 150,0 50,100" stroke="#e76589" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+            <path d="M350,200 C250,150 150,250 100,200 C50,150 100,100 150,50" stroke="#b98795" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <g transform="translate(350, 200)" fill="none" stroke="#e76589">
+                <path d="M0,0 C-50,-30 -80,20 -40,60 C0,100 60,80 40,30 C20,-20 0,0 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                <path d="M0,0 C50,-50 100,-20 70,30 C40,80 -20,50 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                <path d="M10,10 C-20,-10 -40,15 -15,40 C10,65 40,50 20,15 C5,-10 10,10 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                <path d="M10,10 C40,-20 70,0 50,30 C30,60 -10,35 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                <path d="M20,20 C-5,10 -15,30 5,45 C25,60 40,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                <path d="M20,20 C40,5 60,20 40,40 C20,60 5,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                <circle cx="25" cy="15" r="2" fill="#b98795" stroke="none" opacity="0.8"/>
+                <circle cx="15" cy="15" r="1.5" fill="#e76589" stroke="none" opacity="0.9"/>
+                <circle cx="20" cy="20" r="3" fill="#e76589" stroke="none" opacity="0.4"/>
+            </g>
+            <g transform="translate(150, 50)" fill="none" stroke="#e76589">
+                <path d="M0,0 C-30,-20 -50,10 -20,40 C10,70 40,40 20,10 C0,-10 0,0 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                <path d="M0,0 C30,-30 60,-10 40,20 C20,50 -10,30 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                <path d="M10,10 C-10,0 -20,20 -5,35 C10,50 30,35 15,15 C5,-5 10,10 10,10" stroke-width="1.2" stroke-opacity="0.7"/>
+                <circle cx="10" cy="15" r="3" fill="#e76589" stroke="none" opacity="0.5"/>
+                <circle cx="15" cy="10" r="1.5" fill="#b98795" stroke="none" opacity="0.8"/>
+            </g>
+            <path d="M500,680 C320,580 220,380 370,180 C470,30 270,-70 170,30" stroke="#e76589" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="0.1 8" opacity="0.75"/>
+            <path d="M330,180 C230,130 130,230 80,180 C30,130 80,80 130,30" stroke="#b98795" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="0.1 6" opacity="0.6"/>
+            <g fill="#e76589" stroke="none" opacity="0.6">
+                <circle cx="450" cy="150" r="2"/>
+                <circle cx="280" cy="100" r="2.5"/>
+                <circle cx="80" cy="300" r="2"/>
+                <circle cx="90" cy="310" r="1"/>
+                <circle cx="70" cy="320" r="1.5"/>
+            </g>
+        </svg>
+    </div>
+
     <div class="container">
 
         <div class="row learts-mb-50">
@@ -2323,9 +2498,8 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                         </div>
                         {% endfor %}
                     </div>
-
                 </div>
-            </div>
+            </section>
             <!-- Product Section End -->
             <!-- Contact Inquiry Banner Start -->
             <div class="section section-padding" data-bg-color="#f4ede7">
@@ -2802,7 +2976,115 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
             {% endif %}
             <!-- Product Showcase Section End -->
             <!-- Editorial Blog Section Start -->
-            <div class="section section-padding" style="background-color: #fdfdfd;">
+            <section class="zuz-blog-section section section-padding">
+                
+                <div class="zuz-blog-bg zuz-bg-top-right">
+                    <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <defs>
+                            <linearGradient id="blogGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#e76589" stop-opacity="0.8"/>
+                                <stop offset="50%" stop-color="#e76589" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#b98795" stop-opacity="0.6"/>
+                            </linearGradient>
+                        </defs>
+                        <g opacity="0.15" stroke="#e76589" stroke-width="0.4" fill="none">
+                            <path d="M0,50 Q250,350 500,250 M0,100 Q250,400 500,300 M0,150 Q250,450 500,350 M0,200 Q250,500 500,400 M0,250 Q250,550 500,450" stroke-dasharray="2 4"/>
+                            <path d="M50,0 Q350,250 250,500 M100,0 Q400,250 300,500 M150,0 Q450,250 350,500 M200,0 Q500,250 400,500 M250,0 Q550,250 450,500" stroke-dasharray="2 4"/>
+                        </g>
+                        <path d="M500,700 C300,600 200,400 350,200 C450,50 250,-50 150,50" stroke="url(#blogGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M500,650 C250,550 150,350 300,150 C400,0 200,-100 100,0" stroke="#e76589" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M450,700 C200,650 100,450 250,250 C350,100 150,0 50,100" stroke="#e76589" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+                        <path d="M350,200 C250,150 150,250 100,200 C50,150 100,100 150,50" stroke="#b98795" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+                        <path d="M200,400 C100,450 50,350 0,400" stroke="#e76589" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+                        <g transform="translate(350, 200)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-50,-30 -80,20 -40,60 C0,100 60,80 40,30 C20,-20 0,0 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M0,0 C50,-50 100,-20 70,30 C40,80 -20,50 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M10,10 C-20,-10 -40,15 -15,40 C10,65 40,50 20,15 C5,-10 10,10 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                            <path d="M10,10 C40,-20 70,0 50,30 C30,60 -10,35 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                            <path d="M20,20 C-5,10 -15,30 5,45 C25,60 40,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                            <path d="M20,20 C40,5 60,20 40,40 C20,60 5,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                            <circle cx="25" cy="15" r="2" fill="#b98795" stroke="none" opacity="0.8"/>
+                            <circle cx="15" cy="15" r="1.5" fill="#e76589" stroke="none" opacity="0.9"/>
+                            <circle cx="20" cy="20" r="3" fill="#e76589" stroke="none" opacity="0.4"/>
+                        </g>
+                        <g transform="translate(150, 50)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-30,-20 -50,10 -20,40 C10,70 40,40 20,10 C0,-10 0,0 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                            <path d="M0,0 C30,-30 60,-10 40,20 C20,50 -10,30 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                            <path d="M10,10 C-10,0 -20,20 -5,35 C10,50 30,35 15,15 C5,-5 10,10 10,10" stroke-width="1.2" stroke-opacity="0.7"/>
+                            <circle cx="10" cy="15" r="3" fill="#e76589" stroke="none" opacity="0.5"/>
+                            <circle cx="15" cy="10" r="1.5" fill="#b98795" stroke="none" opacity="0.8"/>
+                        </g>
+                        <g transform="translate(200, 400)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-20,10 -30,40 -10,50 C10,60 30,30 0,0" stroke-width="1" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M-5,15 C-15,30 -5,45 5,35 C15,25 5,10 -5,15" stroke-width="0.8" stroke-opacity="0.8"/>
+                            <circle cx="0" cy="25" r="1.5" fill="#e76589" stroke="none" opacity="0.7"/>
+                        </g>
+                        <g stroke="#b98795" stroke-width="0.8" fill="none" opacity="0.6">
+                            <path d="M350,200 C390,170 430,190 440,230 C420,250 380,240 350,200" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M350,200 L440,230" stroke-width="0.4" stroke-dasharray="2 2"/>
+                            <path d="M150,50 C120,20 80,30 70,70 C90,90 130,80 150,50" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M250,300 C220,270 180,280 170,320 C190,340 230,330 250,300" fill="#e76589" fill-opacity="0.03"/>
+                        </g>
+                        <path d="M500,680 C320,580 220,380 370,180 C470,30 270,-70 170,30" stroke="#e76589" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="0.1 8" opacity="0.75"/>
+                        <path d="M330,180 C230,130 130,230 80,180 C30,130 80,80 130,30" stroke="#b98795" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="0.1 6" opacity="0.6"/>
+                        <g fill="#e76589" stroke="none" opacity="0.6">
+                            <circle cx="450" cy="150" r="2"/>
+                            <circle cx="460" cy="160" r="1.5"/>
+                            <circle cx="440" cy="170" r="1"/>
+                            <circle cx="280" cy="100" r="2.5"/>
+                            <circle cx="80" cy="300" r="2"/>
+                            <circle cx="90" cy="310" r="1"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="zuz-blog-bg zuz-bg-bottom-left">
+                    <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <defs>
+                            <linearGradient id="blogGradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#e76589" stop-opacity="0.8"/>
+                                <stop offset="50%" stop-color="#e76589" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#b98795" stop-opacity="0.6"/>
+                            </linearGradient>
+                        </defs>
+                        <g opacity="0.15" stroke="#e76589" stroke-width="0.4" fill="none">
+                            <path d="M0,50 Q250,350 500,250 M0,100 Q250,400 500,300 M0,150 Q250,450 500,350 M0,200 Q250,500 500,400 M0,250 Q250,550 500,450" stroke-dasharray="2 4"/>
+                            <path d="M50,0 Q350,250 250,500 M100,0 Q400,250 300,500 M150,0 Q450,250 350,500 M200,0 Q500,250 400,500 M250,0 Q550,250 450,500" stroke-dasharray="2 4"/>
+                        </g>
+                        <path d="M500,700 C300,600 200,400 350,200 C450,50 250,-50 150,50" stroke="url(#blogGradLeft)" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M500,650 C250,550 150,350 300,150 C400,0 200,-100 100,0" stroke="#e76589" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M450,700 C200,650 100,450 250,250 C350,100 150,0 50,100" stroke="#e76589" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+                        <path d="M350,200 C250,150 150,250 100,200 C50,150 100,100 150,50" stroke="#b98795" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+                        <g transform="translate(350, 200)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-50,-30 -80,20 -40,60 C0,100 60,80 40,30 C20,-20 0,0 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M0,0 C50,-50 100,-20 70,30 C40,80 -20,50 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M10,10 C-20,-10 -40,15 -15,40 C10,65 40,50 20,15 C5,-10 10,10 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                            <path d="M10,10 C40,-20 70,0 50,30 C30,60 -10,35 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                            <path d="M20,20 C-5,10 -15,30 5,45 C25,60 40,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                            <path d="M20,20 C40,5 60,20 40,40 C20,60 5,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                            <circle cx="25" cy="15" r="2" fill="#b98795" stroke="none" opacity="0.8"/>
+                            <circle cx="15" cy="15" r="1.5" fill="#e76589" stroke="none" opacity="0.9"/>
+                            <circle cx="20" cy="20" r="3" fill="#e76589" stroke="none" opacity="0.4"/>
+                        </g>
+                        <g transform="translate(150, 50)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-30,-20 -50,10 -20,40 C10,70 40,40 20,10 C0,-10 0,0 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                            <path d="M0,0 C30,-30 60,-10 40,20 C20,50 -10,30 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                            <path d="M10,10 C-10,0 -20,20 -5,35 C10,50 30,35 15,15 C5,-5 10,10 10,10" stroke-width="1.2" stroke-opacity="0.7"/>
+                            <circle cx="10" cy="15" r="3" fill="#e76589" stroke="none" opacity="0.5"/>
+                            <circle cx="15" cy="10" r="1.5" fill="#b98795" stroke="none" opacity="0.8"/>
+                        </g>
+                        <path d="M500,680 C320,580 220,380 370,180 C470,30 270,-70 170,30" stroke="#e76589" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="0.1 8" opacity="0.75"/>
+                        <path d="M330,180 C230,130 130,230 80,180 C30,130 80,80 130,30" stroke="#b98795" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="0.1 6" opacity="0.6"/>
+                        <g fill="#e76589" stroke="none" opacity="0.6">
+                            <circle cx="450" cy="150" r="2"/>
+                            <circle cx="280" cy="100" r="2.5"/>
+                            <circle cx="80" cy="300" r="2"/>
+                            <circle cx="90" cy="310" r="1"/>
+                            <circle cx="70" cy="320" r="1.5"/>
+                        </g>
+                    </svg>
+                </div>
+
                 <div class="container">
                     <div class="section-title2 text-center mb-5">
                         <span class="sub-title"
@@ -2913,7 +3195,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                     </div>
 
                 </div>
-            </div>
+            </section>
             <!-- Editorial Blog Section End -->
             {% endblock %}
 
