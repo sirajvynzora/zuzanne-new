@@ -2,10 +2,18 @@
 {% load static %}
 
 {% block seo_title %}Zuzanne – Premium Handcrafted Christian Ceremonial Outfits{% endblock %}
-{% block seo_description %}Discover premium handcrafted Christian baptism sets, holy communion dresses, ceremonial wear, and accessories, created with care and prayers at Zuzanne.{% endblock %}
+{% block seo_description %}Discover premium handcrafted Christian baptism sets, holy communion dresses, ceremonial wear,
+and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
 {% block extra_css %}
 <style>
+    @font-face {
+        font-family: 'RomansStory';
+        src: url('/static/frontend/assets/fonts/romans_story/Romans%20Story.otf') format('opentype');
+        font-weight: 400;
+        font-style: normal;
+    }
+
     /* === Main Header — Clean, visible version === */
     .zuz-home-header {
         position: absolute;
@@ -31,13 +39,15 @@
         align-items: center;
         gap: 18px;
     }
+
     .zuz-header-socials a {
         color: #fff;
         font-size: 16px;
         transition: color 0.2s ease;
         opacity: 0.9;
     }
-    .zuz-header-socials a:hover { 
+
+    .zuz-header-socials a:hover {
         color: var(--zuz-pink);
         opacity: 1;
     }
@@ -60,21 +70,25 @@
         justify-content: flex-end;
         gap: 10px;
     }
+
     .zuz-header-actions .btn-icon {
         background: rgba(255, 255, 255, 0.2);
         border: 1px solid rgba(255, 255, 255, 0.3);
         color: #fff;
         transition: all 0.3s ease;
     }
+
     .zuz-header-actions .btn-icon:hover {
         background: #fff;
         border-color: #fff;
         color: #333;
     }
+
     .zuz-header-actions .btn-dark {
         background: rgba(255, 255, 255, 0.2);
         border-color: rgba(255, 255, 255, 0.4);
     }
+
     .zuz-header-actions .btn-outline-dark {
         border-color: rgba(255, 255, 255, 0.4);
         color: #fff;
@@ -87,7 +101,8 @@
         display: flex;
         justify-content: center;
     }
-    .zuz-header-nav-row .site-main-menu > ul {
+
+    .zuz-header-nav-row .site-main-menu>ul {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -98,17 +113,20 @@
         margin: 0;
         list-style: none;
     }
-    .zuz-header-nav-row .site-main-menu > ul > li {
+
+    .zuz-header-nav-row .site-main-menu>ul>li {
         flex: 0 0 auto;
     }
-    .zuz-home-header .site-main-menu ul > li > a {
+
+    .zuz-home-header .site-main-menu ul>li>a {
         color: #fff;
         font-weight: 400;
         letter-spacing: 0.5px;
         transition: color 0.2s ease;
         opacity: 0.9;
     }
-    .zuz-home-header .site-main-menu ul > li > a:hover { 
+
+    .zuz-home-header .site-main-menu ul>li>a:hover {
         color: var(--zuz-pink);
         opacity: 1;
     }
@@ -120,17 +138,19 @@
         left: 0;
         right: 0;
         z-index: 200;
-        background: rgba(255,255,255,0.97);
+        background: rgba(255, 255, 255, 0.97);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         border-bottom: 1px solid rgba(201, 78, 114, 0.10);
         transform: translateY(-100%);
         transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     .zuz-sticky-header.is-visible {
         transform: translateY(0);
     }
+
     .zuz-sticky-header-inner {
         display: grid;
         grid-template-columns: auto 1fr auto;
@@ -138,11 +158,13 @@
         gap: 24px;
         min-height: 64px;
     }
+
     .zuz-sticky-logo img {
         height: 44px;
         width: auto;
     }
-    .zuz-sticky-header .site-main-menu > ul {
+
+    .zuz-sticky-header .site-main-menu>ul {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -153,10 +175,15 @@
         margin: 0;
         list-style: none;
     }
-    .zuz-sticky-header .site-main-menu ul > li > a {
+
+    .zuz-sticky-header .site-main-menu ul>li>a {
         color: #444;
     }
-    .zuz-sticky-header .site-main-menu ul > li > a:hover { color: #b98795; }
+
+    .zuz-sticky-header .site-main-menu ul>li>a:hover {
+        color: #b98795;
+    }
+
     .zuz-sticky-actions {
         display: flex;
         gap: 8px;
@@ -200,26 +227,31 @@
             position: relative;
             background: #fff;
             backdrop-filter: none;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
+
         .zuz-home-header .zuz-home-logo {
             filter: none;
             height: 72px !important;
             width: auto !important;
         }
+
         .zuz-header-socials a {
             color: #888;
         }
-        .zuz-home-header .site-main-menu ul > li > a {
+
+        .zuz-home-header .site-main-menu ul>li>a {
             color: #444;
         }
+
         .zuz-header-actions .btn-icon {
             background: transparent;
             border-color: #ddd;
             color: #333;
         }
+
         .zuz-header-nav-row {
-            border-top-color: rgba(0,0,0,0.08);
+            border-top-color: rgba(0, 0, 0, 0.08);
         }
     }
 
@@ -255,7 +287,8 @@
     .zuz-hero-slider .container {
         position: relative;
         z-index: 5;
-        padding-top: 100px; /* Space for absolute header */
+        padding-top: 100px;
+        /* Space for absolute header */
     }
 
     @media (max-width: 1199px) {
@@ -263,10 +296,12 @@
             min-height: calc(100vh - 94px);
             min-height: calc(100svh - 94px);
         }
+
         .zuz-hero-slider .swiper-slide {
             min-height: calc(100vh - 94px);
             min-height: calc(100svh - 94px);
         }
+
         .zuz-hero-slider .container {
             padding-top: 0;
         }
@@ -319,9 +354,11 @@
             text-align: center;
             margin: 0 auto;
         }
+
         .zuz-hero-actions {
             justify-content: center;
         }
+
         .zuz-hero-subtext {
             margin-left: auto;
             margin-right: auto;
@@ -343,13 +380,13 @@
     }
 
     .zuz-hero-title {
-        font-family: "Modesty", cursive;
-        font-size: clamp(54px, 7vw, 96px);
-        line-height: 1.1;
+        font-family: 'RomansStory', serif;
+        font-size: clamp(48px, 6vw, 90px);
+        line-height: 0.9;
         margin: 0 0 36px;
-        letter-spacing: normal;
+        letter-spacing: -0.03em;
         color: #1a1a1a;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     .zuz-hero-subtext {
@@ -399,8 +436,8 @@
         position: relative;
         width: 44px;
         height: 44px;
-        background: rgba(255,255,255,0.9);
-        border: 1px solid rgba(0,0,0,0.08);
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.08);
         border-radius: 50%;
         color: #333;
         transition: all 0.3s ease;
@@ -448,65 +485,67 @@
         .zuz-hero-nav {
             display: none;
         }
-        
+
         .zuz-hero-slider,
         .zuz-hero-slider .swiper-slide {
             min-height: 100vh;
             min-height: 100svh;
             padding: 0;
         }
-        
+
         .zuz-hero-slider .container {
             padding-top: 100px;
             padding-left: 20px;
             padding-right: 20px;
         }
-        
+
         .zuz-hero-content {
             max-width: 100%;
             text-align: center;
             margin: 0 auto;
         }
-        
+
         .zuz-hero-label {
             font-size: 9px;
             letter-spacing: 2px;
             padding: 4px 12px;
             margin-bottom: 16px;
         }
-        
+
         .zuz-hero-title {
-            font-family: "Modesty", cursive, "Playfair Display", Georgia, serif;
-            font-size: 48px !important;
-            line-height: 1.2 !important;
+            font-family: 'RomansStory', serif;
+            font-size: 40px !important;
+            line-height: 0.9 !important;
+            letter-spacing: -0.03em;
+            font-weight: 400;
             margin-bottom: 20px !important;
             word-break: break-word;
         }
-        
+
         .zuz-hero-subtext {
             font-size: 14px;
             line-height: 1.6;
             margin-bottom: 24px;
             padding: 0 10px;
         }
-        
+
         .zuz-hero-actions {
             gap: 12px;
             margin-bottom: 16px;
             justify-content: center;
         }
-        
+
         .zuz-hero-actions .btn {
             font-size: 10px !important;
             padding: 8px 18px !important;
             white-space: nowrap;
         }
-        
+
         .zuz-hero-trust {
             font-size: 11px;
             margin-top: 8px;
         }
-        
+
         /* Adjust hero slider dots position */
         .zuz-hero-pagination {
             bottom: 15px;
@@ -514,18 +553,18 @@
             right: 0;
             justify-content: center;
         }
-        
+
         .zuz-hero-nav {
             bottom: 15px;
             right: 15px;
         }
-        
+
         .zuz-hero-nav .swiper-button-prev,
         .zuz-hero-nav .swiper-button-next {
             width: 36px;
             height: 36px;
         }
-        
+
         .zuz-hero-nav .swiper-button-prev::after,
         .zuz-hero-nav .swiper-button-next::after {
             font-size: 14px;
@@ -539,18 +578,18 @@
             padding-left: 16px;
             padding-right: 16px;
         }
-        
+
         .zuz-hero-title {
-            font-size: 42px !important;
+            font-size: 34px !important;
             margin-bottom: 16px !important;
         }
-        
+
         .zuz-hero-label {
             font-size: 8px;
             letter-spacing: 1.5px;
             margin-bottom: 12px;
         }
-        
+
         .zuz-hero-actions {
             flex-direction: column;
             gap: 10px;
@@ -559,18 +598,18 @@
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         .zuz-hero-actions .btn {
             width: 100%;
             text-align: center;
             font-size: 10px !important;
             padding: 10px 0 !important;
         }
-        
+
         .zuz-hero-pagination {
             bottom: 10px;
         }
-        
+
         /* Hide navigation arrows on very small screens */
         .zuz-hero-nav {
             display: none;
@@ -593,32 +632,40 @@
         padding: 40px 0;
         overflow: hidden;
     }
+
     .cinematic-section .section-title2 .title {
         color: #fff;
         font-family: "Modesty", serif;
         font-size: 64px;
         margin-bottom: 5px;
     }
+
     .cinematic-section .section-title2 .title::before,
     .cinematic-section .section-title2 .title::after {
-        display: none; /* Hide the leafy icons for this dark section */
+        display: none;
+        /* Hide the leafy icons for this dark section */
     }
+
     .cinematic-section .section-title2 p {
         color: #aaa;
         font-size: 16px;
         letter-spacing: 1px;
     }
+
     .cinematic-carousel-wrapper {
         position: relative;
         padding-top: 10px;
         padding-bottom: 10px;
     }
+
     .swiper-container.cinematic-carousel {
         width: 100%;
         padding-top: 20px;
         padding-bottom: 20px;
-        overflow: visible; /* so scaled center slide can pop out */
+        overflow: visible;
+        /* so scaled center slide can pop out */
     }
+
     .cinematic-carousel .swiper-slide {
         background-position: center;
         background-size: cover;
@@ -630,36 +677,42 @@
         opacity: 0.45;
         position: relative;
     }
+
     .cinematic-carousel .swiper-slide-active {
         opacity: 1;
         z-index: 10;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
     }
+
     .cinematic-carousel .swiper-slide img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.6s ease;
     }
+
     .cinematic-carousel .swiper-slide-active:hover img {
         transform: scale(1.05);
     }
+
     .cinematic-carousel .slide-overlay {
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0) 100%);
         display: flex;
         align-items: flex-end;
         justify-content: center;
         padding: 30px 20px;
         transition: opacity 0.5s ease;
     }
+
     .cinematic-carousel .swiper-slide-active .slide-overlay {
-        background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 60%);
     }
+
     .cinematic-carousel .slide-content {
         width: 100%;
         text-align: center;
@@ -668,10 +721,12 @@
         transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         transition-delay: 0.1s;
     }
+
     .cinematic-carousel .swiper-slide-active .slide-content {
         opacity: 1;
         transform: translateY(0);
     }
+
     .cinematic-carousel .slide-label {
         color: #fff;
         font-size: 18px;
@@ -679,8 +734,9 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         margin: 0;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
+
     .cinematic-carousel-nav {
         position: absolute;
         top: 50%;
@@ -692,13 +748,14 @@
         pointer-events: none;
         padding: 0 5%;
     }
+
     .cinematic-carousel-nav .swiper-button-prev,
     .cinematic-carousel-nav .swiper-button-next {
         position: static;
         width: 50px;
         height: 50px;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(4px);
         border-radius: 50%;
         color: #fff;
@@ -709,43 +766,51 @@
         transition: all 0.3s ease;
         margin: 0;
     }
+
     .cinematic-carousel-nav .swiper-button-prev:hover,
     .cinematic-carousel-nav .swiper-button-next:hover {
-        background: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.2);
         border-color: #fff;
     }
+
     .cinematic-carousel-nav .swiper-button-prev::after,
     .cinematic-carousel-nav .swiper-button-next::after {
         font-size: 18px;
     }
-    
+
     @media (max-width: 991px) {
         .cinematic-carousel .swiper-slide {
             width: 280px;
         }
     }
+
     @media (max-width: 767px) {
         .cinematic-carousel .swiper-slide {
             width: 250px;
             height: 360px;
         }
+
         .cinematic-section .section-title2 .title {
             font-size: 48px;
         }
+
         .cinematic-carousel-nav {
             display: none;
         }
     }
+
     /* Mobile 2-column product grid */
     @media (max-width: 575px) {
-        .products.row > .col {
+        .products.row>.col {
             padding-left: 6px !important;
             padding-right: 6px !important;
         }
+
         .products.row {
             margin-left: -6px !important;
             margin-right: -6px !important;
         }
+
         .product-thumb .image img {
             aspect-ratio: 3 / 4;
             object-fit: cover;
@@ -753,17 +818,21 @@
             width: 100%;
             display: block;
         }
+
         .product-info .title {
             font-size: 12px !important;
             line-height: 1.4 !important;
             margin-bottom: 4px !important;
         }
+
         .product-info .price {
             font-size: 11px !important;
         }
+
         .product-info .product-buttons {
             gap: 4px !important;
         }
+
         .product-info .product-button {
             width: 28px !important;
             height: 28px !important;
@@ -776,12 +845,15 @@
         position: relative;
         background: #fff;
     }
+
     .zuz-pin-wrapper {
-        height: 100vh; /* Forces the pinned container to be exactly screen height */
+        height: 100vh;
+        /* Forces the pinned container to be exactly screen height */
         width: 100%;
         position: relative;
         overflow: hidden;
     }
+
     .zuz-pinned-img {
         width: 100%;
         height: 100%;
@@ -789,10 +861,13 @@
         object-position: center;
         display: block;
     }
+
     .zuz-scroll-content {
         min-height: 100vh;
-        padding: 60px 15px; /* Breathing room for the scrolling products */
-        background: #fdfdfd; /* Slight off-white to contrast with the image */
+        padding: 60px 15px;
+        /* Breathing room for the scrolling products */
+        background: #fdfdfd;
+        /* Slight off-white to contrast with the image */
     }
 
     /* === Editorial Blog Section === */
@@ -802,84 +877,112 @@
         gap: 60px;
         align-items: start;
     }
+
     .featured-blog-sticky {
         position: sticky;
         top: 100px;
         align-self: start;
     }
+
     .editorial-blog-list {
         display: flex;
         flex-direction: column;
         gap: 40px;
     }
-    
+
     /* Hover Effects & Styling */
     .image-wrapper {
         overflow: hidden;
         border-radius: var(--zuz-image-radius, 0px);
     }
+
     .featured-image {
         width: 100%;
         height: 600px;
         object-fit: cover;
         transition: transform 0.8s ease;
     }
+
     .small-image {
         width: 100%;
         height: 300px;
         object-fit: cover;
         transition: transform 0.8s ease;
     }
+
     .featured-blog-card:hover .featured-image,
     .small-blog-card:hover .small-image {
         transform: scale(1.05);
     }
-    
-    .featured-blog-card, .small-blog-card {
+
+    .featured-blog-card,
+    .small-blog-card {
         transition: transform 0.4s ease, box-shadow 0.4s ease;
         border-radius: var(--zuz-image-radius, 0px);
     }
-    .featured-blog-card:hover, .small-blog-card:hover {
+
+    .featured-blog-card:hover,
+    .small-blog-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
     }
+
     .small-blog-card {
         background: #fff;
         padding: 20px;
     }
+
     .featured-blog-card {
         background: #fff;
         padding: 30px;
     }
-    
+
     .meta-date {
         font-size: 13px;
         text-transform: uppercase;
         letter-spacing: 2px;
         color: #999;
     }
+
     .featured-blog-card .title {
         font-size: 30px;
         font-weight: 400;
         line-height: 1.3;
     }
-    .featured-blog-card .title a { color: #333; }
-    .featured-blog-card .title a:hover { color: #b98795; }
-    
+
+    .featured-blog-card .title a {
+        color: #333;
+    }
+
+    .featured-blog-card .title a:hover {
+        color: #b98795;
+    }
+
     .small-blog-card .title {
         font-size: 20px;
         font-weight: 400;
         line-height: 1.3;
     }
-    .small-blog-card .title a { color: #333; }
-    .small-blog-card .title a:hover { color: #b98795; }
-    
-    .desc { color: #666; font-size: 15px; line-height: 1.7; }
-    
+
+    .small-blog-card .title a {
+        color: #333;
+    }
+
+    .small-blog-card .title a:hover {
+        color: #b98795;
+    }
+
+    .desc {
+        color: #666;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
     .read-more-btn {
         display: inline-block;
         margin-top: 12px;
     }
+
     .read-more-link {
         display: inline-block;
         margin-top: 15px;
@@ -889,46 +992,60 @@
         text-transform: uppercase;
         letter-spacing: 1px;
     }
-    .read-more-link:hover { color: #333; text-decoration: underline; }
 
-    @media(max-width:991px){
+    .read-more-link:hover {
+        color: #333;
+        text-decoration: underline;
+    }
+
+    @media(max-width:991px) {
         .editorial-blog-layout {
             grid-template-columns: 1fr;
             gap: 50px;
         }
+
         .featured-blog-sticky {
             position: relative;
             top: auto;
         }
-        .featured-image { height: 400px; }
+
+        .featured-image {
+            height: 400px;
+        }
     }
+
     /* === Luxury Product Showcase === */
     .luxury-product-showcase {
         padding: 40px 0;
     }
+
     .luxury-showcase-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 80px;
         align-items: start;
     }
+
     .luxury-sticky-image {
         position: sticky;
         top: 100px;
         align-self: start;
     }
+
     .luxury-left-split {
         display: grid;
         grid-template-rows: 1fr 1fr;
         gap: 20px;
         height: 85vh;
     }
+
     .luxury-left-top,
     .luxury-left-bottom {
         overflow: hidden;
         border-radius: var(--zuz-image-radius, 0px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
     }
+
     .luxury-left-top img,
     .luxury-left-bottom img {
         width: 100%;
@@ -937,15 +1054,17 @@
         object-position: top center;
         transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
+
     .luxury-left-top:hover img,
     .luxury-left-bottom:hover img {
         transform: scale(1.03);
     }
-    
+
     .luxury-scroll-content {
         padding-top: 40px;
         padding-bottom: 80px;
     }
+
     .luxury-text-block .sub-title {
         font-size: 12px;
         text-transform: uppercase;
@@ -954,24 +1073,27 @@
         display: block;
         margin-bottom: 15px;
     }
+
     .luxury-text-block .title {
         font-size: 38px;
         font-weight: 400;
         color: #222;
         line-height: 1.2;
     }
+
     .luxury-text-block .desc {
         font-size: 16px;
         line-height: 1.9;
         color: #555;
         max-width: 90%;
     }
-    
+
     .luxury-features {
         list-style: none;
         padding: 0;
         margin: 0;
     }
+
     .luxury-features li {
         position: relative;
         padding-left: 20px;
@@ -980,6 +1102,7 @@
         color: #444;
         letter-spacing: 0.5px;
     }
+
     .luxury-features li::before {
         content: '';
         position: absolute;
@@ -990,47 +1113,55 @@
         background-color: #b98795;
         border-radius: 50%;
     }
-    
+
     .luxury-gallery {
         display: flex;
         flex-direction: column;
         gap: 60px;
     }
+
     .luxury-gallery-img {
         overflow: hidden;
         border-radius: var(--zuz-image-radius, 0px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     }
+
     .luxury-gallery-img img {
         width: 100%;
         height: auto;
         display: block;
         transition: transform 0.8s ease;
     }
+
     .luxury-gallery-img:hover img {
         transform: scale(1.03);
     }
-    
-    @media(max-width:991px){
+
+    @media(max-width:991px) {
         .luxury-showcase-grid {
             grid-template-columns: 1fr;
             gap: 40px;
         }
+
         .luxury-sticky-image {
             position: relative;
             top: auto;
         }
+
         .luxury-left-split {
             height: auto;
             grid-template-rows: auto auto;
         }
+
         .luxury-left-top img,
         .luxury-left-bottom img {
             height: 50vh;
         }
+
         .luxury-text-block .title {
             font-size: 32px;
         }
+
         .luxury-scroll-content {
             padding-top: 0px;
             padding-bottom: 20px;
@@ -1056,11 +1187,13 @@
         position: relative;
         border-right: 3px solid #fff;
     }
+
     .zuz-showcase-sticky-img {
         position: sticky;
         top: 0;
         height: 100vh;
     }
+
     .zuz-showcase-sticky-img img {
         width: 100%;
         height: 100%;
@@ -1073,6 +1206,7 @@
     .zuz-showcase-col-right {
         flex: 0 0 50%;
     }
+
     .zuz-showcase-col-right img {
         width: 100%;
         height: 100vh;
@@ -1085,11 +1219,13 @@
     .zuz-showcase-details-col {
         position: relative;
     }
+
     .zuz-showcase-details {
         position: sticky;
         top: 80px;
         padding: 60px 50px;
     }
+
     .zuz-showcase-details .collection-label {
         font-size: 12px;
         letter-spacing: 3px;
@@ -1098,6 +1234,7 @@
         display: block;
         margin-bottom: 16px;
     }
+
     .zuz-showcase-details .product-title {
         font-size: 36px;
         font-weight: 400;
@@ -1105,12 +1242,14 @@
         color: #111;
         margin-bottom: 24px;
     }
+
     .zuz-showcase-details .product-desc {
         font-size: 15px;
         line-height: 1.9;
         color: #666;
         margin-bottom: 32px;
     }
+
     .zuz-showcase-details .meta-row {
         display: flex;
         gap: 12px;
@@ -1118,6 +1257,7 @@
         margin-bottom: 16px;
         align-items: center;
     }
+
     .zuz-showcase-details .meta-label {
         font-size: 12px;
         font-weight: 600;
@@ -1126,6 +1266,7 @@
         color: #999;
         min-width: 60px;
     }
+
     .zuz-showcase-details .size-tag {
         display: inline-block;
         padding: 4px 14px;
@@ -1135,11 +1276,13 @@
         border-radius: 2px;
         margin: 2px;
     }
+
     .zuz-showcase-details .divider {
         border: none;
         border-top: 1px solid #f0f0f0;
         margin: 28px 0;
     }
+
     .zuz-showcase-details .showcase-btns {
         display: flex;
         gap: 12px;
@@ -1147,6 +1290,7 @@
     }
 
     @media (max-width: 991px) {
+
         /* Stack the two Bootstrap columns vertically */
         .zuz-showcase-section .row.g-0 {
             flex-direction: column;
@@ -1171,19 +1315,22 @@
             padding-bottom: 16px;
             scrollbar-width: none;
         }
+
         .zuz-showcase-image-grid::-webkit-scrollbar {
             display: none;
         }
 
         .zuz-showcase-col-left,
         .zuz-showcase-col-right {
-            display: contents; /* Flatten hierarchy so images become direct flex items */
+            display: contents;
+            /* Flatten hierarchy so images become direct flex items */
         }
 
         /* All swipable items */
         .zuz-showcase-sticky-img,
         .zuz-showcase-col-right img {
-            flex: 0 0 85%; /* Show 85% so the next image peeks out */
+            flex: 0 0 85%;
+            /* Show 85% so the next image peeks out */
             scroll-snap-align: center;
             height: 100vw;
             max-height: 420px;
@@ -1202,7 +1349,7 @@
             object-position: center top;
             border-radius: 12px;
         }
-        
+
         .zuz-showcase-col-right img {
             width: 100%;
             object-fit: cover;
@@ -1213,27 +1360,33 @@
         .zuz-showcase-details-col {
             position: static !important;
         }
+
         .zuz-showcase-details {
             position: static !important;
             top: auto !important;
             padding: 32px 20px 40px;
         }
+
         .zuz-showcase-details .product-title {
             font-size: 26px;
             line-height: 1.3;
         }
+
         .zuz-showcase-details .product-desc {
             font-size: 14px;
             margin-bottom: 24px;
         }
+
         .zuz-showcase-details .showcase-btns {
             flex-direction: column;
         }
+
         .zuz-showcase-details .showcase-btns .btn {
             width: 100%;
             text-align: center;
         }
     }
+
     @media (min-width: 992px) {
         .zuz-scroll-content {
             padding: 80px 30px 100px 50px;
@@ -1282,6 +1435,7 @@
             padding: 0 20px 16px !important;
             scrollbar-width: none;
         }
+
         .zuz-showcase-image-grid::-webkit-scrollbar {
             display: none;
         }
@@ -1311,74 +1465,76 @@
             min-height: auto !important;
         }
     }
+
     /* Mobile Blog Carousel */
     @media (max-width: 767px) {
         .editorial-blog-layout {
             display: block;
         }
-        
+
         .featured-blog-sticky {
             position: relative;
             top: auto;
             margin-bottom: 30px;
         }
-        
+
         .editorial-blog-list {
-            display: none; /* Hide the original list on mobile */
+            display: none;
+            /* Hide the original list on mobile */
         }
-        
+
         /* Mobile carousel container */
         .mobile-blog-carousel {
             display: block;
             margin-top: 20px;
         }
-        
+
         .mobile-blog-carousel .swiper-slide {
             height: auto;
             width: 280px;
         }
-        
+
         .mobile-blog-carousel .small-blog-card {
             background: #fff;
             padding: 0;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             height: 100%;
         }
-        
+
         .mobile-blog-carousel .small-image {
             height: 220px;
             width: 100%;
             object-fit: cover;
         }
-        
+
         .mobile-blog-carousel .content {
             padding: 16px;
         }
-        
+
         .mobile-blog-carousel .meta-date {
             font-size: 11px;
             letter-spacing: 1px;
         }
-        
+
         .mobile-blog-carousel .title {
             font-size: 16px;
             margin-top: 8px;
             margin-bottom: 8px;
         }
-        
+
         .mobile-blog-carousel .desc {
             font-size: 13px;
             line-height: 1.5;
             margin-bottom: 12px;
         }
-        
+
         .mobile-blog-carousel .read-more-link {
             font-size: 12px;
             margin-top: 8px;
         }
-        
+
         /* Carousel pagination dots */
         .mobile-blog-pagination {
             display: flex;
@@ -1387,7 +1543,7 @@
             margin-top: 25px;
             padding-bottom: 10px;
         }
-        
+
         .mobile-blog-pagination .swiper-pagination-bullet {
             width: 8px;
             height: 8px;
@@ -1395,7 +1551,7 @@
             opacity: 1;
             transition: all 0.3s ease;
         }
-        
+
         .mobile-blog-pagination .swiper-pagination-bullet-active {
             width: 24px;
             border-radius: 4px;
@@ -1404,11 +1560,13 @@
     }
 
     @media (min-width: 768px) {
+
         .mobile-blog-carousel,
         .mobile-blog-pagination {
             display: none;
         }
     }
+
     /* Hero Slider Zoom & Transition Effects */
     .zuz-hero-slider .swiper-slide {
         position: relative;
@@ -1416,11 +1574,11 @@
         opacity: 0 !important;
         transition: opacity 1s ease;
     }
-    
+
     .zuz-hero-slider .swiper-slide-active {
         opacity: 1 !important;
     }
-    
+
     .zuz-hero-slider .swiper-slide-prev,
     .zuz-hero-slider .swiper-slide-next {
         opacity: 0 !important;
@@ -1435,13 +1593,15 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        transform: scale(1.08); /* Start zoomed in */
+        transform: scale(1.08);
+        /* Start zoomed in */
         transition: transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         z-index: 0;
     }
 
     .zuz-hero-slider .swiper-slide-active .slide-bg {
-        transform: scale(1); /* Slowly zoom out while active */
+        transform: scale(1);
+        /* Slowly zoom out while active */
     }
 
     /* Text animation classes */
@@ -1550,6 +1710,7 @@
         border-color: rgba(255, 255, 255, 0.7);
         color: #fff;
     }
+
     /* Text alignment variations for hero content */
     .zuz-hero-content-left {
         text-align: left;
@@ -1590,20 +1751,21 @@
 
     /* Responsive: center all on mobile */
     @media (max-width: 991px) {
+
         .zuz-hero-content-left,
         .zuz-hero-content-center,
         .zuz-hero-content-right {
             text-align: center;
             margin: 0 auto;
         }
-        
+
         .zuz-hero-content-right .zuz-hero-subtext,
         .zuz-hero-content-left .zuz-hero-subtext,
         .zuz-hero-content-center .zuz-hero-subtext {
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         .zuz-hero-content-right .zuz-hero-actions,
         .zuz-hero-content-left .zuz-hero-actions,
         .zuz-hero-content-center .zuz-hero-actions {
@@ -1666,8 +1828,6 @@
         transform: translateY(0);
         transition-delay: 0.4s;
     }
-
-
 </style>
 <script>
     // ====== Sticky Header Scroll Behaviour ======
@@ -1687,99 +1847,105 @@
 {% endblock %}
 
 {% block header_section %}
-    <!-- TOP HEADER ROW: social | logo | call/whatsapp -->
-    <header class="header-section section zuz-home-header d-none d-xl-block">
-        <div class="container">
-            <!-- Row 1: Social icons | Logo | Action icons -->
-            <div class="zuz-header-top-row">
-                <!-- Left: Social links -->
-                <div class="zuz-header-socials">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                </div>
-
-                <!-- Center: Logo -->
-                <div class="zuz-header-logo-center">
-                    <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne" class="zuzanne-logo-desktop zuz-home-logo"></a>
-                </div>
-
-                <!-- Right: Call / WhatsApp -->
-                <div class="zuz-header-actions">
-                    <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>
-                    <a href="https://wa.me/919999999999" target="_blank" class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
+<!-- TOP HEADER ROW: social | logo | call/whatsapp -->
+<header class="header-section section zuz-home-header d-none d-xl-block">
+    <div class="container">
+        <!-- Row 1: Social icons | Logo | Action icons -->
+        <div class="zuz-header-top-row">
+            <!-- Left: Social links -->
+            <div class="zuz-header-socials">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             </div>
 
-            <!-- Row 2: Navigation menu -->
-            <div class="zuz-header-nav-row">
-                <nav class="site-main-menu justify-content-center">
-                    <ul>
-                        <li><a href="/"><span class="menu-text">Home</span></a></li>
-                        <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
-                        <li class="has-children zuz-shop-mega">
-                            <a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
-                            <ul class="sub-menu zuz-mega-panel">
-                                <li class="zuz-mega-wrapper">
-                                    {% for col in collections_tree %}
-                                    <div class="zuz-mega-col">
-                                        <a href="{% url 'collection' col.slug %}" class="zuz-col-title">{{ col.name }}</a>
-                                        <ul class="zuz-cat-list">
-                                            {% for cat in col.cats %}
-                                            <li><a href="{% url 'category' col.slug cat.slug %}">{{ cat.name }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                    {% endfor %}
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
-                        <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
-                    </ul>
-                </nav>
+            <!-- Center: Logo -->
+            <div class="zuz-header-logo-center">
+                <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne"
+                        class="zuzanne-logo-desktop zuz-home-logo"></a>
+            </div>
+
+            <!-- Right: Call / WhatsApp -->
+            <div class="zuz-header-actions">
+                <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle hintT-bottom"
+                    data-hint="Call"><i class="fas fa-phone-alt"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank"
+                    class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp"><i
+                        class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-    </header>
 
-    <!-- STICKY HEADER: appears on scroll -->
-    <div class="zuz-sticky-header d-none d-xl-block" id="zuzStickyHeader">
-        <div class="container">
-            <div class="zuz-sticky-header-inner">
-                <a href="/" class="zuz-sticky-logo">
-                    <img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne">
-                </a>
-                <nav class="site-main-menu justify-content-center">
-                    <ul>
-                        <li><a href="/"><span class="menu-text">Home</span></a></li>
-                        <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
-                        <li class="has-children zuz-shop-mega">
-                            <a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
-                            <ul class="sub-menu zuz-mega-panel">
-                                <li class="zuz-mega-wrapper">
-                                    {% for col in collections_tree %}
-                                    <div class="zuz-mega-col">
-                                        <a href="{% url 'collection' col.slug %}" class="zuz-col-title">{{ col.name }}</a>
-                                        <ul class="zuz-cat-list">
-                                            {% for cat in col.cats %}
-                                            <li><a href="{% url 'category' col.slug cat.slug %}">{{ cat.name }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                    {% endfor %}
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
-                        <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
-                    </ul>
-                </nav>
-                <div class="zuz-sticky-actions">
-                    <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle" title="Call"><i class="fas fa-phone-alt"></i></a>
-                    <a href="https://wa.me/919999999999" target="_blank" class="btn btn-icon btn-dark rounded-circle" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
+        <!-- Row 2: Navigation menu -->
+        <div class="zuz-header-nav-row">
+            <nav class="site-main-menu justify-content-center">
+                <ul>
+                    <li><a href="/"><span class="menu-text">Home</span></a></li>
+                    <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
+                    <li class="has-children zuz-shop-mega">
+                        <a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
+                        <ul class="sub-menu zuz-mega-panel">
+                            <li class="zuz-mega-wrapper">
+                                {% for col in collections_tree %}
+                                <div class="zuz-mega-col">
+                                    <a href="{% url 'collection' col.slug %}" class="zuz-col-title">{{ col.name }}</a>
+                                    <ul class="zuz-cat-list">
+                                        {% for cat in col.cats %}
+                                        <li><a href="{% url 'category' col.slug cat.slug %}">{{ cat.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
+                    <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- STICKY HEADER: appears on scroll -->
+<div class="zuz-sticky-header d-none d-xl-block" id="zuzStickyHeader">
+    <div class="container">
+        <div class="zuz-sticky-header-inner">
+            <a href="/" class="zuz-sticky-logo">
+                <img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne">
+            </a>
+            <nav class="site-main-menu justify-content-center">
+                <ul>
+                    <li><a href="/"><span class="menu-text">Home</span></a></li>
+                    <li><a href="{% url 'about' %}"><span class="menu-text">About Us</span></a></li>
+                    <li class="has-children zuz-shop-mega">
+                        <a href="{% url 'shop' %}"><span class="menu-text">Shop</span></a>
+                        <ul class="sub-menu zuz-mega-panel">
+                            <li class="zuz-mega-wrapper">
+                                {% for col in collections_tree %}
+                                <div class="zuz-mega-col">
+                                    <a href="{% url 'collection' col.slug %}" class="zuz-col-title">{{ col.name }}</a>
+                                    <ul class="zuz-cat-list">
+                                        {% for cat in col.cats %}
+                                        <li><a href="{% url 'category' col.slug cat.slug %}">{{ cat.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'blog_list' %}"><span class="menu-text">Blog</span></a></li>
+                    <li><a href="{% url 'contact' %}"><span class="menu-text">Contact Us</span></a></li>
+                </ul>
+            </nav>
+            <div class="zuz-sticky-actions">
+                <a href="tel:+919999999999" class="btn btn-icon btn-outline-dark rounded-circle" title="Call"><i
+                        class="fas fa-phone-alt"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank" class="btn btn-icon btn-dark rounded-circle"
+                    title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block mobile_header_section %}
@@ -1789,7 +1955,10 @@
         <div class="row align-items-center">
             <div class="col">
                 <div class="header-logo">
-                    <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" id="mobileLogo" data-default="{% static 'frontend/assets/images/logo/zuzanne.png' %}" data-scrolled="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" alt="Logo" class="zuzanne-logo-mobile"></a>
+                    <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" id="mobileLogo"
+                            data-default="{% static 'frontend/assets/images/logo/zuzanne.png' %}"
+                            data-scrolled="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" alt="Logo"
+                            class="zuzanne-logo-mobile"></a>
                 </div>
             </div>
             <div class="col-auto">
@@ -1797,9 +1966,14 @@
                     <div class="mobile-menu-toggle">
                         <a href="#offcanvas-mobile-menu" class="offcanvas-toggle">
                             <svg viewBox="0 0 800 600">
-                                <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" class="top"></path>
+                                <path
+                                    d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
+                                    class="top"></path>
                                 <path d="M300,320 L540,320" class="middle"></path>
-                                <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" class="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                                <path
+                                    d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
+                                    class="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) ">
+                                </path>
                             </svg>
                         </a>
                     </div>
@@ -1812,770 +1986,858 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Hero Slider Start -->
-    <section class="section zuz-hero-slider">
-        <div class="swiper-container hero-carousel">
-            <div class="swiper-wrapper">
-                <!-- Slide 1 -->
-                <div class="swiper-slide">
-                    <div class="slide-bg" style="background-image: url('{% static 'frontend/assets/new_images/baptsim.png' %}');"></div>
-                    <div class="container">
-                        <div class="zuz-hero-content zuz-hero-content-left">
-                            <span class="zuz-hero-label">LIMITED COLLECTION</span>
-                            <h1 class="zuz-hero-title">Sacred Threads<br>of Devotion</h1>
-                            <div class="zuz-hero-actions">
-                                <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark">SHOP NOW</a>
-                                <a href="{% url 'about' %}" class="btn btn-outline-dark btn-outline-hover-dark">READ STORY</a>
-                            </div>
+<!-- Hero Slider Start -->
+<section class="section zuz-hero-slider">
+    <div class="swiper-container hero-carousel">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+                <div class="slide-bg"
+                    style="background-image: url('{% static 'frontend/assets/new_images/baptsim.png' %}');"></div>
+                <div class="container">
+                    <div class="zuz-hero-content zuz-hero-content-left">
+                        <span class="zuz-hero-label">LIMITED COLLECTION</span>
+                        <h1 class="zuz-hero-title">Sacred Threads<br>of Devotion</h1>
+                        <div class="zuz-hero-actions">
+                            <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark">SHOP NOW</a>
+                            <a href="{% url 'about' %}" class="btn btn-outline-dark btn-outline-hover-dark">READ
+                                STORY</a>
                         </div>
                     </div>
                 </div>
-                <!-- Slide 2 -->
-                <div class="swiper-slide">
-                    <div class="slide-bg" style="background-image: url('{% static 'frontend/assets/new_images/baptism2.png' %}');"></div>
-                    <div class="container">
-                        <div class="zuz-hero-content zuz-hero-content-right">
-                            <span class="zuz-hero-label">BESPOKE CRAFTSMANSHIP</span>
-                            <h1 class="zuz-hero-title">Made to Order,<br>Made with Prayer</h1>
-                            <div class="zuz-hero-actions">
-                                <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark">EXPLORE COLLECTION</a>
-                                <a href="{% url 'contact' %}" class="btn btn-outline-dark btn-outline-hover-dark">INQUIRE NOW</a>
-                            </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+                <div class="slide-bg"
+                    style="background-image: url('{% static 'frontend/assets/new_images/baptism2.png' %}');"></div>
+                <div class="container">
+                    <div class="zuz-hero-content zuz-hero-content-right">
+                        <span class="zuz-hero-label">BESPOKE CRAFTSMANSHIP</span>
+                        <h1 class="zuz-hero-title">Made to Order,<br>Made with Prayer</h1>
+                        <div class="zuz-hero-actions">
+                            <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark">EXPLORE
+                                COLLECTION</a>
+                            <a href="{% url 'contact' %}" class="btn btn-outline-dark btn-outline-hover-dark">INQUIRE
+                                NOW</a>
                         </div>
                     </div>
                 </div>
-                <!-- Slide 3 (optional - add more as needed) -->
-                <div class="swiper-slide">
-                    <div class="slide-bg" style="background-image: url('{% static 'frontend/assets/new_images/baptsim3.png' %}');"></div>
-                    <div class="container">
-                        <div class="zuz-hero-content zuz-hero-content-center">
-                            <span class="zuz-hero-label">SACRED CELEBRATIONS</span>
-                            <h1 class="zuz-hero-title">Cherish Every<br>Holy Moment</h1>
-                            <div class="zuz-hero-actions">
-                                <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark">VIEW COLLECTION</a>
-                                <a href="{% url 'about' %}" class="btn btn-outline-dark btn-outline-hover-dark">OUR STORY</a>
-                            </div>
+            </div>
+            <!-- Slide 3 (optional - add more as needed) -->
+            <div class="swiper-slide">
+                <div class="slide-bg"
+                    style="background-image: url('{% static 'frontend/assets/new_images/baptsim3.png' %}');"></div>
+                <div class="container">
+                    <div class="zuz-hero-content zuz-hero-content-center">
+                        <span class="zuz-hero-label">SACRED CELEBRATIONS</span>
+                        <h1 class="zuz-hero-title">Cherish Every<br>Holy Moment</h1>
+                        <div class="zuz-hero-actions">
+                            <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark">VIEW COLLECTION</a>
+                            <a href="{% url 'about' %}" class="btn btn-outline-dark btn-outline-hover-dark">OUR
+                                STORY</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Navigation Arrows -->
-        <div class="zuz-hero-nav">
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
-        <!-- Pagination Dots -->
-        <div class="zuz-hero-pagination">
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
-    <!-- Hero Slider End -->
+    </div>
+    <!-- Navigation Arrows -->
+    <div class="zuz-hero-nav">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <!-- Pagination Dots -->
+    <div class="zuz-hero-pagination">
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+<!-- Hero Slider End -->
 
-  
 
 
- 
 
-    <!-- Product Section Start -->
-    <div class="section section-padding">
-        <div class="container">
 
-            <div class="row learts-mb-50">
-                <div class="col">
-                    <!-- Section Title Start -->
-                    <div class="section-title text-center mb-0">
-                        <h3 class="sub-title wow fadeInUp">Our Collections</h3>
-                        <h2 class="title title-icon-both wow fadeInUp">Signature Ceremonial Pieces</h2>
-                    </div>
-                    <!-- Section Title End -->
+
+<!-- Product Section Start -->
+<div class="section section-padding">
+    <div class="container">
+
+        <div class="row learts-mb-50">
+            <div class="col">
+                <!-- Section Title Start -->
+                <div class="section-title text-center mb-0">
+                    <h3 class="sub-title wow fadeInUp">Our Collections</h3>
+                    <h2 class="title title-icon-both wow fadeInUp">Signature Ceremonial Pieces</h2>
                 </div>
+                <!-- Section Title End -->
             </div>
+        </div>
 
-            <!-- Product Tab List Start -->
-            <div class="row learts-mb-40">
-                <div class="col">
-                    <ul class="nav text-uppercase justify-content-center mx-n1 mb-n2 wow fadeInUp">
-                        <li class="nav-item mx-1 mb-2"><a href="#product-all" data-bs-toggle="tab" class="btn btn-md btn-light btn-hover-dark active">All</a></li>
-                        {% for col in collections %}
-                        <li class="nav-item mx-1 mb-2"><a href="#product-{{ col.slug }}" data-bs-toggle="tab" class="btn btn-md btn-light btn-hover-dark">{{ col.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        <!-- Product Tab List Start -->
+        <div class="row learts-mb-40">
+            <div class="col">
+                <ul class="nav text-uppercase justify-content-center mx-n1 mb-n2 wow fadeInUp">
+                    <li class="nav-item mx-1 mb-2"><a href="#product-all" data-bs-toggle="tab"
+                            class="btn btn-md btn-light btn-hover-dark active">All</a></li>
+                    {% for col in collections %}
+                    <li class="nav-item mx-1 mb-2"><a href="#product-{{ col.slug }}" data-bs-toggle="tab"
+                            class="btn btn-md btn-light btn-hover-dark">{{ col.name }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
-            <!-- Product Tab List End -->
+        </div>
+        <!-- Product Tab List End -->
 
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="product-all">
-                    <!-- Products Start -->
-                    <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
-                        {% for product in products %}
-                        {% if forloop.counter0|divisibleby:4 %}
-                        <div class="col wow fadeInUp" data-wow-delay="0s">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="product-all">
+                <!-- Products Start -->
+                <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
+                    {% for product in products %}
+                    {% if forloop.counter0|divisibleby:4 %}
+                    <div class="col wow fadeInUp" data-wow-delay="0s">
                         {% elif forloop.counter0|add:"3"|divisibleby:4 %}
                         <div class="col wow fadeInUp" data-wow-delay="0.1s">
-                        {% elif forloop.counter0|add:"2"|divisibleby:4 %}
-                        <div class="col wow fadeInUp" data-wow-delay="0.2s">
-                        {% else %}
-                        <div class="col wow fadeInUp" data-wow-delay="0.3s">
-                        {% endif %}
-                            <div class="product">
-                                <div class="product-thumb">
-                                    <a href="{% url 'product_detail' product.slug %}" class="image">
-                                        {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
-                                            {% if first_img %}
+                            {% elif forloop.counter0|add:"2"|divisibleby:4 %}
+                            <div class="col wow fadeInUp" data-wow-delay="0.2s">
+                                {% else %}
+                                <div class="col wow fadeInUp" data-wow-delay="0.3s">
+                                    {% endif %}
+                                    <div class="product">
+                                        <div class="product-thumb">
+                                            <a href="{% url 'product_detail' product.slug %}" class="image">
+                                                {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
+                                                {% if first_img %}
                                                 <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
                                                 {% if second_img %}
-                                                    <img class="image-hover" src="{{ second_img.image.url }}" alt="{{ product.name }}">
+                                                <img class="image-hover" src="{{ second_img.image.url }}"
+                                                    alt="{{ product.name }}">
                                                 {% endif %}
-                                            {% else %}
-                                                <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" alt="{{ product.name }}">
-                                            {% endif %}
-                                        {% endwith %}
-                                    </a>
-                                    <a href="#" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                                                {% else %}
+                                                <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                                    alt="{{ product.name }}">
+                                                {% endif %}
+                                                {% endwith %}
+                                            </a>
+                                            <a href="#" class="add-to-wishlist hintT-left"
+                                                data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                                        </div>
+                                        <div class="product-info">
+                                            <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{
+                                                    product.name }}</a></h6>
+                                            <span class="price"
+                                                style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom
+                                                Order</span>
+                                            <div class="product-buttons d-none d-md-flex">
+                                                <a href="{% url 'product_detail' product.slug %}"
+                                                    class="product-button hintT-top" data-hint="View Details"><i
+                                                        class="fas fa-search"></i></a>
+                                                <a href="{% url 'contact' %}?product={{ product.name }}"
+                                                    class="product-button hintT-top" data-hint="Inquire Now"><i
+                                                        class="far fa-envelope"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="product-info">
-                                    <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
-                                    <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom Order</span>
-                                    <div class="product-buttons d-none d-md-flex">
-                                        <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
-                                        <a href="{% url 'contact' %}?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
+                                {% empty %}
+                                <div class="col-12 text-center py-5">
+                                    <h4 class="text-muted">No products found.</h4>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- Products End -->
+                        </div>
+
+                        {% for col in collections %}
+                        <div class="tab-pane fade" id="product-{{ col.slug }}">
+                            <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
+                                {% for cat in col.categories.all %}
+                                {% for product in cat.products.all|slice:":5" %}
+                                <div class="col">
+                                    <div class="product">
+                                        <div class="product-thumb">
+                                            <a href="{% url 'product_detail' product.slug %}" class="image">
+                                                {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
+                                                {% if first_img %}
+                                                <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
+                                                {% if second_img %}
+                                                <img class="image-hover" src="{{ second_img.image.url }}"
+                                                    alt="{{ product.name }}">
+                                                {% endif %}
+                                                {% else %}
+                                                <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                                    alt="{{ product.name }}">
+                                                {% endif %}
+                                                {% endwith %}
+                                            </a>
+                                            <a href="#" class="add-to-wishlist hintT-left"
+                                                data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                                        </div>
+                                        <div class="product-info">
+                                            <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{
+                                                    product.name }}</a></h6>
+                                            <span class="price"
+                                                style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom
+                                                Order</span>
+                                            <div class="product-buttons d-none d-md-flex">
+                                                <a href="{% url 'product_detail' product.slug %}"
+                                                    class="product-button hintT-top" data-hint="View Details"><i
+                                                        class="fas fa-search"></i></a>
+                                                <a href="{% url 'contact' %}?product={{ product.name }}"
+                                                    class="product-button hintT-top" data-hint="Inquire Now"><i
+                                                        class="far fa-envelope"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+            <!-- Product Section End -->
+            <!-- Contact Inquiry Banner Start -->
+            <div class="section section-padding" data-bg-color="#f4ede7">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 align-self-center">
+                            <div class="product-deal-image text-center">
+                                <img src="{% static 'frontend/assets/images/banner/sale/sale-banner9-2.webp' %}"
+                                    alt="Contact Us">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="sale-banner9 p-0">
+                                <div class="inner">
+                                    <div class="content">
+                                        <h3 class="title wow fadeInUp">Bespoke Orders</h3>
+                                        <span class="cuppon" style="margin-bottom: 20px; font-weight: 500;">HAVE A
+                                            SPECIFIC DESIGN IN MIND?</span>
+                                        <p
+                                            style="font-size: 16px; color: #666; max-width: 400px; margin: 0 auto 30px auto;">
+                                            We craft personalized ceremonial outfits tailored to your unique vision. Get
+                                            in touch with us to discuss custom orders, sizing, and specific
+                                            requirements.</p>
+                                        <a href="{% url 'contact' %}"
+                                            class="btn btn-dark btn-outline-hover-dark">Inquire Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Contact Inquiry Banner End -->
+
+            <!-- GSAP Pinned Section Start -->
+            <div class="section zuz-pinned-section">
+                <div class="container-fluid p-0">
+                    <div class="row g-0">
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <div class="zuz-pin-wrapper d-flex flex-column justify-content-center px-5"
+                                style="background: linear-gradient(135deg, #fff 0%, #fef6f8 100%); min-height: 100vh;">
+                                {% if featured_collection %}
+                                <span class="sub-title"
+                                    style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase; font-weight: 600;">Featured
+                                    Collection</span>
+                                <h2 class="title mt-3"
+                                    style="font-size: 52px; font-weight: 400; line-height: 1.2; color: #1a1a1a;">
+                                    {{ featured_collection.name }}
+                                </h2>
+                                <div class="featured-collection-desc mt-4" style="max-width: 450px;">
+                                    <p style="font-size: 15px; line-height: 1.8; color: #555;">{{
+                                        featured_collection.description|default:"Explore our elegant range of attire and
+                                        accessories designed for Holy Communion. Each piece is crafted with the utmost
+                                        reverence and care, using premium silks, linens, and fine lace to commemorate
+                                        this sacred milestone in your child's spiritual journey." }}</p>
+                                </div>
+                                <div class="featured-stats mt-4 pt-2">
+                                    <div class="row g-4">
+                                        <div class="col-6">
+                                            <div class="stat-item">
+                                                <span class="stat-number"
+                                                    style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">20+</span>
+                                                <span class="stat-label"
+                                                    style="font-size: 12px; color: #888; display: block;">Exclusive
+                                                    Designs</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="stat-item">
+                                                <span class="stat-number"
+                                                    style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">100%</span>
+                                                <span class="stat-label"
+                                                    style="font-size: 12px; color: #888; display: block;">Handcrafted
+                                                    Quality</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{% url 'shop' %}?collection={{ featured_collection.slug }}"
+                                    class="btn btn-dark btn-outline-hover-dark mt-4"
+                                    style="align-self: flex-start; padding: 12px 32px; letter-spacing: 2px; font-size: 12px;">Explore
+                                    Collection &rarr;</a>
+                                {% else %}
+                                <span class="sub-title"
+                                    style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase;">Featured
+                                    Collection</span>
+                                <h2 class="title mt-3" style="font-size: 52px; font-weight: 400; line-height: 1.2;">Holy
+                                    Community</h2>
+                                <div class="featured-collection-desc mt-4" style="max-width: 450px;">
+                                    <p style="font-size: 15px; line-height: 1.8; color: #555;">Explore our elegant range
+                                        of attire and accessories designed for Holy Communion. Each piece is crafted
+                                        with the utmost reverence and care, using premium silks, linens, and fine lace
+                                        to commemorate this sacred milestone in your child's spiritual journey.</p>
+                                </div>
+                                <div class="featured-stats mt-4 pt-2">
+                                    <div class="row g-4">
+                                        <div class="col-6">
+                                            <div class="stat-item">
+                                                <span class="stat-number"
+                                                    style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">15+</span>
+                                                <span class="stat-label"
+                                                    style="font-size: 12px; color: #888; display: block;">Ceremonial
+                                                    Pieces</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="stat-item">
+                                                <span class="stat-number"
+                                                    style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">Bespoke</span>
+                                                <span class="stat-label"
+                                                    style="font-size: 12px; color: #888; display: block;">Custom
+                                                    Orders</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark mt-4"
+                                    style="align-self: flex-start; padding: 12px 32px; letter-spacing: 2px; font-size: 12px;">Explore
+                                    Collection &rarr;</a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="zuz-scroll-content">
+                                <!-- Mobile Header (Hidden on Desktop because desktop has the pinned info block) -->
+                                <div class="section-title mb-4 px-4 pt-5 d-block d-lg-none text-center">
+                                    <h3 class="sub-title" style="color: #b98795;">Featured Collection</h3>
+                                    <h2 class="title">{{ featured_collection.name }}</h2>
+                                </div>
+
+                                <div
+                                    class="products row row-cols-md-2 row-cols-2 px-2 px-md-4 pb-4 pb-md-5 pt-lg-5 mt-lg-3">
+                                    {% for product in featured_products %}
+                                    <div class="col mb-4 mb-md-5">
+                                        <div class="product">
+                                            <div class="product-thumb">
+                                                <a href="{% url 'product_detail' product.slug %}" class="image">
+                                                    {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
+                                                    {% if first_img %}
+                                                    <img src="{{ first_img.image.url }}" alt="{{ product.name }}"
+                                                        style="border-radius: var(--zuz-image-radius);">
+                                                    {% if second_img %}
+                                                    <img class="image-hover" src="{{ second_img.image.url }}"
+                                                        alt="{{ product.name }}"
+                                                        style="border-radius: var(--zuz-image-radius);">
+                                                    {% endif %}
+                                                    {% else %}
+                                                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                                        alt="{{ product.name }}"
+                                                        style="border-radius: var(--zuz-image-radius);">
+                                                    {% endif %}
+                                                    {% endwith %}
+                                                </a>
+                                                <a href="#" class="add-to-wishlist hintT-left d-none d-md-block"
+                                                    data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                                            </div>
+                                            <div class="product-info mt-2 mt-md-3 text-center">
+                                                <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{
+                                                        product.name }}</a></h6>
+                                                <span class="price"
+                                                    style="font-size: 14px; font-weight: 500; color: #999;">Bespoke
+                                                    Custom Order</span>
+                                                <div
+                                                    class="product-buttons justify-content-center mt-2 d-none d-md-flex">
+                                                    <a href="{% url 'product_detail' product.slug %}"
+                                                        class="product-button hintT-top" data-hint="View Details"><i
+                                                            class="fas fa-search"></i></a>
+                                                    <a href="{% url 'contact' %}?product={{ product.name }}"
+                                                        class="product-button hintT-top" data-hint="Inquire Now"><i
+                                                            class="far fa-envelope"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% empty %}
+                                    <div class="col-12">
+                                        <p class="text-center">More products coming soon.</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- GSAP Pinned Section End -->
+
+
+            <!-- Testimonials Section Start -->
+            <div class="section section-padding">
+                <div class="container">
+
+                    <!-- Section Title Start -->
+                    <div class="section-title2 text-center">
+                        <h2 class="title wow fadeInUp">What Our Clients Say</h2>
+                    </div>
+                    <!-- Section Title End -->
+
+                    <div class="testimonial-carousel">
+                        {% for testimonial in testimonials %}
+                        <div class="col">
+                            <div class="testimonial">
+                                <p>{{ testimonial.review }}</p>
+                                <div class="author">
+                                    {% if testimonial.image %}
+                                    <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
+                                    {% else %}
+                                    <div
+                                        style="width: 70px; height: 70px; border-radius: 50%; background-color: #f5ecef; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 500; color: #b98795; margin-right: 20px;">
+                                        {{ testimonial.name|make_list|first|upper }}
+                                    </div>
+                                    {% endif %}
+                                    <div class="content">
+                                        <h6 class="name">{{ testimonial.name }}</h6>
+                                        <span class="title">Customer</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {% empty %}
                         <div class="col-12 text-center py-5">
-                            <h4 class="text-muted">No products found.</h4>
+                            <p class="text-muted">More testimonials coming soon.</p>
                         </div>
                         {% endfor %}
                     </div>
-                    <!-- Products End -->
-                </div>
 
-                {% for col in collections %}
-                <div class="tab-pane fade" id="product-{{ col.slug }}">
-                    <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
-                        {% for cat in col.categories.all %}
-                            {% for product in cat.products.all|slice:":5" %}
-                            <div class="col">
-                                <div class="product">
-                                    <div class="product-thumb">
-                                        <a href="{% url 'product_detail' product.slug %}" class="image">
-                                            {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
-                                                {% if first_img %}
-                                                    <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
-                                                    {% if second_img %}
-                                                        <img class="image-hover" src="{{ second_img.image.url }}" alt="{{ product.name }}">
-                                                    {% endif %}
-                                                {% else %}
-                                                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" alt="{{ product.name }}">
-                                                {% endif %}
-                                            {% endwith %}
-                                        </a>
-                                        <a href="#" class="add-to-wishlist hintT-left" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
-                                        <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom Order</span>
-                                        <div class="product-buttons d-none d-md-flex">
-                                            <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
-                                            <a href="{% url 'contact' %}?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
-                                        </div>
-                                    </div>
+                </div>
+            </div>
+            <!-- Testimonials Section End -->
+
+            <!-- Product Showcase Section Start -->
+            {% if showcase_product %}
+            <div class="section zuz-showcase-section">
+                <div class="row g-0">
+
+                    <!-- Left: Two-column sticky image grid -->
+                    <div class="col-lg-7 col-12">
+                        <div class="zuz-showcase-image-grid">
+
+                            <!-- Left col: stays pinned -->
+                            <div class="zuz-showcase-col-left">
+                                <div class="zuz-showcase-sticky-img">
+                                    {% with imgs=showcase_product.images.all %}
+                                    {% if imgs.0 %}
+                                    <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
+                                    {% else %}
+                                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                        alt="{{ showcase_product.name }}">
+                                    {% endif %}
+                                    {% endwith %}
                                 </div>
                             </div>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
 
-        </div>
-    </div>
-    <!-- Product Section End -->
-    <!-- Contact Inquiry Banner Start -->
-    <div class="section section-padding" data-bg-color="#f4ede7">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-6 col-12 align-self-center">
-                    <div class="product-deal-image text-center">
-                        <img src="{% static 'frontend/assets/images/banner/sale/sale-banner9-2.webp' %}" alt="Contact Us">
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-12">
-                    <div class="sale-banner9 p-0">
-                        <div class="inner">
-                            <div class="content">
-                                <h3 class="title wow fadeInUp">Bespoke Orders</h3>
-                                <span class="cuppon" style="margin-bottom: 20px; font-weight: 500;">HAVE A SPECIFIC DESIGN IN MIND?</span>
-                                <p style="font-size: 16px; color: #666; max-width: 400px; margin: 0 auto 30px auto;">We craft personalized ceremonial outfits tailored to your unique vision. Get in touch with us to discuss custom orders, sizing, and specific requirements.</p>
-                                <a href="{% url 'contact' %}" class="btn btn-dark btn-outline-hover-dark">Inquire Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- Contact Inquiry Banner End -->
-
-    <!-- GSAP Pinned Section Start -->
-    <div class="section zuz-pinned-section">
-        <div class="container-fluid p-0">
-            <div class="row g-0">
-                <div class="col-lg-6 d-none d-lg-block">
-                    <div class="zuz-pin-wrapper d-flex flex-column justify-content-center px-5" style="background: linear-gradient(135deg, #fff 0%, #fef6f8 100%); min-height: 100vh;">
-                        {% if featured_collection %}
-                            <span class="sub-title" style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase; font-weight: 600;">Featured Collection</span>
-                            <h2 class="title mt-3" style="font-size: 52px; font-weight: 400; line-height: 1.2; color: #1a1a1a;">
-                                {{ featured_collection.name }}
-                            </h2>
-                            <div class="featured-collection-desc mt-4" style="max-width: 450px;">
-                                <p style="font-size: 15px; line-height: 1.8; color: #555;">{{ featured_collection.description|default:"Explore our elegant range of attire and accessories designed for Holy Communion. Each piece is crafted with the utmost reverence and care, using premium silks, linens, and fine lace to commemorate this sacred milestone in your child's spiritual journey." }}</p>
-                            </div>
-                            <div class="featured-stats mt-4 pt-2">
-                                <div class="row g-4">
-                                    <div class="col-6">
-                                        <div class="stat-item">
-                                            <span class="stat-number" style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">20+</span>
-                                            <span class="stat-label" style="font-size: 12px; color: #888; display: block;">Exclusive Designs</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="stat-item">
-                                            <span class="stat-number" style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">100%</span>
-                                            <span class="stat-label" style="font-size: 12px; color: #888; display: block;">Handcrafted Quality</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="{% url 'shop' %}?collection={{ featured_collection.slug }}" class="btn btn-dark btn-outline-hover-dark mt-4" style="align-self: flex-start; padding: 12px 32px; letter-spacing: 2px; font-size: 12px;">Explore Collection &rarr;</a>
-                        {% else %}
-                            <span class="sub-title" style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase;">Featured Collection</span>
-                            <h2 class="title mt-3" style="font-size: 52px; font-weight: 400; line-height: 1.2;">Holy Community</h2>
-                            <div class="featured-collection-desc mt-4" style="max-width: 450px;">
-                                <p style="font-size: 15px; line-height: 1.8; color: #555;">Explore our elegant range of attire and accessories designed for Holy Communion. Each piece is crafted with the utmost reverence and care, using premium silks, linens, and fine lace to commemorate this sacred milestone in your child's spiritual journey.</p>
-                            </div>
-                            <div class="featured-stats mt-4 pt-2">
-                                <div class="row g-4">
-                                    <div class="col-6">
-                                        <div class="stat-item">
-                                            <span class="stat-number" style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">15+</span>
-                                            <span class="stat-label" style="font-size: 12px; color: #888; display: block;">Ceremonial Pieces</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="stat-item">
-                                            <span class="stat-number" style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">Bespoke</span>
-                                            <span class="stat-label" style="font-size: 12px; color: #888; display: block;">Custom Orders</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark mt-4" style="align-self: flex-start; padding: 12px 32px; letter-spacing: 2px; font-size: 12px;">Explore Collection &rarr;</a>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="col-lg-6 col-12">
-                    <div class="zuz-scroll-content">
-                        <!-- Mobile Header (Hidden on Desktop because desktop has the pinned info block) -->
-                        <div class="section-title mb-4 px-4 pt-5 d-block d-lg-none text-center">
-                            <h3 class="sub-title" style="color: #b98795;">Featured Collection</h3>
-                            <h2 class="title">{{ featured_collection.name }}</h2>
-                        </div>
-                        
-                        <div class="products row row-cols-md-2 row-cols-2 px-2 px-md-4 pb-4 pb-md-5 pt-lg-5 mt-lg-3">
-                            {% for product in featured_products %}
-                            <div class="col mb-4 mb-md-5">
-                                <div class="product">
-                                    <div class="product-thumb">
-                                        <a href="{% url 'product_detail' product.slug %}" class="image">
-                                            {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
-                                                {% if first_img %}
-                                                    <img src="{{ first_img.image.url }}" alt="{{ product.name }}" style="border-radius: var(--zuz-image-radius);">
-                                                    {% if second_img %}
-                                                        <img class="image-hover" src="{{ second_img.image.url }}" alt="{{ product.name }}" style="border-radius: var(--zuz-image-radius);">
-                                                    {% endif %}
-                                                {% else %}
-                                                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" alt="{{ product.name }}" style="border-radius: var(--zuz-image-radius);">
-                                                {% endif %}
-                                            {% endwith %}
-                                        </a>
-                                        <a href="#" class="add-to-wishlist hintT-left d-none d-md-block" data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
-                                    </div>
-                                    <div class="product-info mt-2 mt-md-3 text-center">
-                                        <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
-                                        <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom Order</span>
-                                        <div class="product-buttons justify-content-center mt-2 d-none d-md-flex">
-                                            <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
-                                            <a href="{% url 'contact' %}?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% empty %}
-                            <div class="col-12"><p class="text-center">More products coming soon.</p></div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                                                </div>
-            </div>
-        </div>
-    </div>
-    <!-- GSAP Pinned Section End -->
-
-
-    <!-- Testimonials Section Start -->
-    <div class="section section-padding">
-        <div class="container">
-
-            <!-- Section Title Start -->
-            <div class="section-title2 text-center">
-                <h2 class="title wow fadeInUp">What Our Clients Say</h2>
-            </div>
-            <!-- Section Title End -->
-
-            <div class="testimonial-carousel">
-                {% for testimonial in testimonials %}
-                <div class="col">
-                    <div class="testimonial">
-                        <p>{{ testimonial.review }}</p>
-                        <div class="author">
-                            {% if testimonial.image %}
-                            <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
-                            {% else %}
-                            <div style="width: 70px; height: 70px; border-radius: 50%; background-color: #f5ecef; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 500; color: #b98795; margin-right: 20px;">
-                                {{ testimonial.name|make_list|first|upper }}
-                            </div>
-                            {% endif %}
-                            <div class="content">
-                                <h6 class="name">{{ testimonial.name }}</h6>
-                                <span class="title">Customer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-12 text-center py-5">
-                    <p class="text-muted">More testimonials coming soon.</p>
-                </div>
-                {% endfor %}
-            </div>
-
-        </div>
-    </div>
-    <!-- Testimonials Section End -->
-
-    <!-- Product Showcase Section Start -->
-    {% if showcase_product %}
-    <div class="section zuz-showcase-section">
-        <div class="row g-0">
-
-            <!-- Left: Two-column sticky image grid -->
-            <div class="col-lg-7 col-12">
-                <div class="zuz-showcase-image-grid">
-
-                    <!-- Left col: stays pinned -->
-                    <div class="zuz-showcase-col-left">
-                        <div class="zuz-showcase-sticky-img">
-                            {% with imgs=showcase_product.images.all %}
-                            {% if imgs.0 %}
-                            <img src="{{ imgs.0.image.url }}" 
-                                 alt="{{ showcase_product.name }}">
-                            {% else %}
-                            <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" 
-                                 alt="{{ showcase_product.name }}">
-                            {% endif %}
-                            {% endwith %}
-                        </div>
-                    </div>
-
-                    <!-- Right col: scrolls through -->
-                    <div class="zuz-showcase-col-right">
-                        {% with imgs=showcase_product.images.all %}
-                        {% if imgs.count > 1 %}
-                            {% for img in imgs %}
-                            {% if not forloop.first %}
-                            <img src="{{ img.image.url }}" 
-                                 alt="{{ showcase_product.name }}">
-                            {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <!-- Fallback if only 1 image: 
+                            <!-- Right col: scrolls through -->
+                            <div class="zuz-showcase-col-right">
+                                {% with imgs=showcase_product.images.all %}
+                                {% if imgs.count > 1 %}
+                                {% for img in imgs %}
+                                {% if not forloop.first %}
+                                <img src="{{ img.image.url }}" alt="{{ showcase_product.name }}">
+                                {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                <!-- Fallback if only 1 image: 
                                  repeat the same image 2-3 times -->
-                            {% if imgs.0 %}
-                            <img src="{{ imgs.0.image.url }}" 
-                                 alt="{{ showcase_product.name }}">
-                            <img src="{{ imgs.0.image.url }}" 
-                                 alt="{{ showcase_product.name }}">
-                            {% else %}
-                            <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" 
-                                 alt="{{ showcase_product.name }}">
-                            <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}" 
-                                 alt="{{ showcase_product.name }}">
-                            {% endif %}
-                        {% endif %}
-                        {% endwith %}
-                    </div>
+                                {% if imgs.0 %}
+                                <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
+                                <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
+                                {% else %}
+                                <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                    alt="{{ showcase_product.name }}">
+                                <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                    alt="{{ showcase_product.name }}">
+                                {% endif %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
 
-                </div>
-            </div>
-
-            <!-- Right: Sticky product details -->
-            <div class="col-lg-5 col-12 zuz-showcase-details-col">
-                <div class="zuz-showcase-details">
-
-                    <span class="collection-label">
-                        {{ showcase_product.category.collection.name }}
-                        &nbsp;/&nbsp;
-                        {{ showcase_product.category.name }}
-                    </span>
-
-                    <h2 class="product-title">
-                        {{ showcase_product.name }}
-                    </h2>
-
-                    <div class="product-desc">
-                        {{ showcase_product.description|safe }}
-                    </div>
-
-                    <hr class="divider">
-
-                    {% if showcase_product.available_sizes %}
-                    <div class="meta-row">
-                        <span class="meta-label">Sizes</span>
-                        <div>
-                            {% for size in showcase_product.available_sizes.split %}
-                            <span class="size-tag">
-                                {{ size|cut:"," }}
-                            </span>
-                            {% endfor %}
                         </div>
                     </div>
-                    {% endif %}
 
-                    <div class="meta-row">
-                        <span class="meta-label">Gender</span>
-                        <span style="font-size:14px; color:#333;">
-                            {{ showcase_product.get_gender_display }}
-                        </span>
-                    </div>
+                    <!-- Right: Sticky product details -->
+                    <div class="col-lg-5 col-12 zuz-showcase-details-col">
+                        <div class="zuz-showcase-details">
 
-                    <hr class="divider">
+                            <span class="collection-label">
+                                {{ showcase_product.category.collection.name }}
+                                &nbsp;/&nbsp;
+                                {{ showcase_product.category.name }}
+                            </span>
 
-                    <div class="showcase-btns">
-                        <a href="{% url 'product_detail' showcase_product.slug %}" 
-                           class="btn btn-dark btn-outline-hover-dark">
-                            View Details
-                        </a>
-                        <a href="{% url 'contact' %}?product={{ showcase_product.name }}" 
-                           class="btn btn-outline-dark btn-hover-dark">
-                            <i class="far fa-envelope"></i> Enquire
-                        </a>
-                    </div>
+                            <h2 class="product-title">
+                                {{ showcase_product.name }}
+                            </h2>
 
-                </div>
-            </div>
+                            <div class="product-desc">
+                                {{ showcase_product.description|safe }}
+                            </div>
 
-        </div>
-    </div>
-    {% endif %}
-    <!-- Product Showcase Section End -->
+                            <hr class="divider">
 
-    <!-- Editorial Blog Section Start -->
-<div class="section section-padding" style="background-color: #fdfdfd;">
-    <div class="container">
-        <div class="section-title2 text-center mb-5">
-            <span class="sub-title" style="letter-spacing: 4px; color: #b98795; font-size: 14px; text-transform: uppercase;">The Journal</span>
-            <h2 class="title" style="margin-top: 10px;">
-                Editorial Updates
-            </h2>
-        </div>
+                            {% if showcase_product.available_sizes %}
+                            <div class="meta-row">
+                                <span class="meta-label">Sizes</span>
+                                <div>
+                                    {% for size in showcase_product.available_sizes.split %}
+                                    <span class="size-tag">
+                                        {{ size|cut:"," }}
+                                    </span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
 
-        <!-- Desktop/Tablet Layout (grid) -->
-        <div class="editorial-blog-layout desktop-blog-layout">
-            {% for blog in latest_blogs %}
-            
-            {% if forloop.first %}
-            <div class="featured-blog-sticky">
-                <div class="featured-blog-card wow fadeInUp">
-                    {% if blog.image %}
-                    <div class="image-wrapper">
-                        <a href="{% url 'blog_detail' blog.slug %}">
-                            <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="featured-image">
-                        </a>
-                    </div>
-                    {% endif %}
-                    <div class="content mt-4">
-                        <span class="meta-date">{{ blog.created_at|date:"F d, Y" }}</span>
-                        <h3 class="title mt-2"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h3>
-                        <p class="desc mt-3">{{ blog.description|safe|truncatewords:30 }}</p>
-                        <a href="{% url 'blog_detail' blog.slug %}" 
-                           class="btn btn-dark btn-outline-hover-dark mt-3">
-                           Read Full Story
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Start right column container -->
-            <div class="editorial-blog-list">
-            {% else %}
-            
-                <div class="small-blog-card wow fadeInUp">
-                    {% if blog.image %}
-                    <div class="image-wrapper">
-                        <a href="{% url 'blog_detail' blog.slug %}">
-                            <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="small-image">
-                        </a>
-                    </div>
-                    {% endif %}
-                    <div class="content mt-3">
-                        <span class="meta-date">{{ blog.created_at|date:"F d, Y" }}</span>
-                        <h5 class="title mt-2"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h5>
-                        <p class="desc mt-2 mb-0">{{ blog.description|safe|truncatewords:15 }}</p>
-                        <a href="{% url 'blog_detail' blog.slug %}" class="read-more-link">Explore</a>
-                    </div>
-                </div>
-                
-            {% endif %}
-            
-            {% if forloop.last %}
-            </div>
-            <!-- End right column container -->
-            {% endif %}
-            
-            {% empty %}
-            <div class="col-12 text-center py-5">
-                <p class="text-muted">No journal entries available.</p>
-            </div>
-            {% endfor %}
-        </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Gender</span>
+                                <span style="font-size:14px; color:#333;">
+                                    {{ showcase_product.get_gender_display }}
+                                </span>
+                            </div>
 
-        <!-- Mobile Carousel Layout -->
-        <div class="mobile-blog-carousel">
-            <div class="swiper-container blog-mobile-swiper">
-                <div class="swiper-wrapper">
-                    {% for blog in latest_blogs %}
-                    <div class="swiper-slide">
-                        <div class="small-blog-card">
-                            {% if blog.image %}
-                            <div class="image-wrapper">
-                                <a href="{% url 'blog_detail' blog.slug %}">
-                                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="small-image">
+                            <hr class="divider">
+
+                            <div class="showcase-btns">
+                                <a href="{% url 'product_detail' showcase_product.slug %}"
+                                    class="btn btn-dark btn-outline-hover-dark">
+                                    View Details
+                                </a>
+                                <a href="{% url 'contact' %}?product={{ showcase_product.name }}"
+                                    class="btn btn-outline-dark btn-hover-dark">
+                                    <i class="far fa-envelope"></i> Enquire
                                 </a>
                             </div>
-                            {% endif %}
-                            <div class="content">
-                                <span class="meta-date">{{ blog.created_at|date:"M d, Y" }}</span>
-                                <h5 class="title"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title|truncatechars:50 }}</a></h5>
-                                <p class="desc">{{ blog.description|safe|truncatewords:12 }}</p>
-                                <a href="{% url 'blog_detail' blog.slug %}" class="read-more-link">Explore &rarr;</a>
-                            </div>
+
                         </div>
                     </div>
-                    {% empty %}
-                    <div class="swiper-slide">
-                        <div class="small-blog-card">
-                            <div class="content">
-                                <p class="text-muted">No journal entries available.</p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+
                 </div>
             </div>
-            <!-- Pagination Dots -->
-            <div class="mobile-blog-pagination"></div>
-        </div>
+            {% endif %}
+            <!-- Product Showcase Section End -->
 
-    </div>
-</div>
-<!-- Editorial Blog Section End -->
-{% endblock %}
+            <!-- Editorial Blog Section Start -->
+            <div class="section section-padding" style="background-color: #fdfdfd;">
+                <div class="container">
+                    <div class="section-title2 text-center mb-5">
+                        <span class="sub-title"
+                            style="letter-spacing: 4px; color: #b98795; font-size: 14px; text-transform: uppercase;">The
+                            Journal</span>
+                        <h2 class="title" style="margin-top: 10px;">
+                            Editorial Updates
+                        </h2>
+                    </div>
 
-{% block extra_js %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", (event) => {
-    gsap.registerPlugin(ScrollTrigger);
+                    <!-- Desktop/Tablet Layout (grid) -->
+                    <div class="editorial-blog-layout desktop-blog-layout">
+                        {% for blog in latest_blogs %}
 
-    if (window.innerWidth <= 991) {
-        ScrollTrigger.getAll().forEach(function(trigger) { trigger.kill(); });
-        return;
-    }
+                        {% if forloop.first %}
+                        <div class="featured-blog-sticky">
+                            <div class="featured-blog-card wow fadeInUp">
+                                {% if blog.image %}
+                                <div class="image-wrapper">
+                                    <a href="{% url 'blog_detail' blog.slug %}">
+                                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="featured-image">
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="content mt-4">
+                                    <span class="meta-date">{{ blog.created_at|date:"F d, Y" }}</span>
+                                    <h3 class="title mt-2"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title
+                                            }}</a></h3>
+                                    <p class="desc mt-3">{{ blog.description|safe|truncatewords:30 }}</p>
+                                    <a href="{% url 'blog_detail' blog.slug %}"
+                                        class="btn btn-dark btn-outline-hover-dark mt-3">
+                                        Read Full Story
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-    // matchMedia ensures the pinning only happens on desktop (where the split layout exists)
-    let mm = gsap.matchMedia();
+                        <!-- Start right column container -->
+                        <div class="editorial-blog-list">
+                            {% else %}
 
-    mm.add("(min-width: 992px)", () => {
-        ScrollTrigger.create({
-            trigger: ".zuz-pinned-section",
-            start: "top top", // Pin when the top of the section hits the top of the viewport
-            end: "bottom bottom", // Unpin when the bottom of the right-side content scrolls past
-            pin: ".zuz-pin-wrapper", // Lock the left image wrapper in place
-            pinSpacing: true,
-            markers: false // Set to true if you ever need to debug the start/end lines
-        });
-    });
-});
-</script>
+                            <div class="small-blog-card wow fadeInUp">
+                                {% if blog.image %}
+                                <div class="image-wrapper">
+                                    <a href="{% url 'blog_detail' blog.slug %}">
+                                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="small-image">
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="content mt-3">
+                                    <span class="meta-date">{{ blog.created_at|date:"F d, Y" }}</span>
+                                    <h5 class="title mt-2"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title
+                                            }}</a></h5>
+                                    <p class="desc mt-2 mb-0">{{ blog.description|safe|truncatewords:15 }}</p>
+                                    <a href="{% url 'blog_detail' blog.slug %}" class="read-more-link">Explore</a>
+                                </div>
+                            </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    if (typeof ScrollTrigger === "undefined") return;
-    if (window.innerWidth <= 991) {
-        ScrollTrigger.getAll().forEach(function(trigger) { trigger.kill(); });
-    }
-});
-</script>
+                            {% endif %}
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    if(typeof Swiper !== 'undefined') {
-        var cinematicSwiper = new Swiper('.cinematic-carousel', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: 'auto',
-            loop: true,
-            speed: 700,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 80,
-                depth: 180,
-                modifier: 1,
-                slideShadows: false,
-            },
-            navigation: {
-                nextEl: '.cinematic-carousel-nav .swiper-button-next',
-                prevEl: '.cinematic-carousel-nav .swiper-button-prev',
-            },
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-        });
-    }
-});
-</script>
+                            {% if forloop.last %}
+                        </div>
+                        <!-- End right column container -->
+                        {% endif %}
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof Swiper !== 'undefined') {
-        var heroSwiper = new Swiper('.hero-carousel', {
-            slidesPerView: 1,
-            loop: true,
-            speed: 600,  // Faster transition (was 1000)
-            effect: 'fade',
-            fadeEffect: {
-                crossFade: true
-            },
-            navigation: {
-                nextEl: '.zuz-hero-nav .swiper-button-next',
-                prevEl: '.zuz-hero-nav .swiper-button-prev',
-            },
-            pagination: {
-                el: '.zuz-hero-pagination .swiper-pagination',
-                clickable: true,
-                dynamicBullets: false,
-            },
-            autoplay: {
-                delay: 4000,  // Faster slide change (was 6000)
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            },
-            on: {
-                slideChangeTransitionStart: function() {
-                    // Reset all slides to zoomed-in state
-                    document.querySelectorAll('.hero-carousel .slide-bg').forEach(function(bg) {
-                        bg.style.transition = 'none'; // snap reset instantly
-                        bg.style.transform = 'scale(1.08)';
+                        {% empty %}
+                        <div class="col-12 text-center py-5">
+                            <p class="text-muted">No journal entries available.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Mobile Carousel Layout -->
+                    <div class="mobile-blog-carousel">
+                        <div class="swiper-container blog-mobile-swiper">
+                            <div class="swiper-wrapper">
+                                {% for blog in latest_blogs %}
+                                <div class="swiper-slide">
+                                    <div class="small-blog-card">
+                                        {% if blog.image %}
+                                        <div class="image-wrapper">
+                                            <a href="{% url 'blog_detail' blog.slug %}">
+                                                <img src="{{ blog.image.url }}" alt="{{ blog.title }}"
+                                                    class="small-image">
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        <div class="content">
+                                            <span class="meta-date">{{ blog.created_at|date:"M d, Y" }}</span>
+                                            <h5 class="title"><a href="{% url 'blog_detail' blog.slug %}">{{
+                                                    blog.title|truncatechars:50 }}</a></h5>
+                                            <p class="desc">{{ blog.description|safe|truncatewords:12 }}</p>
+                                            <a href="{% url 'blog_detail' blog.slug %}" class="read-more-link">Explore
+                                                &rarr;</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <div class="swiper-slide">
+                                    <div class="small-blog-card">
+                                        <div class="content">
+                                            <p class="text-muted">No journal entries available.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Pagination Dots -->
+                        <div class="mobile-blog-pagination"></div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Editorial Blog Section End -->
+            {% endblock %}
+
+            {% block extra_js %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+            <script>
+                document.addEventListener("DOMContentLoaded", (event) => {
+                    gsap.registerPlugin(ScrollTrigger);
+
+                    if (window.innerWidth <= 991) {
+                        ScrollTrigger.getAll().forEach(function (trigger) { trigger.kill(); });
+                        return;
+                    }
+
+                    // matchMedia ensures the pinning only happens on desktop (where the split layout exists)
+                    let mm = gsap.matchMedia();
+
+                    mm.add("(min-width: 992px)", () => {
+                        ScrollTrigger.create({
+                            trigger: ".zuz-pinned-section",
+                            start: "top top", // Pin when the top of the section hits the top of the viewport
+                            end: "bottom bottom", // Unpin when the bottom of the right-side content scrolls past
+                            pin: ".zuz-pin-wrapper", // Lock the left image wrapper in place
+                            pinSpacing: true,
+                            markers: false // Set to true if you ever need to debug the start/end lines
+                        });
                     });
-                    // Immediately start zoom-out on the incoming active slide
-                    var activeSlide = document.querySelector('.hero-carousel .swiper-slide-active');
-                    if (activeSlide) {
-                        var activeBg = activeSlide.querySelector('.slide-bg');
-                        if (activeBg) {
-                            // Re-enable transition then trigger zoom-out
-                            requestAnimationFrame(function() {
-                                activeBg.style.transition = 'transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                                activeBg.style.transform = 'scale(1)';
-                            });
-                        }
+                });
+            </script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    if (typeof ScrollTrigger === "undefined") return;
+                    if (window.innerWidth <= 991) {
+                        ScrollTrigger.getAll().forEach(function (trigger) { trigger.kill(); });
+                    }
+                });
+            </script>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    if (typeof Swiper !== 'undefined') {
+                        var cinematicSwiper = new Swiper('.cinematic-carousel', {
+                            effect: 'coverflow',
+                            grabCursor: true,
+                            centeredSlides: true,
+                            slidesPerView: 'auto',
+                            loop: true,
+                            speed: 700,
+                            coverflowEffect: {
+                                rotate: 0,
+                                stretch: 80,
+                                depth: 180,
+                                modifier: 1,
+                                slideShadows: false,
+                            },
+                            navigation: {
+                                nextEl: '.cinematic-carousel-nav .swiper-button-next',
+                                prevEl: '.cinematic-carousel-nav .swiper-button-prev',
+                            },
+                            autoplay: {
+                                delay: 4000,
+                                disableOnInteraction: false,
+                            },
+                        });
+                    }
+                });
+            </script>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    if (typeof Swiper !== 'undefined') {
+                        var heroSwiper = new Swiper('.hero-carousel', {
+                            slidesPerView: 1,
+                            loop: true,
+                            speed: 600,  // Faster transition (was 1000)
+                            effect: 'fade',
+                            fadeEffect: {
+                                crossFade: true
+                            },
+                            navigation: {
+                                nextEl: '.zuz-hero-nav .swiper-button-next',
+                                prevEl: '.zuz-hero-nav .swiper-button-prev',
+                            },
+                            pagination: {
+                                el: '.zuz-hero-pagination .swiper-pagination',
+                                clickable: true,
+                                dynamicBullets: false,
+                            },
+                            autoplay: {
+                                delay: 4000,  // Faster slide change (was 6000)
+                                disableOnInteraction: false,
+                                pauseOnMouseEnter: true,
+                            },
+                            on: {
+                                slideChangeTransitionStart: function () {
+                                    // Reset all slides to zoomed-in state
+                                    document.querySelectorAll('.hero-carousel .slide-bg').forEach(function (bg) {
+                                        bg.style.transition = 'none'; // snap reset instantly
+                                        bg.style.transform = 'scale(1.08)';
+                                    });
+                                    // Immediately start zoom-out on the incoming active slide
+                                    var activeSlide = document.querySelector('.hero-carousel .swiper-slide-active');
+                                    if (activeSlide) {
+                                        var activeBg = activeSlide.querySelector('.slide-bg');
+                                        if (activeBg) {
+                                            // Re-enable transition then trigger zoom-out
+                                            requestAnimationFrame(function () {
+                                                activeBg.style.transition = 'transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                                                activeBg.style.transform = 'scale(1)';
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        });
+
+                        // Initial zoom-out for the first slide on page load
+                        setTimeout(function () {
+                            var activeSlide = document.querySelector('.hero-carousel .swiper-slide-active');
+                            if (activeSlide) {
+                                var activeBg = activeSlide.querySelector('.slide-bg');
+                                if (activeBg) {
+                                    activeBg.style.transform = 'scale(1)';
+                                }
+                            }
+                        }, 100);
+                    }
+                });
+            </script>
+
+            <script>
+                // Mobile Blog Carousel
+                function initMobileBlogCarousel() {
+                    if (window.innerWidth < 768 && typeof Swiper !== 'undefined') {
+                        var blogMobileSwiper = new Swiper('.blog-mobile-swiper', {
+                            slidesPerView: 1.2,
+                            spaceBetween: 16,
+                            centeredSlides: false,
+                            loop: false,
+                            pagination: {
+                                el: '.mobile-blog-pagination',
+                                clickable: true,
+                                dynamicBullets: false,
+                            },
+                            breakpoints: {
+                                480: {
+                                    slidesPerView: 1.5,
+                                    spaceBetween: 16,
+                                },
+                                576: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20,
+                                },
+                            }
+                        });
                     }
                 }
-            }
-        });
-        
-        // Initial zoom-out for the first slide on page load
-        setTimeout(function() {
-            var activeSlide = document.querySelector('.hero-carousel .swiper-slide-active');
-            if (activeSlide) {
-                var activeBg = activeSlide.querySelector('.slide-bg');
-                if (activeBg) {
-                    activeBg.style.transform = 'scale(1)';
-                }
-            }
-        }, 100);
-    }
-});
-</script>
 
-<script>
-// Mobile Blog Carousel
-function initMobileBlogCarousel() {
-    if (window.innerWidth < 768 && typeof Swiper !== 'undefined') {
-        var blogMobileSwiper = new Swiper('.blog-mobile-swiper', {
-            slidesPerView: 1.2,
-            spaceBetween: 16,
-            centeredSlides: false,
-            loop: false,
-            pagination: {
-                el: '.mobile-blog-pagination',
-                clickable: true,
-                dynamicBullets: false,
-            },
-            breakpoints: {
-                480: {
-                    slidesPerView: 1.5,
-                    spaceBetween: 16,
-                },
-                576: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-            }
-        });
-    }
-}
+                // Initialize on load
+                document.addEventListener('DOMContentLoaded', function () {
+                    initMobileBlogCarousel();
+                });
 
-// Initialize on load
-document.addEventListener('DOMContentLoaded', function() {
-    initMobileBlogCarousel();
-});
+                // Re-initialize on window resize
+                window.addEventListener('resize', function () {
+                    // Simple approach: reload page on resize across breakpoint
+                    // Or destroy and recreate - but for simplicity, we'll let CSS handle it
+                    if (window.innerWidth < 768) {
+                        if (!window.mobileBlogSwiperInitialized) {
+                            initMobileBlogCarousel();
+                            window.mobileBlogSwiperInitialized = true;
+                        }
+                    } else {
+                        window.mobileBlogSwiperInitialized = false;
+                    }
+                });
+            </script>
 
-// Re-initialize on window resize
-window.addEventListener('resize', function() {
-    // Simple approach: reload page on resize across breakpoint
-    // Or destroy and recreate - but for simplicity, we'll let CSS handle it
-    if (window.innerWidth < 768) {
-        if (!window.mobileBlogSwiperInitialized) {
-            initMobileBlogCarousel();
-            window.mobileBlogSwiperInitialized = true;
-        }
-    } else {
-        window.mobileBlogSwiperInitialized = false;
-    }
-});
-</script>
-
-{% endblock %}
+            {% endblock %}
