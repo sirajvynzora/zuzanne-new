@@ -1245,6 +1245,71 @@
             min-height: auto !important;
             padding: 60px 30px !important;
         }
+
+        /* Mobile normal flow: disable sticky/pinned layout structures */
+        .featured-blog-sticky,
+        .luxury-sticky-image,
+        .zuz-showcase-sticky-img,
+        .zuz-showcase-details,
+        .zuz-pin-wrapper {
+            position: relative !important;
+            top: auto !important;
+            height: auto !important;
+            min-height: auto !important;
+        }
+
+        .zuz-pinned-section,
+        .zuz-pin-wrapper,
+        .zuz-showcase-section {
+            overflow: visible !important;
+            min-height: auto !important;
+            height: auto !important;
+        }
+
+        /* Keep this section as a mobile horizontal carousel */
+        .zuz-showcase-section .row.g-0 {
+            flex-direction: column !important;
+        }
+
+        .zuz-showcase-image-grid {
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch;
+            gap: 12px !important;
+            padding: 0 20px 16px !important;
+            scrollbar-width: none;
+        }
+        .zuz-showcase-image-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .zuz-showcase-col-left,
+        .zuz-showcase-col-right {
+            display: contents !important;
+        }
+
+        .zuz-showcase-sticky-img,
+        .zuz-showcase-col-right img {
+            flex: 0 0 85% !important;
+            scroll-snap-align: center !important;
+            height: 100vw !important;
+            max-height: 420px !important;
+            border-radius: 12px;
+            width: auto !important;
+            position: relative !important;
+            top: auto !important;
+            margin: 0 !important;
+            display: block;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .zuz-scroll-content {
+            min-height: auto !important;
+        }
     }
     /* Mobile Blog Carousel */
     @media (max-width: 767px) {
@@ -2343,6 +2408,11 @@
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(ScrollTrigger);
 
+    if (window.innerWidth <= 991) {
+        ScrollTrigger.getAll().forEach(function(trigger) { trigger.kill(); });
+        return;
+    }
+
     // matchMedia ensures the pinning only happens on desktop (where the split layout exists)
     let mm = gsap.matchMedia();
 
@@ -2352,10 +2422,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
             start: "top top", // Pin when the top of the section hits the top of the viewport
             end: "bottom bottom", // Unpin when the bottom of the right-side content scrolls past
             pin: ".zuz-pin-wrapper", // Lock the left image wrapper in place
-            pinSpacing: false, // Prevents GSAP from adding unwanted padding below
+            pinSpacing: true,
             markers: false // Set to true if you ever need to debug the start/end lines
         });
     });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    if (typeof ScrollTrigger === "undefined") return;
+    if (window.innerWidth <= 991) {
+        ScrollTrigger.getAll().forEach(function(trigger) { trigger.kill(); });
+    }
 });
 </script>
 
