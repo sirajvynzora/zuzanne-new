@@ -59,6 +59,58 @@
             --zuz-image-radius: 18px;
         }
 
+        .inner-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: transparent;
+            border-bottom: none;
+        }
+
+        /* Force inner page menu text to black */
+        .inner-header .site-main-menu ul li a .menu-text,
+        .inner-header .site-main-menu ul li a,
+        .sticky-header .site-main-menu ul li a .menu-text,
+        .sticky-header .site-main-menu ul li a {
+            color: #000000 !important;
+            font-weight: 500;
+        }
+
+        .inner-header .site-main-menu ul li a:hover .menu-text,
+        .inner-header .site-main-menu ul li a:hover,
+        .sticky-header .site-main-menu ul li a:hover .menu-text,
+        .sticky-header .site-main-menu ul li a:hover {
+            color: var(--zuz-pink-dark) !important;
+        }
+
+        /* Inner pages hero section fixes */
+        .page-title-section {
+            position: relative;
+            padding-top: 210px !important; /* Creates gap between header and title */
+            z-index: 1;
+        }
+
+        /* White gradient overlay to make dark navbar text pop against the image */
+        .page-title-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 180px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Ensure title content sits above the overlay */
+        .page-title-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
         @media (max-width: 1199.98px) {
             .mobile-header {
                 position: fixed !important;
@@ -67,13 +119,34 @@
                 right: 0;
                 width: 100%;
                 z-index: 9999;
-                background: #fff;
-                border-bottom: 1px solid #e5e5e5;
+                /* Dark gradient overlay for visibility */
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, transparent 100%);
+                border-bottom: none;
+                pointer-events: none; /* Let clicks pass through the gradient background */
+                transition: background 0.3s ease, box-shadow 0.3s ease;
             }
 
+            .mobile-header.is-scrolled {
+                background: #ffffff !important;
+                box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            }
+
+            /* Make sure header contents are clickable despite pointer-events: none on parent */
             .mobile-header .container {
+                pointer-events: auto;
                 padding-left: 16px;
                 padding-right: 16px;
+            }
+
+            /* Make hamburger menu white */
+            .mobile-menu-toggle a svg path {
+                stroke: #ffffff !important;
+                transition: stroke 0.3s ease;
+            }
+
+            /* Make hamburger menu black when scrolled */
+            .mobile-header.is-scrolled .mobile-menu-toggle a svg path {
+                stroke: #000000 !important;
             }
 
             .mobile-header .row {
@@ -86,7 +159,7 @@
             }
 
             body {
-                padding-top: 64px;
+                padding-top: 0;
             }
         }
 
@@ -445,7 +518,7 @@
                 color: #111 !important;
                 border-bottom: 1px solid #dddddd !important;
                 padding: 0 0 12px 0 !important;
-                margin: 0 0 16px 0 !important;
+                margin: 0 0 8px 0 !important;
                 text-decoration: none !important;
                 white-space: nowrap !important;
                 text-align: left !important;
@@ -568,21 +641,21 @@
     <div id="zuzanne-preloader" class="zuzanne-preloader" aria-hidden="true">
         <div class="zuzanne-preloader-inner">
             <span class="zuzanne-preloader-ring"></span>
-            <img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne" class="zuzanne-preloader-logo">
+            <img src="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" alt="Zuzanne" class="zuzanne-preloader-logo">
         </div>
     </div>
 
 
     {% block header_section %}
     <!-- Header Section Start -->
-    <header class="header-section bg-white d-none d-xl-block">
+    <header class="header-section inner-header d-none d-xl-block">
         <div class="container">
             <div class="row align-items-center">
 
                 <!-- Header Logo Start -->
                 <div class="col-auto text-start" style="flex: 1 0 0%;">
                     <div class="header-logo">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-desktop"></a>
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" alt="Logo" class="zuzanne-logo-desktop"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -654,7 +727,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto text-start" style="flex: 1 0 0%;">
                     <div class="header-logo">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-sticky"></a>
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" alt="Logo" class="zuzanne-logo-sticky"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -709,12 +782,12 @@
 
     {% block mobile_header_section %}
     <!-- Mobile Header Section Start -->
-    <div class="mobile-header bg-white d-xl-none">
+    <div class="mobile-header d-xl-none">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
                     <div class="header-logo">
-                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Logo" class="zuzanne-logo-mobile"></a>
+                        <a href="/"><img src="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" id="mobileLogo" data-default="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" data-scrolled="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" alt="Logo" class="zuzanne-logo-mobile"></a>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -924,7 +997,7 @@
             <div class="row text-center row-cols-1">
 
                 <div class="footer1-logo col text-center">
-                    <img src="{% static 'frontend/assets/images/logo/zuzanne.png' %}" alt="Zuzanne Logo" class="zuzanne-logo-footer">
+                    <img src="{% static 'frontend/assets/images/logo/zuzanne2.png' %}" alt="Zuzanne Logo" class="zuzanne-logo-footer">
                 </div>
 
                 <div class="footer1-menu col">
@@ -1400,6 +1473,23 @@
             mobile: false,
             live: true
         }).init();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var mobileHeader = document.querySelector('.mobile-header');
+            var mobileLogo = document.getElementById('mobileLogo');
+            if (mobileHeader) {
+                window.addEventListener('scroll', function () {
+                    if (window.scrollY > 50) {
+                        mobileHeader.classList.add('is-scrolled');
+                        if (mobileLogo) mobileLogo.src = mobileLogo.getAttribute('data-scrolled');
+                    } else {
+                        mobileHeader.classList.remove('is-scrolled');
+                        if (mobileLogo) mobileLogo.src = mobileLogo.getAttribute('data-default');
+                    }
+                });
+            }
+        });
     </script>
     {% block extra_js %}
     {% endblock %}

@@ -414,17 +414,26 @@ def product_image_delete(request, pk):
 
 def frontend_home(request):
     products = Product.objects.select_related("category").prefetch_related("images").all()[:15]
-    latest_blogs = Blog.objects.all().order_by("-created_at")[:2]
-    widget_blogs = Blog.objects.all().order_by("-created_at")[2:7]
     collections = Collection.objects.prefetch_related('categories__products__images').all()[:4]
-    random_products = Product.objects.select_related("category").prefetch_related("images").order_by("?")[:4]
+    featured_collection = Collection.objects.first()
+    featured_products = Product.objects.filter(category__collection=featured_collection).prefetch_related("images")[:6] if featured_collection else []
+    testimonials = Testimonial.objects.all().order_by("-created_at")[:10]
+    
+    # Pass 5 blogs to the editorial layout (1 featured left, 4 scrolling right)
+    latest_blogs = Blog.objects.all().order_by("-created_at")[:5]
+
+    showcase_product = Product.objects.prefetch_related(
+        'images', 'category__collection'
+    ).first()
 
     return render(request, 'frontend/index.html', {
         "products": products,
         "latest_blogs": latest_blogs,
-        "widget_blogs": widget_blogs,
         "collections": collections,
-        "random_products": random_products,
+        "featured_collection": featured_collection,
+        "featured_products": featured_products,
+        "testimonials": testimonials,
+        "showcase_product": showcase_product,
     })
 
 def shop_view(request, collection_slug=None, category_slug=None):
