@@ -7,8 +7,49 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
 {% block extra_css %}
 <style>
+    /* Luxury Floral Ornaments */
+    .zuz-floral-ornament {
+        position: absolute;
+        pointer-events: none;
+        user-select: none;
+        overflow: visible;
+        z-index: 1;
+        opacity: 0.45;
+    }
+    .zuz-floral-right {
+        top: -60px;
+        right: -60px;
+        width: 350px;
+    }
+    .zuz-floral-left {
+        bottom: -60px;
+        left: -60px;
+        width: 350px;
+    }
+    .zuz-floral-mirror {
+        transform: scaleX(-1);
+    }
+    .zuz-light-floral path {
+        stroke: #e76589;
+    }
+    .zuz-dark-floral path {
+        stroke: #333333;
+    }
 
-
+    @media (max-width: 991px) {
+        .zuz-floral-right {
+            top: -20px;
+            right: -30px;
+            width: 180px;
+            opacity: 0.35;
+        }
+        .zuz-floral-left {
+            bottom: -20px;
+            left: -30px;
+            width: 180px;
+            opacity: 0.35;
+        }
+    }
     @font-face {
         font-family: 'RomansStory';
         src: url('/static/frontend/assets/fonts/romans_story/Romans%20Story.otf') format('opentype');
@@ -36,28 +77,33 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
         line-height: 0.9;
         font-weight: 400;
     }
+
     .zuz-heading-lg {
         font-family: var(--font-heading);
         font-size: 52px;
         font-weight: 400;
         line-height: 1.2;
     }
+
     .zuz-heading-md {
         font-family: var(--font-heading);
         font-size: 26px;
         font-weight: 400;
         line-height: 1.3;
     }
+
     .zuz-body {
         font-family: var(--font-body);
         font-size: 16px;
         line-height: 1.8;
     }
+
     .zuz-caption {
         font-family: var(--font-body);
         font-size: 14px;
         color: #999;
     }
+
     .zuz-label {
         font-family: var(--font-body);
         font-size: 12px;
@@ -66,16 +112,45 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
     }
 
     /* Spacing System Utility Classes */
-    .mt-xs { margin-top: var(--space-xs) !important; }
-    .mt-sm { margin-top: var(--space-sm) !important; }
-    .mt-md { margin-top: var(--space-md) !important; }
-    .mt-lg { margin-top: var(--space-lg) !important; }
-    .mt-xl { margin-top: var(--space-xl) !important; }
-    .mb-xs { margin-bottom: var(--space-xs) !important; }
-    .mb-sm { margin-bottom: var(--space-sm) !important; }
-    .mb-md { margin-bottom: var(--space-md) !important; }
-    .mb-lg { margin-bottom: var(--space-lg) !important; }
-    .mb-xl { margin-bottom: var(--space-xl) !important; }
+    .mt-xs {
+        margin-top: var(--space-xs) !important;
+    }
+
+    .mt-sm {
+        margin-top: var(--space-sm) !important;
+    }
+
+    .mt-md {
+        margin-top: var(--space-md) !important;
+    }
+
+    .mt-lg {
+        margin-top: var(--space-lg) !important;
+    }
+
+    .mt-xl {
+        margin-top: var(--space-xl) !important;
+    }
+
+    .mb-xs {
+        margin-bottom: var(--space-xs) !important;
+    }
+
+    .mb-sm {
+        margin-bottom: var(--space-sm) !important;
+    }
+
+    .mb-md {
+        margin-bottom: var(--space-md) !important;
+    }
+
+    .mb-lg {
+        margin-bottom: var(--space-lg) !important;
+    }
+
+    .mb-xl {
+        margin-bottom: var(--space-xl) !important;
+    }
 
     /* === Main Header — Clean, visible version === */
     .zuz-home-header {
@@ -2181,8 +2256,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                         <div class="product-info">
                                             <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
                                             <span class="price"
-                                                style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom
-                                                Order</span>
+                                                style="font-size: 14px; font-weight: 500; color: #999;">{{ product.description|striptags|truncatewords:6 }}</span>
                                             <div class="product-buttons d-none d-md-flex">
                                                 <a href="{% url 'product_detail' product.slug %}"
                                                     class="product-button hintT-top" data-hint="View Details"><i
@@ -2231,8 +2305,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                         <div class="product-info">
                                             <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
                                             <span class="price"
-                                                style="font-size: 14px; font-weight: 500; color: #999;">Bespoke Custom
-                                                Order</span>
+                                                style="font-size: 14px; font-weight: 500; color: #999;">{{ product.description|striptags|truncatewords:6 }}</span>
                                             <div class="product-buttons d-none d-md-flex">
                                                 <a href="{% url 'product_detail' product.slug %}"
                                                     class="product-button hintT-top" data-hint="View Details"><i
@@ -2254,446 +2327,594 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                 </div>
             </div>
             <!-- Product Section End -->
-<!-- Contact Inquiry Banner Start -->
-<div class="section section-padding" data-bg-color="#f4ede7">
-    <div class="container">
-        <div class="row">
+            <!-- Contact Inquiry Banner Start -->
+            <div class="section section-padding" data-bg-color="#f4ede7">
+                <div class="container">
+                    <div class="row">
 
-            <div class="col-lg-6 col-12 align-self-center">
-                <div class="product-deal-image text-center">
-                    <img src="{% static 'frontend/assets/images/banner/sale/sale-banner9-2.webp' %}"
-                        alt="Contact Us">
+                        <div class="col-lg-6 col-12 align-self-center">
+                            <div class="product-deal-image text-center">
+                                <img src="{% static 'frontend/assets/images/banner/sale/sale-banner9-2.webp' %}"
+                                    alt="Contact Us">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="sale-banner9 p-0">
+                                <div class="inner">
+                                    <div class="content">
+                                        <h3 class="title wow fadeInUp zuz-heading-md">Bespoke Couture</h3>
+                                        <span class="cuppon zuz-label" style="margin-bottom: 20px;">Curated for Your
+                                            Vision</span>
+                                        <p class="zuz-body"
+                                            style="color: #666; max-width: 400px; margin: 0 auto 30px auto;">
+                                            Commission a one-of-a-kind ceremonial masterpiece. We collaborate closely
+                                            with you to realize designs that elevate your most cherished moments.</p>
+                                        <a href="{% url 'contact' %}"
+                                            class="btn btn-dark btn-outline-hover-dark">Inquire Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+            <!-- Contact Inquiry Banner End -->
+            <!-- GSAP Pinned Section Start -->
+            <div class="section zuz-pinned-section">
+                <div class="container-fluid p-0">
+                    <div class="row g-0">
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <div class="zuz-pin-wrapper d-flex flex-column justify-content-center px-5"
+                                style="background: linear-gradient(135deg, #fff 0%, #fef6f8 100%); min-height: 100vh;">
+                                {% if featured_collection %}
+                                <span class="sub-title"
+                                    style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase; font-weight: 600;">Featured
+                                    Collection</span>
+                                <h2 class="title mt-3"
+                                    style="font-size: 52px; font-weight: 400; line-height: 1.2; color: #1a1a1a;">
+                                    {{ featured_collection.name }}
+                                </h2>
+                                <div class="featured-collection-desc mt-4" style="max-width: 450px;">
+                                    <p class="zuz-body" style="color: #555;">{{ featured_collection.description|default:"An exclusive curation of ceremonial attire. Each garment is meticulously tailored using premium silks and delicate lace, designed to honor the sanctity of life's most precious milestones." }}</p>
+                                </div>
+                                <div class="featured-stats mt-4 pt-2">
+                                    <div class="row g-4">
+                                        <div class="col-6">
+                                            <div class="stat-item">
+                                                <span class="stat-number"
+                                                    style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">20+</span>
+                                                <span class="stat-label"
+                                                    style="font-size: 12px; color: #888; display: block;">Exclusive
+                                                    Designs</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="stat-item">
+                                                <span class="stat-number"
+                                                    style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">100%</span>
+                                                <span class="stat-label"
+                                                    style="font-size: 12px; color: #888; display: block;">Handcrafted
+                                                    Quality</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{% url 'shop' %}?collection={{ featured_collection.slug }}"
+                                    class="btn btn-dark btn-outline-hover-dark mt-4"
+                                    style="align-self: flex-start; padding: 12px 32px; letter-spacing: 2px; font-size: 12px;">Explore
+                                    Collection &rarr;</a>
+                                {% else %}
+                                <span class="sub-title"
+                                    style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase;">Featured
+                                    Collection</span>
+                                <h2 class="title mt-3" style="font-size: 52px; font-weight: 400; line-height: 1.2;">Holy
+                                    Community</h2>
+                                <div class="featured-collection-desc mt-4" style="max-width: 450px;">
+                                    <p class="zuz-body" style="color: #555;">An exclusive curation of ceremonial attire.
+                                        Each garment is meticulously tailored using premium silks and delicate lace,
+                                        designed to honor the sanctity of life's most precious milestones.</p>
+                                </div>
+                                <div class="featured-stats mt-4 pt-2">
+                                    <div class="row g-4">
+                                        <div class="col-6">
+                                            <div class="stat-item">
+                                                <span class="stat-number"
+                                                    style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">15+</span>
+                                                <span class="stat-label"
+                                                    style="font-size: 12px; color: #888; display: block;">Ceremonial
+                                                    Pieces</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="stat-item">
+                                                <span class="stat-number"
+                                                    style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">Bespoke</span>
+                                                <span class="stat-label"
+                                                    style="font-size: 12px; color: #888; display: block;">Custom
+                                                    Orders</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark mt-4"
+                                    style="align-self: flex-start; padding: 12px 32px; letter-spacing: 2px; font-size: 12px;">Explore
+                                    Collection &rarr;</a>
+                                {% endif %}
+                            </div>
+                        </div>
 
-            <div class="col-lg-6 col-12">
-                <div class="sale-banner9 p-0">
-                    <div class="inner">
-                        <div class="content">
-                            <h3 class="title wow fadeInUp zuz-heading-md">Bespoke Couture</h3>
-                            <span class="cuppon zuz-label" style="margin-bottom: 20px;">Curated for Your Vision</span>
-                            <p class="zuz-body" style="color: #666; max-width: 400px; margin: 0 auto 30px auto;">
-                                Commission a one-of-a-kind ceremonial masterpiece. We collaborate closely with you to realize designs that elevate your most cherished moments.</p>
-                            <a href="{% url 'contact' %}"
-                                class="btn btn-dark btn-outline-hover-dark">Inquire Now</a>
+                        <div class="col-lg-6 col-12">
+                            <div class="zuz-scroll-content">
+                                <!-- Mobile Header (Hidden on Desktop because desktop has the pinned info block) -->
+                                <div class="section-title mb-4 px-4 pt-5 d-block d-lg-none text-center">
+                                    <h3 class="sub-title" style="color: #b98795;">Featured Collection</h3>
+                                    <h2 class="title">{{ featured_collection.name }}</h2>
+                                </div>
+
+                                <div
+                                    class="products row row-cols-md-2 row-cols-2 px-2 px-md-4 pb-4 pb-md-5 pt-lg-5 mt-lg-3">
+                                    {% for product in featured_products %}
+                                    <div class="col mb-4 mb-md-5">
+                                        <div class="product">
+                                            <div class="product-thumb">
+                                                <a href="{% url 'product_detail' product.slug %}" class="image">
+                                                    {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
+                                                    {% if first_img %}
+                                                    <img src="{{ first_img.image.url }}" alt="{{ product.name }}"
+                                                        style="border-radius: var(--zuz-image-radius);">
+                                                    {% if second_img %}
+                                                    <img class="image-hover" src="{{ second_img.image.url }}"
+                                                        alt="{{ product.name }}"
+                                                        style="border-radius: var(--zuz-image-radius);">
+                                                    {% endif %}
+                                                    {% else %}
+                                                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                                        alt="{{ product.name }}"
+                                                        style="border-radius: var(--zuz-image-radius);">
+                                                    {% endif %}
+                                                    {% endwith %}
+                                                </a>
+                                                <a href="#" class="add-to-wishlist hintT-left d-none d-md-block"
+                                                    data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
+                                            </div>
+                                            <div class="product-info mt-2 mt-md-3 text-center">
+                                                <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
+                                                <span class="price"
+                                                    style="font-size: 14px; font-weight: 500; color: #999;">{{ product.description|striptags|truncatewords:6 }}</span>
+                                                <div
+                                                    class="product-buttons justify-content-center mt-2 d-none d-md-flex">
+                                                    <a href="{% url 'product_detail' product.slug %}"
+                                                        class="product-button hintT-top" data-hint="View Details"><i
+                                                            class="fas fa-search"></i></a>
+                                                    <a href="{% url 'contact' %}?product={{ product.name }}"
+                                                        class="product-button hintT-top" data-hint="Inquire Now"><i
+                                                            class="far fa-envelope"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% empty %}
+                                    <div class="col-12">
+                                        <p class="text-center">More products coming soon.</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</div>
-<!-- Contact Inquiry Banner End -->
-<!-- GSAP Pinned Section Start -->
-<div class="section zuz-pinned-section">
-    <div class="container-fluid p-0">
-        <div class="row g-0">
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="zuz-pin-wrapper d-flex flex-column justify-content-center px-5"
-                    style="background: linear-gradient(135deg, #fff 0%, #fef6f8 100%); min-height: 100vh;">
-                    {% if featured_collection %}
-                    <span class="sub-title"
-                        style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase; font-weight: 600;">Featured
-                        Collection</span>
-                    <h2 class="title mt-3"
-                        style="font-size: 52px; font-weight: 400; line-height: 1.2; color: #1a1a1a;">
-                        {{ featured_collection.name }}
-                    </h2>
-                    <div class="featured-collection-desc mt-4" style="max-width: 450px;">
-                        <p class="zuz-body" style="color: #555;">{{ featured_collection.description|default:"An exclusive curation of ceremonial attire. Each garment is meticulously tailored using premium silks and delicate lace, designed to honor the sanctity of life's most precious milestones." }}</p>
-                    </div>
-                    <div class="featured-stats mt-4 pt-2">
-                        <div class="row g-4">
-                            <div class="col-6">
-                                <div class="stat-item">
-                                    <span class="stat-number"
-                                        style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">20+</span>
-                                    <span class="stat-label"
-                                        style="font-size: 12px; color: #888; display: block;">Exclusive
-                                        Designs</span>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="stat-item">
-                                    <span class="stat-number"
-                                        style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">100%</span>
-                                    <span class="stat-label"
-                                        style="font-size: 12px; color: #888; display: block;">Handcrafted
-                                        Quality</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="{% url 'shop' %}?collection={{ featured_collection.slug }}"
-                        class="btn btn-dark btn-outline-hover-dark mt-4"
-                        style="align-self: flex-start; padding: 12px 32px; letter-spacing: 2px; font-size: 12px;">Explore
-                        Collection &rarr;</a>
-                    {% else %}
-                    <span class="sub-title"
-                        style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase;">Featured
-                        Collection</span>
-                    <h2 class="title mt-3" style="font-size: 52px; font-weight: 400; line-height: 1.2;">Holy
-                        Community</h2>
-                    <div class="featured-collection-desc mt-4" style="max-width: 450px;">
-                        <p class="zuz-body" style="color: #555;">An exclusive curation of ceremonial attire. Each garment is meticulously tailored using premium silks and delicate lace, designed to honor the sanctity of life's most precious milestones.</p>
-                    </div>
-                    <div class="featured-stats mt-4 pt-2">
-                        <div class="row g-4">
-                            <div class="col-6">
-                                <div class="stat-item">
-                                    <span class="stat-number"
-                                        style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">15+</span>
-                                    <span class="stat-label"
-                                        style="font-size: 12px; color: #888; display: block;">Ceremonial
-                                        Pieces</span>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="stat-item">
-                                    <span class="stat-number"
-                                        style="font-size: 28px; font-weight: 500; color: var(--zuz-pink);">Bespoke</span>
-                                    <span class="stat-label"
-                                        style="font-size: 12px; color: #888; display: block;">Custom
-                                        Orders</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark mt-4"
-                        style="align-self: flex-start; padding: 12px 32px; letter-spacing: 2px; font-size: 12px;">Explore
-                        Collection &rarr;</a>
-                    {% endif %}
+            <!-- GSAP Pinned Section End -->
+            <!-- Testimonials Section Start -->
+            <div class="section section-padding" style="position: relative; isolation: isolate; overflow-x: clip;">
+                
+                <!-- Luxury Embroidery Ornaments -->
+                <div class="zuz-floral-ornament zuz-floral-right">
+                    <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" class="zuz-light-floral">
+                        <defs>
+                            <linearGradient id="embroideryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#e76589" stop-opacity="0.8"/>
+                                <stop offset="50%" stop-color="#e76589" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#b98795" stop-opacity="0.6"/>
+                            </linearGradient>
+                        </defs>
+                        <g opacity="0.15" stroke="#e76589" stroke-width="0.4" fill="none">
+                            <path d="M0,50 Q250,350 500,250 M0,100 Q250,400 500,300 M0,150 Q250,450 500,350 M0,200 Q250,500 500,400 M0,250 Q250,550 500,450" stroke-dasharray="2 4"/>
+                            <path d="M50,0 Q350,250 250,500 M100,0 Q400,250 300,500 M150,0 Q450,250 350,500 M200,0 Q500,250 400,500 M250,0 Q550,250 450,500" stroke-dasharray="2 4"/>
+                        </g>
+                        <path d="M500,700 C300,600 200,400 350,200 C450,50 250,-50 150,50" stroke="url(#embroideryGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+                        <path d="M500,650 C250,550 150,350 300,150 C400,0 200,-100 100,0" stroke="#e76589" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M450,700 C200,650 100,450 250,250 C350,100 150,0 50,100" stroke="#e76589" stroke-width="0.6" fill="none" stroke-linecap="round" opacity="0.5"/>
+                        <path d="M350,200 C250,150 150,250 100,200 C50,150 100,100 150,50" stroke="#b98795" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.7"/>
+                        <path d="M200,400 C100,450 50,350 0,400" stroke="#e76589" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+                        <g transform="translate(350, 200)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-50,-30 -80,20 -40,60 C0,100 60,80 40,30 C20,-20 0,0 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M0,0 C50,-50 100,-20 70,30 C40,80 -20,50 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M10,10 C-20,-10 -40,15 -15,40 C10,65 40,50 20,15 C5,-10 10,10 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                            <path d="M10,10 C40,-20 70,0 50,30 C30,60 -10,35 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                            <path d="M20,20 C-5,10 -15,30 5,45 C25,60 40,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                            <path d="M20,20 C40,5 60,20 40,40 C20,60 5,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                            <path d="M20,20 L25,15 M20,20 L15,15 M20,20 L25,25" stroke-width="0.8" stroke-opacity="0.7"/>
+                            <circle cx="25" cy="15" r="2" fill="#b98795" stroke="none" opacity="0.8"/>
+                            <circle cx="15" cy="15" r="1.5" fill="#e76589" stroke="none" opacity="0.9"/>
+                            <circle cx="25" cy="25" r="1" fill="#e76589" stroke="none" opacity="0.7"/>
+                            <circle cx="20" cy="20" r="3" fill="#e76589" stroke="none" opacity="0.4"/>
+                        </g>
+                        <g transform="translate(150, 50)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-30,-20 -50,10 -20,40 C10,70 40,40 20,10 C0,-10 0,0 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                            <path d="M0,0 C30,-30 60,-10 40,20 C20,50 -10,30 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                            <path d="M10,10 C-10,0 -20,20 -5,35 C10,50 30,35 15,15 C5,-5 10,10 10,10" stroke-width="1.2" stroke-opacity="0.7"/>
+                            <circle cx="10" cy="15" r="3" fill="#e76589" stroke="none" opacity="0.5"/>
+                            <circle cx="15" cy="10" r="1.5" fill="#b98795" stroke="none" opacity="0.8"/>
+                        </g>
+                        <g transform="translate(200, 400)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-20,10 -30,40 -10,50 C10,60 30,30 0,0" stroke-width="1" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M-5,15 C-15,30 -5,45 5,35 C15,25 5,10 -5,15" stroke-width="0.8" stroke-opacity="0.8"/>
+                            <circle cx="0" cy="25" r="1.5" fill="#e76589" stroke="none" opacity="0.7"/>
+                        </g>
+                        <g stroke="#b98795" stroke-width="0.8" fill="none" opacity="0.6">
+                            <path d="M350,200 C390,170 430,190 440,230 C420,250 380,240 350,200" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M350,200 L440,230" stroke-width="0.4" stroke-dasharray="2 2"/>
+                            <path d="M150,50 C120,20 80,30 70,70 C90,90 130,80 150,50" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M150,50 L70,70" stroke-width="0.4" stroke-dasharray="2 2"/>
+                            <path d="M250,300 C220,270 180,280 170,320 C190,340 230,330 250,300" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M250,300 L170,320" stroke-width="0.4" stroke-dasharray="2 2"/>
+                        </g>
+                        <path d="M500,680 C320,580 220,380 370,180 C470,30 270,-70 170,30" stroke="#e76589" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="0.1 8" opacity="0.75"/>
+                        <path d="M330,180 C230,130 130,230 80,180 C30,130 80,80 130,30" stroke="#b98795" stroke-width="1.5" stroke-linecap="round" fill="none" stroke-dasharray="0.1 6" opacity="0.6"/>
+                        <path d="M250,550 C260,540 265,545 255,555 C265,565 260,570 250,560 C240,550 245,545 255,535" stroke="#e76589" stroke-width="0.6" fill="none" opacity="0.5"/>
+                        <path d="M150,350 C160,340 165,345 155,355 C165,365 160,370 150,360 C140,350 145,345 155,335" stroke="#e76589" stroke-width="0.6" fill="none" opacity="0.5"/>
+                        <g fill="#e76589" stroke="none" opacity="0.6">
+                            <circle cx="450" cy="150" r="2"/>
+                            <circle cx="460" cy="160" r="1.5"/>
+                            <circle cx="440" cy="170" r="1"/>
+                            <circle cx="280" cy="100" r="2.5"/>
+                            <circle cx="290" cy="110" r="1.5"/>
+                            <circle cx="80" cy="300" r="2"/>
+                            <circle cx="90" cy="310" r="1"/>
+                            <circle cx="70" cy="320" r="1.5"/>
+                            <circle cx="250" cy="600" r="2"/>
+                            <circle cx="260" cy="615" r="1.2"/>
+                        </g>
+                    </svg>
                 </div>
-            </div>
+                
+                <div class="zuz-floral-ornament zuz-floral-left zuz-floral-mirror">
+                    <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" class="zuz-light-floral" style="opacity: 0.7;">
+                        <defs>
+                            <linearGradient id="embroideryGradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#e76589" stop-opacity="0.8"/>
+                                <stop offset="50%" stop-color="#e76589" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#b98795" stop-opacity="0.6"/>
+                            </linearGradient>
+                        </defs>
+                        <g opacity="0.15" stroke="#e76589" stroke-width="0.4" fill="none">
+                            <path d="M0,50 Q250,350 500,250 M0,100 Q250,400 500,300 M0,150 Q250,450 500,350 M0,200 Q250,500 500,400 M0,250 Q250,550 500,450" stroke-dasharray="2 4"/>
+                            <path d="M50,0 Q350,250 250,500 M100,0 Q400,250 300,500 M150,0 Q450,250 350,500 M200,0 Q500,250 400,500 M250,0 Q550,250 450,500" stroke-dasharray="2 4"/>
+                        </g>
+                        <path d="M500,700 C300,600 200,400 350,200 C450,50 250,-50 150,50" stroke="url(#embroideryGradLeft)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+                        <path d="M500,650 C250,550 150,350 300,150 C400,0 200,-100 100,0" stroke="#e76589" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M450,700 C200,650 100,450 250,250 C350,100 150,0 50,100" stroke="#e76589" stroke-width="0.6" fill="none" stroke-linecap="round" opacity="0.5"/>
+                        <path d="M350,200 C250,150 150,250 100,200 C50,150 100,100 150,50" stroke="#b98795" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.7"/>
+                        <path d="M200,400 C100,450 50,350 0,400" stroke="#e76589" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+                        <g transform="translate(350, 200)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-50,-30 -80,20 -40,60 C0,100 60,80 40,30 C20,-20 0,0 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M0,0 C50,-50 100,-20 70,30 C40,80 -20,50 0,0" stroke-width="1.2" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M10,10 C-20,-10 -40,15 -15,40 C10,65 40,50 20,15 C5,-10 10,10 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                            <path d="M10,10 C40,-20 70,0 50,30 C30,60 -10,35 10,10" stroke-width="1.5" stroke-opacity="0.8" fill="#e76589" fill-opacity="0.05"/>
+                            <path d="M20,20 C-5,10 -15,30 5,45 C25,60 40,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                            <path d="M20,20 C40,5 60,20 40,40 C20,60 5,40 20,20" stroke-width="1" stroke-opacity="0.9"/>
+                            <path d="M20,20 L25,15 M20,20 L15,15 M20,20 L25,25" stroke-width="0.8" stroke-opacity="0.7"/>
+                            <circle cx="25" cy="15" r="2" fill="#b98795" stroke="none" opacity="0.8"/>
+                            <circle cx="15" cy="15" r="1.5" fill="#e76589" stroke="none" opacity="0.9"/>
+                            <circle cx="25" cy="25" r="1" fill="#e76589" stroke="none" opacity="0.7"/>
+                            <circle cx="20" cy="20" r="3" fill="#e76589" stroke="none" opacity="0.4"/>
+                        </g>
+                        <g transform="translate(150, 50)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-30,-20 -50,10 -20,40 C10,70 40,40 20,10 C0,-10 0,0 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                            <path d="M0,0 C30,-30 60,-10 40,20 C20,50 -10,30 0,0" stroke-width="1" stroke-opacity="0.5" fill="#e76589" fill-opacity="0.02"/>
+                            <path d="M10,10 C-10,0 -20,20 -5,35 C10,50 30,35 15,15 C5,-5 10,10 10,10" stroke-width="1.2" stroke-opacity="0.7"/>
+                            <circle cx="10" cy="15" r="3" fill="#e76589" stroke="none" opacity="0.5"/>
+                            <circle cx="15" cy="10" r="1.5" fill="#b98795" stroke="none" opacity="0.8"/>
+                        </g>
+                        <g transform="translate(200, 400)" fill="none" stroke="#e76589">
+                            <path d="M0,0 C-20,10 -30,40 -10,50 C10,60 30,30 0,0" stroke-width="1" stroke-opacity="0.6" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M-5,15 C-15,30 -5,45 5,35 C15,25 5,10 -5,15" stroke-width="0.8" stroke-opacity="0.8"/>
+                            <circle cx="0" cy="25" r="1.5" fill="#e76589" stroke="none" opacity="0.7"/>
+                        </g>
+                        <g stroke="#b98795" stroke-width="0.8" fill="none" opacity="0.6">
+                            <path d="M350,200 C390,170 430,190 440,230 C420,250 380,240 350,200" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M350,200 L440,230" stroke-width="0.4" stroke-dasharray="2 2"/>
+                            <path d="M150,50 C120,20 80,30 70,70 C90,90 130,80 150,50" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M150,50 L70,70" stroke-width="0.4" stroke-dasharray="2 2"/>
+                            <path d="M250,300 C220,270 180,280 170,320 C190,340 230,330 250,300" fill="#e76589" fill-opacity="0.03"/>
+                            <path d="M250,300 L170,320" stroke-width="0.4" stroke-dasharray="2 2"/>
+                        </g>
+                        <path d="M500,680 C320,580 220,380 370,180 C470,30 270,-70 170,30" stroke="#e76589" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="0.1 8" opacity="0.75"/>
+                        <path d="M330,180 C230,130 130,230 80,180 C30,130 80,80 130,30" stroke="#b98795" stroke-width="1.5" stroke-linecap="round" fill="none" stroke-dasharray="0.1 6" opacity="0.6"/>
+                        <path d="M250,550 C260,540 265,545 255,555 C265,565 260,570 250,560 C240,550 245,545 255,535" stroke="#e76589" stroke-width="0.6" fill="none" opacity="0.5"/>
+                        <path d="M150,350 C160,340 165,345 155,355 C165,365 160,370 150,360 C140,350 145,345 155,335" stroke="#e76589" stroke = "#e76589" stroke-width="0.6" fill="none" opacity="0.5"/>
+                        <g fill="#e76589" stroke="none" opacity="0.6">
+                            <circle cx="450" cy="150" r="2"/>
+                            <circle cx="460" cy="160" r="1.5"/>
+                            <circle cx="440" cy="170" r="1"/>
+                            <circle cx="280" cy="100" r="2.5"/>
+                            <circle cx="290" cy="110" r="1.5"/>
+                            <circle cx="80" cy="300" r="2"/>
+                            <circle cx="90" cy="310" r="1"/>
+                            <circle cx="70" cy="320" r="1.5"/>
+                            <circle cx="250" cy="600" r="2"/>
+                            <circle cx="260" cy="615" r="1.2"/>
+                        </g>
+                    </svg>
+                </div>
 
-            <div class="col-lg-6 col-12">
-                <div class="zuz-scroll-content">
-                    <!-- Mobile Header (Hidden on Desktop because desktop has the pinned info block) -->
-                    <div class="section-title mb-4 px-4 pt-5 d-block d-lg-none text-center">
-                        <h3 class="sub-title" style="color: #b98795;">Featured Collection</h3>
-                        <h2 class="title">{{ featured_collection.name }}</h2>
+                <div class="container" style="position: relative; z-index: 2;">
+
+                    <!-- Section Title Start -->
+                    <div class="section-title2 text-center mb-5">
+                        <h2 class="title title-icon-both wow fadeInUp">What Our Clients Say</h2>
                     </div>
+                    <!-- Section Title End -->
 
-                    <div
-                        class="products row row-cols-md-2 row-cols-2 px-2 px-md-4 pb-4 pb-md-5 pt-lg-5 mt-lg-3">
-                        {% for product in featured_products %}
-                        <div class="col mb-4 mb-md-5">
-                            <div class="product">
-                                <div class="product-thumb">
-                                    <a href="{% url 'product_detail' product.slug %}" class="image">
-                                        {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
-                                        {% if first_img %}
-                                        <img src="{{ first_img.image.url }}" alt="{{ product.name }}"
-                                            style="border-radius: var(--zuz-image-radius);">
-                                        {% if second_img %}
-                                        <img class="image-hover" src="{{ second_img.image.url }}"
-                                            alt="{{ product.name }}"
-                                            style="border-radius: var(--zuz-image-radius);">
-                                        {% endif %}
-                                        {% else %}
-                                        <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
-                                            alt="{{ product.name }}"
-                                            style="border-radius: var(--zuz-image-radius);">
-                                        {% endif %}
-                                        {% endwith %}
-                                    </a>
-                                    <a href="#" class="add-to-wishlist hintT-left d-none d-md-block"
-                                        data-hint="Add to wishlist"><i class="far fa-heart"></i></a>
-                                </div>
-                                <div class="product-info mt-2 mt-md-3 text-center">
-                                    <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
-                                    <span class="price"
-                                        style="font-size: 14px; font-weight: 500; color: #999;">Bespoke
-                                        Custom Order</span>
+                    <div class="testimonial-carousel">
+                        {% for testimonial in testimonials %}
+                        <div class="col">
+                            <div class="testimonial">
+                                <p>{{ testimonial.review }}</p>
+                                <div class="author">
+                                    {% if testimonial.image %}
+                                    <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
+                                    {% else %}
                                     <div
-                                        class="product-buttons justify-content-center mt-2 d-none d-md-flex">
-                                        <a href="{% url 'product_detail' product.slug %}"
-                                            class="product-button hintT-top" data-hint="View Details"><i
-                                                class="fas fa-search"></i></a>
-                                        <a href="{% url 'contact' %}?product={{ product.name }}"
-                                            class="product-button hintT-top" data-hint="Inquire Now"><i
-                                                class="far fa-envelope"></i></a>
+                                        style="width: 70px; height: 70px; border-radius: 50%; background-color: #f5ecef; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 500; color: #b98795; margin-right: 20px;">
+                                        {{ testimonial.name|make_list|first|upper }}
+                                    </div>
+                                    {% endif %}
+                                    <div class="content">
+                                        <h6 class="name">{{ testimonial.name }}</h6>
+                                        <span class="title">Customer</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {% empty %}
-                        <div class="col-12">
-                            <p class="text-center">More products coming soon.</p>
+                        <div class="col-12 text-center py-5">
+                            <p class="text-muted">More testimonials coming soon.</p>
                         </div>
                         {% endfor %}
                     </div>
+
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!-- GSAP Pinned Section End -->
-<!-- Testimonials Section Start -->
-<div class="section section-padding">
-    <div class="container">
+            <!-- Testimonials Section End -->
+            <!-- Product Showcase Section Start -->
+            {% if showcase_product %}
+            <div class="section zuz-showcase-section">
+                <div class="row g-0">
 
-        <!-- Section Title Start -->
-        <div class="section-title2 text-center">
-            <h2 class="title wow fadeInUp">What Our Clients Say</h2>
-        </div>
-        <!-- Section Title End -->
+                    <!-- Left: Two-column sticky image grid -->
+                    <div class="col-lg-7 col-12">
+                        <div class="zuz-showcase-image-grid">
 
-        <div class="testimonial-carousel">
-            {% for testimonial in testimonials %}
-            <div class="col">
-                <div class="testimonial">
-                    <p>{{ testimonial.review }}</p>
-                    <div class="author">
-                        {% if testimonial.image %}
-                        <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
-                        {% else %}
-                        <div
-                            style="width: 70px; height: 70px; border-radius: 50%; background-color: #f5ecef; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 500; color: #b98795; margin-right: 20px;">
-                            {{ testimonial.name|make_list|first|upper }}
-                        </div>
-                        {% endif %}
-                        <div class="content">
-                            <h6 class="name">{{ testimonial.name }}</h6>
-                            <span class="title">Customer</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-            <div class="col-12 text-center py-5">
-                <p class="text-muted">More testimonials coming soon.</p>
-            </div>
-            {% endfor %}
-        </div>
+                            <!-- Left col: stays pinned -->
+                            <div class="zuz-showcase-col-left">
+                                <div class="zuz-showcase-sticky-img">
+                                    {% with imgs=showcase_product.images.all %}
+                                    {% if imgs.0 %}
+                                    <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
+                                    {% else %}
+                                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                        alt="{{ showcase_product.name }}">
+                                    {% endif %}
+                                    {% endwith %}
+                                </div>
+                            </div>
 
-    </div>
-</div>
-<!-- Testimonials Section End -->
-<!-- Product Showcase Section Start -->
-{% if showcase_product %}
-<div class="section zuz-showcase-section">
-    <div class="row g-0">
-
-        <!-- Left: Two-column sticky image grid -->
-        <div class="col-lg-7 col-12">
-            <div class="zuz-showcase-image-grid">
-
-                <!-- Left col: stays pinned -->
-                <div class="zuz-showcase-col-left">
-                    <div class="zuz-showcase-sticky-img">
-                        {% with imgs=showcase_product.images.all %}
-                        {% if imgs.0 %}
-                        <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
-                        {% else %}
-                        <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
-                            alt="{{ showcase_product.name }}">
-                        {% endif %}
-                        {% endwith %}
-                    </div>
-                </div>
-
-                <!-- Right col: scrolls through -->
-                <div class="zuz-showcase-col-right">
-                    {% with imgs=showcase_product.images.all %}
-                    {% if imgs.count > 1 %}
-                    {% for img in imgs %}
-                    {% if not forloop.first %}
-                    <img src="{{ img.image.url }}" alt="{{ showcase_product.name }}">
-                    {% endif %}
-                    {% endfor %}
-                    {% else %}
-                    <!-- Fallback if only 1 image: 
+                            <!-- Right col: scrolls through -->
+                            <div class="zuz-showcase-col-right">
+                                {% with imgs=showcase_product.images.all %}
+                                {% if imgs.count > 1 %}
+                                {% for img in imgs %}
+                                {% if not forloop.first %}
+                                <img src="{{ img.image.url }}" alt="{{ showcase_product.name }}">
+                                {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                <!-- Fallback if only 1 image: 
                         repeat the same image 2-3 times -->
-                    {% if imgs.0 %}
-                    <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
-                    <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
-                    {% else %}
-                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
-                        alt="{{ showcase_product.name }}">
-                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
-                        alt="{{ showcase_product.name }}">
-                    {% endif %}
-                    {% endif %}
-                    {% endwith %}
-                </div>
+                                {% if imgs.0 %}
+                                <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
+                                <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
+                                {% else %}
+                                <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                    alt="{{ showcase_product.name }}">
+                                <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                    alt="{{ showcase_product.name }}">
+                                {% endif %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
 
-            </div>
-        </div>
-
-        <!-- Right: Sticky product details -->
-        <div class="col-lg-5 col-12 zuz-showcase-details-col">
-            <div class="zuz-showcase-details">
-
-                <span class="collection-label">
-                    {{ showcase_product.category.collection.name }}
-                    &nbsp;/&nbsp;
-                    {{ showcase_product.category.name }}
-                </span>
-
-                <h2 class="product-title">
-                    {{ showcase_product.name }}
-                </h2>
-
-                <div class="product-desc">
-                    {{ showcase_product.description|safe }}
-                </div>
-
-                <hr class="divider">
-
-                {% if showcase_product.available_sizes %}
-                <div class="meta-row">
-                    <span class="meta-label">Sizes</span>
-                    <div>
-                        {% for size in showcase_product.available_sizes.split %}
-                        <span class="size-tag">
-                            {{ size|cut:"," }}
-                        </span>
-                        {% endfor %}
+                        </div>
                     </div>
-                </div>
-                {% endif %}
 
-                <div class="meta-row">
-                    <span class="meta-label">Gender</span>
-                    <span style="font-size:14px; color:#333;">
-                        {{ showcase_product.get_gender_display }}
-                    </span>
-                </div>
+                    <!-- Right: Sticky product details -->
+                    <div class="col-lg-5 col-12 zuz-showcase-details-col">
+                        <div class="zuz-showcase-details">
 
-                <hr class="divider">
+                            <span class="collection-label">
+                                {{ showcase_product.category.collection.name }}
+                                &nbsp;/&nbsp;
+                                {{ showcase_product.category.name }}
+                            </span>
 
-                <div class="showcase-btns">
-                    <a href="{% url 'product_detail' showcase_product.slug %}"
-                        class="btn btn-dark btn-outline-hover-dark">
-                        View Details
-                    </a>
-                    <a href="{% url 'contact' %}?product={{ showcase_product.name }}"
-                        class="btn btn-outline-dark btn-hover-dark">
-                        <i class="far fa-envelope"></i> Enquire
-                    </a>
-                </div>
+                            <h2 class="product-title">
+                                {{ showcase_product.name }}
+                            </h2>
 
-            </div>
-        </div>
+                            <div class="product-desc">
+                                {{ showcase_product.description|safe }}
+                            </div>
 
-    </div>
-</div>
-{% endif %}
-<!-- Product Showcase Section End -->
-<!-- Editorial Blog Section Start -->
-<div class="section section-padding" style="background-color: #fdfdfd;">
-    <div class="container">
-        <div class="section-title2 text-center mb-5">
-            <span class="sub-title" style="font-family: 'Modesty', cursive; color: #b98795; font-size: 42px; text-transform: none; font-weight: normal; letter-spacing: 1px; line-height: 1;">The Journal</span>
-            <h2 class="title" style="margin-top: 10px;">
-                Editorial Updates
-            </h2>
-        </div>
+                            <hr class="divider">
 
-        <!-- Desktop/Tablet Layout (grid) -->
-        <div class="editorial-blog-layout desktop-blog-layout">
-            {% for blog in latest_blogs %}
-
-            {% if forloop.first %}
-            <div class="featured-blog-sticky">
-                <div class="featured-blog-card wow fadeInUp">
-                    {% if blog.image %}
-                    <div class="image-wrapper">
-                        <a href="{% url 'blog_detail' blog.slug %}">
-                            <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="featured-image">
-                        </a>
-                    </div>
-                    {% endif %}
-                    <div class="content mt-4">
-                        <span class="meta-date">{{ blog.created_at|date:"F d, Y" }}</span>
-                        <h3 class="title mt-2"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h3>
-                        <p class="desc mt-3">{{ blog.description|safe|truncatewords:30 }}</p>
-                        <a href="{% url 'blog_detail' blog.slug %}"
-                            class="btn btn-dark btn-outline-hover-dark mt-3">
-                            Read Full Story
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Start right column container -->
-            <div class="editorial-blog-list">
-                {% else %}
-
-                <div class="small-blog-card wow fadeInUp">
-                    {% if blog.image %}
-                    <div class="image-wrapper">
-                        <a href="{% url 'blog_detail' blog.slug %}">
-                            <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="small-image">
-                        </a>
-                    </div>
-                    {% endif %}
-                    <div class="content mt-3">
-                        <span class="meta-date">{{ blog.created_at|date:"F d, Y" }}</span>
-                        <h5 class="title mt-2"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h5>
-                        <p class="desc mt-2 mb-0">{{ blog.description|safe|truncatewords:15 }}</p>
-                        <a href="{% url 'blog_detail' blog.slug %}" class="read-more-link">Explore</a>
-                    </div>
-                </div>
-
-                {% endif %}
-
-                {% if forloop.last %}
-            </div>
-            <!-- End right column container -->
-            {% endif %}
-
-            {% empty %}
-            <div class="col-12 text-center py-5">
-                <p class="text-muted">No journal entries available.</p>
-            </div>
-            {% endfor %}
-        </div>
-
-        <!-- Mobile Carousel Layout -->
-        <div class="mobile-blog-carousel">
-            <div class="swiper-container blog-mobile-swiper">
-                <div class="swiper-wrapper">
-                    {% for blog in latest_blogs %}
-                    <div class="swiper-slide">
-                        <div class="small-blog-card">
-                            {% if blog.image %}
-                            <div class="image-wrapper">
-                                <a href="{% url 'blog_detail' blog.slug %}">
-                                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}"
-                                        class="small-image">
-                                </a>
+                            {% if showcase_product.available_sizes %}
+                            <div class="meta-row">
+                                <span class="meta-label">Sizes</span>
+                                <div>
+                                    {% for size in showcase_product.available_sizes.split %}
+                                    <span class="size-tag">
+                                        {{ size|cut:"," }}
+                                    </span>
+                                    {% endfor %}
+                                </div>
                             </div>
                             {% endif %}
-                            <div class="content">
-                                <span class="meta-date">{{ blog.created_at|date:"M d, Y" }}</span>
-                                <h5 class="title"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title|truncatechars:50 }}</a></h5>
-                                <p class="desc">{{ blog.description|safe|truncatewords:12 }}</p>
-                                <a href="{% url 'blog_detail' blog.slug %}" class="read-more-link">Explore
-                                    &rarr;</a>
+
+                            <div class="meta-row">
+                                <span class="meta-label">Gender</span>
+                                <span style="font-size:14px; color:#333;">
+                                    {{ showcase_product.get_gender_display }}
+                                </span>
                             </div>
+
+                            <hr class="divider">
+
+                            <div class="showcase-btns">
+                                <a href="{% url 'product_detail' showcase_product.slug %}"
+                                    class="btn btn-dark btn-outline-hover-dark">
+                                    View Details
+                                </a>
+                                <a href="{% url 'contact' %}?product={{ showcase_product.name }}"
+                                    class="btn btn-outline-dark btn-hover-dark">
+                                    <i class="far fa-envelope"></i> Enquire
+                                </a>
+                            </div>
+
                         </div>
                     </div>
-                    {% empty %}
-                    <div class="swiper-slide">
-                        <div class="small-blog-card">
-                            <div class="content">
-                                <p class="text-muted">No journal entries available.</p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+
                 </div>
             </div>
-            <!-- Pagination Dots -->
-            <div class="mobile-blog-pagination"></div>
-        </div>
+            {% endif %}
+            <!-- Product Showcase Section End -->
+            <!-- Editorial Blog Section Start -->
+            <div class="section section-padding" style="background-color: #fdfdfd;">
+                <div class="container">
+                    <div class="section-title2 text-center mb-5">
+                        <span class="sub-title"
+                            style="font-family: 'Modesty', cursive; color: #b98795; font-size: 42px; text-transform: none; font-weight: normal; letter-spacing: 1px; line-height: 1;">The
+                            Journal</span>
+                        <h2 class="title title-icon-both wow fadeInUp" style="margin-top: 10px;">
+                            Editorial Updates
+                        </h2>
+                    </div>
 
-    </div>
-</div>
-<!-- Editorial Blog Section End -->
+                    <!-- Desktop/Tablet Layout (grid) -->
+                    <div class="editorial-blog-layout desktop-blog-layout">
+                        {% for blog in latest_blogs %}
+
+                        {% if forloop.first %}
+                        <div class="featured-blog-sticky">
+                            <div class="featured-blog-card wow fadeInUp">
+                                {% if blog.image %}
+                                <div class="image-wrapper">
+                                    <a href="{% url 'blog_detail' blog.slug %}">
+                                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="featured-image">
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="content mt-4">
+                                    <span class="meta-date">{{ blog.created_at|date:"F d, Y" }}</span>
+                                    <h3 class="title mt-2"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h3>
+                                    <p class="desc mt-3">{{ blog.description|safe|truncatewords:30 }}</p>
+                                    <a href="{% url 'blog_detail' blog.slug %}"
+                                        class="btn btn-dark btn-outline-hover-dark mt-3">
+                                        Read Full Story
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Start right column container -->
+                        <div class="editorial-blog-list">
+                            {% else %}
+
+                            <div class="small-blog-card wow fadeInUp">
+                                {% if blog.image %}
+                                <div class="image-wrapper">
+                                    <a href="{% url 'blog_detail' blog.slug %}">
+                                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="small-image">
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="content mt-3">
+                                    <span class="meta-date">{{ blog.created_at|date:"F d, Y" }}</span>
+                                    <h5 class="title mt-2"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h5>
+                                    <p class="desc mt-2 mb-0">{{ blog.description|safe|truncatewords:15 }}</p>
+                                    <a href="{% url 'blog_detail' blog.slug %}" class="read-more-link">Explore</a>
+                                </div>
+                            </div>
+
+                            {% endif %}
+
+                            {% if forloop.last %}
+                        </div>
+                        <!-- End right column container -->
+                        {% endif %}
+
+                        {% empty %}
+                        <div class="col-12 text-center py-5">
+                            <p class="text-muted">No journal entries available.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Mobile Carousel Layout -->
+                    <div class="mobile-blog-carousel">
+                        <div class="swiper-container blog-mobile-swiper">
+                            <div class="swiper-wrapper">
+                                {% for blog in latest_blogs %}
+                                <div class="swiper-slide">
+                                    <div class="small-blog-card">
+                                        {% if blog.image %}
+                                        <div class="image-wrapper">
+                                            <a href="{% url 'blog_detail' blog.slug %}">
+                                                <img src="{{ blog.image.url }}" alt="{{ blog.title }}"
+                                                    class="small-image">
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        <div class="content">
+                                            <span class="meta-date">{{ blog.created_at|date:"M d, Y" }}</span>
+                                            <h5 class="title"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title|truncatechars:50 }}</a></h5>
+                                            <p class="desc">{{ blog.description|safe|truncatewords:12 }}</p>
+                                            <a href="{% url 'blog_detail' blog.slug %}" class="read-more-link">Explore
+                                                &rarr;</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <div class="swiper-slide">
+                                    <div class="small-blog-card">
+                                        <div class="content">
+                                            <p class="text-muted">No journal entries available.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Pagination Dots -->
+                        <div class="mobile-blog-pagination"></div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Editorial Blog Section End -->
             {% endblock %}
 
             {% block extra_js %}
