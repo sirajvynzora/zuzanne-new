@@ -44,7 +44,79 @@
     <link rel="stylesheet" href="{% static 'frontend/assets/css/plugins/plugins.min.css' %}"> -->
     <link rel="stylesheet" href="{% static 'frontend/assets/css/style.min.css' %}">
 
+    <style>
+        /* Global Floral Background SVG Styles */
+        .zuz-floral-section {
+            position: relative;
+            overflow-x: clip; 
+            isolation: isolate;
+            background: radial-gradient(circle at top right, rgba(231,101,137,0.04), transparent 45%), #fff;
+        }
 
+        .zuz-floral-bg {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.12; /* Dimmed slightly for inner pages */
+            transition: transform 0.8s ease;
+        }
+
+        .zuz-floral-bg img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: blur(0.2px) drop-shadow(0 0 20px rgba(231,101,137,0.06));
+        }
+
+        .zuz-floral-section .zuz-bg-top-right {
+            width: 850px;
+            top: -140px;
+            right: -180px;
+        }
+
+        .zuz-floral-section .zuz-bg-top-left {
+            width: 750px;
+            top: -160px;
+            left: -200px;
+            transform: scaleX(-1) rotate(15deg);
+            opacity: 0.12;
+        }
+
+        .zuz-floral-section .zuz-bg-bottom-left {
+            width: 700px;
+            bottom: -180px;
+            left: -160px;
+            transform: scaleX(-1) rotate(-8deg);
+            opacity: 0.1;
+        }
+
+        .zuz-floral-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        @media(max-width:991px) {
+            .zuz-floral-section .zuz-bg-top-right {
+                width: 340px;
+                top: -40px;
+                right: -120px;
+                opacity: 0.12;
+            }
+            .zuz-floral-section .zuz-bg-top-left {
+                width: 300px;
+                top: -40px;
+                left: -100px;
+                opacity: 0.08;
+            }
+            .zuz-floral-section .zuz-bg-bottom-left {
+                width: 260px;
+                left: -80px;
+                bottom: -80px;
+                opacity: 0.07;
+            }
+        }
+    </style>
 
     {% block extra_css %}
     {% endblock %}
