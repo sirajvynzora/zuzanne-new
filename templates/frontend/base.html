@@ -439,7 +439,7 @@
                 position: relative !important;
             }
 
-            /* Card-style dropdown panel */
+            /* Card-style dropdown panel — Glassmorphism */
             .site-main-menu ul > li.zuz-shop-mega 
                 > ul.sub-menu.zuz-mega-panel {
                 position: absolute !important;
@@ -449,9 +449,14 @@
                 min-width: unset !important;
                 top: calc(100% + 12px) !important;
                 padding: 36px 40px !important;
-                background: #fff !important;
-                box-shadow: 0 12px 40px rgba(0,0,0,0.12) !important;
-                border: 1px solid #f0f0f0 !important;
+                background: rgba(255, 248, 249, 0.20) !important;
+                backdrop-filter: blur(24px) saturate(180%) !important;
+                -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+                box-shadow: 
+                    0 8px 32px rgba(185, 135, 149, 0.18),
+                    0 2px 8px rgba(0, 0, 0, 0.06),
+                    inset 0 1px 0 rgba(255,255,255,0.9) !important;
+                border: 1px solid rgba(255, 255, 255, 0.55) !important;
                 border-radius: 16px !important;
                 display: none;
                 text-align: left !important;
@@ -550,7 +555,7 @@
 
             .site-main-menu ul > li.zuz-shop-mega .zuz-cat-list li a {
                 font-size: 15px !important;
-                color: #555 !important;
+                color: #000 !important;
                 text-decoration: none !important;
                 padding: 0 !important;
                 margin: 0 !important;
