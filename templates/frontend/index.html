@@ -233,6 +233,19 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
         margin-bottom: var(--space-xl) !important;
     }
 
+    /* Zuzanne Ritual Products — Deck Spread Animation */
+    @media (min-width: 992px) {
+        .zuz-ritual-products {
+            padding: 20px 0;
+            /* Overflow must be visible so stacked cards can breathe */
+            overflow: visible;
+        }
+        .zuz-ritual-card {
+            will-change: transform, opacity;
+            transform-origin: center center;
+        }
+    }
+
     /* === Main Header — Clean, visible version === */
     .zuz-home-header {
         position: absolute;
@@ -2307,21 +2320,22 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
         </div>
         <!-- Product Tab List End -->
 
+        <div class="zuz-ritual-products">
         <div class="tab-content">
             <div class="tab-pane fade show active" id="product-all">
                 <!-- Products Start -->
-                <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
+                <div class="products row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-2">
                     {% for product in products %}
                     {% if forloop.counter0|divisibleby:4 %}
-                    <div class="col wow fadeInUp" data-wow-delay="0s">
+                    <div class="col">
                         {% elif forloop.counter0|add:"3"|divisibleby:4 %}
-                        <div class="col wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="col">
                             {% elif forloop.counter0|add:"2"|divisibleby:4 %}
-                            <div class="col wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="col">
                                 {% else %}
-                                <div class="col wow fadeInUp" data-wow-delay="0.3s">
+                                <div class="col">
                                     {% endif %}
-                                    <div class="product">
+                                    <div class="product zuz-ritual-card">
                                         <div class="product-thumb">
                                             <a href="{% url 'product_detail' product.slug %}" class="image">
                                                 {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
@@ -2342,8 +2356,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                         </div>
                                         <div class="product-info">
                                             <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
-                                            <span class="price"
-                                                style="font-size: 14px; font-weight: 500; color: #999;">{{ product.description|striptags|truncatewords:6 }}</span>
+
                                             <div class="product-buttons d-none d-md-flex">
                                                 <a href="{% url 'product_detail' product.slug %}"
                                                     class="product-button hintT-top" data-hint="View Details"><i
@@ -2366,11 +2379,11 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
                         {% for col in collections %}
                         <div class="tab-pane fade" id="product-{{ col.slug }}">
-                            <div class="products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
+                            <div class="products row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-2">
                                 {% for cat in col.categories.all %}
                                 {% for product in cat.products.all|slice:":5" %}
                                 <div class="col">
-                                    <div class="product">
+                                    <div class="product zuz-ritual-card">
                                         <div class="product-thumb">
                                             <a href="{% url 'product_detail' product.slug %}" class="image">
                                                 {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
@@ -2391,8 +2404,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                         </div>
                                         <div class="product-info">
                                             <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
-                                            <span class="price"
-                                                style="font-size: 14px; font-weight: 500; color: #999;">{{ product.description|striptags|truncatewords:6 }}</span>
+
                                             <div class="product-buttons d-none d-md-flex">
                                                 <a href="{% url 'product_detail' product.slug %}"
                                                     class="product-button hintT-top" data-hint="View Details"><i
@@ -2409,6 +2421,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                             </div>
                         </div>
                         {% endfor %}
+                    </div>
                     </div>
                 </div>
             </section>
@@ -2567,8 +2580,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                             </div>
                                             <div class="product-info mt-2 mt-md-3 text-center">
                                                 <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
-                                                <span class="price"
-                                                    style="font-size: 14px; font-weight: 500; color: #999;">{{ product.description|striptags|truncatewords:6 }}</span>
+
                                                 <div
                                                     class="product-buttons justify-content-center mt-2 d-none d-md-flex">
                                                     <a href="{% url 'product_detail' product.slug %}"
@@ -3037,11 +3049,162 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                             start: "top top", // Pin when the top of the section hits the top of the viewport
                             end: "bottom bottom", // Unpin when the bottom of the right-side content scrolls past
                             pin: ".zuz-pin-wrapper", // Lock the left image wrapper in place
-                            pinSpacing: true,
+                                pinSpacing: true,
                             markers: false // Set to true if you ever need to debug the start/end lines
                         });
                     });
                 });
+            </script>
+
+            <script>
+                (function () {
+                    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+                    gsap.registerPlugin(ScrollTrigger);
+
+                    var mm = gsap.matchMedia();
+
+                    mm.add("(min-width: 992px)", function () {
+
+                        var wrapper = document.querySelector(".zuz-ritual-products");
+                        if (!wrapper) return;
+
+                        function buildAnimation() {
+                            // Kill any previously created ritual triggers
+                            ScrollTrigger.getAll().forEach(function (t) {
+                                if (t.vars && t.vars._zuzRitual) t.kill();
+                            });
+
+                            var cards = gsap.utils.toArray(
+                                ".zuz-ritual-products .tab-pane.active .zuz-ritual-card"
+                            );
+                            if (!cards.length) return;
+
+                            // Horizontal center of the wrapper
+                            var wrapRect = wrapper.getBoundingClientRect();
+                            var wrapCx   = wrapRect.left + wrapRect.width / 2;
+
+                            // How far each card's center is from the wrapper center
+                            var spreadX = cards.map(function (card) {
+                                var r = card.getBoundingClientRect();
+                                return (r.left + r.width / 2) - wrapCx;
+                            });
+
+                            // Subtle deck offsets — refined for Zuzanne aesthetic
+                            /* More disordered deck offsets — larger Y shifts and steeper
+                               rotations make the stacked visual clearly readable before
+                               cards bloom into the clean grid. */
+                            var deckY   = [  0, -22, 18, -14, 26, -18, 12, -24, 16, -10 ];
+                            var deckRot = [ -9,   6, -7,  10,  -5,  8, -11,  4,  -8,   7 ];
+
+                            /* ── Group cards into visual rows by their scrollY-adjusted top ── */
+                            var scrollY = window.scrollY || window.pageYOffset;
+                            var rows    = [];
+                            var rowMap  = {};
+
+                            cards.forEach(function (card, i) {
+                                var absTop = Math.round(card.getBoundingClientRect().top + scrollY);
+                                // Bucket within ±10px to absorb sub-pixel differences
+                                var bucket = Math.round(absTop / 10) * 10;
+                                if (!rowMap[bucket]) {
+                                    rowMap[bucket] = { absTop: absTop, indices: [] };
+                                    rows.push(rowMap[bucket]);
+                                }
+                                rowMap[bucket].indices.push(i);
+                            });
+
+                            rows.sort(function (a, b) { return a.absTop - b.absTop; });
+
+                            /* ── Per-row ScrollTrigger windows ──
+                               Row 0 opens earliest and fastest.
+                               Each subsequent row's window starts and ends later
+                               in scroll space, so lower rows are always "behind"
+                               the rows above them — exactly the progressive cascade. */
+                            var vh = window.innerHeight;
+
+                            rows.forEach(function (row, ri) {
+                                var rowCards   = row.indices.map(function (i) { return cards[i]; });
+                                var rowSpreadX = row.indices.map(function (i) { return spreadX[i]; });
+
+                                /* Pre-compute per-card collapsed-state values so they can
+                                   be referenced in both the SET call and the closing tween. */
+                                var fromX   = rowCards.map(function (c, ci) {
+                                    return -(rowSpreadX[ci] * 0.88);
+                                });
+                                var fromY   = row.indices.map(function (i) {
+                                    return deckY[i % deckY.length];
+                                });
+                                var fromRot = row.indices.map(function (i) {
+                                    return deckRot[i % deckRot.length];
+                                });
+
+                                /* Snap cards to their collapsed state immediately —
+                                   they should already appear stacked before the trigger fires. */
+                                gsap.set(rowCards, {
+                                    x:        function (ci) { return fromX[ci]; },
+                                    y:        function (ci) { return fromY[ci]; },
+                                    rotation: function (ci) { return fromRot[ci]; },
+                                    scale:    0.94,
+                                    opacity:  0.88   /* stacked cards are visible — not hidden */
+                                });
+
+                                /* Scroll window anchored to this row's own first card.
+                                   start "top 80%" → card enters the lower viewport.
+                                   end   "top 10%"  → card is near the top but still visible.
+                                   This gives the bloom a full sweep of the visible area to
+                                   complete, so it feels slow and handcrafted — not rushed. */
+                                var tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        _zuzRitual: true,
+                                        trigger:    rowCards[0],
+                                        start:      "top 80%",
+                                        end:        "top 10%",
+                                        scrub:      2.5
+                                    }
+                                });
+
+                                /* Phase 1 — 15% of scroll window ─────────────────────────
+                                   Brief pause: cards are already visible (opacity 0.88).
+                                   Just enough delay so the user sees the stacked state
+                                   before the bloom begins. */
+                                tl.to(rowCards, {
+                                    opacity:  1,
+                                    duration: 0.15,
+                                    ease:     "none"
+                                });
+
+                                /* Phase 2 — 85% of scroll window ─────────────────────────
+                                   The full bloom. Cards slowly spread from stacked → grid
+                                   across the card's entire visible journey on screen.
+                                   Once fully open, they STAY open — no Phase 3.
+                                   Scrub handles the reverse automatically when scrolling
+                                   back up: each row's trigger reverses in bottom-to-top
+                                   order, giving the exact cascade-in-reverse the user wants. */
+                                tl.to(rowCards, {
+                                    x:        0,
+                                    y:        0,
+                                    rotation: 0,
+                                    scale:    1,
+                                    opacity:  1,
+                                    ease:     "power2.out",
+                                    duration: 0.85
+                                });
+                            });
+                        }
+
+                        buildAnimation();
+
+                        // Re-run on tab switch so collection tabs also animate
+                        document.querySelectorAll(
+                            "[data-bs-toggle='tab'][href^='#product-'], " +
+                            "[data-toggle='tab'][href^='#product-']"
+                        ).forEach(function (tab) {
+                            tab.addEventListener("shown.bs.tab", function () {
+                                setTimeout(buildAnimation, 60);
+                            });
+                        });
+                    });
+                })();
             </script>
 
             <script>
