@@ -5,6 +5,13 @@
 {% block seo_description %}Buy or customize the {{ product.name }} at Zuzanne. Premium handcrafted design perfect for Christian baptism, communion, or special family ceremonies.{% endblock %}
 
 {% block content %}
+<style>
+    @media (min-width: 992px) {
+        .product-summery .product-description {
+            margin-bottom: 15px !important;
+        }
+    }
+</style>
 <!-- Page Title/Header Start -->
     <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/new_images/hero_section_inner.png' %}">
         <div class="container">
@@ -64,23 +71,16 @@
                             {{ product.description|default:""|safe }}
                         </div>
                         <div class="product-variations">
-                            <table>
-                                <tbody>
-                                    {% if sizes_list %}
-                                    <tr>
-                                        <td class="label"><span>Sizes</span></td>
-                                        <td class="value">
-                                            <div class="product-sizes">
-                                                {% for size in sizes_list %}
-                                                <a href="#">{{ size }}</a>
-                                                {% endfor %}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {% endif %}
-
-                                </tbody>
-                            </table>
+                            {% if sizes_list %}
+                            <div style="margin: 18px 0;">
+                                <p style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 12px;">Sizes</p>
+                                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                    {% for size in sizes_list %}
+                                    <span style="padding: 8px 20px; border: 1.5px solid #222; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #222;">{{ size }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
                         </div>
                         <div class="product-buttons">
                             <a href="{% url 'contact' %}?product={{ product.name }}" class="btn btn-dark btn-outline-hover-dark"><i class="far fa-envelope"></i> Enquire Now</a>
