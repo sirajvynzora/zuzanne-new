@@ -5,6 +5,82 @@
 {% block seo_description %}Learn about Zuzanne, a premium Christian ceremonial clothing brand. Discover our story of crafting premium, faith-inspired, and handcrafted baptism and holy communion wear.{% endblock %}
 
 {% block extra_css %}
+<style>
+    .video-banner {
+        position: relative;
+        min-height: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .zuz-video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .zuz-video-bg iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: 177.77vmax;
+        height: 56.25vmax;
+        transform: translate(-50%, -50%);
+        opacity: 0.85;
+    }
+
+    /* Dark overlay to make the play button pop and ensure contrast */
+    .video-banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.25);
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .video-banner .content {
+        position: relative;
+        z-index: 3;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-banner .content a.video-popup {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .video-banner .content a.video-popup img {
+        width: 94px;
+        height: 94px;
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border-radius: 50% !important;
+    }
+
+    .video-banner .content a.video-popup:hover img {
+        transform: scale(1.12);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -109,10 +185,17 @@
     <!-- Video Banner Section Start -->
     <div class="section">
         <div class="video-banner" data-bg-image="{% static 'frontend/assets/new_images/video-banner-1.png' %}">
+            <!-- YOUTUBE BACKGROUND VIDEO PLACEHOLDER (Uncomment and replace VIDEO_ID when ready) -->
+            <!-- 
+            <div class="zuz-video-bg">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE?autoplay=1&mute=1&loop=1&playlist=YOUR_VIDEO_ID_HERE&controls=0&showinfo=0&rel=0&enablejsapi=1&iv_load_policy=3&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            -->
+            
             <div class="content wow fadeInUp" data-wow-duration="1.6s" data-wow-delay="0.2s">
-                <h2 class="title">MADE WITH <span>LOVE</span> & PRAYERS</h2>
-                <a href="https://www.youtube.com/watch?v=1jSsy7DtYgc" class="video-popup">
-                    <img src="{% static 'frontend/assets/images/icons/button-play.webp' %}" alt="">
+                <!-- PLAY BUTTON POPUP LINK PLACEHOLDER (Replace URL with your YouTube video link when ready) -->
+                <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE" class="video-popup">
+                    <img src="{% static 'frontend/assets/images/icons/button-play.webp' %}" alt="Play Button">
                 </a>
             </div>
         </div>
@@ -270,80 +353,7 @@
     </div>
     <!-- Instagram Section End -->
 
-    <!-- FAQs Section Start -->
-    <div class="section section-padding pt-0">
-        <div class="container">
-            <div class="row row-cols-lg-2 row-cols-1 align-items-center learts-mb-n40">
-
-                <div class="col-lg-4 col-12 learts-mb-40 wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="0.1s">
-                    <div class="about-us-faq-image" style="overflow: hidden; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-                        <img src="{% static 'frontend/assets/new_images/about-5.png' %}" alt="Zuzanne Baptism Ceremony Handcrafts" style="width: 100%; height: auto; display: block; object-fit: cover;">
-                    </div>
-                </div>
-
-                <div class="col learts-mb-40 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="0.2s">
-                    <!-- Section Title Start -->
-                    <div class="section-title2 learts-mb-30">
-                        <h2 class="title wow fadeInUp" style="font-size: 32px; font-weight: 500;" data-wow-duration="1.3s" data-wow-delay="0.1s">Frequently Asked Questions</h2>
-                        <p class="desc" style="color: #888; font-size: 15px; margin-top: 10px;">Everything you need to know about our baptism, communion, and ceremonial creations.</p>
-                    </div>
-                    <!-- Section Title End -->
-                    <div class="row">
-                        <div class="col">
-                            <div class="accordion" id="faq-accordion">
-                                <div class="card active wow fadeInUp" data-wow-duration="1.0s" data-wow-delay="0.1s">
-                                    <div class="card-header">
-                                        <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#faq-accordion-1">Are the gowns and suits fully customizable?</button>
-                                    </div>
-
-                                    <div id="faq-accordion-1" class="collapse show" data-bs-parent="#faq-accordion">
-                                        <div class="card-body">
-                                            <p>Yes, absolutely! Every baptism gown, communion dress, and boy's suit created by Teena Juby at Zuzanne is tailored to your child's exact measurements and design preferences, ensuring a perfect fit and a unique style for their special day.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card wow fadeInUp" data-wow-duration="1.0s" data-wow-delay="0.2s">
-                                    <div class="card-header">
-                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#faq-accordion-2">How far in advance should I place a custom order?</button>
-                                    </div>
-
-                                    <div id="faq-accordion-2" class="collapse" data-bs-parent="#faq-accordion">
-                                        <div class="card-body">
-                                            <p>Since each ceremonial outfit is handcrafted with premium fabrics, intricate embroidery, and personalized details, we recommend placing your order at least 3 to 4 weeks prior to the ceremony date to allow ample time for tailoring and transit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card wow fadeInUp" data-wow-duration="1.0s" data-wow-delay="0.3s">
-                                    <div class="card-header">
-                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#faq-accordion-3">What materials and fabrics do you use?</button>
-                                    </div>
-
-                                    <div id="faq-accordion-3" class="collapse" data-bs-parent="#faq-accordion">
-                                        <div class="card-body">
-                                            <p>We source only the finest, softest materials suitable for sensitive skin. This includes organic silks, soft premium cotton linters, imported French laces, delicate satins, and lightweight breathable linens.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card wow fadeInUp" data-wow-duration="1.0s" data-wow-delay="0.4s">
-                                    <div class="card-header">
-                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#faq-accordion-4">Can you create matching baptism accessories?</button>
-                                    </div>
-
-                                    <div id="faq-accordion-4" class="collapse" data-bs-parent="#faq-accordion">
-                                        <div class="card-body">
-                                            <p>Yes! We offer coordinated baptismal sets that include matching booties, bonnets, customized candles, embroidered baptism cloths, oil bottles, and keepsake boxes tailored to match the gown's lace and design perfectly.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- FAQs Section End -->
+   
 {% endblock %}
 
 {% block extra_js %}
