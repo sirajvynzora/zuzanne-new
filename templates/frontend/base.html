@@ -93,7 +93,7 @@
 
         .zuz-floral-section .container {
             position: relative;
-            z-index: 2;
+     w       z-index: 2;
         }
 
         @media(max-width:991px) {
@@ -1019,9 +1019,7 @@
                         <div class="header-search d-none">
                             <a href="#offcanvas-search" class="offcanvas-toggle"><i class="fas fa-search"></i></a>
                         </div>
-                        <div class="header-wishlist d-none">
-                            <a href="#offcanvas-wishlist" class="offcanvas-toggle"><span class="wishlist-count">3</span><i class="far fa-heart"></i></a>
-                        </div>
+
                         <div class="header-cart d-none">
                             <a href="#offcanvas-cart" class="offcanvas-toggle"><span class="cart-count">3</span><i class="fas fa-shopping-cart"></i></a>
                         </div>
@@ -1113,49 +1111,7 @@
     </div>
     <!-- OffCanvas Search End -->
 
-    <!-- OffCanvas Wishlist Start -->
-    <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
-        <div class="inner">
-            <div class="head">
-                <span class="title">Wishlist</span>
-                <button class="offcanvas-close">×</button>
-            </div>
-            <div class="body customScroll">
-                <ul class="minicart-product-list">
-                    <li>
-                        <a href="#" class="image"><img src="{% static 'frontend/assets/images/product/cart-product-1.webp' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="#" class="title">Lace Baptism Gown</a>
-                            <span class="quantity-price">1 x <span class="amount">$120.00</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="image"><img src="{% static 'frontend/assets/images/product/cart-product-2.webp' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="#" class="title">Silk Christening Romper</a>
-                            <span class="quantity-price">1 x <span class="amount">$85.00</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" class="image"><img src="{% static 'frontend/assets/images/product/cart-product-3.webp' %}" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="#" class="title">Holy Communion Veil</a>
-                            <span class="quantity-price">1 x <span class="amount">$45.00</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="foot">
-                <div class="buttons">
-                    <a href="/unused/wishlist.html" class="btn btn-dark btn-hover-primary">view wishlist</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- OffCanvas Wishlist End -->
+
 
     <!-- OffCanvas Cart Start -->
     <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
@@ -1346,7 +1302,6 @@
                                 </table>
                             </div>
                             <div class="product-buttons">
-                                <a href="#" class="btn btn-icon btn-outline-body btn-hover-dark"><i class="far fa-heart"></i></a>
                                 <a href="#" class="btn btn-dark btn-outline-hover-dark"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                                 <a href="#" class="btn btn-icon btn-outline-body btn-hover-dark"><i class="fas fa-random"></i></a>
                             </div>

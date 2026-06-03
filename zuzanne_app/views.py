@@ -456,6 +456,17 @@ def shop_view(request, collection_slug=None, category_slug=None):
         products = products.filter(category=category)
         shop_title = category.name
         
+    # Handle Sorting
+    current_sort = request.GET.get('sort', 'latest')
+    if current_sort == 'oldest':
+        products = products.order_by('created_at')
+    elif current_sort == 'name_asc':
+        products = products.order_by('name')
+    elif current_sort == 'name_desc':
+        products = products.order_by('-name')
+    else:  # 'latest' or default
+        products = products.order_by('-created_at')
+        
     context = {
         "products": products,
         "collections": collections,
@@ -463,6 +474,7 @@ def shop_view(request, collection_slug=None, category_slug=None):
         "collection": collection,
         "category": category,
         "shop_title": shop_title,
+        "current_sort": current_sort,
     }
     return render(request, "frontend/shop.html", context)
 
