@@ -769,6 +769,78 @@
         color: #fff !important;
     }
     </style>
+
+    <style>
+    /* Zuzanne specific conflict-free reveal animation */
+    .zuz-reveal {
+        position: relative;
+        display: inline-flex;
+        visibility: hidden;
+        overflow: hidden;
+    }
+    .zuz-reveal.is-revealed {
+        visibility: visible;
+        animation: zuzRevealContainer 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+    .zuz-reveal.is-revealed img {
+        animation: zuzRevealImage 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+
+    @keyframes zuzRevealContainer {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(0); }
+    }
+    @keyframes zuzRevealImage {
+        from { transform: translateX(100%); }
+        to { transform: translateX(0); }
+    }
+
+    /* Zuzanne specific image shimmer */
+    .zuz-image-anime {
+        position: relative;
+        overflow: hidden;
+    }
+    .zuz-image-anime::after {
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 0%;
+        left: 50%;
+        top: 50%;
+        background-color: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%) rotate(-45deg);
+        z-index: 1;
+        pointer-events: none;
+    }
+    .zuz-image-anime:hover::after {
+        height: 250%;
+        transition: all 600ms linear;
+        background-color: transparent;
+    }
+    </style>
+
+    <script>
+    /* IntersectionObserver for zuz-reveal to avoid GSAP conflicts */
+    document.addEventListener("DOMContentLoaded", function() {
+        const revealElements = document.querySelectorAll('.zuz-reveal');
+        if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            revealElements.forEach(el => observer.observe(el));
+        } else {
+            // Fallback
+            revealElements.forEach(el => el.classList.add('is-revealed'));
+        }
+    });
+    </script>
+
     <link rel="stylesheet" href="{% static 'frontend/assets/css/animate.css' %}">
 <style>
     /* Snappy WOW animation overrides */

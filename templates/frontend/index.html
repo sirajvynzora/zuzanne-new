@@ -2337,7 +2337,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                     {% endif %}
                                     <div class="product zuz-ritual-card">
                                         <div class="product-thumb">
-                                            <a href="{% url 'product_detail' product.slug %}" class="image">
+                                            <a href="{% url 'product_detail' product.slug %}" class="image zuz-image-anime zuz-reveal" style="display: block;">
                                                 {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
                                                 {% if first_img %}
                                                 <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
@@ -2385,7 +2385,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                 <div class="col">
                                     <div class="product zuz-ritual-card">
                                         <div class="product-thumb">
-                                            <a href="{% url 'product_detail' product.slug %}" class="image">
+                                            <a href="{% url 'product_detail' product.slug %}" class="image zuz-image-anime zuz-reveal" style="display: block;">
                                                 {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
                                                 {% if first_img %}
                                                 <img src="{{ first_img.image.url }}" alt="{{ product.name }}">
@@ -2433,8 +2433,10 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
                         <div class="col-lg-6 col-12 align-self-center">
                             <div class="product-deal-image text-center">
-                                <img src="{% static 'frontend/assets/new_images/sale-banner.png' %}"
-                                    alt="Contact Us">
+                                <figure class="zuz-image-anime zuz-reveal" style="border-radius: var(--zuz-image-radius); width: 100%;">
+                                    <img src="{% static 'frontend/assets/new_images/sale-banner.png' %}"
+                                        alt="Contact Us">
+                                </figure>
                             </div>
                         </div>
 
@@ -2641,7 +2643,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                     <div class="col mb-4 mb-md-5">
                                         <div class="product">
                                             <div class="product-thumb">
-                                                <a href="{% url 'product_detail' product.slug %}" class="image">
+                                                <a href="{% url 'product_detail' product.slug %}" class="image zuz-image-anime zuz-reveal" style="display: block;">
                                                     {% with first_img=product.images.all.0 second_img=product.images.all.1 %}
                                                     {% if first_img %}
                                                     <img src="{{ first_img.image.url }}" alt="{{ product.name }}"
@@ -2882,7 +2884,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
                             <!-- Left col: stays pinned -->
                             <div class="zuz-showcase-col-left">
-                                <div class="zuz-showcase-sticky-img">
+                                <div class="zuz-showcase-sticky-img zuz-image-anime zuz-reveal" style="border-radius: var(--zuz-image-radius); width: 100%;">
                                     {% with imgs=showcase_product.images.all %}
                                     {% if imgs.0 %}
                                     <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
@@ -3016,7 +3018,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                             <div class="featured-blog-card wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.15s">
                                 {% if blog.image %}
                                 <div class="image-wrapper">
-                                    <a href="{% url 'blog_detail' blog.slug %}">
+                                    <a href="{% url 'blog_detail' blog.slug %}" class="zuz-image-anime zuz-reveal" style="display: block;">
                                         <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="featured-image">
                                     </a>
                                 </div>
@@ -3040,7 +3042,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                             <div class="small-blog-card wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.2s">
                                 {% if blog.image %}
                                 <div class="image-wrapper">
-                                    <a href="{% url 'blog_detail' blog.slug %}">
+                                    <a href="{% url 'blog_detail' blog.slug %}" class="zuz-image-anime zuz-reveal" style="display: block;">
                                         <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="small-image">
                                     </a>
                                 </div>
@@ -3076,7 +3078,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                     <div class="small-blog-card">
                                         {% if blog.image %}
                                         <div class="image-wrapper">
-                                            <a href="{% url 'blog_detail' blog.slug %}">
+                                            <a href="{% url 'blog_detail' blog.slug %}" class="zuz-image-anime zuz-reveal" style="display: block;">
                                                 <img src="{{ blog.image.url }}" alt="{{ blog.title }}"
                                                     class="small-image">
                                             </a>
@@ -3525,8 +3527,6 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                 });
             </script>
 
-            <script>
-              new WOW({ offset: 250, mobile: true, live: true }).init();
-            </script>
+
 
             {% endblock %}
