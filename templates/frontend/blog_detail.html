@@ -49,7 +49,7 @@
             <div class="row learts-mb-n50">
 
                 <div class="col-xl-9 col-lg-8 col-12 learts-mb-50">
-                    <div class="single-blog">
+                    <div class="single-blog wow fadeInUp" data-wow-duration="1.4s" data-wow-delay="0.1s">
                         {% if blog.image %}
                         <div class="image">
                             <img src="{{ blog.image.url }}" alt="{{ blog.title }}" style="width: 100%;">
@@ -68,7 +68,7 @@
                     </div>
 
                     {% if related_blogs %}
-                    <div class="related-blog">
+                    <div class="related-blog wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.15s">
                         <div class="block-title pb-0 border-bottom-0">
                             <h2 class="title">Related Blog</h2>
                         </div>
@@ -95,13 +95,13 @@
                     {% endif %}
                 </div>
 
-                <div class="col-xl-3 col-lg-4 col-12 learts-mb-10">
+                <div class="col-xl-3 col-lg-4 col-12 learts-mb-10 wow fadeInRight" data-wow-duration="1.4s" data-wow-delay="0.2s">
                     <!-- Blog Post Widget Start -->
                     <div class="single-widget learts-mb-40">
                         <h3 class="widget-title product-filter-widget-title">Recent Post</h3>
                         <ul class="widget-blogs">
                             {% for recent in recent_blogs %}
-                            <li class="widget-blog">
+                            <li class="widget-blog wow fadeInUp" data-wow-duration="1.1s" data-wow-delay="0.1s">
                                 <div class="thumbnail">
                                     {% if recent.image %}
                                     <a href="{% url 'blog_detail' recent.slug %}"><img src="{{ recent.image.url }}" alt="Widget Blog Post"></a>
@@ -150,10 +150,10 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     if (window.innerWidth < 992) return;
-
     var sidebarCol = document.querySelector('.col-xl-3.col-lg-4.col-12.learts-mb-10');
     if (!sidebarCol) return;
     sidebarCol.classList.add('zuz-blog-sidebar-col');
 });
+new WOW({ offset: 250, mobile: false, live: true }).init();
 </script>
 {% endblock %}

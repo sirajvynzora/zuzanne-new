@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col">
 
-                    <div class="page-title wow fadeInUp">
+                    <div class="page-title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.1s">
                         <h1 class="title">{{ shop_title|default:"Shop" }}</h1>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -105,7 +105,7 @@
 
                     <!-- Isotop Filter Start -->
                     <div class="col-md col-12 align-self-center learts-mb-20">
-                        <div class="isotope-filter shop-product-filter" data-target="#shop-products">
+                        <div class="isotope-filter shop-product-filter wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.15s" data-target="#shop-products">
                             <button class="{% if not category %}active{% endif %}" data-filter="*">All</button>
                             {% for cat in categories %}
                             <button class="{% if category.id == cat.id %}active{% endif %}" data-filter=".cat-{{ cat.id }}">
@@ -201,7 +201,7 @@
                     <div class="grid-sizer col-1"></div>
 
                     {% for product in products %}
-                    <div class="grid-item col cat-{{ product.category.id }} wow fadeInUp">
+                    <div class="grid-item col cat-{{ product.category.id }} wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.05s">
                         <div class="product">
                             <div class="product-thumb">
                                 <a href="{% url 'product_detail' product.slug %}" class="image">
@@ -231,7 +231,7 @@
                         </div>
                     </div>
                     {% empty %}
-                    <div class="col-12 text-center py-5">
+                    <div class="col-12 text-center py-5 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s">
                         <h4 class="text-muted">No products found in this category.</h4>
                         <p>Please check back later or contact us for custom orders.</p>
                     </div>
@@ -247,4 +247,10 @@
 
     </div>
     <!-- Shop Products Section End -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  new WOW({ offset: 250, mobile: false, live: true }).init();
+</script>
 {% endblock %}

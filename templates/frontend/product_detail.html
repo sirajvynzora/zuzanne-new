@@ -42,7 +42,7 @@
             <div class="row learts-mb-n40">
 
                 <!-- Product Images Start -->
-                <div class="col-lg-6 col-12 learts-mb-40">
+                <div class="col-lg-6 col-12 learts-mb-40 wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="0.1s">
                     <div class="product-images vertical">
                         <div class="product-gallery-slider">
                             {% for img in product.images.all %}
@@ -62,8 +62,8 @@
                 </div>
                 <!-- Product Images End -->
 
-                <!-- Product Summery Start -->
-                <div class="col-lg-6 col-12 learts-mb-40">
+                <!-- Product Summary Column -->
+                <div class="col-lg-6 col-12 learts-mb-40 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="0.2s">
                     <div class="product-summery product-summery-center">
                         <h3 class="product-title">{{ product.name|default:"Product Details" }}</h3>
                         <div class="product-price" style="font-size:16px; color:#999; font-weight:500;">Bespoke Custom Order</div>
@@ -101,7 +101,7 @@
     <div class="section section-padding border-bottom">
         <div class="container">
 
-            <ul class="nav product-info-tab-list">
+            <ul class="nav product-info-tab-list wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s">
                 <li><a class="active" data-bs-toggle="tab" href="#tab-description">Description</a></li>
                 <li><a data-bs-toggle="tab" href="#tab-additional_information">Additional information</a></li>
                 <li><a data-bs-toggle="tab" href="#tab-enquiry">Custom Enquiry</a></li>
@@ -182,14 +182,14 @@
 
             <!-- Section Title Start -->
             <div class="section-title2 text-center">
-                <h2 class="title">You Might Also Like</h2>
+                <h2 class="title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.1s">You Might Also Like</h2>
             </div>
             <!-- Section Title End -->
 
             <!-- Products Start -->
             <div class="product-carousel">
                 {% for rp in recommended_products %}
-                <div class="col">
+                <div class="col wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="{% cycle '0s' '0.1s' '0.2s' %}">
                     <div class="product">
                         <div class="product-thumb">
                             <a href="{% url 'product_detail' rp.slug %}" class="image">
@@ -225,4 +225,10 @@
         </div>
     </div>
     <!-- Recommended Products Section End -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  new WOW({ offset: 250, mobile: false, live: true }).init();
+</script>
 {% endblock %}

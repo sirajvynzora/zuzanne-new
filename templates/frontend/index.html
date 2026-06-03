@@ -2298,8 +2298,8 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
             <div class="col">
                 <!-- Section Title Start -->
                 <div class="section-title text-center mb-0">
-                    <h3 class="sub-title wow fadeInUp">Our Collections</h3>
-                    <h2 class="title title-icon-both wow fadeInUp">Signature Ceremonial Pieces</h2>
+                    <h3 class="sub-title wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s">Our Collections</h3>
+                    <h2 class="title title-icon-both wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.2s">Signature Ceremonial Pieces</h2>
                 </div>
                 <!-- Section Title End -->
             </div>
@@ -2308,7 +2308,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
         <!-- Product Tab List Start -->
         <div class="row learts-mb-40">
             <div class="col">
-                <ul class="nav text-uppercase justify-content-center mx-n1 mb-n2 wow fadeInUp">
+                <ul class="nav text-uppercase justify-content-center mx-n1 mb-n2 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.3s">
                     <li class="nav-item mx-1 mb-2"><a href="#product-all" data-bs-toggle="tab"
                             class="btn btn-md btn-light btn-hover-dark active">All</a></li>
                     {% for col in collections %}
@@ -2442,15 +2442,14 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                             <div class="sale-banner9 p-0">
                                 <div class="inner">
                                     <div class="content">
-                                        <h3 class="title wow fadeInUp zuz-heading-md">Bespoke Couture</h3>
-                                        <span class="cuppon zuz-label" style="margin-bottom: 20px;">Curated for Your
-                                            Vision</span>
-                                        <p class="zuz-body"
-                                            style="color: #666; max-width: 400px; margin: 0 auto 30px auto;">
+                                        <h3 class="title wow fadeInUp zuz-heading-md" data-wow-duration="1.3s" data-wow-delay="0.1s">Bespoke Couture</h3>
+                                        <span class="cuppon zuz-label wow fadeInUp" style="margin-bottom: 20px;" data-wow-duration="1.2s" data-wow-delay="0.2s">Curated for Your Vision</span>
+                                        <p class="zuz-body wow fadeInUp"
+                                            style="color: #666; max-width: 400px; margin: 0 auto 30px auto;" data-wow-duration="1.2s" data-wow-delay="0.3s">
                                             Commission a one-of-a-kind ceremonial masterpiece. We collaborate closely
                                             with you to realize designs that elevate your most cherished moments.</p>
                                         <a href="{% url 'contact' %}"
-                                            class="btn btn-dark btn-outline-hover-dark">Inquire Now</a>
+                                            class="btn btn-dark btn-outline-hover-dark wow fadeInUp" data-wow-duration="1.1s" data-wow-delay="0.4s">Inquire Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -2468,17 +2467,16 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                             <div class="zuz-pin-wrapper d-flex flex-column justify-content-center px-5"
                                 style="background: linear-gradient(135deg, #fff 0%, #fef6f8 100%); min-height: 100vh;">
                                 {% if featured_collection %}
-                                <span class="sub-title"
-                                    style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase; font-weight: 600;">Featured
-                                    Collection</span>
-                                <h2 class="title mt-3"
-                                    style="font-size: 52px; font-weight: 400; line-height: 1.2; color: #1a1a1a;">
+                                <span class="sub-title wow fadeInUp"
+                                    style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase; font-weight: 600;" data-wow-duration="1.2s" data-wow-delay="0.1s">Featured Collection</span>
+                                <h2 class="title mt-3 wow fadeInUp"
+                                    style="font-size: 52px; font-weight: 400; line-height: 1.2; color: #1a1a1a;" data-wow-duration="1.3s" data-wow-delay="0.2s">
                                     {{ featured_collection.name }}
                                 </h2>
-                                <div class="featured-collection-desc mt-4" style="max-width: 450px;">
+                                <div class="featured-collection-desc mt-4 wow fadeInUp" style="max-width: 450px;" data-wow-duration="1.2s" data-wow-delay="0.3s">
                                     <p class="zuz-body" style="color: #555;">{{ featured_collection.description|default:"An exclusive curation of ceremonial attire. Each garment is meticulously tailored using premium silks and delicate lace, designed to honor the sanctity of life's most precious milestones." }}</p>
                                 </div>
-                                <div class="featured-stats mt-4 pt-2">
+                                <div class="featured-stats mt-4 pt-2 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.4s">
                                     <div class="row g-4">
                                         <div class="col-6">
                                             <div class="stat-item">
@@ -2505,17 +2503,16 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                     style="align-self: flex-start; padding: 12px 32px; letter-spacing: 2px; font-size: 12px;">Explore
                                     Collection &rarr;</a>
                                 {% else %}
-                                <span class="sub-title"
-                                    style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase;">Featured
-                                    Collection</span>
-                                <h2 class="title mt-3" style="font-size: 52px; font-weight: 400; line-height: 1.2;">Holy
+                                <span class="sub-title wow fadeInUp"
+                                    style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase;" data-wow-duration="1.2s" data-wow-delay="0.1s">Featured Collection</span>
+                                <h2 class="title mt-3 wow fadeInUp" style="font-size: 52px; font-weight: 400; line-height: 1.2;" data-wow-duration="1.3s" data-wow-delay="0.2s">Holy
                                     Community</h2>
-                                <div class="featured-collection-desc mt-4" style="max-width: 450px;">
+                                <div class="featured-collection-desc mt-4 wow fadeInUp" style="max-width: 450px;" data-wow-duration="1.2s" data-wow-delay="0.3s">
                                     <p class="zuz-body" style="color: #555;">An exclusive curation of ceremonial attire.
                                         Each garment is meticulously tailored using premium silks and delicate lace,
                                         designed to honor the sanctity of life's most precious milestones.</p>
                                 </div>
-                                <div class="featured-stats mt-4 pt-2">
+                                <div class="featured-stats mt-4 pt-2 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.4s">
                                     <div class="row g-4">
                                         <div class="col-6">
                                             <div class="stat-item">
@@ -2753,11 +2750,11 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
                     <!-- Section Title Start -->
                     <div class="section-title2 text-center mb-5">
-                        <h2 class="title title-icon-both wow fadeInUp">What Our Clients Say</h2>
+                        <h2 class="title title-icon-both wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.1s">What Our Clients Say</h2>
                     </div>
                     <!-- Section Title End -->
 
-                    <div class="testimonial-carousel">
+                    <div class="testimonial-carousel wow fadeInUp" data-wow-duration="1.4s" data-wow-delay="0.2s">
                         {% for testimonial in testimonials %}
                         <div class="col">
                             <div class="testimonial">
@@ -2841,7 +2838,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
                     <!-- Right: Sticky product details -->
                     <div class="col-lg-5 col-12 zuz-showcase-details-col">
-                        <div class="zuz-showcase-details">
+                        <div class="zuz-showcase-details wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.15s">
 
                             <span class="collection-label">
                                 {{ showcase_product.category.collection.name }}
@@ -2916,10 +2913,10 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
                 <div class="container">
                     <div class="section-title2 text-center mb-5">
-                        <span class="sub-title"
+                        <span class="sub-title wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s"
                             style="font-family: 'Modesty', cursive; color: #b98795; font-size: 42px; text-transform: none; font-weight: normal; letter-spacing: 1px; line-height: 1;">The
                             Journal</span>
-                        <h2 class="title title-icon-both wow fadeInUp" style="margin-top: 10px;">
+                        <h2 class="title title-icon-both wow fadeInUp" style="margin-top: 10px;" data-wow-duration="1.3s" data-wow-delay="0.2s">
                             Editorial Updates
                         </h2>
                     </div>
@@ -2930,7 +2927,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
                         {% if forloop.first %}
                         <div class="featured-blog-sticky">
-                            <div class="featured-blog-card wow fadeInUp">
+                            <div class="featured-blog-card wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.15s">
                                 {% if blog.image %}
                                 <div class="image-wrapper">
                                     <a href="{% url 'blog_detail' blog.slug %}">
@@ -2954,7 +2951,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                         <div class="editorial-blog-list">
                             {% else %}
 
-                            <div class="small-blog-card wow fadeInUp">
+                            <div class="small-blog-card wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.2s">
                                 {% if blog.image %}
                                 <div class="image-wrapper">
                                     <a href="{% url 'blog_detail' blog.slug %}">
@@ -3354,6 +3351,10 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                         window.mobileBlogSwiperInitialized = false;
                     }
                 });
+            </script>
+
+            <script>
+              new WOW({ offset: 250, mobile: false, live: true }).init();
             </script>
 
             {% endblock %}

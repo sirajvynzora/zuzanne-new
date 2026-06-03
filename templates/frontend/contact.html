@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col">
 
-                    <div class="page-title">
+                    <div class="page-title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.1s">
                         <h1 class="title">Contact us</h1>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -33,28 +33,28 @@
         <div class="container">
             <!-- Section Title Start -->
             <div class="section-title2 text-center">
-                <h2 class="title">Keep in touch with us</h2>
-                <p>Feel free to reach out to us for bespoke custom orders, partnerships, or any questions about our hand-crafted baptism and communion ceremony creations.</p>
+                <h2 class="title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.1s">Keep in touch with us</h2>
+                <p class="wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.2s">Feel free to reach out to us for bespoke custom orders, partnerships, or any questions about our hand-crafted baptism and communion ceremony creations.</p>
             </div>
             <!-- Section Title End -->
 
             <!-- Contact Information Start -->
             <div class="row learts-mb-n30">
                 <div class="col-lg-4 col-md-6 col-12 learts-mb-30">
-                    <div class="contact-info">
+                    <div class="contact-info wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0s">
                         <h4 class="title">ADDRESS</h4>
                         <span class="info"><i class="icon fas fa-map-marker-alt"></i> Zuzanne Boutique, [Insert Boutique Address Here]</span>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12 learts-mb-30">
-                    <div class="contact-info">
+                    <div class="contact-info wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s">
                         <h4 class="title">CONTACT</h4>
                         <span class="info"><i class="icon fas fa-phone-alt"></i> Phone: [Insert Phone Number] <br> WhatsApp: [Insert WhatsApp Number]</span>
                         <span class="info"><i class="icon far fa-envelope"></i> Email: <a href="mailto:info@zuzanne.com">info@zuzanne.com</a></span>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12 learts-mb-30">
-                    <div class="contact-info">
+                    <div class="contact-info wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.2s">
                         <h4 class="title"> HOUR OF OPERATION</h4>
                         <span class="info"><i class="icon far fa-clock"></i> Monday – Saturday : 09:00 – 18:00 <br> Sunday: Closed</span>
                     </div>
@@ -64,7 +64,7 @@
 
             <!-- Contact Map Start -->
             <div class="row learts-mt-60">
-                <div class="col">
+                <div class="col wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.15s">
                     <iframe class="contact-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2136.986005919501!2d-73.9685579655238!3d40.75862446708152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258e4a1c884e5%3A0x24fe1071086b36d5!2sThe%20Atrium!5e0!3m2!1sen!2sbd!4v1585132512970!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                 </div>
             </div>
@@ -79,13 +79,13 @@
         <div class="container">
             <!-- Section Title Start -->
             <div class="section-title2 text-center">
-                <h2 class="title">Send a message</h2>
+                <h2 class="title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.1s">Send a message</h2>
             </div>
             <!-- Section Title End -->
 
             <div class="row">
                 <div class="col-lg-8 col-12 mx-auto">
-                    <div class="contact-form wow fadeInUp">
+                    <div class="contact-form wow fadeInUp" data-wow-duration="1.4s" data-wow-delay="0.2s">
                         <form action="" method="post">
                             {% csrf_token %}
                             <div class="row learts-mb-n30">
@@ -105,4 +105,10 @@
         </div>
     </div>
     <!-- Contact Form Section End -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  new WOW({ offset: 250, mobile: false, live: true }).init();
+</script>
 {% endblock %}

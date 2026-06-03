@@ -35,13 +35,13 @@
         </div>
         <div class="container">
             <div class="row learts-mb-n30">
-                <div class="col-lg-4 col-12 align-self-center learts-mb-30">
+                <div class="col-lg-4 col-12 align-self-center learts-mb-30 wow fadeInLeft" data-wow-duration="1.3s" data-wow-delay="0.1s">
                     <div class="about-us4">
                         <span class="sub-title">Zuzanne</span>
                         <h2 class="title">Beautifully Handcrafted Ceremony Creations</h2>
                     </div>
                 </div>
-                <div class="col-lg-8 col-12 learts-mb-30">
+                <div class="col-lg-8 col-12 learts-mb-30 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="0.2s">
                     <img src="{% static 'frontend/assets/images/about/about-6.webp' %}" alt="">
                 </div>
             </div>
@@ -54,11 +54,11 @@
         <div class="container">
             <div class="row learts-mb-n30">
 
-                <div class="col-lg-6 col-12 text-center learts-mb-30">
+                <div class="col-lg-6 col-12 text-center learts-mb-30 wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="0.1s">
                     <img src="{% static 'frontend/assets/images/about/about-7.webp' %}" alt="">
                 </div>
 
-                <div class="col-lg-6 col-12 align-self-center learts-mb-30">
+                <div class="col-lg-6 col-12 align-self-center learts-mb-30 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="0.25s">
                     <div class="about-us4">
                         <div class="row learts-mb-n30">
                             <div class="col-xl-8 col-12 learts-mb-30">
@@ -66,7 +66,7 @@
                                     <p>Designing and crafting beautiful baptism and communion gowns, suits, and ceremony kits with our own hands is a labor of love. We take absolute joy in perfecting every detail of our customized accessories to make your child's special day completely unique and unforgettable.</p>
                                 </div>
                             </div>
-                            <div class="col-12 learts-mb-30">
+                            <div class="col-12 learts-mb-30 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s">
                                 <div class="icon-box4 text-left justify-content-start text-start">
                                     <div class="inner">
                                         <div class="content">
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 learts-mb-30">
+                            <div class="col-12 learts-mb-30 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.25s">
                                 <div class="icon-box4 text-left justify-content-start text-start">
                                     <div class="inner">
                                         <div class="content">
@@ -86,7 +86,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 learts-mb-30">
+                            <div class="col-12 learts-mb-30 wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.4s">
                                 <div class="icon-box4 text-left justify-content-start text-start">
                                     <div class="inner">
                                         <div class="content">
@@ -109,7 +109,7 @@
     <!-- Video Banner Section Start -->
     <div class="section">
         <div class="video-banner" data-bg-image="{% static 'frontend/assets/images/banner/video/video-banner-1.webp' %}">
-            <div class="content">
+            <div class="content wow fadeInUp" data-wow-duration="1.6s" data-wow-delay="0.2s">
                 <h2 class="title">MADE WITH <span>LOVE</span> & PRAYERS</h2>
                 <a href="https://www.youtube.com/watch?v=1jSsy7DtYgc" class="video-popup">
                     <img src="{% static 'frontend/assets/images/icons/button-play.webp' %}" alt="">
@@ -126,7 +126,7 @@
             <div class="section-title2 row justify-content-between align-items-center">
                 <div class="col-md-auto col-12">
                     <!-- Section Title Start -->
-                    <h2 class="title title-icon-right">We love our clients</h2>
+                    <h2 class="title title-icon-right wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.1s">We love our clients</h2>
                     <!-- Section Title End -->
                 </div>
             </div>
@@ -134,7 +134,7 @@
             <div class="testimonial-carousel">
                 {% for testimonial in testimonials %}
                 <div class="col">
-                    <div class="testimonial">
+                    <div class="testimonial wow fadeInUp">
                         <p>{{ testimonial.review }}</p>
                         <div class="author">
                             {% if testimonial.image %}
@@ -151,7 +151,7 @@
                 </div>
                 {% empty %}
                 <div class="col">
-                    <div class="testimonial">
+                    <div class="testimonial wow fadeInUp">
                         <p>The custom lace baptism gown was absolutely breathtaking. The quality of the fabric was so soft on my daughter's skin. Thank you, Zuzanne, for making her day so special!</p>
                         <div class="author">
                             <img src="{% static 'frontend/assets/images/testimonial/testimonial-1.webp' %}" alt="">
@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="testimonial">
+                    <div class="testimonial wow fadeInUp">
                         <p>I ordered a communion suit and customized candle set. The details on the embroidery are so delicate and beautiful. Excellent craftsmanship!</p>
                         <div class="author">
                             <img src="{% static 'frontend/assets/images/testimonial/testimonial-2.webp' %}" alt="">
@@ -175,7 +175,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="testimonial">
+                    <div class="testimonial wow fadeInUp">
                         <p>Zuzanne's customer service and dedication are amazing. The communion gown fits my daughter perfectly and it has such a timeless, graceful feel.</p>
                         <div class="author">
                             <img src="{% static 'frontend/assets/images/testimonial/testimonial-3.webp' %}" alt="">
@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="testimonial">
+                    <div class="testimonial wow fadeInUp">
                         <p>Everything from the christening booties to the keepsake box was coordinated beautifully. Highly recommend Zuzanne for ceremonial wear!</p>
                         <div class="author">
                             <img src="{% static 'frontend/assets/images/testimonial/testimonial-4.webp' %}" alt="">
@@ -199,7 +199,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="testimonial">
+                    <div class="testimonial wow fadeInUp">
                         <p>Beautiful designs, amazing fabric, and outstanding customer service. Absolute dream to work with Zuzanne!</p>
                         <div class="author">
                             <img src="{% static 'frontend/assets/images/testimonial/testimonial-2.webp' %}" alt="">
@@ -211,7 +211,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="testimonial">
+                    <div class="testimonial wow fadeInUp">
                         <p>The communion gown and tailored suit arrived perfectly on time and looked absolutely stunning on the day.</p>
                         <div class="author">
                             <img src="{% static 'frontend/assets/images/testimonial/testimonial-3.webp' %}" alt="">
@@ -234,14 +234,14 @@
         <div class="container">
             <div class="row row-cols-lg-2 row-cols-1 learts-mb-n50">
 
-                <div class="col align-self-center learts-mb-50 order-lg-2">
+                <div class="col align-self-center learts-mb-50 order-lg-2 wow fadeInRight" data-wow-duration="1.3s" data-wow-delay="0.15s">
                     <div class="section-title3 text-center m-0" data-bg-image="{% static 'frontend/assets/images/title/title-3.webp' %}">
                         <h2 class="title">Follow us on Instagram</h2>
                         <p class="desc">@zuzanne_creations</p>
                     </div>
                 </div>
 
-                <div class="col learts-mb-50">
+                <div class="col learts-mb-50 wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="0.1s">
 
                     <div class="instafeed instafeed-carousel instafeed-carousel2">
                         <a class="instafeed-item" href="#">
@@ -275,23 +275,23 @@
         <div class="container">
             <div class="row row-cols-lg-2 row-cols-1 align-items-center learts-mb-n40">
 
-                <div class="col learts-mb-40">
+                <div class="col learts-mb-40 wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="0.1s">
                     <div class="about-us-faq-image" style="overflow: hidden; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
                         <img src="{% static 'frontend/assets/images/about/about-5.webp' %}" alt="Zuzanne Baptism Ceremony Handcrafts" style="width: 100%; height: auto; display: block; object-fit: cover;">
                     </div>
                 </div>
 
-                <div class="col learts-mb-40">
+                <div class="col learts-mb-40 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="0.2s">
                     <!-- Section Title Start -->
                     <div class="section-title2 learts-mb-30">
-                        <h2 class="title" style="font-size: 32px; font-weight: 500;">Frequently Asked Questions</h2>
+                        <h2 class="title wow fadeInUp" style="font-size: 32px; font-weight: 500;" data-wow-duration="1.3s" data-wow-delay="0.1s">Frequently Asked Questions</h2>
                         <p class="desc" style="color: #888; font-size: 15px; margin-top: 10px;">Everything you need to know about our baptism, communion, and ceremonial creations.</p>
                     </div>
                     <!-- Section Title End -->
                     <div class="row">
                         <div class="col">
                             <div class="accordion" id="faq-accordion">
-                                <div class="card active">
+                                <div class="card active wow fadeInUp" data-wow-duration="1.0s" data-wow-delay="0.1s">
                                     <div class="card-header">
                                         <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#faq-accordion-1">Are the gowns and suits fully customizable?</button>
                                     </div>
@@ -302,7 +302,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <div class="card wow fadeInUp" data-wow-duration="1.0s" data-wow-delay="0.2s">
                                     <div class="card-header">
                                         <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#faq-accordion-2">How far in advance should I place a custom order?</button>
                                     </div>
@@ -313,7 +313,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <div class="card wow fadeInUp" data-wow-duration="1.0s" data-wow-delay="0.3s">
                                     <div class="card-header">
                                         <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#faq-accordion-3">What materials and fabrics do you use?</button>
                                     </div>
@@ -324,7 +324,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <div class="card wow fadeInUp" data-wow-duration="1.0s" data-wow-delay="0.4s">
                                     <div class="card-header">
                                         <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#faq-accordion-4">Can you create matching baptism accessories?</button>
                                     </div>
@@ -344,4 +344,14 @@
         </div>
     </div>
     <!-- FAQs Section End -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  new WOW({
+    offset: 250,
+    mobile: false,
+    live: true
+  }).init();
+</script>
 {% endblock %}
