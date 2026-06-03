@@ -97,16 +97,16 @@
                     </div>
                     <!-- Banner widget End -->
 
-                    <!-- Categories Start -->
+                    <!-- Collections Widget Start -->
                     <div class="single-widget learts-mb-40">
-                        <h3 class="widget-title product-filter-widget-title">Categories</h3>
+                        <h3 class="widget-title product-filter-widget-title">Our Collections</h3>
                         <ul class="widget-list">
-                            <li><a href="#">Baptism Traditions</a> <span class="count">11</span></li>
-                            <li><a href="#">Ceremony Prep</a> <span class="count">2</span></li>
-                            <li><a href="#">Styling Guides</a> <span class="count">11</span></li>
+                            {% for col in collections_tree %}
+                            <li><a href="{% url 'collection' col.slug %}">{{ col.name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
-                    <!-- Categories End -->
+                    <!-- Collections Widget End -->
                 </div>
 
             </div>
