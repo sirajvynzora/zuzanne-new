@@ -3119,7 +3119,13 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                     gsap.registerPlugin(ScrollTrigger);
 
                     if (window.innerWidth <= 991) {
-                        ScrollTrigger.getAll().forEach(function (trigger) { trigger.kill(); });
+                        // Kill desktop-only triggers (pinned section, etc.)
+                        // but preserve the mobile ritual card animations (_zuzRitualMobile)
+                        ScrollTrigger.getAll().forEach(function (trigger) {
+                            if (!trigger.vars || !trigger.vars._zuzRitualMobile) {
+                                trigger.kill();
+                            }
+                        });
                         return;
                     }
 
@@ -3287,6 +3293,80 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                             });
                         });
                     });
+
+                    /* ── Mobile fade-in animation for product cards ──────────────────
+                       On screens ≤ 991px the deck-spread animation does not run.
+                       Instead we give each card a simple staggered fadeInUp as it
+                       enters the viewport, matching the WOW.js style used elsewhere
+                       on the page. Cards are grouped into rows so each row animates
+                       together with a small per-card stagger. */
+                    mm.add("(max-width: 991px)", function () {
+
+                        function buildMobileAnimation() {
+                            // Kill any previously created mobile ritual triggers
+                            ScrollTrigger.getAll().forEach(function (t) {
+                                if (t.vars && t.vars._zuzRitualMobile) t.kill();
+                            });
+
+                            var cards = gsap.utils.toArray(
+                                ".zuz-ritual-products .tab-pane.active .zuz-ritual-card"
+                            );
+                            if (!cards.length) return;
+
+                            /* Make sure cards start from a clean visible state —
+                               no leftover desktop transforms. */
+                            gsap.set(cards, { clearProps: "all" });
+
+                            /* Group cards into rows by their top position */
+                            var scrollY = window.scrollY || window.pageYOffset;
+                            var rows    = [];
+                            var rowMap  = {};
+
+                            cards.forEach(function (card, i) {
+                                var absTop = Math.round(card.getBoundingClientRect().top + scrollY);
+                                var bucket = Math.round(absTop / 10) * 10;
+                                if (!rowMap[bucket]) {
+                                    rowMap[bucket] = { absTop: absTop, cards: [] };
+                                    rows.push(rowMap[bucket]);
+                                }
+                                rowMap[bucket].cards.push(card);
+                            });
+
+                            rows.sort(function (a, b) { return a.absTop - b.absTop; });
+
+                            rows.forEach(function (row) {
+                                /* Set initial hidden state for this row */
+                                gsap.set(row.cards, { opacity: 0, y: 30 });
+
+                                /* Animate in when row enters the viewport */
+                                gsap.to(row.cards, {
+                                    opacity:  1,
+                                    y:        0,
+                                    duration: 0.6,
+                                    ease:     "power2.out",
+                                    stagger:  0.08,
+                                    scrollTrigger: {
+                                        _zuzRitualMobile: true,
+                                        trigger:   row.cards[0],
+                                        start:     "top 88%",
+                                        toggleActions: "play none none none"
+                                    }
+                                });
+                            });
+                        }
+
+                        buildMobileAnimation();
+
+                        // Re-run on tab switch
+                        document.querySelectorAll(
+                            "[data-bs-toggle='tab'][href^='#product-'], " +
+                            "[data-toggle='tab'][href^='#product-']"
+                        ).forEach(function (tab) {
+                            tab.addEventListener("shown.bs.tab", function () {
+                                setTimeout(buildMobileAnimation, 60);
+                            });
+                        });
+                    });
                 })();
             </script>
 
@@ -3294,7 +3374,13 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                 document.addEventListener("DOMContentLoaded", function () {
                     if (typeof ScrollTrigger === "undefined") return;
                     if (window.innerWidth <= 991) {
-                        ScrollTrigger.getAll().forEach(function (trigger) { trigger.kill(); });
+                        // Kill desktop-only triggers (pinned section, etc.)
+                        // but preserve the mobile ritual card animations (_zuzRitualMobile)
+                        ScrollTrigger.getAll().forEach(function (trigger) {
+                            if (!trigger.vars || !trigger.vars._zuzRitualMobile) {
+                                trigger.kill();
+                            }
+                        });
                     }
                 });
             </script>
