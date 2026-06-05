@@ -121,5 +121,48 @@
 {% block extra_js %}
 <script>
   new WOW({ offset: 250, mobile: true, live: true }).init();
+
+  $(document).ready(function() {
+      $('#load-more-btn').on('click', function(e) {
+          e.preventDefault();
+          var btn = $(this);
+          var nextPage = btn.attr('data-next-page');
+          var originalText = btn.text();
+
+          if (!nextPage) return;
+
+          btn.text('Loading...');
+          btn.prop('disabled', true);
+
+          $.ajax({
+              url: window.location.pathname + '?page=' + nextPage,
+              type: 'GET',
+              headers: {
+                  'X-Requested-With': 'XMLHttpRequest'
+              },
+              success: function(response) {
+                  if (response.html) {
+                      $('#blog-grid-container').append(response.html);
+                      
+                      // Re-initialize WOW on new elements
+                      new WOW({ offset: 250, mobile: true, live: true }).init();
+                  }
+
+                  if (response.has_next) {
+                      btn.attr('data-next-page', response.next_page_number);
+                      btn.text(originalText);
+                      btn.prop('disabled', false);
+                  } else {
+                      $('#load-more-container').remove();
+                  }
+              },
+              error: function() {
+                  alert('Error loading more blogs. Please try again.');
+                  btn.text(originalText);
+                  btn.prop('disabled', false);
+              }
+          });
+      });
+  });
 </script>
 {% endblock %}

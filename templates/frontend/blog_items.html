@@ -1,0 +1,21 @@
+{% for blog in blogs %}
+<div class="col-md-6 col-12 learts-mb-40">
+    <div class="blog wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s">
+        <div class="image">
+            {% if blog.image %}
+            <a href="{% url 'blog_detail' blog.slug %}"><img src="{{ blog.image.url }}" alt="{{ blog.title }}"></a>
+            {% endif %}
+        </div>
+        <div class="content">
+            <ul class="meta">
+                <li><i class="far fa-calendar"></i><a href="{% url 'blog_detail' blog.slug %}">{{ blog.created_at|date:"F d, Y" }}</a></li>
+            </ul>
+            <h5 class="title"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h5>
+            <div class="desc">
+                <p>{{ blog.description|truncatewords:12| safe}}</p>
+            </div>
+            <a href="{% url 'blog_detail' blog.slug %}" class="link">Read More</a>
+        </div>
+    </div>
+</div>
+{% endfor %}

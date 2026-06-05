@@ -489,7 +489,7 @@ def blog_list_view(request):
     
     is_ajax = request.headers.get('x-requested-with') == 'XMLHttpRequest' or request.GET.get('ajax') == '1'
     if is_ajax:
-        html = render_to_string("frontend/partials/blog_items.html", {"blogs": page_obj})
+        html = render_to_string("frontend/blog_items.html", {"blogs": page_obj})
         return JsonResponse({
             "html": html,
             "has_next": page_obj.has_next(),
