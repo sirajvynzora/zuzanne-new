@@ -212,9 +212,9 @@
                             </div>
                             <div class="product-info">
                                 <h6 class="title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h6>
-                                <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">
+                                {% comment %} <span class="price" style="font-size: 14px; font-weight: 500; color: #999;">
                                     Bespoke Custom Order
-                                </span>
+                                </span> {% endcomment %}
                                 <div class="product-buttons">
                                     <a href="{% url 'product_detail' product.slug %}" class="product-button hintT-top" data-hint="View Details"><i class="fas fa-search"></i></a>
                                     <a href="{% url 'contact' %}?product={{ product.name }}" class="product-button hintT-top" data-hint="Inquire Now"><i class="far fa-envelope"></i></a>
