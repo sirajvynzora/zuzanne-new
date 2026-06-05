@@ -49,7 +49,7 @@
                                     </ul>
                                     <h5 class="title"><a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a></h5>
                                     <div class="desc">
-                                        <p>{{ blog.description|truncatewords:12 }}</p>
+                                        <p>{{ blog.description|truncatewords:12| safe}}</p>
                                     </div>
                                     <a href="{% url 'blog_detail' blog.slug %}" class="link">Read More</a>
                                 </div>
