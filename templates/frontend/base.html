@@ -1044,7 +1044,7 @@
     <!-- OffCanvas Mobile Menu Start -->
     <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
         <div class="inner customScroll">
-            <div class="offcanvas-menu-search-form">
+            <div class="offcanvas-menu-search-form" style="visibility: hidden; pointer-events: none;">
                 <form action="{% url 'shop' %}" method="GET">
                     <input type="text" name="q" placeholder="Search...">
                     <button><i class="fas fa-search"></i></button>
@@ -1077,7 +1077,7 @@
                 </ul>
             </div>
 
-            <div class="offcanvas-social">
+            <div class="offcanvas-social mt-5 pt-3">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>

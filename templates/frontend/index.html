@@ -2878,15 +2878,17 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
                             <!-- Left col: stays pinned -->
                             <div class="zuz-showcase-col-left">
-                                <div class="zuz-showcase-sticky-img zuz-image-anime zuz-reveal" style="border-radius: var(--zuz-image-radius); width: 100%;">
-                                    {% with imgs=showcase_product.images.all %}
-                                    {% if imgs.0 %}
-                                    <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
-                                    {% else %}
-                                    <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
-                                        alt="{{ showcase_product.name }}">
-                                    {% endif %}
-                                    {% endwith %}
+                                <div class="zuz-showcase-sticky-img" style="border-radius: var(--zuz-image-radius); width: 100%;">
+                                    <div class="zuz-image-anime zuz-reveal" style="width: 100%; height: 100%;">
+                                        {% with imgs=showcase_product.images.all %}
+                                        {% if imgs.0 %}
+                                        <img src="{{ imgs.0.image.url }}" alt="{{ showcase_product.name }}">
+                                        {% else %}
+                                        <img src="{% static 'frontend/assets/images/product/s328/product-1.webp' %}"
+                                            alt="{{ showcase_product.name }}">
+                                        {% endif %}
+                                        {% endwith %}
+                                    </div>
                                 </div>
                             </div>
 
@@ -2920,7 +2922,8 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 
                     <!-- Right: Sticky product details -->
                     <div class="col-lg-5 col-12 zuz-showcase-details-col">
-                        <div class="zuz-showcase-details wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.15s">
+                        <div class="zuz-showcase-details">
+                            <div class="wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.15s">
 
                             <span class="collection-label">
                                 {{ showcase_product.category.collection.name }}
@@ -2970,7 +2973,8 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                     <i class="far fa-envelope"></i> Enquire
                                 </a>
                             </div>
-
+                            
+                            </div>
                         </div>
                     </div>
 
