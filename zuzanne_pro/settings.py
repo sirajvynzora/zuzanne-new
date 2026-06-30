@@ -3,12 +3,15 @@ Django settings for zuzanne_pro project.
 """
 
 from pathlib import Path
+from decouple import config
+import dj_database_url
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-&v4x^@9($mjf!2*%dk(i(aaav#tmz0o+d5i+5w*lvq2e4#z%0@'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1,localhost').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -51,10 +54,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'zuzanne_pro.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -92,11 +95,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 APPEND_SLASH = True
 
 # EMAIL SETTINGS - only one block!
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # prints in terminal for testing
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "sirajvynzora@gmail.com"
-EMAIL_HOST_PASSWORD = "lrvx lzeh qyde xklu"
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-ADMIN_EMAIL = 'sirajvynzora@gmail.com'
+ADMIN_EMAIL = config('ADMIN_EMAIL', default=EMAIL_HOST_USER)
+
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # prints in terminal for testing
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "sirajvynzora@gmail.com"
+# EMAIL_HOST_PASSWORD = "lrvx lzeh qyde xklu"
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# ADMIN_EMAIL = 'sirajvynzora@gmail.com'
