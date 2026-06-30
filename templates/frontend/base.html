@@ -930,7 +930,10 @@
                         <!-- Call Button -->
                         <a href="tel:+911234567890" class="sticky-cta-btn sticky-cta-call hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>
                         <!-- WhatsApp Button -->
-                        <a href="https://wa.me/911234567890" target="_blank" class="sticky-cta-btn sticky-cta-whatsapp hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="sticky-cta-btn sticky-cta-whatsapp hintT-bottom" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
+                         <i class="fab fa-whatsapp"></i>
+                        </a>
+                        {% comment %} <a href="https://wa.me/911234567890" target="_blank" class="sticky-cta-btn sticky-cta-whatsapp hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a> {% endcomment %}
                     </div>
                 </div>
                 <!-- Header Tools End -->
@@ -1363,6 +1366,69 @@
         </div>
     </div>
 
+
+    <!-- Booking Enquiry Modal Start -->
+<div class="modal fade" id="zuzEnquiryModal" tabindex="-1" aria-labelledby="zuzEnquiryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 380px;">
+       <div class="modal-content" style="border-radius: 12px; border: none; overflow: hidden;">
+    <div class="modal-header" style="background: #1a1a1a; border: none; padding: 12px 18px;">
+        <h5 class="modal-title" id="zuzEnquiryModalLabel" style="color: #fff; font-family: var(--font-heading, serif); font-size: 16px;">Enquire Now</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body" style="padding: 14px 18px; max-height: 80vh; overflow-y: auto;">
+        <p style="font-size: 11.5px; color: #777; margin-bottom: 10px;">
+            Fill in your details below and we'll continue the conversation on WhatsApp.
+        </p>
+        <form id="zuzEnquiryForm">
+            {% csrf_token %}
+            <input type="hidden" name="product_name" id="zuzEnquiryProduct" value="">
+            <input type="hidden" name="source_page" id="zuzEnquirySource" value="">
+
+            <!-- Selected Product Display (auto-shown when triggered from a product) -->
+            <div class="mb-2" id="zuzEnquiryProductDisplay" style="display:none;">
+                <label class="form-label" style="font-size: 10px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px;">Selected Product</label>
+                <div style="background: #fdf2f4; border: 1px solid rgba(231,101,137,0.25); border-radius: 6px; padding: 6px 10px; font-size: 12.5px; color: #b98795; font-weight: 600;" id="zuzEnquiryProductLabel"></div>
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 3px;">Full Name *</label>
+                <input type="text" name="name" id="zuzEnquiryName" class="form-control form-control-sm" required
+                       style="border-radius: 6px; padding: 6px 10px; border: 1px solid #ddd; font-size: 12.5px;">
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 3px;">Phone Number *</label>
+                <input type="tel" name="phone" id="zuzEnquiryPhone" class="form-control form-control-sm" required
+                       placeholder="e.g. 9876543210"
+                       style="border-radius: 6px; padding: 6px 10px; border: 1px solid #ddd; font-size: 12.5px;">
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 3px;">Email (optional)</label>
+                <input type="email" name="email" id="zuzEnquiryEmail" class="form-control form-control-sm"
+                       style="border-radius: 6px; padding: 6px 10px; border: 1px solid #ddd; font-size: 12.5px;">
+            </div>
+
+            <div class="mb-2">
+             <label class="form-label" style="font-size: 11px; font-weight: 600; color: #333; margin-bottom: 3px;">Message</label>
+             <textarea name="message" id="zuzEnquiryMessage" class="form-control form-control-sm"
+              placeholder="Tell us about what you're looking for..."
+              style="border-radius: 6px; padding: 6px 10px; border: 1px solid #ddd; font-size: 12.5px; resize: none; height: 60px;"></textarea>
+            </div>
+
+            <div id="zuzEnquiryError" style="display:none; color:#c0392b; font-size: 11px; margin-bottom: 8px;"></div>
+
+            <button type="submit" class="btn btn-dark btn-outline-hover-dark w-100" id="zuzEnquirySubmitBtn"
+                    style="padding: 8px; border-radius: 30px; font-size: 10.5px; letter-spacing: 1.2px; margin-top: 2px;">
+                <i class="fab fa-whatsapp"></i> CONTINUE ON WHATSAPP
+            </button>
+        </form>
+    </div>
+</div>
+    </div>
+</div>
+<!-- Booking Enquiry Modal End -->
+
     <!-- JS
 ============================================ -->
 
@@ -1661,6 +1727,102 @@
             }
         });
     </script>
+
+{% comment %} booking enquire js start {% endcomment %}
+
+    <script>
+(function() {
+    var WHATSAPP_NUMBER = "9048651027"; // <-- replace with your actual WhatsApp number, no + or spaces
+    var CREATE_URL = "{% url 'booking_enquiry_create' %}";
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+        return null;
+    }
+
+    var enquiryForm = document.getElementById('zuzEnquiryForm');
+    var enquiryModalEl = document.getElementById('zuzEnquiryModal');
+    var errorBox = document.getElementById('zuzEnquiryError');
+    var submitBtn = document.getElementById('zuzEnquirySubmitBtn');
+
+    // Open modal and capture product/source context from the trigger button
+   document.querySelectorAll('[data-zuz-enquiry-trigger]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var product = btn.getAttribute('data-product') || '';
+        document.getElementById('zuzEnquiryProduct').value = product;
+        document.getElementById('zuzEnquirySource').value = window.location.pathname;
+        errorBox.style.display = 'none';
+
+        var productDisplay = document.getElementById('zuzEnquiryProductDisplay');
+        var productLabel = document.getElementById('zuzEnquiryProductLabel');
+        if (product) {
+            productLabel.textContent = product;
+            productDisplay.style.display = 'block';
+        } else {
+            productDisplay.style.display = 'none';
+        }
+
+        var modal = new bootstrap.Modal(enquiryModalEl);
+        modal.show();
+    });
+});
+
+    if (enquiryForm) {
+        enquiryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            errorBox.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending...';
+
+            var formData = new FormData(enquiryForm);
+
+            fetch(CREATE_URL, {
+                method: 'POST',
+                headers: { 'X-CSRFToken': getCookie('csrftoken') },
+                body: formData
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> CONTINUE ON WHATSAPP';
+
+                if (!data.success) {
+                    errorBox.textContent = data.error || 'Something went wrong. Please try again.';
+                    errorBox.style.display = 'block';
+                    return;
+                }
+
+                var name = document.getElementById('zuzEnquiryName').value;
+                var product = document.getElementById('zuzEnquiryProduct').value;
+                var message = document.getElementById('zuzEnquiryMessage').value;
+
+                var waText = "Hello, I'm " + name + ".";
+                if (product) waText += " I'm interested in: " + product + ".";
+                if (message) waText += " " + message;
+
+                var waUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(waText);
+
+                var modalInstance = bootstrap.Modal.getInstance(enquiryModalEl);
+                if (modalInstance) modalInstance.hide();
+
+                window.open(waUrl, '_blank');
+                enquiryForm.reset();
+            })
+            .catch(function() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> CONTINUE ON WHATSAPP';
+                errorBox.textContent = 'Network error. Please try again.';
+                errorBox.style.display = 'block';
+            });
+        });
+    }
+})();
+</script>
+
+{% comment %} booking enquire modal js end {% endcomment %}
     {% block extra_js %}
     {% endblock %}
 </body>

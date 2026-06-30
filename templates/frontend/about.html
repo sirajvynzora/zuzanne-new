@@ -80,6 +80,178 @@
         transform: scale(1.12);
         box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
     }
+
+
+    {% comment %} scrolling text style start  {% endcomment %}
+    .zuz-marquee-section {
+    background: #baa4915c;
+    overflow: hidden;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(231,101,137,0.15);
+    border: 2px solid white;
+}
+
+.zuz-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: zuzMarquee 28s linear infinite;
+}
+
+.zuz-marquee-content {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.zuz-marquee-content span {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: #fff;
+    white-space: nowrap;
+    padding: 0 24px;
+    letter-spacing: 1px;
+}
+
+.zuz-marquee-dot {
+    display: inline-flex;
+    align-items: center;
+}
+
+@keyframes zuzMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.zuz-marquee-section:hover .zuz-marquee-track {
+    animation-play-state: paused;
+}
+
+@media (max-width: 767px) {
+    .zuz-marquee-content span {
+        font-size: 18px;
+        padding: 0 16px;
+    }
+}
+.zuz-marquee-dot img {
+    height: 28px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+@media (max-width: 767px) {
+    .zuz-marquee-dot img {
+        height: 20px;
+    }
+}
+
+{% comment %} scrolling text style end here {% endcomment %}
+
+
+{% comment %} owner story section style start {% endcomment %}
+
+/* === Owner Story Sticky Section === */
+.zuz-owner-section {
+    position: relative;
+    background: #fff;
+}
+
+.zuz-owner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.zuz-owner-sticky {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+}
+
+.zuz-owner-image-wrap {
+    overflow: hidden;
+    border-radius: var(--zuz-image-radius, 0px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+.zuz-owner-image-wrap img {
+    width: 100%;
+    height: 85vh;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.zuz-owner-content {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.zuz-owner-content .sub-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #b98795;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.zuz-owner-content .title {
+    font-size: 38px;
+    font-weight: 400;
+    color: #222;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.zuz-owner-content .desc {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 28px;
+}
+
+.zuz-owner-signature {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    color: #b98795;
+    margin-top: 30px;
+}
+
+.zuz-owner-role {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    margin-top: 4px;
+}
+
+@media (max-width: 991px) {
+    .zuz-owner-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .zuz-owner-sticky {
+        position: relative;
+        top: auto;
+    }
+
+    .zuz-owner-image-wrap img {
+        height: 55vh;
+    }
+
+    .zuz-owner-content .title {
+        font-size: 30px;
+    }
+
+    .zuz-owner-content {
+        padding-top: 0;
+    }
+}
+{% comment %} owner story style end  {% endcomment %}
+
 </style>
 {% endblock %}
 
@@ -104,31 +276,37 @@
     </div>
     <!-- Page Title/Header End -->
 
-    <!-- About Section Start -->
-    <div class="section section-padding zuz-floral-section">
-        <div class="zuz-floral-bg zuz-bg-top-right">
-            <img src="{% static 'frontend/assets/new_images/floral2.svg' %}" alt="">
+
+    <!-- Scrolling Marquee Text Start -->
+<section class="zuz-marquee-section">
+    <div class="zuz-marquee-track">
+        <div class="zuz-marquee-content">
+            <span>Sacred Threads</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Made With Prayer</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Bespoke Craftsmanship</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Handcrafted Ceremonial Wear</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
         </div>
-        <div class="container">
-            <div class="row learts-mb-n30">
-                <div class="col-lg-4 col-12 align-self-center learts-mb-30 wow fadeInLeft" data-wow-duration="1.3s" data-wow-delay="0.1s">
-                    <div class="about-us4">
-                        <span class="sub-title">Zuzanne</span>
-                        <h2 class="title">Beautifully Handcrafted Ceremony Creations</h2>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-12 learts-mb-30 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="0.2s">
-                    <figure class="zuz-image-anime zuz-reveal" style="border-radius: var(--zuz-image-radius); width: 100%;">
-                        <img src="{% static 'frontend/assets/new_images/about-6.png' %}" alt="">
-                    </figure>
-                </div>
-            </div>
+        <div class="zuz-marquee-content" aria-hidden="true">
+            <span>Sacred Threads</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Made With Prayer</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Bespoke Craftsmanship</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Handcrafted Ceremonial Wear</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
         </div>
     </div>
-    <!-- About Section End -->
+</section>
+<!-- Scrolling Marquee Text End -->
 
-    <!-- About Section Start -->
-    <div class="section section-fluid section-padding pt-0">
+
+   <!-- About Section Start -->
+    <div class="section section-fluid section-padding">
         <div class="container">
             <div class="row learts-mb-n30">
 
@@ -185,6 +363,72 @@
 
     </div>
     <!-- About Section End -->
+
+    <!-- About Section Start -->
+    <div class="section section-padding zuz-floral-section">
+        <div class="zuz-floral-bg zuz-bg-top-right">
+            <img src="{% static 'frontend/assets/new_images/floral2.svg' %}" alt="">
+        </div>
+        <div class="container">
+            <div class="row learts-mb-n30">
+                <div class="col-lg-4 col-12 align-self-center learts-mb-30 wow fadeInLeft" data-wow-duration="1.3s" data-wow-delay="0.1s">
+                    <div class="about-us4">
+                        <span class="sub-title">Zuzanne</span>
+                        <h2 class="title">Beautifully Handcrafted Ceremony Creations</h2>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-12 learts-mb-30 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                    <figure class="zuz-image-anime zuz-reveal" style="border-radius: var(--zuz-image-radius); width: 100%;">
+                        <img src="{% static 'frontend/assets/new_images/about-6.png' %}" alt="">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Section End -->
+
+    <!-- Owner Story Sticky Section Start -->
+<div class="section section-padding zuz-owner-section">
+    <div class="container">
+        <div class="zuz-owner-grid">
+
+            <!-- Left: Sticky owner photo -->
+            <div class="zuz-owner-sticky">
+                <div class="zuz-owner-image-wrap zuz-image-anime zuz-reveal">
+                    <img src="{% static 'frontend/assets/new_images/zuzanne-owner.png' %}" alt="Teena Juby - Founder of Zuzanne">
+                </div>
+            </div>
+
+            <!-- Right: Scrolling content -->
+            <div class="zuz-owner-content">
+                <span class="sub-title wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s">Meet the Founder</span>
+                <h2 class="title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.2s">A Journey Stitched with Faith and Love</h2>
+
+                <p class="desc wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.3s">
+                    Zuzanne is a unique brand dedicated to crafting premium christening outfits and ceremonial attire for babies. Inspired by Psalm 92:12–14, Zuzanne symbolizes a plant in the House of God—firmly rooted in faith, blooming fresh and flourishing in the loving presence of Mother Mary.
+                </p>
+
+                <p class="desc wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.35s">
+                    Every Zuzanne creation reflects the purity, grace, and sacredness of a child's first step into the Christian faith. Combining timeless craftsmanship with elegant design, we create heirloom-quality christening gowns, baptism robes, ceremonial suits, rompers, and accessories that honor this precious occasion.
+                </p>
+
+                <p class="desc wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.4s">
+                    Each garment is thoughtfully handcrafted using premium fabrics, delicate lace, intricate embroidery, and meticulous attention to detail, ensuring exceptional comfort and lasting beauty. From premature baby gowns to toddler christening outfits for both boys and girls, every piece is designed to become a treasured part of your family's spiritual journey.
+                </p>
+
+                <p class="desc wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.4s">
+                 For nearly a decade, Zuzanne has been trusted by families to make christenings and other sacred ceremonies truly memorable. More than a clothing brand, Zuzanne represents faith, tradition, and the joy of celebrating life's most meaningful moments.   
+                </p>
+
+                <div class="zuz-owner-signature wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.45s">Teena Juby</div>
+                <div class="zuz-owner-role wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.5s">Founder & Lead Designer, Zuzanne</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Owner Story Sticky Section End -->
+
 
     <!-- Video Banner Section Start -->
     <div class="section">

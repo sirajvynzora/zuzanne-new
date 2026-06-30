@@ -30,6 +30,9 @@ urlpatterns = [
     path("dashboard/contacts/", views.contact_list, name="contact_list"),
     path("dashboard/contacts/<int:pk>/delete/", views.delete_contact, name="delete_contact"),
 
+    path("dashboard/booking-enquiries/", views.booking_enquiry_list, name="booking_enquiry_list"),
+    path("dashboard/booking-enquiries/<int:pk>/delete/", views.delete_booking_enquiry, name="delete_booking_enquiry"),
+
     path("dashboard/collections/", views.collection_list, name="collection_list"),
     path("dashboard/collections/add/", views.collection_create, name="collection_create"),
     path("dashboard/collections/edit/<int:pk>/", views.collection_update, name="collection_update"),
@@ -62,4 +65,8 @@ urlpatterns = [
     path("product/<slug:slug>/", views.product_detail_view, name="product_detail"),
     path("unused/<str:page_name>.html", views.frontend_page_unused, name="frontend_page_unused"),
     path("<str:page_name>.html", views.frontend_page, name="frontend_page"),
+    
+    # booking enquire creating
+    path('booking-enquiry/create/',views.booking_enquiry_create, name='booking_enquiry_create'),
+
 ]

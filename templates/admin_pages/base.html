@@ -1238,6 +1238,17 @@
                             {% endif %}
                         </a>
                     </li>
+                    <li>
+                      <a href="{% url 'booking_enquiry_list' %}"
+                            class="{% if request.resolver_match.url_name == 'booking_enquiry_list' %}active{% endif %} d-flex align-items-center justify-content-between" style="width: 100%;">
+                      <span>
+                        <i class="fab fa-whatsapp"></i>Booking Enquiries
+                      </span>
+                     {% if unread_booking_count > 0 %}
+                     <span class="badge" style="background-color: #ff3b30; color: white; border-radius: 12px; padding: 3px 8px; font-size: 11px; font-weight: 600; line-height: 1; min-width: 20px; text-align: center; margin-left: 8px; animation: pulse-red 2s infinite; display: inline-block;">{{ unread_booking_count }}</span>
+                      {% endif %}
+                       </a>
+                    </li>
 
                 </ul>
             </div>

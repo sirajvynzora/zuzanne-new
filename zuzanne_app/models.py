@@ -169,3 +169,22 @@ class ProductImage(OptimizedImageModel):
 
     def __str__(self):
         return f"Image for {self.product.name}"
+
+
+class BookingEnquiry(models.Model):
+    name = models.CharField(max_length=150)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField(blank=True, null=True)
+    message = models.TextField(blank=True, null=True)
+    product_name = models.CharField(max_length=200, blank=True, null=True)
+    source_page = models.CharField(max_length=200, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Booking Enquiry"
+        verbose_name_plural = "Booking Enquiries"
+
+    def __str__(self):
+        return f"{self.name} - {self.phone} ({self.created_at:%d %b %Y})"

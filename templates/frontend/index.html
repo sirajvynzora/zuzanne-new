@@ -151,12 +151,20 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
     }
 
     /* Typography System */
-    .zuz-heading-xl {
+    {% comment %} .zuz-heading-xl {
         font-family: var(--font-hero);
         font-size: clamp(58px, 8vw, 120px);
         letter-spacing: -0.03em;
         line-height: 0.9;
         font-weight: 400;
+    } {% endcomment %}
+    
+ 
+    .zuz-heading-xl{
+    font-size: clamp(48px, 7vw, 110px);
+    line-height: 0.95;
+    word-break: break-word;
+    overflow-wrap: break-word;
     }
 
     .zuz-heading-lg {
@@ -2060,6 +2068,59 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
         transform: translateY(0);
         transition-delay: 0.4s;
     }
+
+{% comment %} scrolling text style start  {% endcomment %}
+    .zuz-marquee-section {
+    background: #DFAAB7;
+    overflow: hidden;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(231,101,137,0.15);
+    border: 2px solid white;
+}
+
+.zuz-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: zuzMarquee 28s linear infinite;
+}
+
+.zuz-marquee-content {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.zuz-marquee-content span {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: #fff;
+    white-space: nowrap;
+    padding: 0 24px;
+    letter-spacing: 1px;
+}
+
+.zuz-marquee-dot {
+    color: #e76589 !important;
+    font-size: 16px !important;
+}
+
+@keyframes zuzMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.zuz-marquee-section:hover .zuz-marquee-track {
+    animation-play-state: paused;
+}
+
+@media (max-width: 767px) {
+    .zuz-marquee-content span {
+        font-size: 18px;
+        padding: 0 16px;
+    }
+}
+
+{% comment %} scrolling text style end here {% endcomment %}
 </style>
 <script>
     // ====== Sticky Header Scroll Behaviour ======
@@ -2100,9 +2161,13 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
             <div class="zuz-header-actions">
                 <a href="tel:+911234567890" class="btn btn-icon btn-outline-dark rounded-circle hintT-bottom"
                     data-hint="Call"><i class="fas fa-phone-alt"></i></a>
-                <a href="https://wa.me/911234567890" target="_blank"
+                {% comment %} <a href="" target="_blank"
                     class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp"><i
-                        class="fab fa-whatsapp"></i></a>
+                        class="fab fa-whatsapp"></i></a> {% endcomment %}
+                 
+                 <a href="#" class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{ showcase_product.name }}">
+                    <i class="fab fa-whatsapp"></i>
+                </a>       
             </div>
         </div>
 
@@ -2225,7 +2290,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
             <!-- Slide 1 -->
             <div class="swiper-slide">
                 <div class="slide-bg"
-                    style="background-image: url('{% static 'frontend/assets/new_images/baptsim.png' %}');"></div>
+                    style="background-image: url('{% static 'frontend/assets/new_images/zuzane-hero-img.png' %}');"></div>
                 <div class="container">
                     <div class="zuz-hero-content zuz-hero-content-left">
                         <span class="zuz-hero-label">LIMITED COLLECTION</span>
@@ -2249,8 +2314,11 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                         <div class="zuz-hero-actions">
                             <a href="{% url 'shop' %}" class="btn btn-dark btn-outline-hover-dark">EXPLORE
                                 COLLECTION</a>
-                            <a href="{% url 'contact' %}" class="btn btn-outline-dark btn-outline-hover-dark">INQUIRE
-                                NOW</a>
+                            {% comment %} <a href="{% url 'contact' %}" class="btn btn-outline-dark btn-outline-hover-dark">INQUIRE
+                                NOW</a> {% endcomment %}
+                                <a href="#" class="btn btn-outline-dark btn-hover-dark" data-zuz-enquiry-trigger data-product="{{ showcase_product.name }}">
+                                  <i class="far fa-envelope"></i> Enquire Now
+                                </a>
                         </div>
                     </div>
                 </div>
@@ -2284,6 +2352,34 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
     </div>
 </section>
 <!-- Hero Slider End -->
+
+<!-- Scrolling Marquee Text Start -->
+<section class="zuz-marquee-section">
+    <div class="zuz-marquee-track">
+        <div class="zuz-marquee-content">
+            <span>Sacred Threads</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Made With Prayer</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Bespoke Craftsmanship</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Handcrafted Ceremonial Wear</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+        </div>
+        <div class="zuz-marquee-content" aria-hidden="true">
+            <span>Sacred Threads</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Made With Prayer</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Bespoke Craftsmanship</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Handcrafted Ceremonial Wear</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+        </div>
+    </div>
+</section>
+<!-- Scrolling Marquee Text End -->
+
 <!-- Product Section Start -->
 <section class="zuz-collection-section section section-padding">
 
@@ -2359,9 +2455,12 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                                 <a href="{% url 'product_detail' product.slug %}"
                                                     class="product-button hintT-top" data-hint="View Details"><i
                                                         class="fas fa-search"></i></a>
-                                                <a href="{% url 'contact' %}?product={{ product.name }}"
+                                                {% comment %} <a href="{% url 'contact' %}?product={{ product.name }}"
                                                     class="product-button hintT-top" data-hint="Inquire Now"><i
-                                                        class="far fa-envelope"></i></a>
+                                                        class="far fa-envelope"></i></a> {% endcomment %}
+                                                <a href="#" class="product-button hintT-top" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
+                                                  <i class="fab fa-whatsapp"></i> 
+                                                </a>         
                                             </div>
                                         </div>
                                     </div>
@@ -2405,9 +2504,9 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                                 <a href="{% url 'product_detail' product.slug %}"
                                                     class="product-button hintT-top" data-hint="View Details"><i
                                                         class="fas fa-search"></i></a>
-                                                <a href="{% url 'contact' %}?product={{ product.name }}"
-                                                    class="product-button hintT-top" data-hint="Inquire Now"><i
-                                                        class="far fa-envelope"></i></a>
+                                                <a href="#" class="product-button hintT-top" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
+                                                  <i class="fab fa-whatsapp"></i> 
+                                                </a> 
                                             </div>
                                         </div>
                                     </div>
@@ -2584,7 +2683,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                     style="letter-spacing: 4px; color: var(--zuz-pink); font-size: 12px; text-transform: uppercase; z-index: 1;" data-wow-duration="1.2s" data-wow-delay="0.1s">Featured Collection</span>
                                 
                                 <div class="zuz-pinned-content-block" style="z-index: 1; display: flex; flex-direction: column; justify-content: center; margin-bottom: 40px;">
-                                    <h2 class="title zuz-heading-xl mt-3 wow fadeInUp" style="font-weight: 400; line-height: 1.2;" data-wow-duration="1.3s" data-wow-delay="0.2s">Holy Community</h2>
+                                    <h2 class="title zuz-heading-xl mt-3 wow fadeInUp" style="font-weight: 400; line-height: 1.2;" data-wow-duration="1.3s" data-wow-delay="0.2s">Holy Communion</h2>
 
                                     <div class="featured-collection-desc mt-3 mb-2 wow fadeInUp" style="max-width: 450px;" data-wow-duration="1.2s" data-wow-delay="0.3s">
                                         <p class="zuz-body" style="color: #666; font-size: 15px; line-height: 1.6;">An exclusive curation of ceremonial attire. Each garment is meticulously tailored using premium silks and delicate lace, designed to honor the sanctity of life's most precious milestones.</p>

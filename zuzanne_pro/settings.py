@@ -91,3 +91,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APPEND_SLASH = True
 
+# EMAIL SETTINGS - only one block!
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # prints in terminal for testing
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "sirajvynzora@gmail.com"
+EMAIL_HOST_PASSWORD = "lrvx lzeh qyde xklu"
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+ADMIN_EMAIL = 'sirajvynzora@gmail.com'

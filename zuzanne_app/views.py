@@ -8,6 +8,14 @@ from django.template import TemplateDoesNotExist
 from django.http import Http404, JsonResponse
 from django.template.loader import render_to_string
 
+from django.core.mail import send_mail
+from django.conf import settings
+
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_protect
+
+
+
 from .forms import (
     BlogForm,
     ContactForm,
@@ -16,7 +24,7 @@ from .forms import (
     CategoryForm,
     ProductForm,
 )
-from .models import Blog, Category, Contact, Testimonial, Collection, Product, ProductImage
+from .models import Blog, Category, Contact, Testimonial, Collection, Product, ProductImage,BookingEnquiry
 
 
 def home(request):
@@ -65,7 +73,7 @@ def admin_dashboard(request):
         while month_index <= 0:
             month_index += 12
             year -= 1
-        target = now.replace(year=year, month=month_index)
+        target = now.replace(year=year,month=month_index,day=1)
         month_labels.append(target.strftime("%b"))
         blogs_counts.append(
             Blog.objects.filter(
@@ -221,6 +229,21 @@ def delete_contact(request, pk):
         contact_obj.delete()
         messages.success(request, "Contact deleted.")
     return redirect("contact_list")
+
+@login_required(login_url="admin_login")
+def booking_enquiry_list(request):
+    BookingEnquiry.objects.filter(is_read=False).update(is_read=True)
+    enquiries = BookingEnquiry.objects.all().order_by("-created_at")
+    return render(request, "admin_pages/view_booking_enquiries.html", {"enquiries": enquiries})
+
+
+@login_required(login_url="admin_login")
+def delete_booking_enquiry(request, pk):
+    enquiry_obj = get_object_or_404(BookingEnquiry, pk=pk)
+    if request.method == "POST":
+        enquiry_obj.delete()
+        messages.success(request, "Booking enquiry deleted.")
+    return redirect("booking_enquiry_list")
 
 
 @login_required(login_url="admin_login")
@@ -524,8 +547,10 @@ def about_view(request):
     })
 
 
+
 def contact_view(request):
     if request.method == "POST":
+
         first_name = request.POST.get("first_name", "").strip()
         last_name = request.POST.get("last_name", "").strip()
         phone = request.POST.get("phone", "").strip()
@@ -534,9 +559,12 @@ def contact_view(request):
 
         if not first_name or not last_name or not phone or not email or not message:
             messages.error(request, "Please fill in all required fields.")
+
         else:
+
             try:
-                Contact.objects.create(
+
+                contact = Contact.objects.create(
                     first_name=first_name,
                     last_name=last_name,
                     phone=phone,
@@ -544,15 +572,80 @@ def contact_view(request):
                     message=message,
                     best_time_to_contact="Anytime"
                 )
+
+                subject = f"New Contact Enquiry from {first_name} {last_name}"
+
+                body = f"""
+A new enquiry has been submitted.
+
+Name:
+{first_name} {last_name}
+
+Phone:
+{phone}
+
+Email:
+{email}
+
+Message:
+
+{message}
+
+--------------------------------
+
+Submitted from Zuzanne Website
+"""
+
+                send_mail(
+                    subject,
+                    body,
+                    settings.DEFAULT_FROM_EMAIL,
+                    ["sirajvynzora@gmail.com"],   # Change this
+                    fail_silently=False,
+                )
+
                 messages.success(request, "Your message has been sent successfully!")
+
             except Exception as e:
-                messages.error(request, f"Failed to submit message: {str(e)}")
+                messages.error(request, f"Failed to submit message: {e}")
 
         return redirect(request.path)
-        
-    # GET request
+
     product_name = request.GET.get("product", "")
-    return render(request, "frontend/contact.html", {"product_name": product_name})
+    return render(request, "frontend/contact.html", {
+        "product_name": product_name
+    })
+
+
+# def contact_view(request):
+#     if request.method == "POST":
+#         first_name = request.POST.get("first_name", "").strip()
+#         last_name = request.POST.get("last_name", "").strip()
+#         phone = request.POST.get("phone", "").strip()
+#         email = request.POST.get("email", "").strip()
+#         message = request.POST.get("message", "").strip()
+
+#         if not first_name or not last_name or not phone or not email or not message:
+#             messages.error(request, "Please fill in all required fields.")
+#         else:
+#             try:
+#                 Contact.objects.create(
+#                     first_name=first_name,
+#                     last_name=last_name,
+#                     phone=phone,
+#                     email=email,
+#                     message=message,
+#                     best_time_to_contact="Anytime"
+#                 )
+#                 messages.success(request, "Your message has been sent successfully!")
+#             except Exception as e:
+#                 messages.error(request, f"Failed to submit message: {str(e)}")
+
+#         return redirect(request.path)
+        
+#     # GET request
+#     product_name = request.GET.get("product", "")
+#     return render(request, "frontend/contact.html", {"product_name": product_name})
 
 
 def frontend_page(request, page_name):
@@ -673,6 +766,34 @@ def frontend_page_unused(request, page_name):
         return render(request, f"frontend/unused/{page_name}.html")
     except TemplateDoesNotExist:
         raise Http404("Template not found")
+
+
+
+@require_POST
+@csrf_protect
+def booking_enquiry_create(request):
+    name = request.POST.get('name', '').strip()
+    phone = request.POST.get('phone', '').strip()
+    email = request.POST.get('email', '').strip()
+    message = request.POST.get('message', '').strip()
+    product_name = request.POST.get('product_name', '').strip()
+    source_page = request.POST.get('source_page', '').strip()
+
+    if not name or not phone:
+        return JsonResponse({'success': False, 'error': 'Name and phone are required.'}, status=400)
+
+    enquiry = BookingEnquiry.objects.create(
+        name=name,
+        phone=phone,
+        email=email,
+        message=message,
+        product_name=product_name,
+        source_page=source_page,
+    )
+
+    return JsonResponse({'success': True, 'id': enquiry.id})
+
+
 
 def custom_404_view(request, exception=None):
     return render(request, 'frontend/404.html', status=404)

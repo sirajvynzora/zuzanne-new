@@ -4,11 +4,150 @@
 {% block seo_title %}{{ product.name }} | Premium Ceremonial Wear | Zuzanne{% endblock %}
 {% block seo_description %}Buy or customize the {{ product.name }} at Zuzanne. Premium handcrafted design perfect for Christian baptism, communion, or special family ceremonies.{% endblock %}
 
+
+{% block extra_css %}
+<style>
+{% comment %} scrolling text style start  {% endcomment %}
+    .zuz-marquee-section {
+    background: #baa4915c;
+    overflow: hidden;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(231,101,137,0.15);
+    border: 2px solid white;
+}
+
+.zuz-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: zuzMarquee 28s linear infinite;
+}
+
+.zuz-marquee-content {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.zuz-marquee-content span {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: #fff;
+    white-space: nowrap;
+    padding: 0 24px;
+    letter-spacing: 1px;
+}
+
+.zuz-marquee-dot {
+    display: inline-flex;
+    align-items: center;
+}
+
+@keyframes zuzMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.zuz-marquee-section:hover .zuz-marquee-track {
+    animation-play-state: paused;
+}
+
+@media (max-width: 767px) {
+    .zuz-marquee-content span {
+        font-size: 18px;
+        padding: 0 16px;
+    }
+}
+.zuz-marquee-dot img {
+    height: 28px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+@media (max-width: 767px) {
+    .zuz-marquee-dot img {
+        height: 20px;
+    }
+}
+
+{% comment %} scrolling text style end here {% endcomment %}
+
+{% comment %} product image sticky {% endcomment %}
+@media (min-width: 992px) {
+    .zuz-product-sticky-images {
+        position: sticky;
+        top: 100px;
+        align-self: start;
+    }
+}
+{% comment %} product image stick end {% endcomment %}
+
+{% comment %} product description style start {% endcomment %}
+@media (min-width: 992px) {
+    .product-summery.product-summery-center {
+        text-align: left;
+    }
+
+    .product-summery.product-summery-center .product-description,
+    .product-summery.product-summery-center .product-description p,
+    .product-summery.product-summery-center .product-description ul,
+    .product-summery.product-summery-center .product-description li {
+        text-align: left;
+    }
+
+    .product-summery.product-summery-center .product-variations,
+    .product-summery.product-summery-center .product-buttons {
+        text-align: left;
+        justify-content: flex-start;
+    }
+}
+{% comment %} product description style end {% endcomment %}
+
+@media (min-width: 992px) {
+    .product-images.vertical .product-gallery-slider {
+        height: 550px !important;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .product-images.vertical .product-gallery-slider .product-zoom,
+    .product-images.vertical .product-gallery-slider .product-zoom img {
+        width: 100%;
+        height: 650px !important;
+        object-fit: cover;
+    }
+
+    .product-thumb-slider-vertical .item img {
+        height: 130px;
+        object-fit: cover;
+    }
+}
+</style>
+{% endblock %}
+
 {% block content %}
 <style>
+   
     @media (min-width: 992px) {
         .product-summery .product-description {
             margin-bottom: 15px !important;
+        }
+
+        .product-summery.product-summery-center {
+            text-align: left;
+        }
+
+        .product-summery.product-summery-center .product-description,
+        .product-summery.product-summery-center .product-description p,
+        .product-summery.product-summery-center .product-description ul,
+        .product-summery.product-summery-center .product-description li {
+            text-align: left;
+        }
+
+        .product-summery.product-summery-center .product-variations,
+        .product-summery.product-summery-center .product-buttons {
+            text-align: left;
+            justify-content: flex-start;
         }
     }
 </style>
@@ -33,6 +172,33 @@
     </div>
     <!-- Page Title/Header End -->
 
+     <!-- Scrolling Marquee Text Start -->
+<section class="zuz-marquee-section">
+    <div class="zuz-marquee-track">
+        <div class="zuz-marquee-content">
+            <span>Sacred Threads</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Made With Prayer</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Bespoke Craftsmanship</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Handcrafted Ceremonial Wear</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+        </div>
+        <div class="zuz-marquee-content" aria-hidden="true">
+            <span>Sacred Threads</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Made With Prayer</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Bespoke Craftsmanship</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span>Handcrafted Ceremonial Wear</span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+        </div>
+    </div>
+</section>
+<!-- Scrolling Marquee Text End -->
+
     <!-- Single Products Section Start -->
     <div class="section section-fluid section-padding border-bottom zuz-floral-section">
         <div class="zuz-floral-bg zuz-bg-top-right">
@@ -42,25 +208,28 @@
             <div class="row learts-mb-n40">
 
                 <!-- Product Images Start -->
-                <div class="col-lg-6 col-12 learts-mb-40 wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="0.1s">
-                    <div class="product-images vertical">
-                        <div class="product-gallery-slider">
-                            {% for img in product.images.all %}
-                            <div class="product-zoom" data-image="{{ img.image.url }}"><img src="{{ img.image.url }}" alt="{{ product.name }}"></div>
-                            {% empty %}
-                            <div class="product-zoom"><img src="{% static 'frontend/assets/images/product/single/2/product-1.webp' %}" alt="{{ product.name }}"></div>
-                            {% endfor %}
-                        </div>
-                        <div class="product-thumb-slider-vertical">
-                            {% for img in product.images.all %}
-                            <div class="item"><img src="{{ img.image.url }}" alt="{{ product.name }}"></div>
-                            {% empty %}
-                            <div class="item"><img src="{% static 'frontend/assets/images/product/single/2/product-thumb-1.webp' %}" alt="{{ product.name }}"></div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Images End -->
+<div class="col-lg-6 col-12 learts-mb-40 wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="0.1s">
+    <div class="zuz-product-sticky-images">
+        <div class="product-images vertical">
+            <div class="product-gallery-slider">
+                {% for img in product.images.all %}
+                <div class="product-zoom" data-image="{{ img.image.url }}"><img src="{{ img.image.url }}" alt="{{ product.name }}"></div>
+                {% empty %}
+                <div class="product-zoom"><img src="{% static 'frontend/assets/images/product/single/2/product-1.webp' %}" alt="{{ product.name }}"></div>
+                {% endfor %}
+            </div>
+            <div class="product-thumb-slider-vertical">
+                {% for img in product.images.all %}
+                <div class="item"><img src="{{ img.image.url }}" alt="{{ product.name }}"></div>
+                {% empty %}
+                <div class="item"><img src="{% static 'frontend/assets/images/product/single/2/product-thumb-1.webp' %}" alt="{{ product.name }}"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product Images End -->
+
 
                 <!-- Product Summary Column -->
                 <div class="col-lg-6 col-12 learts-mb-40 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="0.2s">
@@ -83,8 +252,11 @@
                             {% endif %}
                         </div>
                         <div class="product-buttons">
-                            <a href="{% url 'contact' %}?product={{ product.name }}" class="btn btn-dark btn-outline-hover-dark"><i class="far fa-envelope"></i> Enquire Now</a>
-                            <a href="https://wa.me/911234567890?text=Hi, I am interested in {{ product.name }}" target="_blank" class="btn btn-outline-dark btn-outline-hover-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            {% comment %} <a href="{% url 'contact' %}?product={{ product.name }}" class="btn btn-dark btn-outline-hover-dark"><i class="far fa-envelope"></i> Enquire Now</a> {% endcomment %}
+                            <a href="#" class="btn btn-outline-dark btn-outline-hover-dark" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
+                                <i class="fab fa-whatsapp"></i> WhatsApp 
+                            </a> 
+                            {% comment %} <a href="https://wa.me/911234567890?text=Hi, I am interested in {{ product.name }}" target="_blank" class="btn btn-outline-dark btn-outline-hover-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a> {% endcomment %}
                         </div>
 
                     </div>
@@ -98,7 +270,7 @@
     <!-- Single Products Section End -->
 
     <!-- Single Products Infomation Section Start -->
-    <div class="section section-padding border-bottom">
+    {% comment %} <div class="section section-padding border-bottom">
         <div class="container">
 
             <ul class="nav product-info-tab-list wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s">
@@ -165,7 +337,7 @@
             </div>
 
         </div>
-    </div>
+    </div> {% endcomment %}
     <!-- Single Products Infomation Section End -->
 
     <!-- Recommended Products Section Start -->
