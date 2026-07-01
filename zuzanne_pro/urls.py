@@ -18,8 +18,9 @@ from django.urls import include, path
 urlpatterns = [
     path("", include("zuzanne_app.urls")),
 ]
-
+if settings.DEBUG:
+ urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )
 handler404 = "zuzanne_app.views.custom_404_view"
-
-# Always serve media files
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
