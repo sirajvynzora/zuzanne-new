@@ -160,15 +160,17 @@ class Product(models.Model):
             self.slug = slug
         super().save(*args, **kwargs)
 
-class ComboItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="combo_items")
-    item_name = models.CharField(max_length=200)
-    quantity = models.CharField(max_length=50, default="1")
+class ComboSet(OptimizedImageModel):
+    image_fields = ["image"]
+
+    products = models.ManyToManyField(Product, related_name="combo_items")
+    combo_name = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to="combo_items/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.item_name} - {self.product.name}"
-
+        return self.combo_name
 
 class ProductImage(OptimizedImageModel):
     image_fields = ["image"]

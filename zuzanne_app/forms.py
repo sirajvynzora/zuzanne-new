@@ -1,7 +1,7 @@
 from django import forms
 from django.utils import timezone
 
-from .models import Blog, Category, Contact, Testimonial, Collection, Product
+from .models import Blog, Category, ComboSet, Contact, Testimonial, Collection, Product
 
 
 class BlogForm(forms.ModelForm):
@@ -66,3 +66,14 @@ class ProductForm(forms.ModelForm):
             "gender": forms.Select(choices=Product.GENDER_CHOICES),
             "available_sizes": forms.Textarea(attrs={"rows": 3}),
         }
+
+class ComboSetForm(forms.ModelForm):
+    products = forms.ModelMultipleChoiceField(
+        queryset=Product.objects.all().order_by("name"),
+        widget=forms.CheckboxSelectMultiple,
+        required=True
+    )
+
+    class Meta:
+        model = ComboSet
+        fields = ["products", "combo_name", "description", "image"]

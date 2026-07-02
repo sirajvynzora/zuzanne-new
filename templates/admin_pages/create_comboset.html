@@ -1,0 +1,184 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block title %}{% if comboset %}Edit Comboset{% else %}Add Comboset{% endif %} | Admin Dashboard{% endblock %}
+
+{% block extra_css %}
+<style>
+/* --- reuse the same responsiveness / modern-input / button CSS
+     from create_product.html verbatim here --- */
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard sp_bottom_100">
+    <div class="container-fluid full__width__padding">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                <div class="dashboard__section__title">
+                    <h4 class="mb-0">{% if comboset %}Edit Comboset{% else %}Add Comboset{% endif %}</h4>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <form method="post" enctype="multipart/form-data" class="needs-validation form-wrapper" novalidate>
+                            {% csrf_token %}
+                            <div class="row">
+
+                                <!-- Product -->
+                                <!-- Products (multi-select checkboxes) -->
+<div class="col-12 mb-4">
+    <label class="form-label">Select Products <span class="text-danger">*</span></label>
+    <div class="border rounded p-3" style="max-height: 300px; overflow-y: auto;">
+        {% for product in form.products.field.queryset %}
+            <div class="form-check mb-2">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="products"
+                    value="{{ product.id }}"
+                    id="product_{{ product.id }}"
+                    {% if comboset and product in comboset.products.all %}checked{% endif %}
+                >
+                <label class="form-check-label" for="product_{{ product.id }}">
+                    {{ product.name }}
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="invalid-feedback d-block" id="products-error" style="display:none;"></div>
+</div>
+
+                                <!-- Combo Name -->
+                                <div class="col-12 mb-4">
+                                    <label for="combo_name" class="form-label">Combo Name <span class="text-danger">*</span></label>
+                                    <input type="text" name="combo_name" id="combo_name" class="form-control modern-input" value="{{ comboset.combo_name|default:'' }}" placeholder="Enter combo name" required>
+                                    <div class="invalid-feedback">Please provide a combo name.</div>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="col-12 mb-4">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea name="description" id="description" class="form-control modern-input" rows="6" placeholder="Optional description">{{ comboset.description|default:'' }}</textarea>
+                                </div>
+
+                                <!-- Image -->
+                                <div class="col-12 mb-4">
+                                    <label for="image" class="form-label">Image {% if not comboset %}<span class="text-danger">*</span>{% endif %}</label>
+                                    <input type="file" name="image" id="image" class="form-control modern-input" accept="image/*" {% if not comboset %}required{% endif %}>
+                                    {% if comboset and comboset.image %}
+                                        <div class="mt-3">
+                                            <p class="mb-2">Current Image:</p>
+                                            <img src="{{ comboset.image.url }}" alt="Comboset Image" class="img-thumbnail" style="height: 100px; width: 100px; object-fit: cover;">
+                                            <p class="text-muted mt-2 small">Uploading a new image will replace the existing one.</p>
+                                        </div>
+                                    {% endif %}
+                                    <div class="invalid-feedback">Please upload an image.</div>
+                                </div>
+
+                                <!-- Submit -->
+                                <div class="col-12 mt-4">
+                                    <div class="dashboard__form__button">
+                                        <button type="submit" class="default__button">{% if comboset %}Save Changes{% else %}Add Comboset{% endif %}</button>
+                                        <a href="{% url 'comboset_list' %}" class="default__button" style="background: #6c757d;">Cancel</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+
+    // Regular single-value fields (product removed, others unchanged)
+    const fields = {
+        combo_name: {
+            element: document.getElementById('combo_name'),
+            error: document.createElement('div'),
+            validate: v => !v.trim() ? "Combo name is required." : null
+        },
+        image: {
+            element: document.getElementById('image'),
+            error: document.createElement('div'),
+            validate: files => {
+                const isEdit = {% if comboset %}true{% else %}false{% endif %};
+                if (!isEdit && (!files || files.length === 0)) return "Image is required.";
+                return null;
+            }
+        }
+    };
+
+    Object.values(fields).forEach(f => {
+        f.error.classList.add('text-danger', 'mt-1');
+        f.element.insertAdjacentElement('afterend', f.error);
+    });
+
+    function validateField(name) {
+        const f = fields[name];
+        let value = f.element.type === 'file' ? f.element.files : f.element.value;
+        const error = f.validate(value);
+        f.error.textContent = error || '';
+        f.error.style.display = error ? 'block' : 'none';
+        f.element.classList.toggle('field-error-border', !!error);
+        return !error;
+    }
+
+    Object.keys(fields).forEach(name => {
+        const f = fields[name];
+        if (f.element.type === 'file') {
+            f.element.addEventListener('change', () => validateField(name));
+        } else {
+            f.element.addEventListener('blur', () => validateField(name));
+            f.element.addEventListener('change', () => validateField(name));
+            f.element.addEventListener('input', () => { if (f.error.textContent) validateField(name); });
+        }
+    });
+
+    // Products checkbox group validation
+    function validateProducts() {
+        const checked = document.querySelectorAll('input[name="products"]:checked');
+        const errorDiv = document.getElementById('products-error');
+        if (checked.length === 0) {
+            errorDiv.textContent = "Please select at least one product.";
+            errorDiv.style.display = 'block';
+            return false;
+        }
+        errorDiv.textContent = '';
+        errorDiv.style.display = 'none';
+        return true;
+    }
+
+    // Live validation as checkboxes are toggled
+    document.querySelectorAll('input[name="products"]').forEach(cb => {
+        cb.addEventListener('change', validateProducts);
+    });
+
+    // Form submit
+    form.addEventListener('submit', function (e) {
+        const otherFieldsValid = Object.keys(fields).every(validateField);
+        const productsValid = validateProducts();
+
+        if (!otherFieldsValid || !productsValid) {
+            e.preventDefault();
+
+            // Scroll to whichever error appears first
+            if (!productsValid) {
+                document.getElementById('products-error').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                const first = Object.keys(fields).find(f => fields[f].error.textContent);
+                if (first) fields[first].element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

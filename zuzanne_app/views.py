@@ -20,13 +20,14 @@ import re
 
 from .forms import (
     BlogForm,
+    ComboSetForm,
     ContactForm,
     TestimonialForm,
     CollectionForm,
     CategoryForm,
     ProductForm,
 )
-from .models import Blog, Category, Contact, Testimonial, Collection, Product, ProductImage,BookingEnquiry
+from .models import Blog, Category, ComboSet, Contact, Testimonial, Collection, Product, ProductImage,BookingEnquiry
 
 
 def home(request):
@@ -435,6 +436,75 @@ def product_image_delete(request, pk):
     img.delete()
     messages.success(request, "Product image deleted successfully.")
     return redirect("product_list")
+
+
+
+@login_required(login_url="admin_login")
+def comboset_list(request):
+    product_id = request.GET.get('product')
+    combosets = ComboSet.objects.prefetch_related("products").all().order_by("-created_at")
+    if product_id:
+        combosets = combosets.filter(products__id=product_id)
+
+    paginator = Paginator(combosets, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    products = Product.objects.all().order_by("name")
+
+    return render(request, "admin_pages/comboset_list.html", {
+        "combosets": page_obj,
+        "products": products,
+        "selected_product": product_id,
+    })
+
+
+@login_required(login_url="admin_login")
+def comboset_create(request):
+    if request.method == "POST":
+        form = ComboSetForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()  # ModelForm handles M2M save_m2m automatically
+            messages.success(request, "Comboset created successfully.")
+            return redirect("comboset_list")
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = ComboSetForm()
+
+    return render(request, "admin_pages/create_comboset.html", {"form": form})
+
+
+@login_required(login_url="admin_login")
+def comboset_update(request, pk):
+    comboset_obj = get_object_or_404(ComboSet, pk=pk)
+
+    if request.method == "POST":
+        form = ComboSetForm(request.POST, request.FILES, instance=comboset_obj)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Comboset updated successfully.")
+            return redirect("comboset_list")
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = ComboSetForm(instance=comboset_obj)
+
+    return render(request, "admin_pages/create_comboset.html", {
+        "form": form, "comboset": comboset_obj
+    })
+
+
+@login_required(login_url="admin_login")
+def comboset_delete(request, pk):
+    comboset_obj = get_object_or_404(ComboSet, pk=pk)
+    if request.method == "POST":
+        comboset_obj.delete()
+        messages.success(request, "Comboset deleted successfully.")
+    return redirect("comboset_list")
+
+
+
 
 
 def frontend_home(request):

@@ -50,6 +50,11 @@ urlpatterns = [
     path("dashboard/products/delete/<int:pk>/", views.product_delete, name="product_delete"),
     path("dashboard/products/image/delete/<int:pk>/", views.product_image_delete, name="product_image_delete"),
 
+    path("combosets/", views.comboset_list, name="comboset_list"),
+    path("combosets/create/", views.comboset_create, name="comboset_create"),
+    path("combosets/<int:pk>/edit/", views.comboset_update, name="comboset_update"),
+    path("combosets/<int:pk>/delete/", views.comboset_delete, name="comboset_delete"),
+
     # Shop & Hierarchical Filters (Unified View)
     path("shop/", views.shop_view, name="shop"),
     path("shop/<slug:collection_slug>/", views.shop_view, name="collection"),

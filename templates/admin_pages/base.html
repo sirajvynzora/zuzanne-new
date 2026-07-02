@@ -1211,6 +1211,15 @@
                             Products
                         </a>
                     </li>
+
+                    <li>
+                      <a href="{% url 'comboset_list' %}" class="{% if request.resolver_match.url_name == 'comboset_list' or request.resolver_match.url_name == 'comboset_create' or request.resolver_match.url_name == 'comboset_update' %}active{% endif %}">
+                        <i class="icofont-box"></i>
+                         Combosets
+                        </a>
+                    </li>
+
+
                     <li>
                         <a href="{% url 'admin_blog_list' %}"
                             class="{% if request.resolver_match.url_name == 'admin_blog_list' or request.resolver_match.url_name == 'admin_block_list' %}active{% endif %}">
