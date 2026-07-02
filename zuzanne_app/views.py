@@ -14,6 +14,8 @@ from django.conf import settings
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
 
+from bs4 import BeautifulSoup
+import re
 
 
 from .forms import (
@@ -459,6 +461,48 @@ def frontend_home(request):
         "showcase_product": showcase_product,
     })
 
+# def shop_view(request, collection_slug=None, category_slug=None):
+#     products = Product.objects.select_related("category__collection").prefetch_related("images").all()
+#     collections = Collection.objects.all()
+#     categories = Category.objects.none()
+    
+#     collection = None
+#     category = None
+#     shop_title = "Shop"
+    
+#     if collection_slug:
+#         collection = get_object_or_404(Collection, slug=collection_slug)
+#         categories = Category.objects.filter(collection=collection).order_by("name")
+#         products = products.filter(category__collection=collection)
+#         shop_title = collection.name
+        
+#     if category_slug:
+#         category = get_object_or_404(Category, collection=collection, slug=category_slug)
+#         products = products.filter(category=category)
+#         shop_title = category.name
+        
+#     # Handle Sorting
+#     current_sort = request.GET.get('sort', 'latest')
+#     if current_sort == 'oldest':
+#         products = products.order_by('created_at')
+#     elif current_sort == 'name_asc':
+#         products = products.order_by('name')
+#     elif current_sort == 'name_desc':
+#         products = products.order_by('-name')
+#     else:  # 'latest' or default
+#         products = products.order_by('-created_at')
+        
+#     context = {
+#         "products": products,
+#         "collections": collections,
+#         "categories": categories,
+#         "collection": collection,
+#         "category": category,
+#         "shop_title": shop_title,
+#         "current_sort": current_sort,
+#     }
+#     return render(request, "frontend/shop.html", context)
+
 def shop_view(request, collection_slug=None, category_slug=None):
     products = Product.objects.select_related("category__collection").prefetch_related("images").all()
     collections = Collection.objects.all()
@@ -489,9 +533,15 @@ def shop_view(request, collection_slug=None, category_slug=None):
         products = products.order_by('-name')
     else:  # 'latest' or default
         products = products.order_by('-created_at')
+
+    # Handle Pagination — 9 products per page (3x3 grid)
+    paginator = Paginator(products, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
         
     context = {
-        "products": products,
+        "products": page_obj,        # now this is the paginated page, not the full queryset
+        "page_obj": page_obj,        # needed for pagination controls in template
         "collections": collections,
         "categories": categories,
         "collection": collection,
@@ -500,7 +550,6 @@ def shop_view(request, collection_slug=None, category_slug=None):
         "current_sort": current_sort,
     }
     return render(request, "frontend/shop.html", context)
-
 
 def blog_list_view(request):
     blogs_list = Blog.objects.all().order_by("-created_at")
@@ -690,9 +739,34 @@ def frontend_page(request, page_name):
         raise Http404("Template not found")
 
 
+
+def split_description_sections(html):
+    if not html:
+        return "", []
+
+    pattern = re.compile(r'<(h[1-6])[^>]*>(.*?)</\1>', re.IGNORECASE | re.DOTALL)
+    matches = list(pattern.finditer(html))
+
+    if not matches:
+        return html, []
+
+    intro = html[:matches[0].start()]
+    sections = []
+
+    for i, m in enumerate(matches):
+        heading_html = m.group(2)
+        heading_text = re.sub(r'<[^>]+>', '', heading_html).strip()
+
+        content_start = m.end()
+        content_end = matches[i + 1].start() if i + 1 < len(matches) else len(html)
+        content = html[content_start:content_end]
+
+        sections.append({"heading": heading_text, "content": content})
+
+    return intro, sections
+
 def product_detail_view(request, slug):
     product = get_object_or_404(Product.objects.prefetch_related("images"), slug=slug)
-
     if request.method == "POST":
         first_name = request.POST.get("first_name", "").strip()
         phone = request.POST.get("phone", "").strip()
@@ -720,6 +794,11 @@ def product_detail_view(request, slug):
         s.strip() for s in product.available_sizes.split(',')
     ] if product.available_sizes else []
 
+    product_images = list(product.images.all())
+    size_chart_img = product_images[-1] if product_images else None
+
+    description_intro, description_sections = split_description_sections(product.description)
+
     return render(
         request,
         "frontend/product_detail.html",
@@ -727,8 +806,49 @@ def product_detail_view(request, slug):
             "product": product,
             "recommended_products": recommended_products,
             "sizes_list": sizes_list,
+            "size_chart_img": size_chart_img,
+            "description_intro": description_intro,
+            "description_sections": description_sections,
         }
     )
+# def product_detail_view(request, slug):
+#     product = get_object_or_404(Product.objects.prefetch_related("images"), slug=slug)
+#     if request.method == "POST":
+#         first_name = request.POST.get("first_name", "").strip()
+#         phone = request.POST.get("phone", "").strip()
+#         email = request.POST.get("email", "").strip()
+#         message = request.POST.get("message", "").strip()
+#         product_name = request.POST.get("product_name", "").strip()
+#         if first_name and phone and message:
+#             Contact.objects.create(
+#                 first_name=first_name,
+#                 last_name="",
+#                 phone=phone,
+#                 email=email,
+#                 message=f"Product Enquiry: {product_name}\n\n{message}",
+#             )
+#             messages.success(request, "Your enquiry has been sent successfully!")
+#         else:
+#             messages.error(request, "Please fill in all required fields.")
+#         return redirect(request.path)
+
+#     recommended_products = Product.objects.filter(
+#         category=product.category
+#     ).exclude(id=product.id).prefetch_related("images")[:6]
+
+#     sizes_list = [
+#         s.strip() for s in product.available_sizes.split(',')
+#     ] if product.available_sizes else []
+
+#     return render(
+#         request,
+#         "frontend/product_detail.html",
+#         {
+#             "product": product,
+#             "recommended_products": recommended_products,
+#             "sizes_list": sizes_list,
+#         }
+#     )
 
 
 def frontend_page_unused(request, page_name):

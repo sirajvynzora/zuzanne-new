@@ -599,9 +599,7 @@
         var $activeFilter = $isotopeFilter.find('button.active').attr('data-filter') || '*';
         $isotopeGrid.isotope({
             itemSelector: '.grid-item',
-            masonry: {
-                columnWidth: '.grid-sizer'
-            },
+            layoutMode: 'fitRows',
             filter: $activeFilter
         });
     });

@@ -9,7 +9,7 @@
 <style>
 {% comment %} scrolling text style start  {% endcomment %}
     .zuz-marquee-section {
-    background: #baa4915c;
+    background: #c39d7d5c;
     overflow: hidden;
     padding: 22px 0;
     border-bottom: 1px solid rgba(231,101,137,0.15);
@@ -30,8 +30,8 @@
 
 .zuz-marquee-content span {
     font-family: var(--font-heading);
-    font-size: 28px;
-    color: #fff;
+    font-size: 30px;
+    color: white;
     white-space: nowrap;
     padding: 0 24px;
     letter-spacing: 1px;
@@ -72,6 +72,25 @@
 
 {% comment %} scrolling text style end here {% endcomment %}
 
+
+<!-- map style start here -->
+.contact-map {
+    width: 100%;
+    height: 500px;
+    border: 0;
+    display: block;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+}
+
+@media (max-width: 767px) {
+    .contact-map {
+        height: 350px;
+    }
+}
+<!-- map style  end here -->
+
 </style>
 {% endblock %}
 
@@ -103,23 +122,23 @@
     <div class="zuz-marquee-track">
         <div class="zuz-marquee-content">
             <span>Sacred Threads</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Made With Prayer</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Bespoke Craftsmanship</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Handcrafted Ceremonial Wear</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
         </div>
         <div class="zuz-marquee-content" aria-hidden="true">
             <span>Sacred Threads</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Made With Prayer</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Bespoke Craftsmanship</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Handcrafted Ceremonial Wear</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
         </div>
     </div>
 </section>
@@ -143,13 +162,13 @@
                 <div class="col-lg-4 col-md-6 col-12 learts-mb-30">
                     <div class="contact-info wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0s">
                         <h4 class="title">ADDRESS</h4>
-                        <span class="info"><i class="icon fas fa-map-marker-alt"></i> Zuzanne Boutique, [Insert Boutique Address Here]</span>
+                        <span class="info"><i class="icon fas fa-map-marker-alt"></i> Zuzanne Boutique, Building No:25/400, T&J Creations, Mrala, Muttom, Thodupuzha, Kerala 685587</span>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12 learts-mb-30">
                     <div class="contact-info wow fadeInUp" data-wow-duration="1.2s" data-wow-delay="0.1s">
                         <h4 class="title">CONTACT</h4>
-                        <span class="info"><i class="icon fas fa-phone-alt"></i> Phone: [Insert Phone Number] <br> WhatsApp: [Insert WhatsApp Number]</span>
+                        <span class="info"><i class="icon fas fa-phone-alt"></i> Phone: 7902545698 <br> WhatsApp: 7902545698</span>
                         <span class="info"><i class="icon far fa-envelope"></i> Email: <a href="mailto:info@zuzanne.com">info@zuzanne.com</a></span>
                     </div>
                 </div>

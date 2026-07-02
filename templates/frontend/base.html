@@ -343,17 +343,20 @@
         }
 
         .sticky-cta-whatsapp {
-            background: #333;
-            color: #fff;
-            border: 1px solid #333;
-        }
+    border: 1px solid #333;
+    background: transparent !important;
+    color: #333;
+}
 
-        .sticky-cta-whatsapp:hover {
-            background: var(--zuz-pink);
-            border-color: var(--zuz-pink);
-            color: #fff;
-            transform: translateY(-2px);
-        }
+.sticky-cta-whatsapp:hover {
+    background: #B98795 !important;
+    border-color: var(--zuz-pink);
+    color: #fff;
+    transform: translateY(-2px);
+}
+.sticky-cta-whatsapp:hover i{
+    color: #fff !important;
+}
 
         .sticky-header .header-tools {
             display: flex;
@@ -579,7 +582,7 @@
                 flex: 0 0 auto !important;
                 width: auto !important;
                 min-width: 160px !important;
-                padding: 0 !important;
+                padding: 0px !important;
                 text-align: left !important;
             }
 
@@ -587,8 +590,8 @@
             /* Collection heading link */
             .site-main-menu ul > li.zuz-shop-mega a.zuz-col-title {
                 display: block !important;
-                font-size: 13px !important;
-                font-weight: 700 !important;
+                font-size: 15px !important;
+                font-weight: 600 !important;
                 text-transform: uppercase !important;
                 letter-spacing: 1.5px !important;
                 color: #111 !important;
@@ -599,6 +602,7 @@
                 white-space: nowrap !important;
                 text-align: left !important;
                 text-indent: 0 !important;
+                font-family: "Marcellus", Arial, Helvetica, sans-serif;
             }
 
             .site-main-menu ul > li.zuz-shop-mega a.zuz-col-title:hover {
@@ -625,12 +629,12 @@
             }
 
             .site-main-menu ul > li.zuz-shop-mega .zuz-cat-list li a {
-                font-size: 15px !important;
+                font-size: 20px !important;
                 color: #000 !important;
                 text-decoration: none !important;
                 padding: 0 !important;
                 margin: 0 !important;
-                font-weight: 400 !important;
+                font-weight: 300 !important;
                 background: transparent !important;
                 display: block !important;
                 text-align: left !important;
@@ -638,6 +642,7 @@
                 text-indent: 0 !important;
                 transition: all 0.3s ease !important;
                 transform: translateX(0) !important;
+                font-family: "Futura", Arial, Helvetica, sans-serif;
             }
 
             .site-main-menu ul > li.zuz-shop-mega .zuz-cat-list li a:hover {
@@ -657,8 +662,7 @@
 
         .btn-dark,
         .btn-outline-dark:hover,
-        .product-button:hover,
-        .sticky-cta-whatsapp {
+        .product-button:hover {
             background-color: var(--zuz-pink) !important;
             border-color: var(--zuz-pink) !important;
             color: #fff !important;
@@ -994,7 +998,9 @@
                         <!-- Call Button -->
                         <a href="tel:+911234567890" class="sticky-cta-btn sticky-cta-call hintT-bottom" data-hint="Call"><i class="fas fa-phone-alt"></i></a>
                         <!-- WhatsApp Button -->
-                        <a href="https://wa.me/911234567890" target="_blank" class="sticky-cta-btn sticky-cta-whatsapp hintT-bottom" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                         <a href="#" class="sticky-cta-btn sticky-cta-whatsapp hintT-bottom" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
                 <!-- Header Tools End -->
@@ -1371,8 +1377,8 @@
 <div class="modal fade" id="zuzEnquiryModal" tabindex="-1" aria-labelledby="zuzEnquiryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="max-width: 380px;">
        <div class="modal-content" style="border-radius: 12px; border: none; overflow: hidden;">
-    <div class="modal-header" style="background: #1a1a1a; border: none; padding: 12px 18px;">
-        <h5 class="modal-title" id="zuzEnquiryModalLabel" style="color: #fff; font-family: var(--font-heading, serif); font-size: 16px;">Enquire Now</h5>
+    <div class="modal-header" style="background: #DFAAB7; border:2px solid #fff ; padding: 12px 18px;">
+        <h5 class="modal-title" id="zuzEnquiryModalLabel" style="color: #fff; font-family: var(--font-heading, serif); font-size: 16px;"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body" style="padding: 14px 18px; max-height: 80vh; overflow-y: auto;">
@@ -1732,7 +1738,7 @@
 
     <script>
 (function() {
-    var WHATSAPP_NUMBER = "9048651027"; // <-- replace with your actual WhatsApp number, no + or spaces
+    var WHATSAPP_NUMBER = "7902545698"; // <-- replace with your actual WhatsApp number, no + or spaces
     var CREATE_URL = "{% url 'booking_enquiry_create' %}";
 
     function getCookie(name) {

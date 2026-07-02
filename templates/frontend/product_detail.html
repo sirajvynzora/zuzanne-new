@@ -30,7 +30,7 @@
 
 .zuz-marquee-content span {
     font-family: var(--font-heading);
-    font-size: 28px;
+    font-size: 30px;
     color: #fff;
     white-space: nowrap;
     padding: 0 24px;
@@ -101,6 +101,22 @@
         justify-content: flex-start;
     }
 }
+
+@media (max-width: 991px) {
+    .product-summery.product-summery-center {
+        text-align: left !important;
+    }
+    
+    .product-summery.product-summery-center .product-description,
+    .product-summery.product-summery-center .product-description p,
+    .product-summery.product-summery-center .product-description ul,
+    .product-summery.product-summery-center .product-description li,
+    .product-summery.product-summery-center .product-variations,
+    .product-summery.product-summery-center .product-buttons {
+        text-align: left !important;
+        justify-content: flex-start !important;
+    }
+}
 {% comment %} product description style end {% endcomment %}
 
 @media (min-width: 992px) {
@@ -122,6 +138,146 @@
         object-fit: cover;
     }
 }
+
+
+{% comment %} product description style start {% endcomment %}
+
+.zuz-accordion { margin-top: 10px; }
+.zuz-accordion-item {
+    border-bottom: 1px solid #e5e5e5;
+}
+.zuz-accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 16px 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    text-align: left;
+    color: #222;
+}
+.zuz-accordion-header i {
+    transition: transform 0.3s ease;
+    font-size: 13px;
+}
+.zuz-accordion-item.active .zuz-accordion-header i {
+    transform: rotate(180deg);
+}
+.zuz-accordion-body {
+    padding: 0 0 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+}
+
+{% comment %} product description style end {% endcomment %}
+
+{% comment %} Legal Metrology + FAQ accordion start {% endcomment %}
+.zuz-lf-wrap {
+    max-width: 100%;
+    margin: 0 auto;
+}
+.zuz-lf-item {
+    border-bottom: 1px solid #e0d9cf;
+}
+.zuz-lf-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 22px 0;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+    color: #222;
+    cursor: pointer;
+}
+.zuz-lf-header.active {
+    color: #a1824a;
+}
+.zuz-lf-header i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+.zuz-lf-header.active i {
+    transform: rotate(180deg);
+}
+.zuz-lf-body {
+    padding: 0 0 28px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.zuz-faq-intro {
+    margin-bottom: 20px;
+}
+.zuz-faq-qa {
+    border-top: 1px solid #ece5da;
+    padding: 6px 0;
+}
+.zuz-faq-q-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: none;
+    padding: 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    color: #222;
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+.zuz-faq-q-header i {
+    font-size: 13px;
+    color: #a1824a;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+.zuz-faq-q-header.active i {
+    transform: rotate(180deg);
+}
+.zuz-faq-q-body {
+    padding: 0 0 16px 25px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666;
+}
+
+.zuz-lf-header:hover {
+    color: #a1824a;
+}
+.zuz-lf-header:hover i {
+    color: #a1824a;
+}
+
+.zuz-faq-q-header:hover {
+    color: #a1824a;
+}
+.zuz-faq-q-header:hover span {
+    color: #a1824a;
+}
+
+@media (max-width: 767px) {
+    .zuz-lf-header { font-size: 17px; }
+    .zuz-faq-q-header { font-size: 14px; }
+}
+{% comment %} Legal Metrology + FAQ accordion end {% endcomment %}
+
 </style>
 {% endblock %}
 
@@ -150,6 +306,75 @@
             justify-content: flex-start;
         }
     }
+
+
+    /* Product action buttons style start */
+.zuz-product-actions{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.zuz-action-btn{
+    flex:1;
+    min-width:220px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    padding:0 24px !important;
+    border-radius:30px !important;
+
+    font-size:14px !important;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+
+    transition:all .3s ease;
+}
+
+.zuz-action-btn i{
+    font-size:16px;
+}
+
+/* Tablet */
+@media (max-width:991px){
+
+    .zuz-product-actions{
+        gap:12px;
+    }
+
+    .zuz-action-btn{
+        min-width:180px;
+        height:48px;
+        font-size:13px !important;
+    }
+
+}
+
+/* Mobile */
+@media (max-width:576px){
+
+    .zuz-product-actions{
+        flex-direction:column;
+        width:100%;
+    }
+
+    .zuz-action-btn{
+        width:100%;
+        min-width:100%;
+        height:48px;
+        font-size:13px !important;
+    }
+
+}
+
+
+    /* Product action buttons style end */
+
 </style>
 <!-- Page Title/Header Start -->
     <div class="page-title-section section" data-bg-image="{% static 'frontend/assets/new_images/hero_section_inner.png' %}">
@@ -177,23 +402,23 @@
     <div class="zuz-marquee-track">
         <div class="zuz-marquee-content">
             <span>Sacred Threads</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Made With Prayer</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Bespoke Craftsmanship</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Handcrafted Ceremonial Wear</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
         </div>
         <div class="zuz-marquee-content" aria-hidden="true">
             <span>Sacred Threads</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Made With Prayer</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Bespoke Craftsmanship</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
             <span>Handcrafted Ceremonial Wear</span>
-            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
+            <span class="zuz-marquee-dot"><img src="/static/frontend/assets/images/logo/zuzanne2.png" id="mobileLogo" data-default="/static/frontend/assets/images/logo/zuzanne.png" data-scrolled="/static/frontend/assets/images/logo/zuzanne2.png" alt="Logo" class="zuzanne-logo-mobile"></span>
         </div>
     </div>
 </section>
@@ -235,30 +460,91 @@
                 <div class="col-lg-6 col-12 learts-mb-40 wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="0.2s">
                     <div class="product-summery product-summery-center">
                         <h3 class="product-title">{{ product.name|default:"Product Details" }}</h3>
-                        <div class="product-price" style="font-size:16px; color:#999; font-weight:500;">Bespoke Custom Order</div>
+                        <div class="product-price" style="font-size:16px; color:#999; font-weight:500;">{{product.category.collection}}</div>
                         <div class="product-description">
-                            {{ product.description|default:""|safe }}
-                        </div>
-                        <div class="product-variations">
-                            {% if sizes_list %}
-                            <div style="margin: 18px 0;">
+
+
+                                 {% if description_intro %}
+                                  {{ description_intro|safe }}
+                                 {% endif %}
+
+
+
+                            <div class="product-variations">
+                             {% if sizes_list %}
+                              <div style="margin: 18px 0;">
                                 <p style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 12px;">Sizes</p>
-                                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                <div style="display: flex; flex-wrap: wrap; gap: 12px;">
                                     {% for size in sizes_list %}
-                                    <span style="padding: 8px 20px; border: 1.5px solid #222; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #222;">{{ size }}</span>
+                                    <span style="padding: 14px 28px; border: 1.5px solid #222; border-radius: 30px; font-size: 20px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #222;">{{ size }}</span>
                                     {% endfor %}
                                 </div>
+                              </div>
+                             {% endif %}
+                            </div>
+
+                            
+                            <div class="zuz-product-actions">
+
+    {% if size_chart_img %}
+    <button type="button"
+        class="btn btn-outline-dark btn-outline-hover-dark zuz-action-btn"
+        onclick="document.getElementById('zuzSizeChartOverlay').style.display='flex';document.body.style.overflow='hidden';">
+        <i class="fas fa-ruler"></i>
+        <span>View Size Chart</span>
+    </button>
+    {% endif %}
+
+    <a href="#"
+       class="btn btn-outline-dark btn-outline-hover-dark zuz-action-btn"
+       data-zuz-enquiry-trigger
+       data-product="{{ product.name }}">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp</span>
+    </a>
+
+</div>
+                            
+                            {% comment %} <!-- view size chart section start -->
+                            {% if size_chart_img %}
+                            <div style="margin: 10px 0 18px;">
+                                <button type="button" onclick="document.getElementById('zuzSizeChartOverlay').style.display='flex';document.body.style.overflow='hidden';"
+                                 class="btn btn-outline-dark btn-outline-hover-dark"
+                                 style="padding: 10px 24px; font-size: 12px; letter-spacing: 1px; border-radius: 30px;">
+                                 <i class="fas fa-ruler"></i> View Size Chart
+                                </button>
                             </div>
                             {% endif %}
-                        </div>
-                        <div class="product-buttons">
-                            {% comment %} <a href="{% url 'contact' %}?product={{ product.name }}" class="btn btn-dark btn-outline-hover-dark"><i class="far fa-envelope"></i> Enquire Now</a> {% endcomment %}
-                            <a href="#" class="btn btn-outline-dark btn-outline-hover-dark" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
-                                <i class="fab fa-whatsapp"></i> WhatsApp 
-                            </a> 
-                            {% comment %} <a href="https://wa.me/911234567890?text=Hi, I am interested in {{ product.name }}" target="_blank" class="btn btn-outline-dark btn-outline-hover-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a> {% endcomment %}
-                        </div>
+                            <!-- view size chart section end -->
 
+
+                             <div class="product-buttons">
+                              <a href="#" class="btn btn-outline-dark btn-outline-hover-dark" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
+                                <i class="fab fa-whatsapp"></i> WhatsApp 
+                              </a> 
+                             </div> {% endcomment %}
+
+
+    <!-- Product description start -->
+    {% if description_sections %}
+    <div class="zuz-accordion">
+        {% for sec in description_sections %}
+        <div class="zuz-accordion-item">
+            <button type="button" class="zuz-accordion-header" onclick="zuzToggleAccordion(this)">
+                <span>{{ sec.heading }}</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="zuz-accordion-body" style="display:none;">
+                {{ sec.content|safe }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <!-- Product description end -->
+
+
+                        </div>
                     </div>
                 </div>
                 <!-- Product Summery End -->
@@ -268,6 +554,108 @@
 
     </div>
     <!-- Single Products Section End -->
+
+
+    <!-- section of the legal metrology product and FAQ start -->
+<div class="section section-padding border-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="zuz-lf-wrap">
+
+                    <!-- Legal Metrology Product Declaration -->
+                    <div class="zuz-lf-item">
+                        <button type="button" class="zuz-lf-header" onclick="zuzToggleLF(this)">
+                            <span>Legal Metrology Product Declaration</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="zuz-lf-body" style="display:none;">
+                            {% if legal_metrology_text %}
+                                {{ legal_metrology_text|safe }}
+                            {% else %}
+                            <table class="table table-borderless mb-0">
+                                <tbody>
+                                    <tr><td>Manufactured / Marketed By</td><td>{{ legal_metrology.manufacturer|default:"Zuzanne" }}</td></tr>
+                                    <tr><td>Country of Origin</td><td>{{ legal_metrology.country_of_origin|default:"India" }}</td></tr>
+                                    <tr><td>Net Quantity</td><td>{{ legal_metrology.net_quantity|default:"1 Unit" }}</td></tr>
+                                    <tr><td>Customer Care</td><td>{{ legal_metrology.customer_care|default:"support@zuzanne.com" }}</td></tr>
+                                </tbody>
+                            </table>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Frequently Asked Questions -->
+                    <div class="zuz-lf-item">
+                        <button type="button" class="zuz-lf-header active" onclick="zuzToggleLF(this)">
+                            <span>Frequently Asked Questions</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="zuz-lf-body" style="display:block;">
+                            <p class="zuz-faq-intro">You may have a lot of questions in your mind about our products and services we offer online. We will try to find answers for the same here. Please check our FAQ section below and get your doubts cleared regarding our products and services.</p>
+
+                            <div class="zuz-faq-qa">
+                                <button type="button" class="zuz-faq-q-header{% if forloop.first %} active{% endif %}" onclick="zuzToggleFAQItem(this)">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <span>1. What is your minimum order quantity (MoQ)</span>
+                                </button>
+                                <div class="zuz-faq-q-body" style="display:{% if forloop.first %}block{% else %}none{% endif %};">
+                                    <p>A christening dress is traditionally worn during the baptismal ceremony, symbolizing purity and new beginnings. It’s a cherished tradition for many families and adds a special touch to the event</p>
+                                </div>
+                            </div>
+
+                            <div class="zuz-faq-qa">
+                                <button type="button" class="zuz-faq-q-header{% if forloop.first %} active{% endif %}" onclick="zuzToggleFAQItem(this)">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <span>2.When can I expect my delivery?</span>
+                                </button>
+                                <div class="zuz-faq-q-body" style="display:{% if forloop.first %}block{% else %}none{% endif %};">
+                                    <p>It might not be possible for the manufacturer to provide you with an exact delivery date before the production has been initiated, but they can tell you when you can expect a sample and how long it might take for them to complete the production once the sample has been approved. </p>
+                                </div>
+                            </div>
+                     
+                            <div class="zuz-faq-qa">
+                                <button type="button" class="zuz-faq-q-header{% if forloop.first %} active{% endif %}" onclick="zuzToggleFAQItem(this)">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <span>2. Can you give me a cost estimate for my product?</span>
+                                </button>
+                                <div class="zuz-faq-q-body" style="display:{% if forloop.first %}block{% else %}none{% endif %};">
+                                    <p>We would be happy to provide you with a cost estimate for your product. Please contact our sales team with your requirements and they will get back to you with a detailed quote.</p>
+                                </div>
+                            </div>
+
+                            <div class="zuz-faq-qa">
+                                <button type="button" class="zuz-faq-q-header{% if forloop.first %} active{% endif %}" onclick="zuzToggleFAQItem(this)">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <span>3.When can I expect my delivery?</span>
+                                </button>
+                                <div class="zuz-faq-q-body" style="display:{% if forloop.first %}block{% else %}none{% endif %};">
+                                    <p>It might not be possible for the manufacturer to provide you with an exact delivery date before the production has been initiated, but they can tell you when you can expect a sample and how long it might take for them to complete the production once the sample has been approved. </p>
+                                </div>
+                            </div>
+
+                            {% for faq in faqs_list %}
+                            <div class="zuz-faq-qa">
+                                <button type="button" class="zuz-faq-q-header{% if forloop.first %} active{% endif %}" onclick="zuzToggleFAQItem(this)">
+                                    <i class="fas fa-chevron-down"></i>
+                                    <span>{{ forloop.counter }}. {{ faq.question }}</span>
+                                </button>
+                                <div class="zuz-faq-q-body" style="display:{% if forloop.first %}block{% else %}none{% endif %};">
+                                    <p>{{ faq.answer }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- section of the legal metrology product and FAQ end -->
+
+
 
     <!-- Single Products Infomation Section Start -->
     {% comment %} <div class="section section-padding border-bottom">
@@ -337,7 +725,7 @@
             </div>
 
         </div>
-    </div> {% endcomment %}
+    </div>  {% endcomment %}
     <!-- Single Products Infomation Section End -->
 
     <!-- Recommended Products Section Start -->
@@ -345,8 +733,13 @@
         <div class="container">
 
             <!-- Section Title Start -->
+            {% comment %} 
             <div class="section-title2 text-center">
                 <h2 class="title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.1s">You Might Also Like</h2>
+            </div> 
+            {% endcomment %}
+            <div class="section-title2 text-center mb-5">
+                <h2 class="title title-icon-both wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.1s">You Might Also Like</h2>
             </div>
             <!-- Section Title End -->
 
@@ -372,8 +765,15 @@
                                 Bespoke Custom Order
                             </span>
                             <div class="product-buttons">
-                                <a href="{% url 'contact' %}?product={{ rp.name }}" class="product-button hintT-top" data-hint="Enquire"><i class="far fa-envelope"></i></a>
-                                <a href="https://wa.me/911234567890?text=Hi, I am interested in {{ rp.name }}" target="_blank" class="product-button hintT-top" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+                                <a href="{% url 'product_detail' rp.slug %}"
+                                    class="product-button hintT-top" data-hint="View Details"><i
+                                class="fas fa-search"></i></a>
+                                <a href="#" class="product-button hintT-top" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{rp.name }}">
+                                    <i class="fab fa-whatsapp"></i> 
+                                </a>
+                                {% comment %} <a href="{% url 'contact' %}?product={{ rp.name }}" class="product-button hintT-top" data-hint="Enquire"><i class="far fa-envelope"></i></a>
+                                <a href="https://wa.me/911234567890?text=Hi, I am interested in {{ rp.name }}" target="_blank" class="product-button hintT-top" data-hint="WhatsApp"><i class="fab fa-whatsapp"></i></a> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -389,9 +789,100 @@
         </div>
     </div>
     <!-- Recommended Products Section End -->
+
+    <!-- Size Chart Overlay with Pan-Zoom (moved here so position:fixed works correctly) -->
+    {% if size_chart_img %}
+    <div id="zuzSizeChartOverlay" 
+         onclick="if(event.target===this){this.style.display='none';document.body.style.overflow='';}"
+         style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); z-index:99999; align-items:center; justify-content:center; padding:20px;">
+        
+        <div style="position:relative; max-width:600px; width:100%; max-height:70vh; background:#fff; border-radius:12px; overflow:hidden;">
+            
+            <button type="button" 
+                    onclick="document.getElementById('zuzSizeChartOverlay').style.display='none';document.body.style.overflow='';"
+                    style="position:absolute; top:10px; right:10px; z-index:10; width:32px; height:32px; border-radius:50%; border:none; background:rgba(255,255,255,0.9); font-size:18px; line-height:1; cursor:crosshair; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+                &times;
+            </button>
+
+            <div style="max-height:70vh; overflow:hidden;">
+                <img src="{{ size_chart_img.image.url }}" 
+                     alt="{{ product.name }} Size Chart" 
+                     style="width:100%; height:auto; display:block; transition: transform 0.1s ease-out; transform-origin: center center;"
+                     onmouseover="this.style.transform='scale(1.5)';" 
+                     onmousemove="
+                        const rect = this.getBoundingClientRect();
+                        const x = ((event.clientX - rect.left) / rect.width) * 100;
+                        const y = ((event.clientY - rect.top) / rect.height) * 100;
+                        this.style.transformOrigin = `${x}% ${y}%`;
+                     "
+                     onmouseout="this.style.transform='scale(1)'; this.style.transformOrigin='center center';">
+            </div>
+        </div>
+    </div>
+    {% endif %}
+     <!-- Size Chart Overlay with Pan-Zoom end -->
+
+    
 {% endblock %}
 
 {% block extra_js %}
+<script>
+    function zuzToggleAccordion(btn) {
+    const item = btn.closest('.zuz-accordion-item');
+    const body = item.querySelector('.zuz-accordion-body');
+    const isActive = item.classList.contains('active');
+
+    // close every open item
+    document.querySelectorAll('.zuz-accordion-item').forEach(function (i) {
+        i.classList.remove('active');
+        i.querySelector('.zuz-accordion-body').style.display = 'none';
+    });
+
+    // open the clicked one if it wasn't already open
+    if (!isActive) {
+        item.classList.add('active');
+        body.style.display = 'block';
+    }
+}
+</script>
+
+<script>
+    function zuzToggleLF(btn) {
+    const item = btn.closest('.zuz-lf-item');
+    const body = item.querySelector('.zuz-lf-body');
+    const isActive = btn.classList.contains('active');
+
+    document.querySelectorAll('.zuz-lf-header').forEach(function (h) {
+        h.classList.remove('active');
+        h.closest('.zuz-lf-item').querySelector('.zuz-lf-body').style.display = 'none';
+    });
+
+    if (!isActive) {
+        btn.classList.add('active');
+        body.style.display = 'block';
+    }
+}
+
+function zuzToggleFAQItem(btn) {
+    const item = btn.closest('.zuz-faq-qa');
+    const body = item.querySelector('.zuz-faq-q-body');
+    const isActive = btn.classList.contains('active');
+
+    // close siblings within the same FAQ block
+    item.closest('.zuz-lf-body').querySelectorAll('.zuz-faq-q-header').forEach(function (h) {
+        h.classList.remove('active');
+        h.closest('.zuz-faq-qa').querySelector('.zuz-faq-q-body').style.display = 'none';
+    });
+
+    if (!isActive) {
+        btn.classList.add('active');
+        body.style.display = 'block';
+    }
+}
+</script>
+
+
+
 <script>
   new WOW({ offset: 250, mobile: true, live: true }).init();
 </script>

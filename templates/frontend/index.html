@@ -2091,8 +2091,8 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
 }
 
 .zuz-marquee-content span {
-    font-family: var(--font-heading);
-    font-size: 28px;
+    font-family: font-family: "Marcellus", Arial, Helvetica, sans-serif;
+    font-size: 30px;
     color: #fff;
     white-space: nowrap;
     padding: 0 24px;
@@ -2165,7 +2165,7 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                     class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp"><i
                         class="fab fa-whatsapp"></i></a> {% endcomment %}
                  
-                 <a href="#" class="btn btn-icon btn-dark rounded-circle hintT-bottom" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{ showcase_product.name }}">
+                 <a href="#" class="btn btn-icon btn-outline-dark rounded-circle hintT-bottom" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{ showcase_product.name }}">
                     <i class="fab fa-whatsapp"></i>
                 </a>       
             </div>
@@ -2237,8 +2237,14 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
             <div class="zuz-sticky-actions">
                 <a href="tel:+911234567890" class="btn btn-icon btn-outline-dark rounded-circle" title="Call"><i
                         class="fas fa-phone-alt"></i></a>
-                <a href="https://wa.me/911234567890" target="_blank" class="btn btn-icon btn-dark rounded-circle"
-                    title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+                        <a href="#" class="btn btn-icon btn-outline-dark rounded-circle" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
+                                <i class="fab fa-whatsapp"></i> WhatsApp 
+                              </a> 
+
+{% comment %} 
+                <a href="https://wa.me/911234567890" target="_blank" class="btn btn-icon btn-outline-dark rounded-circle"
+                    title="WhatsApp"><i class="fab fa-whatsapp"></i></a> {% endcomment %}
             </div>
         </div>
     </div>
@@ -2764,9 +2770,10 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                                     <a href="{% url 'product_detail' product.slug %}"
                                                         class="product-button hintT-top" data-hint="View Details"><i
                                                             class="fas fa-search"></i></a>
-                                                    <a href="{% url 'contact' %}?product={{ product.name }}"
-                                                        class="product-button hintT-top" data-hint="Inquire Now"><i
-                                                            class="far fa-envelope"></i></a>
+                                                    <a href="#" class="product-button hintT-top" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
+                                                       <i class="fab fa-whatsapp"></i> 
+                                                    </a> 
+
                                                 </div>
                                             </div>
                                         </div>
@@ -3067,10 +3074,9 @@ and accessories, created with care and prayers at Zuzanne.{% endblock %}
                                     class="btn btn-dark btn-outline-hover-dark">
                                     View Details
                                 </a>
-                                <a href="{% url 'contact' %}?product={{ showcase_product.name }}"
-                                    class="btn btn-outline-dark btn-hover-dark">
-                                    <i class="far fa-envelope"></i> Enquire
-                                </a>
+                                <a href="#" class="btn btn-outline-dark btn-hover-dark" data-hint="WhatsApp" data-zuz-enquiry-trigger data-product="{{product.name }}">
+                                       <i class="fab fa-whatsapp"></i> Enquire
+                                </a> 
                             </div>
                             
                             </div>
